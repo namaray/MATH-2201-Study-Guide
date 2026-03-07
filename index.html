@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH 2201: Coordinate Geometry & Vector Analysis</title>
+    <style>
+        /* CSS Styling */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #bdc3c7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        /* Grid Layout for Syllabus Topics */
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card Design */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .card ul {
+            list-style-type: none;
+            flex-grow: 1;
+        }
+
+        .card ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .card ul li::before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1rem;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-link:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MATH 2201</h1>
+        <p>Coordinate Geometry and Vector Analysis</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Comprehensive Study Guide & Notes</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Course Modules</h2>
+        
+        <div class="syllabus-grid">
+            
+            <!-- Module 1 -->
+            <div class="card">
+                <h2>1. 2D Coordinate Geometry</h2>
+                <ul>
+                    <li>Transformation of Coordinates</li>
+                    <li>Pair of Straight Lines</li>
+                    <li>Conic Sections (Parabola, Ellipse, Hyperbola)</li>
+                    <li>Polar Coordinates & Equations</li>
+                </ul>
+                <a href="module1-2d-geometry.html" class="card-link">Go to Module 1 &rarr;</a>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="card">
+                <h2>2. 3D Coordinate Geometry</h2>
+                <ul>
+                    <li>3D Cartesian Coordinates</li>
+                    <li>Direction Cosines and Ratios</li>
+                    <li>Planes in 3D Space</li>
+                    <li>Straight Lines in 3D</li>
+                </ul>
+                <a href="module2-3d-geometry.html" class="card-link">Go to Module 2 &rarr;</a>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="card">
+                <h2>3. Surfaces & Curves</h2>
+                <ul>
+                    <li>Spheres and their equations</li>
+                    <li>Cylinders and Cones</li>
+                    <li>Quadric Surfaces (Ellipsoids, Paraboloids)</li>
+                    <li>Cylindrical and Spherical Coordinates</li>
+                </ul>
+                <a href="module3-surfaces.html" class="card-link">Go to Module 3 &rarr;</a>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="card">
+                <h2>4. Vector Algebra</h2>
+                <ul>
+                    <li>Vectors in 2D and 3D</li>
+                    <li>Dot Product (Scalar Product)</li>
+                    <li>Cross Product (Vector Product)</li>
+                    <li>Scalar and Vector Triple Products</li>
+                </ul>
+                <a href="module4-vector-algebra.html" class="card-link">Go to Module 4 &rarr;</a>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="card">
+                <h2>5. Vector Calculus</h2>
+                <ul>
+                    <li>Vector-Valued Functions</li>
+                    <li>Velocity, Acceleration & Curvature</li>
+                    <li>Gradient, Divergence, and Curl</li>
+                    <li>Directional Derivatives</li>
+                </ul>
+                <a href="module5-vector-calculus.html" class="card-link">Go to Module 5 &rarr;</a>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="card">
+                <h2>6. Vector Integration</h2>
+                <ul>
+                    <li>Line Integrals & Work Done</li>
+                    <li>Surface and Volume Integrals</li>
+                    <li>Green's Theorem</li>
+                    <li>Stokes' & Divergence Theorems</li>
+                </ul>
+                <a href="module6-vector-integration.html" class="card-link">Go to Module 6 &rarr;</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MATH 2201 Study Guide. Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">Created for students, by a student.</p>
+    </footer>
+
+</body>
+</html>
