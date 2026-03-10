@@ -3,148 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATH 2201: Coordinate Geometry & Vector Analysis</title>
+    <title>MATH 2201 | UIU Study Guide</title>
     <style>
-        /* CSS Styling */
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --background: #f8f9fa;
+            --primary-color: #f37021; /* UIU Orange */
+            --primary-dark: #d35400;
+            --secondary-color: #2c3e50;
+            --bg-color: #f4f7f6;
             --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-muted: #666666;
+            --text-dark: #333;
+            --text-light: #666;
+            --midterm-accent: #2980b9;
+            --final-accent: #27ae60;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--background);
-            color: var(--text-main);
+            background-color: var(--bg-color);
+            color: var(--text-dark);
             line-height: 1.6;
         }
 
+        /* Header Styling */
         header {
-            background-color: var(--primary-color);
+            background-color: var(--secondary-color);
             color: white;
-            padding: 3rem 1rem;
+            padding: 4rem 1rem;
             text-align: center;
-            border-bottom: 5px solid var(--secondary-color);
+            border-bottom: 6px solid var(--primary-color);
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 0.5rem;
+            letter-spacing: 1px;
         }
 
-        header p {
-            font-size: 1.2rem;
+        header h2 {
+            font-size: 1.5rem;
             color: #bdc3c7;
-            max-width: 600px;
-            margin: 0 auto;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
         }
 
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Container & Sections */
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        .section-title {
-            text-align: center;
+        .term-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            font-size: 2.2rem;
             margin-bottom: 2rem;
-            font-size: 2rem;
-            color: var(--primary-color);
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #ccc;
+            display: inline-block;
         }
 
-        /* Grid Layout for Syllabus Topics */
-        .syllabus-grid {
+        .midterm-title { color: var(--midterm-accent); border-color: var(--midterm-accent); }
+        .final-title { color: var(--final-accent); border-color: var(--final-accent); }
+
+        /* Grid Layout */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 1.5rem;
         }
 
-        /* Card Design */
+        /* Card Styling */
         .card {
             background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border-top: 4px solid var(--secondary-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
         }
 
-        .card h2 {
+        .card.midterm::before { background-color: var(--midterm-accent); }
+        .card.final::before { background-color: var(--final-accent); }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chapter-badge {
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background-color: #eee;
+            color: #555;
+        }
+
+        .card h3 {
             font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
         }
 
         .card ul {
-            list-style-type: none;
+            list-style: none;
             flex-grow: 1;
         }
 
         .card ul li {
-            margin-bottom: 0.5rem;
             position: relative;
             padding-left: 1.5rem;
-            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
         }
 
         .card ul li::before {
-            content: "•";
-            color: var(--secondary-color);
+            content: "➔";
             position: absolute;
             left: 0;
-            font-weight: bold;
-            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            top: 2px;
         }
 
-        .card-link {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.6rem 1rem;
-            background-color: var(--secondary-color);
-            color: white;
-            text-decoration: none;
+        .btn {
+            display: block;
             text-align: center;
-            border-radius: 4px;
+            text-decoration: none;
+            padding: 0.8rem;
+            margin-top: 1.5rem;
+            border-radius: 5px;
+            color: white;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: opacity 0.3s;
         }
 
-        .card-link:hover {
-            background-color: #2980b9;
-        }
+        .btn-midterm { background-color: var(--midterm-accent); }
+        .btn-final { background-color: var(--final-accent); }
+        .btn:hover { opacity: 0.85; }
 
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: var(--primary-color);
+            background-color: var(--secondary-color);
             color: white;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
-
+        
         footer a {
-            color: var(--secondary-color);
+            color: var(--primary-color);
             text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -152,93 +209,160 @@
 
     <header>
         <h1>MATH 2201</h1>
-        <p>Coordinate Geometry and Vector Analysis</p>
-        <p style="font-size: 0.9rem; margin-top: 10px;">Comprehensive Study Guide & Notes</p>
+        <h2>Coordinate Geometry and Vector Analysis</h2>
+        <p style="margin-bottom: 2rem; color: #95a5a6;">United International University (UIU) • Textbook: Anton 10th Ed.</p>
+        <div class="nav-links">
+            <a href="#midterm">Midterm Syllabus</a>
+            <a href="#final">Final Syllabus</a>
+        </div>
     </header>
 
     <div class="container">
-        <h2 class="section-title">Course Modules</h2>
         
-        <div class="syllabus-grid">
+        <!-- MIDTERM SECTION -->
+        <section id="midterm" class="term-section">
+            <h2 class="section-header midterm-title">Midterm Examination</h2>
             
-            <!-- Module 1 -->
-            <div class="card">
-                <h2>1. 2D Coordinate Geometry</h2>
-                <ul>
-                    <li>Transformation of Coordinates</li>
-                    <li>Pair of Straight Lines</li>
-                    <li>Conic Sections (Parabola, Ellipse, Hyperbola)</li>
-                    <li>Polar Coordinates & Equations</li>
-                </ul>
-                <a href="module1-2d-geometry.html" class="card-link">Go to Module 1 &rarr;</a>
-            </div>
+            <div class="grid">
+                
+                <!-- Topic 1 -->
+                <div class="card midterm">
+                    <div class="card-header">
+                        <span class="chapter-badge">Ch 11.1 - 11.4</span>
+                    </div>
+                    <h3>Vectors in 3-Space</h3>
+                    <ul>
+                        <li>Rectangular coordinates & distance in 3D</li>
+                        <li>Vector components and unit vectors</li>
+                        <li>Dot Product, angles, and orthogonal projections</li>
+                        <li>Cross Product & Scalar Triple Product</li>
+                        <li>Area of triangles and volume of parallelepipeds</li>
+                    </ul>
+                    <a href="midterm-vectors.html" class="btn btn-midterm">Study Notes</a>
+                </div>
 
-            <!-- Module 2 -->
-            <div class="card">
-                <h2>2. 3D Coordinate Geometry</h2>
-                <ul>
-                    <li>3D Cartesian Coordinates</li>
-                    <li>Direction Cosines and Ratios</li>
-                    <li>Planes in 3D Space</li>
-                    <li>Straight Lines in 3D</li>
-                </ul>
-                <a href="module2-3d-geometry.html" class="card-link">Go to Module 2 &rarr;</a>
-            </div>
+                <!-- Topic 2 -->
+                <div class="card midterm">
+                    <div class="card-header">
+                        <span class="chapter-badge">Ch 11.5 - 11.6</span>
+                    </div>
+                    <h3>Lines and Planes</h3>
+                    <ul>
+                        <li>Parametric equations of straight lines</li>
+                        <li>Parallel, skew, and intersecting lines</li>
+                        <li>Equations of planes in 3-space</li>
+                        <li>Distance between points, lines, and planes</li>
+                        <li>Quadratic surfaces</li>
+                    </ul>
+                    <a href="midterm-lines-planes.html" class="btn btn-midterm">Study Notes</a>
+                </div>
 
-            <!-- Module 3 -->
-            <div class="card">
-                <h2>3. Surfaces & Curves</h2>
-                <ul>
-                    <li>Spheres and their equations</li>
-                    <li>Cylinders and Cones</li>
-                    <li>Quadric Surfaces (Ellipsoids, Paraboloids)</li>
-                    <li>Cylindrical and Spherical Coordinates</li>
-                </ul>
-                <a href="module3-surfaces.html" class="card-link">Go to Module 3 &rarr;</a>
-            </div>
+                <!-- Topic 3 -->
+                <div class="card midterm">
+                    <div class="card-header">
+                        <span class="chapter-badge">Ch 13.6</span>
+                    </div>
+                    <h3>Directional Derivatives</h3>
+                    <ul>
+                        <li>Gradient of scalar fields</li>
+                        <li>Finding the Directional Derivative</li>
+                        <li>Directions of maximum/minimum rate of change</li>
+                    </ul>
+                    <a href="midterm-derivatives.html" class="btn btn-midterm">Study Notes</a>
+                </div>
 
-            <!-- Module 4 -->
-            <div class="card">
-                <h2>4. Vector Algebra</h2>
-                <ul>
-                    <li>Vectors in 2D and 3D</li>
-                    <li>Dot Product (Scalar Product)</li>
-                    <li>Cross Product (Vector Product)</li>
-                    <li>Scalar and Vector Triple Products</li>
-                </ul>
-                <a href="module4-vector-algebra.html" class="card-link">Go to Module 4 &rarr;</a>
-            </div>
+                <!-- Topic 4 -->
+                <div class="card midterm">
+                    <div class="card-header">
+                        <span class="chapter-badge">Ch 14.1, 14.2, 14.3, 14.5</span>
+                    </div>
+                    <h3>Multiple Integrals (Part 1)</h3>
+                    <ul>
+                        <li>Double integrals over rectangles</li>
+                        <li>Double integrals over general regions</li>
+                        <li>Finding area and volume using double integrals</li>
+                        <li>Triple integrals in rectangular coordinate systems</li>
+                    </ul>
+                    <a href="midterm-integrals.html" class="btn btn-midterm">Study Notes</a>
+                </div>
 
-            <!-- Module 5 -->
-            <div class="card">
-                <h2>5. Vector Calculus</h2>
-                <ul>
-                    <li>Vector-Valued Functions</li>
-                    <li>Velocity, Acceleration & Curvature</li>
-                    <li>Gradient, Divergence, and Curl</li>
-                    <li>Directional Derivatives</li>
-                </ul>
-                <a href="module5-vector-calculus.html" class="card-link">Go to Module 5 &rarr;</a>
             </div>
+        </section>
 
-            <!-- Module 6 -->
-            <div class="card">
-                <h2>6. Vector Integration</h2>
-                <ul>
-                    <li>Line Integrals & Work Done</li>
-                    <li>Surface and Volume Integrals</li>
-                    <li>Green's Theorem</li>
-                    <li>Stokes' & Divergence Theorems</li>
-                </ul>
-                <a href="module6-vector-integration.html" class="card-link">Go to Module 6 &rarr;</a>
+
+        <!-- FINAL SECTION -->
+        <section id="final" class="term-section">
+            <h2 class="section-header final-title">Final Examination</h2>
+            
+            <div class="grid">
+
+                <!-- Topic 5 -->
+                <div class="card final">
+                    <div class="card-header">
+                        <span class="chapter-badge">Ch 11.8, 12.1, 12.2, 14.6</span>
+                    </div>
+                    <h3>Coordinate Systems & Vector Functions</h3>
+                    <ul>
+                        <li>Differentiation & integration of vector-valued functions</li>
+                        <li>Cylindrical coordinate systems</li>
+                        <li>Spherical coordinate systems</li>
+                        <li>Triple integrals in polar, cylindrical, and spherical systems</li>
+                    </ul>
+                    <a href="final-vector-functions.html" class="btn btn-final">Study Notes</a>
+                </div>
+
+                <!-- Topic 6 -->
+                <div class="card final">
+                    <div class="card-header">
+                        <span class="chapter-badge">Ch 15.1 - 15.4</span>
+                    </div>
+                    <h3>Vector Fields & Line Integrals</h3>
+                    <ul>
+                        <li>Understanding Vector Fields</li>
+                        <li>Evaluating Line Integrals</li>
+                        <li>Conservative vector fields & path independence</li>
+                        <li>Green’s Theorem</li>
+                    </ul>
+                    <a href="final-line-integrals.html" class="btn btn-final">Study Notes</a>
+                </div>
+
+                <!-- Topic 7 -->
+                <div class="card final">
+                    <div class="card-header">
+                        <span class="chapter-badge">Ch 15.5 - 15.8</span>
+                    </div>
+                    <h3>Surface Integrals & Theorems</h3>
+                    <ul>
+                        <li>Evaluating Surface Integrals</li>
+                        <li>Calculating Flux across a surface</li>
+                        <li>The Divergence Theorem</li>
+                        <li>Stokes’ Theorem</li>
+                    </ul>
+                    <a href="final-surface-integrals.html" class="btn btn-final">Study Notes</a>
+                </div>
+
+                <!-- Topic 8 -->
+                <div class="card final">
+                    <div class="card-header">
+                        <span class="chapter-badge">Ch 10.4, 10.5</span>
+                    </div>
+                    <h3>Conic Sections</h3>
+                    <ul>
+                        <li>Recognizing different conic sections</li>
+                        <li>Parabolas, Ellipses, and Hyperbolas</li>
+                        <li>Translation and Rotation of axes</li>
+                    </ul>
+                    <a href="final-conic-sections.html" class="btn btn-final">Study Notes</a>
+                </div>
+
             </div>
+        </section>
 
-        </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 MATH 2201 Study Guide. Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.</p>
-        <p style="font-size: 0.8rem; margin-top: 5px;">Created for students, by a student.</p>
+        <p>MATH 2201 Study Guide | Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.</p>
+        <p style="font-size: 0.85rem; margin-top: 5px;">Based on the UIU Fall-2025 Syllabus (Anton 10th Edition).</p>
     </footer>
 
 </body>
