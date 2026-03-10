@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice: Vectors in 3-Space</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            background-color: #fdfdfd;
+            color: #333;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            border-left: 5px solid #2980b9;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 2rem;
+        }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        .problem-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .problem-list li {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, 'Courier New', monospace;
+            color: #c0392b;
+        }
+        details {
+            margin-top: 1rem;
+            background-color: #fff;
+            border: 1px dashed #bdc3c7;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+        summary {
+            font-weight: bold;
+            color: #2980b9;
+            cursor: pointer;
+        }
+        .solution-steps {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ecf0f1;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .home-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">&larr; Back to Main Syllabus</a>
+
+    <h1>Practice Problems: Vectors in 3-Space (Ch 11.1 - 11.4)</h1>
+
+    <!-- Chapter 11.1 Problems -->
+    <h2>Chapter 11.1: 3D Coordinates & Surfaces</h2>
+    <ol class="problem-list">
+        <li>
+            <strong>Problem 1:</strong> A sphere is described by the equation <code>x² + y² + z² - 4x + 8y - 2z + 5 = 0</code>.
+            <br> (a) Find the center and radius of the sphere.
+            <br> (b) Find the distance from the point <code>P(1, 1, 1)</code> to the center of the sphere.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>(a) Find the center and radius:</strong> We must complete the square.</p>
+                    <p><code>(x² - 4x) + (y² + 8y) + (z² - 2z) = -5</code></p>
+                    <p><code>(x² - 4x + 4) + (y² + 8y + 16) + (z² - 2z + 1) = -5 + 4 + 16 + 1</code></p>
+                    <p><code>(x - 2)² + (y + 4)² + (z - 1)² = 16</code></p>
+                    <p>The equation is now in standard form. The center is <code>C(2, -4, 1)</code> and the radius is <code>r = √16 = 4</code>.</p>
+                    <hr>
+                    <p><strong>(b) Find the distance from P(1, 1, 1) to the center C(2, -4, 1):</strong></p>
+                    <p>Use the distance formula: <code>d = √[(x₂-x₁)² + (y₂-y₁)² + (z₂-z₁)²]</code></p>
+                    <p><code>d = √[(2-1)² + (-4-1)² + (1-1)²]</code></p>
+                    <p><code>d = √[1² + (-5)² + 0²] = √[1 + 25] = √26</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 2:</strong> Identify and sketch the surface represented by the equation <code>y² + z² = 9</code> in 3-space.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>The equation <code>y² + z² = 9</code> involves only two variables. This represents a <strong>cylindrical surface</strong>.</p>
+                    <p>In the yz-plane, this equation is a circle with radius 3 centered at the origin.</p>
+                    <p>Since the variable <code>x</code> is missing, we "extrude" this circle along the x-axis.</p>
+                    <p><strong>Answer:</strong> This is a right circular cylinder with radius 3, whose central axis is the x-axis.</p>
+                </div>
+            </details>
+        </li>
+    </ol>
+
+    <!-- Chapter 11.2 Problems -->
+    <h2>Chapter 11.2: Vectors</h2>
+    <ol class="problem-list">
+        <li>
+            <strong>Problem 3:</strong> Given the points <code>P(2, -1, 3)</code> and <code>Q(-1, 0, 5)</code>.
+            <br>(a) Find the component form of the vector <strong>PQ</strong>.
+            <br>(b) Find the magnitude (norm) of <strong>PQ</strong>.
+            <br>(c) Find the unit vector in the direction of <strong>PQ</strong>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>(a) Component form (Terminal - Initial):</strong></p>
+                    <p><code><strong>PQ</strong> = &lt;(-1 - 2), (0 - (-1)), (5 - 3)&gt; = &lt;-3, 1, 2&gt;</code></p>
+                    <hr>
+                    <p><strong>(b) Magnitude:</strong></p>
+                    <p><code>||<strong>PQ</strong>|| = √[(-3)² + 1² + 2²] = √[9 + 1 + 4] = √14</code></p>
+                    <hr>
+                    <p><strong>(c) Unit vector (Vector / Magnitude):</strong></p>
+                    <p><code>u = <strong>PQ</strong> / ||<strong>PQ</strong>|| = &lt;-3, 1, 2&gt; / √14 = &lt;-3/√14, 1/√14, 2/√14&gt;</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 4:</strong> Given <code>u = 2i - j + 5k</code> and <code>v = -i + 3j - 2k</code>. Find the vector <code>w = 2u - 3v</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>First, calculate the scalar multiples:</p>
+                    <p><code>2u = 2(2i - j + 5k) = 4i - 2j + 10k</code></p>
+                    <p><code>3v = 3(-i + 3j - 2k) = -3i + 9j - 6k</code></p>
+                    <p>Now, perform the subtraction:</p>
+                    <p><code>w = 2u - 3v = (4i - 2j + 10k) - (-3i + 9j - 6k)</code></p>
+                    <p><code>w = (4 - (-3))i + (-2 - 9)j + (10 - (-6))k</code></p>
+                    <p><code>w = 7i - 11j + 16k</code></p>
+                </div>
+            </details>
+        </li>
+    </ol>
+
+    <!-- Chapter 11.3 Problems -->
+    <h2>Chapter 11.3: The Dot Product</h2>
+    <ol class="problem-list">
+        <li>
+            <strong>Problem 5:</strong> Consider the vectors <code>u = &lt;2, -2, 1&gt;</code> and <code>v = &lt;1, 3, 4&gt;</code>.
+            <br>(a) Determine if the vectors are orthogonal.
+            <br>(b) If they are not orthogonal, find the angle between them to the nearest degree.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>(a) Check for orthogonality:</strong> We compute the dot product.</p>
+                    <p><code>u · v = (2)(1) + (-2)(3) + (1)(4) = 2 - 6 + 4 = 0</code></p>
+                    <p>Since the dot product is 0, the vectors <strong>are orthogonal</strong>. This means the angle between them is 90°.</p>
+                    <hr>
+                    <p><strong>(b) Find the angle:</strong> Since they are orthogonal, the angle is exactly 90°. No further calculation is needed. If the dot product had not been zero, we would have used the formula <code>cos(θ) = (u · v) / (||u|| ||v||)</code>.</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 6:</strong> Find the orthogonal projection of <code>v = &lt;-1, 4, 2&gt;</code> onto <code>b = &lt;2, 2, 1&gt;</code>. Then, find the vector component of <code>v</code> orthogonal to <code>b</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Calculate <code>v · b</code> and <code>||b||²</code>.</strong></p>
+                    <p><code>v · b = (-1)(2) + (4)(2) + (2)(1) = -2 + 8 + 2 = 8</code></p>
+                    <p><code>||b||² = 2² + 2² + 1² = 4 + 4 + 1 = 9</code></p>
+                    <hr>
+                    <p><strong>Step 2: Calculate the projection.</strong></p>
+                    <p><code>proj<sub>b</sub>v = ( (v · b) / ||b||² ) * b</code></p>
+                    <p><code>proj<sub>b</sub>v = (8 / 9) * &lt;2, 2, 1&gt; = &lt;16/9, 16/9, 8/9&gt;</code></p>
+                    <hr>
+                    <p><strong>Step 3: Find the orthogonal component.</strong></p>
+                    <p>Let this component be <code>w</code>. Then <code>w = v - proj<sub>b</sub>v</code>.</p>
+                    <p><code>w = &lt;-1, 4, 2&gt; - &lt;16/9, 16/9, 8/9&gt;</code></p>
+                    <p><code>w = &lt;-9/9 - 16/9, 36/9 - 16/9, 18/9 - 8/9&gt;</code></p>
+                    <p><code>w = &lt;-25/9, 20/9, 10/9&gt;</code></p>
+                </div>
+            </details>
+        </li>
+    </ol>
+    
+    <!-- Chapter 11.4 Problems -->
+    <h2>Chapter 11.4: The Cross Product</h2>
+    <ol class="problem-list">
+        <li>
+            <strong>Problem 7:</strong> Find the area of the triangle with vertices <code>P(1, 1, 0)</code>, <code>Q(3, -1, 2)</code>, and <code>R(0, 2, 1)</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Find two vectors that form the sides of the triangle, starting from the same vertex.</strong> Let's use P as the vertex.</p>
+                    <p><code><strong>PQ</strong> = &lt;3-1, -1-1, 2-0&gt; = &lt;2, -2, 2&gt;</code></p>
+                    <p><code><strong>PR</strong> = &lt;0-1, 2-1, 1-0&gt; = &lt;-1, 1, 1&gt;</code></p>
+                    <hr>
+                    <p><strong>Step 2: Compute the cross product <code>PQ x PR</code>.</strong></p>
+                    <p>The cross product gives a vector orthogonal to the plane of the triangle, and its magnitude is the area of the parallelogram formed by <strong>PQ</strong> and <strong>PR</strong>.</p>
+                    <p><code><strong>PQ</strong> x <strong>PR</strong> = | i   j    k |</code><br>
+                       <code>             | 2  -2    2 |</code><br>
+                       <code>             | -1  1    1 |</code></p>
+                    <p><code>= i((-2)(1) - (2)(1)) - j((2)(1) - (2)(-1)) + k((2)(1) - (-2)(-1))</code></p>
+                    <p><code>= i(-2 - 2) - j(2 + 2) + k(2 - 2)</code></p>
+                    <p><code>= -4i - 4j + 0k = &lt;-4, -4, 0&gt;</code></p>
+                    <hr>
+                    <p><strong>Step 3: Find the magnitude of the cross product.</strong></p>
+                    <p><code>||<strong>PQ</strong> x <strong>PR</strong>|| = √[(-4)² + (-4)² + 0²] = √[16 + 16] = √32 = 4√2</code></p>
+                    <hr>
+                    <p><strong>Step 4: The area of the triangle is half the area of the parallelogram.</strong></p>
+                    <p><code>Area = (1/2) * ||<strong>PQ</strong> x <strong>PR</strong>|| = (1/2) * 4√2 = 2√2</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 8:</strong> Find the volume of the parallelepiped with adjacent edges <code>u = i + j</code>, <code>v = j + k</code>, and <code>w = i + k</code>. Are the vectors coplanar?
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: The volume is the absolute value of the scalar triple product <code>u · (v x w)</code>.</strong> We can compute this with a 3x3 determinant.</p>
+                    <p><code>u = &lt;1, 1, 0&gt;</code><br>
+                       <code>v = &lt;0, 1, 1&gt;</code><br>
+                       <code>w = &lt;1, 0, 1&gt;</code></p>
+                    <p><code>Volume = | det([1, 1, 0], [0, 1, 1], [1, 0, 1]) |</code></p>
+                    <p><code>= | 1((1)(1) - (1)(0)) - 1((0)(1) - (1)(1)) + 0(...) |</code></p>
+                    <p><code>= | 1(1) - 1(-1) + 0 | = | 1 + 1 | = 2</code></p>
+                    <p>The volume is <strong>2 cubic units</strong>.</p>
+                    <hr>
+                    <p><strong>Are the vectors coplanar?</strong></p>
+                    <p>Vectors are coplanar if the volume of the parallelepiped they form is 0. Since the volume is 2 (which is not 0), the vectors are <strong>not coplanar</strong>.</p>
+                </div>
+            </details>
+        </li>
+    </ol>
+</body>
+</html>
