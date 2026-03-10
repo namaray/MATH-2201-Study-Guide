@@ -174,22 +174,50 @@
             font-size: 0.9rem;
             top: 2px;
         }
-
-        .btn {
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            padding: 0.8rem;
+        
+        /* NEW: Button container */
+        .card-actions {
+            display: flex;
+            gap: 0.8rem;
             margin-top: 1.5rem;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-            transition: opacity 0.3s;
         }
 
-        .btn-midterm { background-color: var(--midterm-accent); }
-        .btn-final { background-color: var(--final-accent); }
-        .btn:hover { opacity: 0.85; }
+        .btn {
+            flex: 1; /* Make buttons share space equally */
+            text-align: center;
+            text-decoration: none;
+            padding: 0.7rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent; /* Prevents layout shift on hover */
+        }
+        
+        /* Primary (Filled) Button Styles */
+        .btn-primary.midterm { background-color: var(--midterm-accent); color: white; }
+        .btn-primary.midterm:hover { background-color: #2471a3; }
+        .btn-primary.final { background-color: var(--final-accent); color: white; }
+        .btn-primary.final:hover { background-color: #229954; }
+
+        /* NEW: Secondary (Outline) Button Styles */
+        .btn-secondary.midterm {
+            background-color: transparent;
+            border-color: var(--midterm-accent);
+            color: var(--midterm-accent);
+        }
+        .btn-secondary.midterm:hover {
+            background-color: var(--midterm-accent);
+            color: white;
+        }
+        .btn-secondary.final {
+            background-color: transparent;
+            border-color: var(--final-accent);
+            color: var(--final-accent);
+        }
+        .btn-secondary.final:hover {
+            background-color: var(--final-accent);
+            color: white;
+        }
 
         footer {
             text-align: center;
@@ -225,65 +253,62 @@
             
             <div class="grid">
                 
-                <!-- Topic 1 -->
                 <div class="card midterm">
-                    <div class="card-header">
-                        <span class="chapter-badge">Ch 11.1 - 11.4</span>
-                    </div>
+                    <div class="card-header"><span class="chapter-badge">Ch 11.1 - 11.4</span></div>
                     <h3>Vectors in 3-Space</h3>
                     <ul>
                         <li>Rectangular coordinates & distance in 3D</li>
                         <li>Vector components and unit vectors</li>
                         <li>Dot Product, angles, and orthogonal projections</li>
                         <li>Cross Product & Scalar Triple Product</li>
-                        <li>Area of triangles and volume of parallelepipeds</li>
                     </ul>
-                    <a href="midterm-vectors.html" class="btn btn-midterm">Study Notes</a>
+                    <div class="card-actions">
+                        <a href="midterm-vectors.html" class="btn btn-primary midterm">Study Notes</a>
+                        <a href="midterm-vectors-practice.html" class="btn btn-secondary midterm">Practice Problems</a>
+                    </div>
                 </div>
 
-                <!-- Topic 2 -->
                 <div class="card midterm">
-                    <div class="card-header">
-                        <span class="chapter-badge">Ch 11.5 - 11.6</span>
-                    </div>
+                    <div class="card-header"><span class="chapter-badge">Ch 11.5 - 11.6</span></div>
                     <h3>Lines and Planes</h3>
                     <ul>
                         <li>Parametric equations of straight lines</li>
                         <li>Parallel, skew, and intersecting lines</li>
                         <li>Equations of planes in 3-space</li>
-                        <li>Distance between points, lines, and planes</li>
                         <li>Quadratic surfaces</li>
                     </ul>
-                    <a href="midterm-lines-planes.html" class="btn btn-midterm">Study Notes</a>
+                    <div class="card-actions">
+                        <a href="midterm-lines-planes.html" class="btn btn-primary midterm">Study Notes</a>
+                        <a href="midterm-lines-planes-practice.html" class="btn btn-secondary midterm">Practice Problems</a>
+                    </div>
                 </div>
 
-                <!-- Topic 3 -->
                 <div class="card midterm">
-                    <div class="card-header">
-                        <span class="chapter-badge">Ch 13.6</span>
-                    </div>
+                    <div class="card-header"><span class="chapter-badge">Ch 13.6</span></div>
                     <h3>Directional Derivatives</h3>
                     <ul>
                         <li>Gradient of scalar fields</li>
                         <li>Finding the Directional Derivative</li>
                         <li>Directions of maximum/minimum rate of change</li>
                     </ul>
-                    <a href="midterm-derivatives.html" class="btn btn-midterm">Study Notes</a>
+                    <div class="card-actions">
+                        <a href="midterm-derivatives.html" class="btn btn-primary midterm">Study Notes</a>
+                        <a href="midterm-derivatives-practice.html" class="btn btn-secondary midterm">Practice Problems</a>
+                    </div>
                 </div>
 
-                <!-- Topic 4 -->
                 <div class="card midterm">
-                    <div class="card-header">
-                        <span class="chapter-badge">Ch 14.1, 14.2, 14.3, 14.5</span>
-                    </div>
+                    <div class="card-header"><span class="chapter-badge">Ch 14.1 - 14.5</span></div>
                     <h3>Multiple Integrals (Part 1)</h3>
                     <ul>
-                        <li>Double integrals over rectangles</li>
-                        <li>Double integrals over general regions</li>
+                        <li>Double integrals over rectangles & general regions</li>
                         <li>Finding area and volume using double integrals</li>
                         <li>Triple integrals in rectangular coordinate systems</li>
                     </ul>
-                    <a href="midterm-integrals.html" class="btn btn-midterm">Study Notes</a>
+                    <div class="card-actions">
+                        <a href="midterm-integrals.html" class="btn btn-primary midterm">Study Notes</a>
+                        <a href="midterm-integrals-practice.html" class="btn btn-secondary midterm">Practice Problems</a>
+                    </div>
                 </div>
 
             </div>
@@ -296,26 +321,22 @@
             
             <div class="grid">
 
-                <!-- Topic 5 -->
                 <div class="card final">
-                    <div class="card-header">
-                        <span class="chapter-badge">Ch 11.8, 12.1, 12.2, 14.6</span>
-                    </div>
+                    <div class="card-header"><span class="chapter-badge">Ch 11.8, 12.1, 12.2, 14.6</span></div>
                     <h3>Coordinate Systems & Vector Functions</h3>
                     <ul>
                         <li>Differentiation & integration of vector-valued functions</li>
-                        <li>Cylindrical coordinate systems</li>
-                        <li>Spherical coordinate systems</li>
-                        <li>Triple integrals in polar, cylindrical, and spherical systems</li>
+                        <li>Cylindrical and Spherical coordinate systems</li>
+                        <li>Triple integrals in non-rectangular coordinates</li>
                     </ul>
-                    <a href="final-vector-functions.html" class="btn btn-final">Study Notes</a>
+                    <div class="card-actions">
+                        <a href="final-vector-functions.html" class="btn btn-primary final">Study Notes</a>
+                        <a href="final-vector-functions-practice.html" class="btn btn-secondary final">Practice Problems</a>
+                    </div>
                 </div>
 
-                <!-- Topic 6 -->
                 <div class="card final">
-                    <div class="card-header">
-                        <span class="chapter-badge">Ch 15.1 - 15.4</span>
-                    </div>
+                    <div class="card-header"><span class="chapter-badge">Ch 15.1 - 15.4</span></div>
                     <h3>Vector Fields & Line Integrals</h3>
                     <ul>
                         <li>Understanding Vector Fields</li>
@@ -323,36 +344,38 @@
                         <li>Conservative vector fields & path independence</li>
                         <li>Green’s Theorem</li>
                     </ul>
-                    <a href="final-line-integrals.html" class="btn btn-final">Study Notes</a>
+                    <div class="card-actions">
+                        <a href="final-line-integrals.html" class="btn btn-primary final">Study Notes</a>
+                        <a href="final-line-integrals-practice.html" class="btn btn-secondary final">Practice Problems</a>
+                    </div>
                 </div>
 
-                <!-- Topic 7 -->
                 <div class="card final">
-                    <div class="card-header">
-                        <span class="chapter-badge">Ch 15.5 - 15.8</span>
-                    </div>
+                    <div class="card-header"><span class="chapter-badge">Ch 15.5 - 15.8</span></div>
                     <h3>Surface Integrals & Theorems</h3>
                     <ul>
-                        <li>Evaluating Surface Integrals</li>
-                        <li>Calculating Flux across a surface</li>
+                        <li>Evaluating Surface Integrals & Flux</li>
                         <li>The Divergence Theorem</li>
                         <li>Stokes’ Theorem</li>
                     </ul>
-                    <a href="final-surface-integrals.html" class="btn btn-final">Study Notes</a>
+                    <div class="card-actions">
+                        <a href="final-surface-integrals.html" class="btn btn-primary final">Study Notes</a>
+                        <a href="final-surface-integrals-practice.html" class="btn btn-secondary final">Practice Problems</a>
+                    </div>
                 </div>
 
-                <!-- Topic 8 -->
                 <div class="card final">
-                    <div class="card-header">
-                        <span class="chapter-badge">Ch 10.4, 10.5</span>
-                    </div>
+                    <div class="card-header"><span class="chapter-badge">Ch 10.4, 10.5</span></div>
                     <h3>Conic Sections</h3>
                     <ul>
                         <li>Recognizing different conic sections</li>
                         <li>Parabolas, Ellipses, and Hyperbolas</li>
                         <li>Translation and Rotation of axes</li>
                     </ul>
-                    <a href="final-conic-sections.html" class="btn btn-final">Study Notes</a>
+                    <div class="card-actions">
+                        <a href="final-conic-sections.html" class="btn btn-primary final">Study Notes</a>
+                        <a href="final-conic-sections-practice.html" class="btn btn-secondary final">Practice Problems</a>
+                    </div>
                 </div>
 
             </div>
