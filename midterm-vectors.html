@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes: Vectors in 3-Space</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            background-color: #fdfdfd;
+            color: #333;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            border-left: 5px solid #2980b9;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 2rem;
+        }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; border-bottom: none; }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, 'Courier New', monospace;
+            color: #c0392b;
+        }
+        .formula-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #2980b9;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+        .takeaway {
+            background-color: #e8f6f3;
+            border-left: 4px solid #1abc9c;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .home-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">&larr; Back to Main Syllabus</a>
+
+    <h1>Vectors in 3-Space (Chapters 11.1 - 11.4)</h1>
+    <p>This section covers the fundamentals of the 3D coordinate system, the definition and algebra of vectors, and the two primary ways to multiply vectors: the dot product and the cross product.</p>
+
+    <!-- Chapter 11.1 -->
+    <h2>Chapter 11.1: 3D Coordinates, Spheres, & Cylindrical Surfaces</h2>
+    <h3>Key Concepts</h3>
+    <ul>
+        <li><strong>3D Rectangular Coordinates:</strong> Points in space are located using an ordered triple <code>(x, y, z)</code>. The axes (x, y, z) are mutually perpendicular and oriented by the <strong>right-hand rule</strong>.</li>
+        <li><strong>Coordinate Planes:</strong> Three planes (xy-plane where z=0, xz-plane where y=0, and yz-plane where x=0) divide space into eight <strong>octants</strong>.</li>
+        <li><strong>Cylindrical Surfaces:</strong> An equation with only two variables (e.g., <code>x² + y² = 1</code>) represents a surface in 3D. It is formed by taking the 2D curve and "extruding" it parallel to the axis of the missing variable.</li>
+    </ul>
+    <h3>Core Formulas</h3>
+    <div class="formula-box">
+        <strong>Distance Formula in 3-Space:</strong> The distance <em>d</em> between P₁(x₁, y₁, z₁) and P₂(x₂, y₂, z₂) is:<br>
+        <code>d = √[(x₂ - x₁)² + (y₂ - y₁)² + (z₂ - z₁)²]</code>
+    </div>
+    <div class="formula-box">
+        <strong>Standard Equation of a Sphere:</strong> A sphere with center (h, k, l) and radius <em>r</em> has the equation:<br>
+        <code>(x - h)² + (y - k)² + (z - l)² = r²</code>
+        <p style="font-size: 0.9rem; margin-top: 10px;">To find the center and radius from a general form, you must <strong>complete the square</strong>.</p>
+    </div>
+
+    <!-- Chapter 11.2 -->
+    <h2>Chapter 11.2: Vectors</h2>
+    <h3>Key Concepts</h3>
+    <ul>
+        <li>A <strong>vector</strong> is a quantity with both <strong>magnitude</strong> (length) and <strong>direction</strong>. A <strong>scalar</strong> is a quantity with only magnitude (a real number).</li>
+        <li>Vectors can be represented in component form <code>v = &lt;v₁, v₂, v₃&gt;</code> or using standard basis vectors <code>v = v₁i + v₂j + v₃k</code>, where <code>i=&lt;1,0,0&gt;</code>, <code>j=&lt;0,1,0&gt;</code>, and <code>k=&lt;0,0,1&gt;</code>.</li>
+        <li>Vector arithmetic (addition, subtraction, scalar multiplication) is performed component-wise.</li>
+    </ul>
+    <h3>Core Formulas</h3>
+    <div class="formula-box">
+        <strong>Vector between two points:</strong> The vector from point P₁(x₁, y₁, z₁) to P₂(x₂, y₂, z₂) is:<br>
+        <code><b>P₁P₂</b> = &lt;x₂ - x₁, y₂ - y₁, z₂ - z₁&gt;</code> (Terminal point minus Initial point)
+    </div>
+    <div class="formula-box">
+        <strong>Norm (Magnitude or Length) of a Vector:</strong> The norm of <code>v = &lt;v₁, v₂, v₃&gt;</code> is:<br>
+        <code>||v|| = √[v₁² + v₂² + v₃²]</code>
+    </div>
+    <div class="formula-box">
+        <strong>Normalizing a Vector (Finding a Unit Vector):</strong> To find a unit vector <code>u</code> with the same direction as a non-zero vector <code>v</code>:<br>
+        <code>u = v / ||v||</code>
+    </div>
+
+    <!-- Chapter 11.3 -->
+    <h2>Chapter 11.3: The Dot Product</h2>
+    <h3>Key Concepts</h3>
+    <ul>
+        <li>The dot product takes two vectors and produces a <strong>scalar</strong>.</li>
+        <li>It is primarily used to find the angle between two vectors or to determine if they are orthogonal.</li>
+        <li><strong>Orthogonal Vectors:</strong> Two vectors <code>u</code> and <code>v</code> are orthogonal (perpendicular) if and only if their dot product is zero: <code>u · v = 0</code>.</li>
+        <li><strong>Orthogonal Projection:</strong> The projection of vector <code>v</code> onto vector <code>b</code> (<code>proj<sub>b</sub>v</code>) is the "shadow" or vector component of <code>v</code> in the direction of <code>b</code>.</li>
+    </ul>
+    <h3>Core Formulas</h3>
+    <div class="formula-box">
+        <strong>Dot Product (Component Form):</strong> For <code>u=&lt;u₁,u₂,u₃&gt;</code> and <code>v=&lt;v₁,v₂,v₃&gt;</code>:<br>
+        <code>u · v = u₁v₁ + u₂v₂ + u₃v₃</code>
+    </div>
+    <div class="formula-box">
+        <strong>Angle Between Two Vectors:</strong> The angle θ between two non-zero vectors <code>u</code> and <code>v</code> is:<br>
+        <code>cos(θ) = (u · v) / (||u|| ||v||)</code>
+    </div>
+    <div class="formula-box">
+        <strong>Orthogonal Projection of v onto b:</strong><br>
+        <code>proj<sub>b</sub>v = ( (v · b) / ||b||² ) * b</code>
+    </div>
+    <div class="takeaway">
+        <strong>Key Application: Work.</strong> The work <em>W</em> done by a constant force <strong>F</strong> moving an object along a displacement vector <strong>d</strong> is <code>W = F · d</code>.
+    </div>
+
+    <!-- Chapter 11.4 -->
+    <h2>Chapter 11.4: The Cross Product</h2>
+    <h3>Key Concepts</h3>
+    <ul>
+        <li>The cross product takes two vectors in 3-space and produces a new <strong>vector</strong>. <strong>(This is a 3D-only operation!)</strong></li>
+        <li>The resulting vector <code>u x v</code> is <strong>orthogonal</strong> to both <code>u</code> and <code>v</code>.</li>
+        <li>The direction of <code>u x v</code> is determined by the <strong>right-hand rule</strong>.</li>
+        <li>The cross product is <strong>anti-commutative</strong>: <code>u x v = -(v x u)</code>.</li>
+    </ul>
+    <h3>Core Formulas</h3>
+    <div class="formula-box">
+        <strong>Cross Product (Determinant Form):</strong> For <code>u=&lt;u₁,u₂,u₃&gt;</code> and <code>v=&lt;v₁,v₂,v₃&gt;</code>:<br>
+        <pre>
+      | i   j   k  |
+u x v = | u₁  u₂  u₃ | = i(u₂v₃ - u₃v₂) - j(u₁v₃ - u₃v₁) + k(u₁v₂ - u₂v₁)
+      | v₁  v₂  v₃ |
+        </pre>
+    </div>
+    <div class="formula-box">
+        <strong>Magnitude of the Cross Product:</strong><br>
+        <code>||u x v|| = ||u|| ||v|| sin(θ)</code>
+    </div>
+    <div class="formula-box">
+        <strong>Scalar Triple Product (Volume):</strong> The volume <em>V</em> of a parallelepiped with adjacent edges <code>u, v, w</code> is:<br>
+        <code>V = |u · (v x w)|</code>
+    </div>
+    <div class="takeaway">
+        <strong>Key Application: Area.</strong> The area of a parallelogram with adjacent sides <code>u</code> and <code>v</code> is <code>Area = ||u x v||</code>. The area of the triangle with these sides is half of that.
+    </div>
+
+</body>
+</html>
