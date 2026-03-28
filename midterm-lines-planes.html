@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes: Lines and Planes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            background-color: #fdfdfd;
+            color: #333;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            border-left: 5px solid #2980b9;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 2rem;
+        }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; border-bottom: none; }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, 'Courier New', monospace;
+            color: #c0392b;
+        }
+        .formula-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #2980b9;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+        .takeaway {
+            background-color: #e8f6f3;
+            border-left: 4px solid #1abc9c;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .home-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">&larr; Back to Main Syllabus</a>
+
+    <h1>Lines and Planes in 3-Space (Chapters 11.5 - 11.6)</h1>
+    <p>In 2D geometry, lines are defined by slopes and y-intercepts. In 3-space, we use <strong>vectors</strong> to define both lines (using parallel direction vectors) and planes (using perpendicular normal vectors).</p>
+
+    <!-- Chapter 11.5 -->
+    <h2>Chapter 11.5: Parametric Equations of Lines</h2>
+    <h3>Key Concepts</h3>
+    <ul>
+        <li>A line in 3-space is determined uniquely by a <strong>point</strong> on the line and a non-zero <strong>vector parallel</strong> to the line.</li>
+        <li><strong>Skew Lines:</strong> Two lines in 3-space that are not parallel and <em>do not intersect</em> are called skew lines. (This is a concept unique to 3D space).</li>
+        <li><strong>Line Segments:</strong> A line segment is just a line restricted to a specific domain of the parameter <code>t</code> (usually <code>0 &le; t &le; 1</code>).</li>
+    </ul>
+    
+    <h3>Core Formulas</h3>
+    <div class="formula-box">
+        <strong>Parametric Equations of a Line:</strong><br>
+        If a line passes through point P₀(x₀, y₀, z₀) and is parallel to vector <code>v = &lt;a, b, c&gt;</code>, the equations are:<br>
+        <code>x = x₀ + at</code><br>
+        <code>y = y₀ + bt</code><br>
+        <code>z = z₀ + ct</code><br>
+        <span style="font-size: 0.9rem; color: #666;">(where <em>t</em> is any real number from -∞ to +∞)</span>
+    </div>
+
+    <div class="formula-box">
+        <strong>Vector Equation of a Line:</strong><br>
+        Using vector notation, if <code>r₀ = &lt;x₀, y₀, z₀&gt;</code> is the position vector of the point, and <code>r = &lt;x, y, z&gt;</code> is the position vector of any point on the line:<br>
+        <code>r = r₀ + tv</code>
+    </div>
+
+    <div class="formula-box">
+        <strong>Symmetric Equations:</strong><br>
+        By solving the parametric equations for <code>t</code> and setting them equal, we get (if a, b, c are non-zero):<br>
+        <code>(x - x₀)/a = (y - y₀)/b = (z - z₀)/c</code>
+    </div>
+
+    <!-- Chapter 11.6 -->
+    <h2>Chapter 11.6: Planes in 3-Space</h2>
+    <h3>Key Concepts</h3>
+    <ul>
+        <li>A plane in 3-space is uniquely determined by a <strong>point</strong> in the plane and a vector <strong>perpendicular</strong> to the plane, called a <strong>normal vector (n)</strong>.</li>
+        <li><strong>Parallel Planes:</strong> Two planes are parallel if and only if their normal vectors are scalar multiples of each other.</li>
+        <li><strong>Intersecting Planes:</strong> Two non-parallel planes intersect in a straight line. The direction vector of this line of intersection is the <strong>cross product</strong> of the two planes' normal vectors (<code>v = n₁ &times; n₂</code>).</li>
+        <li><strong>Angle between Planes:</strong> The acute angle of intersection between two planes is the angle between their normal vectors.</li>
+    </ul>
+
+    <h3>Core Formulas</h3>
+    <div class="formula-box">
+        <strong>Point-Normal Equation of a Plane:</strong><br>
+        If a plane passes through P₀(x₀, y₀, z₀) and has normal vector <code>n = &lt;a, b, c&gt;</code>:<br>
+        <strong>Vector form:</strong> <code>n &middot; (r - r₀) = 0</code><br>
+        <strong>Component form:</strong> <code>a(x - x₀) + b(y - y₀) + c(z - z₀) = 0</code>
+    </div>
+
+    <div class="formula-box">
+        <strong>General Form of a Plane:</strong><br>
+        By expanding the point-normal equation, we get:<br>
+        <code>ax + by + cz + d = 0</code><br>
+        <span style="font-size: 0.9rem; color: #666;">(Notice that you can read the normal vector directly from the coefficients of x, y, and z: <code>n = &lt;a, b, c&gt;</code>)</span>
+    </div>
+
+    <div class="formula-box">
+        <strong>Distance Between a Point and a Plane:</strong><br>
+        The shortest distance <code>D</code> from a point P₀(x₀, y₀, z₀) to the plane <code>ax + by + cz + d = 0</code> is:<br>
+        <code>D = |ax₀ + by₀ + cz₀ + d| / &radic;(a&sup2; + b&sup2; + c&sup2;)</code>
+    </div>
+
+    <div class="takeaway">
+        <strong>Pro-Tip for Finding Planes:</strong> If you are given three points P, Q, and R on a plane and need to find the equation, first create two vectors (e.g., <strong>PQ</strong> and <strong>PR</strong>). Then, find the normal vector by taking their cross product: <code>n = <strong>PQ</strong> &times; <strong>PR</strong></code>. Finally, use <code>n</code> and any one of the points in the point-normal formula.
+    </div>
+
+</body>
+</html>
