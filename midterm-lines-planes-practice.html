@@ -185,8 +185,44 @@
                 </div>
             </details>
         </li>
-        <li>
+<li>
             <strong>Problem 5:</strong> Find the distance between the point <code>(1, -2, 3)</code> and the plane <code>2x - 2y + z = 4</code>.
             <details>
                 <summary>Show Solution</summary>
                 <div class="solution-steps">
+                    <p><strong>Step 1: Write the plane equation in standard general form <code>ax + by + cz + d = 0</code>.</strong></p>
+                    <p><code>2x - 2y + z - 4 = 0</code>. Thus, <code>a=2, b=-2, c=1, d=-4</code>.</p>
+                    <hr>
+                    <p><strong>Step 2: Apply the point-to-plane distance formula.</strong></p>
+                    <p><code>D = |ax₀ + by₀ + cz₀ + d| / √(a² + b² + c²)</code></p>
+                    <p><code>D = |(2)(1) + (-2)(-2) + (1)(3) - 4| / √(2² + (-2)² + 1²)</code></p>
+                    <p><code>D = |2 + 4 + 3 - 4| / √(4 + 4 + 1)</code></p>
+                    <p><code>D = |5| / √9 = 5 / 3</code></p>
+                    <p><strong>Answer:</strong> The distance is <code>5/3</code>.</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 6:</strong> Determine whether the line and plane intersect; if so, find the coordinates of the intersection.<br>
+            Line: <code>x = t, y = t, z = t</code><br>
+            Plane: <code>3x - 2y + z - 5 = 0</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Substitute the line's parametric equations into the plane's equation.</strong></p>
+                    <p>Replace x, y, and z in the plane equation with <code>t</code>.</p>
+                    <p><code>3(t) - 2(t) + (t) - 5 = 0</code></p>
+                    <hr>
+                    <p><strong>Step 2: Solve for t.</strong></p>
+                    <p><code>3t - 2t + t = 5</code></p>
+                    <p><code>2t = 5</code></p>
+                    <p><code>t = 5/2</code></p>
+                    <p>Because we found a single valid value for <code>t</code>, the line and plane <strong>do intersect</strong>.</p>
+                    <hr>
+                    <p><strong>Step 3: Find the coordinates of the intersection point.</strong></p>
+                    <p>Plug <code>t = 5/2</code> back into the parametric equations of the line.</p>
+                    <p><code>x = 5/2</code>, <code>y = 5/2</code>, <code>z = 5/2</code></p>
+                    <p><strong>Answer:</strong> The point of intersection is <code>(5/2, 5/2, 5/2)</code>.</p>
+                </div>
+            </details>
+        </li>
