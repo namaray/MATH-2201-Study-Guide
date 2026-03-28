@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice: Lines and Planes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            background-color: #fdfdfd;
+            color: #333;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            border-left: 5px solid #2980b9;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 2rem;
+        }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        .problem-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .problem-list li {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, 'Courier New', monospace;
+            color: #c0392b;
+        }
+        details {
+            margin-top: 1rem;
+            background-color: #fff;
+            border: 1px dashed #bdc3c7;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+        summary {
+            font-weight: bold;
+            color: #2980b9;
+            cursor: pointer;
+        }
+        .solution-steps {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ecf0f1;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .home-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">&larr; Back to Main Syllabus</a>
+
+    <h1>Practice Problems: Lines and Planes (Ch 11.5 - 11.6)</h1>
+
+    <!-- Chapter 11.5 Problems -->
+    <h2>Chapter 11.5: Parametric Equations of Lines</h2>
+    <ol class="problem-list">
+        <li>
+            <strong>Problem 1:</strong> Find parametric equations of the line that passes through the point <code>(2, -1, 5)</code> and is parallel to the vector <code>v = &lt;-1, 2, 7&gt;</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Identify the given point and direction vector.</strong></p>
+                    <p>Point: <code>(x₀, y₀, z₀) = (2, -1, 5)</code></p>
+                    <p>Direction Vector: <code>v = &lt;a, b, c&gt; = &lt;-1, 2, 7&gt;</code></p>
+                    <hr>
+                    <p><strong>Step 2: Plug into the parametric formulas.</strong></p>
+                    <p>The standard formulas are: <code>x = x₀ + at</code>, <code>y = y₀ + bt</code>, <code>z = z₀ + ct</code>.</p>
+                    <p><strong>Answer:</strong></p>
+                    <p><code>x = 2 - t</code></p>
+                    <p><code>y = -1 + 2t</code></p>
+                    <p><code>z = 5 + 7t</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 2:</strong> Show that the lines L₁ and L₂ intersect, and find their point of intersection.<br><br>
+            <code>L₁: x = 2 + t, y = 2 + 3t, z = 3 + t</code><br>
+            <code>L₂: x = 2 + s, y = 3 + 4s, z = 4 + 2s</code><br>
+            <em>(Note: We use parameter 's' for L₂ to avoid confusion with 't' from L₁)</em>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Set the x, y, and z equations equal to each other.</strong></p>
+                    <p>For an intersection to exist, there must be a specific <code>t</code> and <code>s</code> where the coordinates match.</p>
+                    <p>1) <code>2 + t = 2 + s  &implies;  t = s</code></p>
+                    <p>2) <code>2 + 3t = 3 + 4s</code></p>
+                    <p>3) <code>3 + t = 4 + 2s</code></p>
+                    <hr>
+                    <p><strong>Step 2: Solve the system of equations.</strong></p>
+                    <p>Substitute <code>t = s</code> (from eq 1) into eq 2:</p>
+                    <p><code>2 + 3t = 3 + 4t</code></p>
+                    <p><code>-1 = t</code></p>
+                    <p>Since <code>t = s</code>, we also have <code>s = -1</code>.</p>
+                    <hr>
+                    <p><strong>Step 3: Check if these values satisfy the third equation (z).</strong></p>
+                    <p>Plug <code>t = -1</code> into L₁'s z-equation: <code>z = 3 + (-1) = 2</code></p>
+                    <p>Plug <code>s = -1</code> into L₂'s z-equation: <code>z = 4 + 2(-1) = 4 - 2 = 2</code></p>
+                    <p>Since the z-values match, the lines <strong>do intersect</strong>.</p>
+                    <hr>
+                    <p><strong>Step 4: Find the point of intersection.</strong></p>
+                    <p>Plug <code>t = -1</code> into L₁'s equations (or <code>s = -1</code> into L₂'s):</p>
+                    <p><code>x = 2 + (-1) = 1</code><br>
+                       <code>y = 2 + 3(-1) = -1</code><br>
+                       <code>z = 2</code></p>
+                    <p><strong>Answer:</strong> The point of intersection is <code>(1, -1, 2)</code>.</p>
+                </div>
+            </details>
+        </li>
+    </ol>
+
+    <!-- Chapter 11.6 Problems -->
+    <h2>Chapter 11.6: Planes in 3-Space</h2>
+    <ol class="problem-list">
+        <li>
+            <strong>Problem 3:</strong> Find an equation of the plane that passes through the point <code>P(2, 6, 1)</code> and has the vector <code>n = &lt;1, 4, 2&gt;</code> as a normal.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Use the point-normal form of a plane.</strong></p>
+                    <p><code>a(x - x₀) + b(y - y₀) + c(z - z₀) = 0</code></p>
+                    <p>Here, <code>(x₀, y₀, z₀) = (2, 6, 1)</code> and <code>&lt;a, b, c&gt; = &lt;1, 4, 2&gt;</code>.</p>
+                    <hr>
+                    <p><strong>Step 2: Substitute the values and expand.</strong></p>
+                    <p><code>1(x - 2) + 4(y - 6) + 2(z - 1) = 0</code></p>
+                    <p><code>x - 2 + 4y - 24 + 2z - 2 = 0</code></p>
+                    <p><code>x + 4y + 2z - 28 = 0</code></p>
+                    <p><strong>Answer:</strong> <code>x + 4y + 2z = 28</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 4:</strong> Find an equation of the plane that passes through the given points: <code>A(-2, 1, 1)</code>, <code>B(0, 2, 3)</code>, and <code>C(1, 0, -1)</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Find two vectors that lie in the plane.</strong></p>
+                    <p><code><strong>AB</strong> = &lt;0 - (-2), 2 - 1, 3 - 1&gt; = &lt;2, 1, 2&gt;</code></p>
+                    <p><code><strong>AC</strong> = &lt;1 - (-2), 0 - 1, -1 - 1&gt; = &lt;3, -1, -2&gt;</code></p>
+                    <hr>
+                    <p><strong>Step 2: Find the normal vector <code>n</code> by taking the cross product of AB and AC.</strong></p>
+                    <p><code>n = <strong>AB</strong> &times; <strong>AC</strong> = | i   j   k |</code><br>
+                       <code>                   | 2   1   2 |</code><br>
+                       <code>                   | 3  -1  -2 |</code></p>
+                    <p><code>n = i((1)(-2) - (2)(-1)) - j((2)(-2) - (2)(3)) + k((2)(-1) - (1)(3))</code></p>
+                    <p><code>n = i(-2 + 2) - j(-4 - 6) + k(-2 - 3)</code></p>
+                    <p><code>n = &lt;0, 10, -5&gt;</code></p>
+                    <hr>
+                    <p><strong>Step 3: Use the normal vector and one of the points to write the equation.</strong></p>
+                    <p>Using point <code>B(0, 2, 3)</code> and <code>n = &lt;0, 10, -5&gt;</code>:</p>
+                    <p><code>0(x - 0) + 10(y - 2) - 5(z - 3) = 0</code></p>
+                    <p><code>10y - 20 - 5z + 15 = 0</code></p>
+                    <p><code>10y - 5z = 5</code></p>
+                    <p>Divide by 5 to simplify:</p>
+                    <p><strong>Answer:</strong> <code>2y - z = 1</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 5:</strong> Find the distance between the point <code>(1, -2, 3)</code> and the plane <code>2x - 2y + z = 4</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
