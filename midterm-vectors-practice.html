@@ -267,5 +267,79 @@
             </details>
         </li>
     </ol>
+
+    <!-- Chapter 11.3 Problems -->
+    <h2>Chapter 11.3</h2>
+    <ol class="problem-list" start="9">
+        <li>
+            <strong>Problem 9:</strong> Consider <code>u = &lt;1, -2, 3&gt;</code>, <code>v = &lt;-1, 1, 0&gt;</code> and <code>w = &lt;3, 0, -2&gt;</code>.<br>
+            (a) Find the angle between <code>v</code> and <code>w</code>.<br>
+            (b) Find the direction cosines of <code>u</code>.<br>
+            (c) Find the vector component (orthogonal projection) of <code>v</code> along <code>u</code> and orthogonal to <code>u</code>.<br>
+            (d) Check whether the vectors <code>u</code>, <code>w</code> are perpendicular to each other or not.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>(a) Angle between v and w:</strong></p>
+                    <p><code>v · w = (-1)(3) + (1)(0) + (0)(-2) = -3 + 0 + 0 = -3</code></p>
+                    <p><code>||v|| = √[(-1)² + 1² + 0²] = √2</code></p>
+                    <p><code>||w|| = √[3² + 0² + (-2)²] = √[9 + 0 + 4] = √13</code></p>
+                    <p><code>cos(θ) = (v · w) / (||v|| ||w||) = -3 / (√2 * √13) = -3 / √26</code></p>
+                    <p><strong>Answer (a):</strong> <code>θ = cos⁻¹(-3 / √26)</code></p>
+                    <hr>
+                    <p><strong>(b) Direction cosines of u:</strong></p>
+                    <p><code>||u|| = √[1² + (-2)² + 3²] = √[1 + 4 + 9] = √14</code></p>
+                    <p><strong>Answer (b):</strong><br>
+                       <code>cos(α) = 1 / √14</code><br>
+                       <code>cos(β) = -2 / √14</code><br>
+                       <code>cos(γ) = 3 / √14</code></p>
+                    <hr>
+                    <p><strong>(c) Vector component of v along u and orthogonal to u:</strong></p>
+                    <p>First, find the projection of <code>v</code> along <code>u</code> (proj<sub>u</sub>v):</p>
+                    <p><code>v · u = (-1)(1) + (1)(-2) + (0)(3) = -1 - 2 = -3</code></p>
+                    <p><code>proj<sub>u</sub>v = ( (v · u) / ||u||² ) u = (-3 / 14) &lt;1, -2, 3&gt; = &lt;-3/14, 6/14, -9/14&gt;</code></p>
+                    <p>Simplified, the component <strong>along u</strong> is: <code>&lt;-3/14, 3/7, -9/14&gt;</code></p>
+                    <p>Next, find the component orthogonal to <code>u</code> (v - proj<sub>u</sub>v):</p>
+                    <p><code>&lt;-1, 1, 0&gt; - &lt;-3/14, 6/14, -9/14&gt; = &lt;-14/14 - (-3/14), 14/14 - 6/14, 0 - (-9/14)&gt;</code></p>
+                    <p><strong>Answer (c):</strong><br>
+                       Component along <code>u</code>: <code>&lt;-3/14, 3/7, -9/14&gt;</code><br>
+                       Component orthogonal to <code>u</code>: <code>&lt;-11/14, 4/7, 9/14&gt;</code></p>
+                    <hr>
+                    <p><strong>(d) Check if u and w are perpendicular:</strong></p>
+                    <p>Vectors are perpendicular if their dot product is 0.</p>
+                    <p><code>u · w = (1)(3) + (-2)(0) + (3)(-2) = 3 + 0 - 6 = -3</code></p>
+                    <p><strong>Answer (d):</strong> Since <code>u · w = -3 ≠ 0</code>, the vectors are <strong>not perpendicular</strong>.</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 10:</strong> Consider <code>v = &lt;-1, 2&gt;</code>, <code>e₁ = &lt;-1/2, √3/2&gt;</code> and <code>e₂ = &lt;1/2, √3/2&gt;</code>.<br>
+            (a) Find the scalar components of <code>v</code> along <code>e₁</code> and <code>e₂</code>.<br>
+            (b) Find the vector components of <code>v</code> along <code>e₁</code> and <code>e₂</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><em>Note: e₁ and e₂ are unit vectors, since (-1/2)² + (√3/2)² = 1/4 + 3/4 = 1.</em></p>
+                    <p><strong>(a) Scalar components of v along e₁ and e₂:</strong></p>
+                    <p>The scalar component of <code>v</code> along a unit vector <code>e</code> is simply the dot product <code>v · e</code>.</p>
+                    <p>Scalar component along <code>e₁</code> = <code>v · e₁ = (-1)(-1/2) + (2)(√3/2) = 1/2 + √3</code></p>
+                    <p>Scalar component along <code>e₂</code> = <code>v · e₂ = (-1)(1/2) + (2)(√3/2) = -1/2 + √3</code></p>
+                    <p><strong>Answer (a):</strong><br>
+                       Along <code>e₁</code>: <code>1/2 + √3</code><br>
+                       Along <code>e₂</code>: <code>-1/2 + √3</code></p>
+                    <hr>
+                    <p><strong>(b) Vector components of v along e₁ and e₂:</strong></p>
+                    <p>The vector component is the scalar component multiplied by the unit vector: <code>(v · e)e</code>.</p>
+                    <p>Vector component along <code>e₁</code> = <code>(1/2 + √3) &lt;-1/2, √3/2&gt;</code><br>
+                       <code>= &lt;-1/4 - √3/2, √3/4 + 3/2&gt;</code></p>
+                    <p>Vector component along <code>e₂</code> = <code>(-1/2 + √3) &lt;1/2, √3/2&gt;</code><br>
+                       <code>= &lt;-1/4 + √3/2, -√3/4 + 3/2&gt;</code></p>
+                    <p><strong>Answer (b):</strong><br>
+                       Along <code>e₁</code>: <code>&lt;-1/4 - √3/2, √3/4 + 3/2&gt;</code><br>
+                       Along <code>e₂</code>: <code>&lt;-1/4 + √3/2, -√3/4 + 3/2&gt;</code></p>
+                </div>
+            </details>
+        </li>
+    </ol>
 </body>
 </html>
