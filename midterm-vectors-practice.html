@@ -134,5 +134,136 @@
             </details>
         </li>
     </ol>
+
+    <!-- Chapter 11.2 Problems -->
+    <h2>Chapter 11.2</h2>
+    <ol class="problem-list" start="3">
+        <li>
+            <strong>Problem 3:</strong> Find the vector <code>u = P₁P₂</code>, where <code>P₁ = (2, -1, 3)</code> and <code>P₂ = (1, 2, -1)</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>To find the vector from P₁ to P₂, we subtract the coordinates of the initial point (P₁) from the terminal point (P₂).</p>
+                    <p><code>u = &lt;x₂ - x₁, y₂ - y₁, z₂ - z₁&gt;</code></p>
+                    <p><code>u = &lt;1 - 2, 2 - (-1), -1 - 3&gt;</code></p>
+                    <p><code>u = &lt;-1, 3, -4&gt;</code></p>
+                    <p><strong>Answer:</strong> <code>u = -i + 3j - 4k</code> or <code>&lt;-1, 3, -4&gt;</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 4:</strong> Given that <code>u = i - j</code> is a vector.<br>
+            (a) Find the unit vectors parallel to <code>u</code>.<br>
+            (b) Find the angle that the vector <code>u</code> makes with the positive x-axis.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>(a) Unit vectors parallel to u:</strong></p>
+                    <p>First, find the magnitude of <code>u = &lt;1, -1&gt;</code>:</p>
+                    <p><code>||u|| = √[(1)² + (-1)²] = √2</code></p>
+                    <p>To find unit vectors parallel to <code>u</code>, divide <code>u</code> by its magnitude. Since it asks for "vectors" (plural) parallel to it, we must include both the same direction and the opposite direction.</p>
+                    <p><code>Unit vectors = ±(u / ||u||) = ±(1/√2)i - (1/√2)j</code></p>
+                    <p><strong>Answer (a):</strong> <code>&lt;1/√2, -1/√2&gt;</code> and <code>&lt;-1/√2, 1/√2&gt;</code></p>
+                    <hr>
+                    <p><strong>(b) Angle with positive x-axis:</strong></p>
+                    <p>Using the formula <code>cos(θ) = u_x / ||u||</code>:</p>
+                    <p><code>cos(θ) = 1 / √2</code></p>
+                    <p>Since the y-component is negative (<code>u_y = -1</code>), the vector is in the 4th quadrant.</p>
+                    <p><code>θ = 360° - 45° = 315°</code> (or <code>-45°</code> or <code>7π/4</code> radians).</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 5:</strong> In each part, sketch <code>u + v + w</code> and express it in component form. <em>(Based on reading the grid provided in the PDF)</em>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><em>Note: We find the components of the resultant vector by reading the horizontal (x) and vertical (y) displacements of each vector from the grid, where vectors are placed tip-to-tail.</em></p>
+                    <p><strong>Part (a):</strong></p>
+                    <ul>
+                        <li><code>u</code> moves 3 units right, 2 units down: <code>u = &lt;3, -2&gt;</code></li>
+                        <li><code>v</code> moves 4 units left, 1 unit up: <code>v = &lt;-4, 1&gt;</code></li>
+                        <li><code>w</code> moves 0 units right, 3 units up: <code>w = &lt;0, 3&gt;</code></li>
+                    </ul>
+                    <p><code>u + v + w = &lt;3 - 4 + 0, -2 + 1 + 3&gt; = &lt;-1, 2&gt;</code></p>
+                    <hr>
+                    <p><strong>Part (b):</strong></p>
+                    <ul>
+                        <li><code>u</code> moves 3 units left, 2 units down: <code>u = &lt;-3, -2&gt;</code></li>
+                        <li><code>v</code> moves 1 unit right, 4 units down: <code>v = &lt;1, -4&gt;</code></li>
+                        <li><code>w</code> moves 1 unit left, 2 units up: <code>w = &lt;-1, 2&gt;</code></li>
+                    </ul>
+                    <p><code>u + v + w = &lt;-3 + 1 - 1, -2 - 4 + 2&gt; = &lt;-3, -4&gt;</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 6:</strong> Find the vector <code>u</code> of length 3 which:<br>
+            (a) makes an angle of <code>π/6</code> with the x-axis.<br>
+            (b) is parallel to the vector <code>v = 2i - j - 3k</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>(a) Angle of π/6 with x-axis:</strong></p>
+                    <p>For a 2D vector, the components are given by <code>&lt;||u||cos(θ), ||u||sin(θ)&gt;</code>.</p>
+                    <p><code>u = &lt;3 cos(π/6), 3 sin(π/6)&gt;</code></p>
+                    <p><code>u = &lt;3(√3/2), 3(1/2)&gt;</code></p>
+                    <p><strong>Answer (a):</strong> <code>u = &lt;(3√3)/2, 3/2&gt;</code></p>
+                    <hr>
+                    <p><strong>(b) Parallel to v = 2i - j - 3k:</strong></p>
+                    <p>First, find the unit vector in the direction of <code>v</code>.</p>
+                    <p><code>||v|| = √[(2)² + (-1)² + (-3)²] = √[4 + 1 + 9] = √14</code></p>
+                    <p>Unit vector <code>v̂ = &lt;2/√14, -1/√14, -3/√14&gt;</code></p>
+                    <p>To get a vector of length 3 parallel to <code>v</code>, multiply the unit vector by ±3 (since parallel vectors can point in the same or opposite direction).</p>
+                    <p><strong>Answer (b):</strong> <code>u = ±&lt;6/√14, -3/√14, -9/√14&gt;</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 7:</strong> Given that <code>u = 3i + 6j - 2k</code> and <code>v = -i + 5k</code> are two vectors. Find the components of the following vectors:<br>
+            (a) <code>u - 3v</code><br>
+            (b) <code>2v - 5u</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>Write the vectors in component form: <code>u = &lt;3, 6, -2&gt;</code> and <code>v = &lt;-1, 0, 5&gt;</code>.</p>
+                    <hr>
+                    <p><strong>(a) Find u - 3v:</strong></p>
+                    <p><code>3v = 3&lt;-1, 0, 5&gt; = &lt;-3, 0, 15&gt;</code></p>
+                    <p><code>u - 3v = &lt;3, 6, -2&gt; - &lt;-3, 0, 15&gt;</code></p>
+                    <p><code>u - 3v = &lt;3 - (-3), 6 - 0, -2 - 15&gt;</code></p>
+                    <p><strong>Answer (a):</strong> <code>&lt;6, 6, -17&gt;</code></p>
+                    <hr>
+                    <p><strong>(b) Find 2v - 5u:</strong></p>
+                    <p><code>2v = 2&lt;-1, 0, 5&gt; = &lt;-2, 0, 10&gt;</code></p>
+                    <p><code>5u = 5&lt;3, 6, -2&gt; = &lt;15, 30, -10&gt;</code></p>
+                    <p><code>2v - 5u = &lt;-2, 0, 10&gt; - &lt;15, 30, -10&gt;</code></p>
+                    <p><code>2v - 5u = &lt;-2 - 15, 0 - 30, 10 - (-10)&gt;</code></p>
+                    <p><strong>Answer (b):</strong> <code>&lt;-17, -30, 20&gt;</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 8:</strong> In each part, find the resultant force. Also, calculate the angle that the resultant force makes with the x-axis. <em>(Based on the force diagrams in the PDF)</em>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Diagram (a):</strong> F₁ is 60 lb along the positive x-axis, and F₂ is 30 lb along the positive y-axis.</p>
+                    <p><code>F₁ = &lt;60, 0&gt;</code></p>
+                    <p><code>F₂ = &lt;0, 30&gt;</code></p>
+                    <p><strong>Resultant R</strong> = <code>F₁ + F₂ = &lt;60, 30&gt;</code></p>
+                    <p>Magnitude <code>||R|| = √[60² + 30²] = √[3600 + 900] = √4500 = 30√5 lb</code> (approx. 67.08 lb).</p>
+                    <p>Angle <code>θ = tan⁻¹(30/60) = tan⁻¹(0.5) ≈ 26.57°</code></p>
+                    <hr>
+                    <p><strong>Diagram (b):</strong> F₁ is 120 N along the positive x-axis, and F₂ is 100 N at an angle of 60°.</p>
+                    <p><code>F₁ = &lt;120, 0&gt;</code></p>
+                    <p><code>F₂ = &lt;100 cos(60°), 100 sin(60°)&gt; = &lt;100(1/2), 100(√3/2)&gt; = &lt;50, 50√3&gt;</code></p>
+                    <p><strong>Resultant R</strong> = <code>F₁ + F₂ = &lt;120 + 50, 0 + 50√3&gt; = &lt;170, 50√3&gt;</code></p>
+                    <p>Magnitude <code>||R|| = √[170² + (50√3)²] = √[28900 + 7500] = √36400 = 20√91 N</code> (approx. 190.79 N).</p>
+                    <p>Angle <code>θ = tan⁻¹((50√3) / 170) = tan⁻¹((5√3) / 17) ≈ 27.0°</code></p>
+                </div>
+            </details>
+        </li>
+    </ol>
 </body>
 </html>
