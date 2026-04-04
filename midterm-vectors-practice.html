@@ -341,5 +341,148 @@
             </details>
         </li>
     </ol>
+
+    <!-- Chapter 11.4 Problems -->
+    <h2>Chapter 11.4</h2>
+    <ol class="problem-list" start="11">
+        <li>
+            <strong>Problem 11:</strong> Find the area of the triangle with vertices P, Q, and R.<br>
+            (a) <code>P(1, 5, -2)</code>, <code>Q(0, 0, 0)</code>, <code>R(3, 5, 1)</code><br>
+            (b) <code>P(2, 0, -3)</code>, <code>Q(1, 4, 5)</code>, <code>R(7, 2, 9)</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>The area of a triangle formed by vectors <strong>a</strong> and <strong>b</strong> is <code>(1/2)||a × b||</code>.</p>
+                    <hr>
+                    <p><strong>(a)</strong> Let's use vectors <strong>QP</strong> and <strong>QR</strong>.</p>
+                    <p><code><strong>QP</strong> = &lt;1-0, 5-0, -2-0&gt; = &lt;1, 5, -2&gt;</code></p>
+                    <p><code><strong>QR</strong> = &lt;3-0, 5-0, 1-0&gt; = &lt;3, 5, 1&gt;</code></p>
+                    <p><code><strong>QP</strong> × <strong>QR</strong> = &lt;(5)(1) - (-2)(5), -((1)(1) - (-2)(3)), (1)(5) - (5)(3)&gt;</code></p>
+                    <p><code>= &lt;5 + 10, -(1 + 6), 5 - 15&gt; = &lt;15, -7, -10&gt;</code></p>
+                    <p><code>||<strong>QP</strong> × <strong>QR</strong>|| = √[15² + (-7)² + (-10)²] = √[225 + 49 + 100] = √374</code></p>
+                    <p><strong>Answer (a):</strong> Area = <code>(√374) / 2</code></p>
+                    <hr>
+                    <p><strong>(b)</strong> Let's use vectors <strong>PQ</strong> and <strong>PR</strong>.</p>
+                    <p><code><strong>PQ</strong> = &lt;1-2, 4-0, 5-(-3)&gt; = &lt;-1, 4, 8&gt;</code></p>
+                    <p><code><strong>PR</strong> = &lt;7-2, 2-0, 9-(-3)&gt; = &lt;5, 2, 12&gt;</code></p>
+                    <p><code><strong>PQ</strong> × <strong>PR</strong> = &lt;(4)(12) - (8)(2), -((-1)(12) - (8)(5)), (-1)(2) - (4)(5)&gt;</code></p>
+                    <p><code>= &lt;48 - 16, -(-12 - 40), -2 - 20&gt; = &lt;32, 52, -22&gt;</code></p>
+                    <p><code>||<strong>PQ</strong> × <strong>PR</strong>|| = √[32² + 52² + (-22)²] = √[1024 + 2704 + 484] = √4212</code></p>
+                    <p>Simplify √4212: <code>√4212 = √(36 × 117) = 6√117 = 6√(9 × 13) = 18√13</code></p>
+                    <p><strong>Answer (b):</strong> Area = <code>(18√13) / 2 = 9√13</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 12:</strong> Find the unit vectors perpendicular to both <code>u</code>, <code>v</code>. Also find the scalar triple product <code>u · (v × w)</code> for each of the following parts.<br>
+            (a) <code>u = 2i - 3j + k</code>, <code>v = 4i + j - 3k</code>, <code>w = j + 5k</code><br>
+            (b) <code>u = &lt;1, -2, 2&gt;</code>, <code>v = &lt;0, 3, 2&gt;</code>, <code>w = &lt;-4, 1, -3&gt;</code><br>
+            (c) <code>u = &lt;2, 1, 0&gt;</code>, <code>v = &lt;1, -3, 1&gt;</code>, <code>w = &lt;4, 0, 1&gt;</code><br>
+            (d) <code>u = i</code>, <code>v = i + j</code>, <code>w = i + j + k</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>The vector perpendicular to both <code>u</code> and <code>v</code> is <code>u × v</code>. The unit vectors are <code>±(u × v) / ||u × v||</code>. The scalar triple product is <code>(u × v) · w</code>.</p>
+                    <hr>
+                    <p><strong>(a)</strong> <code>u = &lt;2, -3, 1&gt;</code>, <code>v = &lt;4, 1, -3&gt;</code>, <code>w = &lt;0, 1, 5&gt;</code></p>
+                    <p><code>u × v = &lt;9-1, -(-6-4), 2-(-12)&gt; = &lt;8, 10, 14&gt;</code></p>
+                    <p><code>||u × v|| = √[64 + 100 + 196] = √360 = 6√10</code></p>
+                    <p><strong>Unit vectors:</strong> <code>± &lt;8/(6√10), 10/(6√10), 14/(6√10)&gt; = ± &lt;4/(3√10), 5/(3√10), 7/(3√10)&gt;</code></p>
+                    <p><strong>Scalar Triple Product:</strong> <code>&lt;8, 10, 14&gt; · &lt;0, 1, 5&gt; = 0 + 10 + 70 = 80</code></p>
+                    <hr>
+                    <p><strong>(b)</strong> <code>u = &lt;1, -2, 2&gt;</code>, <code>v = &lt;0, 3, 2&gt;</code>, <code>w = &lt;-4, 1, -3&gt;</code></p>
+                    <p><code>u × v = &lt;-4-6, -(2-0), 3-0&gt; = &lt;-10, -2, 3&gt;</code></p>
+                    <p><code>||u × v|| = √[100 + 4 + 9] = √113</code></p>
+                    <p><strong>Unit vectors:</strong> <code>± &lt;-10/√113, -2/√113, 3/√113&gt;</code></p>
+                    <p><strong>Scalar Triple Product:</strong> <code>&lt;-10, -2, 3&gt; · &lt;-4, 1, -3&gt; = 40 - 2 - 9 = 29</code></p>
+                    <hr>
+                    <p><strong>(c)</strong> <code>u = &lt;2, 1, 0&gt;</code>, <code>v = &lt;1, -3, 1&gt;</code>, <code>w = &lt;4, 0, 1&gt;</code></p>
+                    <p><code>u × v = &lt;1-0, -(2-0), -6-1&gt; = &lt;1, -2, -7&gt;</code></p>
+                    <p><code>||u × v|| = √[1 + 4 + 49] = √54 = 3√6</code></p>
+                    <p><strong>Unit vectors:</strong> <code>± &lt;1/(3√6), -2/(3√6), -7/(3√6)&gt;</code></p>
+                    <p><strong>Scalar Triple Product:</strong> <code>&lt;1, -2, -7&gt; · &lt;4, 0, 1&gt; = 4 + 0 - 7 = -3</code></p>
+                    <hr>
+                    <p><strong>(d)</strong> <code>u = &lt;1, 0, 0&gt;</code>, <code>v = &lt;1, 1, 0&gt;</code>, <code>w = &lt;1, 1, 1&gt;</code></p>
+                    <p><code>u × v = &lt;0-0, -(0-0), 1-0&gt; = &lt;0, 0, 1&gt;</code></p>
+                    <p><code>||u × v|| = √1 = 1</code></p>
+                    <p><strong>Unit vectors:</strong> <code>± &lt;0, 0, 1&gt;</code> (which is ±k)</p>
+                    <p><strong>Scalar Triple Product:</strong> <code>&lt;0, 0, 1&gt; · &lt;1, 1, 1&gt; = 0 + 0 + 1 = 1</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 13:</strong> Use a scalar triple product to find the volume of the parallelepiped that has <code>u</code>, <code>v</code>, and <code>w</code> as adjacent edges.<br>
+            (a) <code>u = &lt;2, -6, 2&gt;</code>, <code>v = &lt;0, 4, -2&gt;</code>, <code>w = &lt;2, 2, -4&gt;</code><br>
+            (b) <code>u = 3i + j + 2k</code>, <code>v = 4i + 5j + k</code>, <code>w = i + 2j + 4k</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>The volume is the absolute value of the scalar triple product: <code>V = |u · (v × w)|</code></p>
+                    <hr>
+                    <p><strong>(a)</strong> <code>v × w = &lt;(4)(-4) - (-2)(2), -((0)(-4) - (-2)(2)), (0)(2) - (4)(2)&gt;</code><br>
+                       <code>v × w = &lt;-16 + 4, -(0 + 4), 0 - 8&gt; = &lt;-12, -4, -8&gt;</code></p>
+                    <p><code>u · (v × w) = &lt;2, -6, 2&gt; · &lt;-12, -4, -8&gt; = -24 + 24 - 16 = -16</code></p>
+                    <p><strong>Volume:</strong> <code>|-16| = 16</code></p>
+                    <hr>
+                    <p><strong>(b)</strong> <code>v × w = &lt;(5)(4) - (1)(2), -((4)(4) - (1)(1)), (4)(2) - (5)(1)&gt;</code><br>
+                       <code>v × w = &lt;20 - 2, -(16 - 1), 8 - 5&gt; = &lt;18, -15, 3&gt;</code></p>
+                    <p><code>u · (v × w) = &lt;3, 1, 2&gt; · &lt;18, -15, 3&gt; = 54 - 15 + 6 = 45</code></p>
+                    <p><strong>Volume:</strong> <code>|45| = 45</code></p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 14:</strong> In each part, determine whether the vectors lie in the same plane.<br>
+            (a) <code>u = &lt;1, -2, 1&gt;</code>, <code>v = &lt;3, 0, -2&gt;</code>, <code>w = &lt;5, -4, 0&gt;</code><br>
+            (b) <code>u = 5i - 2j + k</code>, <code>v = 4i - j + k</code>, <code>w = i - j</code><br>
+            (c) <code>u = &lt;4, -8, 1&gt;</code>, <code>v = &lt;2, 1, -2&gt;</code>, <code>w = &lt;3, -4, 12&gt;</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>Vectors are coplanar (lie in the same plane) if and only if their scalar triple product is zero: <code>u · (v × w) = 0</code>.</p>
+                    <hr>
+                    <p><strong>(a)</strong> <code>v × w = &lt;0-8, -(0 - (-10)), -12-0&gt; = &lt;-8, -10, -12&gt;</code><br>
+                       <code>u · (v × w) = (1)(-8) + (-2)(-10) + (1)(-12) = -8 + 20 - 12 = 0</code><br>
+                       <strong>Answer (a):</strong> Yes, they lie in the same plane.</p>
+                    <hr>
+                    <p><strong>(b)</strong> <code>u = &lt;5, -2, 1&gt;</code>, <code>v = &lt;4, -1, 1&gt;</code>, <code>w = &lt;1, -1, 0&gt;</code><br>
+                       <code>v × w = &lt;0 - (-1), -(0 - 1), -4 - (-1)&gt; = &lt;1, 1, -3&gt;</code><br>
+                       <code>u · (v × w) = (5)(1) + (-2)(1) + (1)(-3) = 5 - 2 - 3 = 0</code><br>
+                       <strong>Answer (b):</strong> Yes, they lie in the same plane.</p>
+                    <hr>
+                    <p><strong>(c)</strong> <code>v × w = &lt;12 - 8, -(24 - (-6)), -8 - 3&gt; = &lt;4, -30, -11&gt;</code><br>
+                       <code>u · (v × w) = (4)(4) + (-8)(-30) + (1)(-11) = 16 + 240 - 11 = 245</code><br>
+                       Since 245 ≠ 0,<br>
+                       <strong>Answer (c):</strong> No, they do not lie in the same plane.</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 15:</strong> Suppose that <code>u · (v × w) = -11</code>. Find:<br>
+            (a) <code>u · (w × v)</code><br>
+            (b) <code>(v × u) · w</code><br>
+            (c) <code>w · (u × v)</code><br>
+            (d) <code>v · (u × w)</code><br>
+            (e) <code>(u × v) · w</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>The scalar triple product has cyclic properties. A cyclic shift (e.g., u,v,w &rarr; v,w,u &rarr; w,u,v) preserves the value (-11). Swapping any two vectors reverses the sign (becomes +11). Also, the dot and cross can be swapped without changing the value: <code>a · (b × c) = (a × b) · c</code>.</p>
+                    <p>We are given <code>[u, v, w] = -11</code>.</p>
+                    <hr>
+                    <p><strong>(a)</strong> <code>u · (w × v)</code> represents a swap of v and w (anti-cyclic).<br>
+                    <strong>Answer:</strong> <code>-(-11) = 11</code></p>
+                    <p><strong>(b)</strong> <code>(v × u) · w = w · (v × u)</code>. This is anti-cyclic (u and v swapped from w,u,v).<br>
+                    <strong>Answer:</strong> <code>11</code></p>
+                    <p><strong>(c)</strong> <code>w · (u × v)</code> represents the order w, u, v, which is a cyclic shift of u, v, w.<br>
+                    <strong>Answer:</strong> <code>-11</code></p>
+                    <p><strong>(d)</strong> <code>v · (u × w)</code> represents the order v, u, w, which is a swap of u and v (anti-cyclic).<br>
+                    <strong>Answer:</strong> <code>11</code></p>
+                    <p><strong>(e)</strong> <code>(u × v) · w</code> is identical to <code>u · (v × w)</code> because the dot and cross can be interchanged.<br>
+                    <strong>Answer:</strong> <code>-11</code></p>
+                </div>
+            </details>
+        </li>
+    </ol>
 </body>
 </html>
