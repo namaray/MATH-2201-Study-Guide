@@ -81,148 +81,532 @@
 
     <h1>Practice Problems: Lines and Planes (Ch 11.5 - 11.6)</h1>
 
-    <!-- Chapter 11.5 Problems -->
-    <h2>Chapter 11.5: Parametric Equations of Lines</h2>
-    <ol class="problem-list">
+<!-- Chapter 11.5 Problems -->
+    <h2>Chapter 11.5</h2>
+    <ol class="problem-list" start="16">
         <li>
-            <strong>Problem 1:</strong> Find parametric equations of the line that passes through the point <code>(2, -1, 5)</code> and is parallel to the vector <code>v = &lt;-1, 2, 7&gt;</code>.
+            <strong>Problem 16:</strong> Find parametric equations of the line that satisfies the stated conditions.<br>
+            (a) The line through (-5, 2) that is parallel to 2i - 3j.<br>
+            (b) The line through (0, 3) that is parallel to the line x = -5 + t, y = 1 - 2t.<br>
+            (c) The line through (-1, 2, 4) that is parallel to 3i - 4j + k.<br>
+            (d) The line through (2, -1, 5) that is parallel to &lt;-1, 2, 7&gt;.<br>
+            (e) The line through (-2, 0, 5) that is parallel to the line x = 1 + 2t, y = 4 - t, z = 6 + 2t.<br>
+            (f) The line through the origin that is parallel to the line x = t, y = -1 + t, z = 2.
             <details>
                 <summary>Show Solution</summary>
                 <div class="solution-steps">
-                    <p><strong>Step 1: Identify the given point and direction vector.</strong></p>
-                    <p>Point: <code>(x₀, y₀, z₀) = (2, -1, 5)</code></p>
-                    <p>Direction Vector: <code>v = &lt;a, b, c&gt; = &lt;-1, 2, 7&gt;</code></p>
+                    <p>The parametric equations of a line through <code>(x₀, y₀, z₀)</code> parallel to vector <code>v = &lt;a, b, c&gt;</code> are <code>x = x₀ + at</code>, <code>y = y₀ + bt</code>, <code>z = z₀ + ct</code>.</p>
                     <hr>
-                    <p><strong>Step 2: Plug into the parametric formulas.</strong></p>
-                    <p>The standard formulas are: <code>x = x₀ + at</code>, <code>y = y₀ + bt</code>, <code>z = z₀ + ct</code>.</p>
-                    <p><strong>Answer:</strong></p>
-                    <p><code>x = 2 - t</code></p>
-                    <p><code>y = -1 + 2t</code></p>
-                    <p><code>z = 5 + 7t</code></p>
+                    <p><strong>(a)</strong> Point <code>(-5, 2)</code>, Direction vector <code>&lt;2, -3&gt;</code> (This is in 2-space).<br>
+                    <strong>Answer:</strong> <code>x = -5 + 2t, y = 2 - 3t</code></p>
+                    
+                    <p><strong>(b)</strong> Point <code>(0, 3)</code>. The parallel line has direction vector <code>&lt;1, -2&gt;</code>.<br>
+                    <strong>Answer:</strong> <code>x = t, y = 3 - 2t</code></p>
+                    
+                    <p><strong>(c)</strong> Point <code>(-1, 2, 4)</code>, Direction vector <code>&lt;3, -4, 1&gt;</code>.<br>
+                    <strong>Answer:</strong> <code>x = -1 + 3t, y = 2 - 4t, z = 4 + t</code></p>
+
+                    <p><strong>(d)</strong> Point <code>(2, -1, 5)</code>, Direction vector <code>&lt;-1, 2, 7&gt;</code>.<br>
+                    <strong>Answer:</strong> <code>x = 2 - t, y = -1 + 2t, z = 5 + 7t</code></p>
+
+                    <p><strong>(e)</strong> Point <code>(-2, 0, 5)</code>. The parallel line has direction vector <code>&lt;2, -1, 2&gt;</code>.<br>
+                    <strong>Answer:</strong> <code>x = -2 + 2t, y = -t, z = 5 + 2t</code></p>
+
+                    <p><strong>(f)</strong> Point <code>(0, 0, 0)</code>. The parallel line has direction vector <code>&lt;1, 1, 0&gt;</code> (since z=2 is constant, c=0).<br>
+                    <strong>Answer:</strong> <code>x = t, y = t, z = 0</code></p>
                 </div>
             </details>
         </li>
         <li>
-            <strong>Problem 2:</strong> Show that the lines L₁ and L₂ intersect, and find their point of intersection.<br><br>
-            <code>L₁: x = 2 + t, y = 2 + 3t, z = 3 + t</code><br>
-            <code>L₂: x = 2 + s, y = 3 + 4s, z = 4 + 2s</code><br>
-            <em>(Note: We use parameter 's' for L₂ to avoid confusion with 't' from L₁)</em>
+            <strong>Problem 17:</strong> Where does the line <code>x = 1 + 3t, y = 2 - t</code> intersect<br>
+            (a) the x-axis<br>
+            (b) the y-axis
             <details>
                 <summary>Show Solution</summary>
                 <div class="solution-steps">
-                    <p><strong>Step 1: Set the x, y, and z equations equal to each other.</strong></p>
-                    <p>For an intersection to exist, there must be a specific <code>t</code> and <code>s</code> where the coordinates match.</p>
-                    <p>1) <code>2 + t = 2 + s  &implies;  t = s</code></p>
-                    <p>2) <code>2 + 3t = 3 + 4s</code></p>
-                    <p>3) <code>3 + t = 4 + 2s</code></p>
+                    <p><strong>(a) Intersecting the x-axis:</strong></p>
+                    <p>On the x-axis, <code>y = 0</code>. Set the y-equation to 0:</p>
+                    <p><code>2 - t = 0  &implies;  t = 2</code></p>
+                    <p>Substitute <code>t = 2</code> into the x-equation:</p>
+                    <p><code>x = 1 + 3(2) = 1 + 6 = 7</code></p>
+                    <p><strong>Answer (a):</strong> The point is <code>(7, 0)</code>.</p>
                     <hr>
-                    <p><strong>Step 2: Solve the system of equations.</strong></p>
-                    <p>Substitute <code>t = s</code> (from eq 1) into eq 2:</p>
-                    <p><code>2 + 3t = 3 + 4t</code></p>
-                    <p><code>-1 = t</code></p>
-                    <p>Since <code>t = s</code>, we also have <code>s = -1</code>.</p>
+                    <p><strong>(b) Intersecting the y-axis:</strong></p>
+                    <p>On the y-axis, <code>x = 0</code>. Set the x-equation to 0:</p>
+                    <p><code>1 + 3t = 0  &implies;  t = -1/3</code></p>
+                    <p>Substitute <code>t = -1/3</code> into the y-equation:</p>
+                    <p><code>y = 2 - (-1/3) = 2 + 1/3 = 7/3</code></p>
+                    <p><strong>Answer (b):</strong> The point is <code>(0, 7/3)</code>.</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 18:</strong> Find the intersections of each of the following lines with the xy-plane, the xz-plane, and the yz-plane.<br>
+            Line 1: <code>x = -2, y = 4 + 2t, z = -3 + t</code><br>
+            Line 2: <code>x = -1 + 2t, y = 3 + t, z = 4 - t</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Line 1:</strong> <code>x = -2, y = 4 + 2t, z = -3 + t</code></p>
+                    <ul>
+                        <li><strong>xy-plane (z = 0):</strong> <code>-3 + t = 0  &implies;  t = 3</code>.<br>
+                        Plug in t=3: <code>x = -2, y = 4 + 2(3) = 10, z = 0</code>. Point: <strong>(-2, 10, 0)</strong></li>
+                        <li><strong>xz-plane (y = 0):</strong> <code>4 + 2t = 0  &implies;  t = -2</code>.<br>
+                        Plug in t=-2: <code>x = -2, y = 0, z = -3 + (-2) = -5</code>. Point: <strong>(-2, 0, -5)</strong></li>
+                        <li><strong>yz-plane (x = 0):</strong> The line equation states <code>x = -2</code> constantly. It can never be 0. Therefore, <strong>it does not intersect the yz-plane</strong>.</li>
+                    </ul>
                     <hr>
-                    <p><strong>Step 3: Check if these values satisfy the third equation (z).</strong></p>
-                    <p>Plug <code>t = -1</code> into L₁'s z-equation: <code>z = 3 + (-1) = 2</code></p>
-                    <p>Plug <code>s = -1</code> into L₂'s z-equation: <code>z = 4 + 2(-1) = 4 - 2 = 2</code></p>
-                    <p>Since the z-values match, the lines <strong>do intersect</strong>.</p>
+                    <p><strong>Line 2:</strong> <code>x = -1 + 2t, y = 3 + t, z = 4 - t</code></p>
+                    <ul>
+                        <li><strong>xy-plane (z = 0):</strong> <code>4 - t = 0  &implies;  t = 4</code>.<br>
+                        Plug in t=4: <code>x = -1 + 8 = 7, y = 3 + 4 = 7, z = 0</code>. Point: <strong>(7, 7, 0)</strong></li>
+                        <li><strong>xz-plane (y = 0):</strong> <code>3 + t = 0  &implies;  t = -3</code>.<br>
+                        Plug in t=-3: <code>x = -1 + 2(-3) = -7, y = 0, z = 4 - (-3) = 7</code>. Point: <strong>(-7, 0, 7)</strong></li>
+                        <li><strong>yz-plane (x = 0):</strong> <code>-1 + 2t = 0  &implies;  t = 1/2</code>.<br>
+                        Plug in t=1/2: <code>x = 0, y = 3 + 1/2 = 7/2, z = 4 - 1/2 = 7/2</code>. Point: <strong>(0, 7/2, 7/2)</strong></li>
+                    </ul>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 19:</strong> Show that the lines L₁ and L₂ intersect, and find their point of intersection.<br>
+            (a) L₁: <code>x = 2 + t, y = 2 + 3t, z = 3 + t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L₂: <code>x = 2 + t, y = 3 + 4t, z = 4 + 2t</code><br><br>
+            (b) L₁: <code>x + 1 = 4t, y - 3 = t, z - 1 = 0</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L₂: <code>x + 13 = 12t, y - 1 = 6t, z - 2 = 3t</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><em>Important: When finding intersections of two lines, always change the parameter variable of the second line (e.g., to 's') to avoid treating them as the same variable.</em></p>
+                    <p><strong>Part (a):</strong></p>
+                    <p>L₁: <code>x = 2 + t, y = 2 + 3t, z = 3 + t</code><br>
+                       L₂: <code>x = 2 + s, y = 3 + 4s, z = 4 + 2s</code></p>
+                    <p>Set equations equal:<br>
+                       1) <code>2 + t = 2 + s  &implies;  t = s</code><br>
+                       2) <code>2 + 3t = 3 + 4s</code></p>
+                    <p>Substitute <code>t = s</code> into (2): <code>2 + 3s = 3 + 4s  &implies;  s = -1</code>. Thus, <code>t = -1</code>.</p>
+                    <p>Check the z-equation:<br>
+                       L₁ z: <code>3 + (-1) = 2</code><br>
+                       L₂ z: <code>4 + 2(-1) = 2</code>.<br>
+                       Since 2 = 2, the lines intersect.</p>
+                    <p>Plug <code>t = -1</code> into L₁ to find the point: <code>(2 - 1, 2 - 3, 3 - 1)</code>.</p>
+                    <p><strong>Answer (a):</strong> The point of intersection is <code>(1, -1, 2)</code>.</p>
                     <hr>
-                    <p><strong>Step 4: Find the point of intersection.</strong></p>
-                    <p>Plug <code>t = -1</code> into L₁'s equations (or <code>s = -1</code> into L₂'s):</p>
-                    <p><code>x = 2 + (-1) = 1</code><br>
-                       <code>y = 2 + 3(-1) = -1</code><br>
-                       <code>z = 2</code></p>
-                    <p><strong>Answer:</strong> The point of intersection is <code>(1, -1, 2)</code>.</p>
+                    <p><strong>Part (b):</strong></p>
+                    <p>First, rewrite the lines explicitly in parametric form:<br>
+                       L₁: <code>x = -1 + 4t, y = 3 + t, z = 1</code><br>
+                       L₂: <code>x = -13 + 12s, y = 1 + 6s, z = 2 + 3s</code></p>
+                    <p>Set equations equal:<br>
+                       Because L₁ has a constant z = 1, L₂'s z-value must also be 1.<br>
+                       <code>2 + 3s = 1  &implies;  3s = -1  &implies;  s = -1/3</code></p>
+                    <p>Plug <code>s = -1/3</code> into L₂ to find the candidate intersection point:<br>
+                       <code>x = -13 + 12(-1/3) = -13 - 4 = -17</code><br>
+                       <code>y = 1 + 6(-1/3) = 1 - 2 = -1</code><br>
+                       Point candidate: <code>(-17, -1, 1)</code></p>
+                    <p>Now verify if a <code>t</code> exists for L₁ to reach this point:<br>
+                       <code>-1 + 4t = -17  &implies;  4t = -16  &implies;  t = -4</code><br>
+                       Check y: <code>y = 3 + (-4) = -1</code>. It matches perfectly!</p>
+                    <p><strong>Answer (b):</strong> The point of intersection is <code>(-17, -1, 1)</code>.</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 20:</strong> Show that the lines L₁ and L₂ are skew.<br>
+            (a) L₁: <code>x = 1 + 7t, y = 3 + t, z = 5 - 3t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L₂: <code>x = 4 - t, y = 6, z = 7 + 2t</code><br><br>
+            (b) L₁: <code>x = 2 + 8t, y = 6 - 8t, z = 10t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L₂: <code>x = 3 + 8t, y = 5 - 3t, z = 6 + t</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><em>Two lines are skew if they are not parallel and do not intersect.</em></p>
+                    <p><strong>Part (a):</strong></p>
+                    <p>Direction vectors are <code>v₁ = &lt;7, 1, -3&gt;</code> and <code>v₂ = &lt;-1, 0, 2&gt;</code>. They are not scalar multiples, so they are <strong>not parallel</strong>.</p>
+                    <p>Check for intersection (use 's' for L₂):<br>
+                       L₁: <code>x = 1 + 7t, y = 3 + t, z = 5 - 3t</code><br>
+                       L₂: <code>x = 4 - s, y = 6, z = 7 + 2s</code></p>
+                    <p>Equate y: <code>3 + t = 6  &implies;  t = 3</code>.<br>
+                       Equate x with t=3: <code>1 + 7(3) = 4 - s  &implies;  22 = 4 - s  &implies;  s = -18</code>.<br>
+                       Check z with these values:<br>
+                       L₁ z: <code>5 - 3(3) = -4</code><br>
+                       L₂ z: <code>7 + 2(-18) = -29</code><br>
+                       Since -4 &ne; -29, they do not intersect. Therefore, the lines are <strong>skew</strong>.</p>
+                    <hr>
+                    <p><strong>Part (b):</strong></p>
+                    <p>Direction vectors are <code>v₁ = &lt;8, -8, 10&gt;</code> and <code>v₂ = &lt;8, -3, 1&gt;</code>. They are not scalar multiples, so they are <strong>not parallel</strong>.</p>
+                    <p>Check for intersection (use 's' for L₂):<br>
+                       L₁: <code>x = 2 + 8t, y = 6 - 8t, z = 10t</code><br>
+                       L₂: <code>x = 3 + 8s, y = 5 - 3s, z = 6 + s</code></p>
+                    <p>Equate x: <code>2 + 8t = 3 + 8s  &implies;  8t - 8s = 1</code><br>
+                       Equate y: <code>6 - 8t = 5 - 3s  &implies;  -8t + 3s = -1</code><br>
+                       Add these two equations together:<br>
+                       <code>(8t - 8s) + (-8t + 3s) = 1 - 1</code><br>
+                       <code>-5s = 0  &implies;  s = 0</code></p>
+                    <p>If <code>s = 0</code>, then <code>8t - 0 = 1  &implies;  t = 1/8</code>.<br>
+                       Check z with these values:<br>
+                       L₁ z: <code>10(1/8) = 5/4</code><br>
+                       L₂ z: <code>6 + 0 = 6</code><br>
+                       Since 5/4 &ne; 6, they do not intersect. Therefore, the lines are <strong>skew</strong>.</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <strong>Problem 21:</strong> Determine whether the lines L₁ and L₂ are parallel.<br>
+            (a) L₁: <code>x = 3 - 2t, y = 4 + t, z = 6 - t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L₂: <code>x = 5 - 4t, y = -2 + 2t, z = 7 - 2t</code><br><br>
+            (b) L₁: <code>x = 5 + 3t, y = 4 - 2t, z = -2 + 3t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L₂: <code>x = -1 + 9t, y = 5 - 6t, z = 3 + 8t</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><em>Two lines are parallel if their direction vectors are scalar multiples of each other.</em></p>
+                    <p><strong>Part (a):</strong></p>
+                    <p>Direction vector for L₁: <code>v₁ = &lt;-2, 1, -1&gt;</code></p>
+                    <p>Direction vector for L₂: <code>v₂ = &lt;-4, 2, -2&gt;</code></p>
+                    <p>Check ratios: <code>-4 / -2 = 2</code>, <code>2 / 1 = 2</code>, <code>-2 / -1 = 2</code>.</p>
+                    <p>Since <code>v₂ = 2v₁</code>, the direction vectors are parallel.</p>
+                    <p><strong>Answer (a):</strong> Yes, the lines are parallel.</p>
+                    <hr>
+                    <p><strong>Part (b):</strong></p>
+                    <p>Direction vector for L₁: <code>v₁ = &lt;3, -2, 3&gt;</code></p>
+                    <p>Direction vector for L₂: <code>v₂ = &lt;9, -6, 8&gt;</code></p>
+                    <p>Check ratios: <code>9 / 3 = 3</code>, <code>-6 / -2 = 3</code>, but <code>8 / 3 &ne; 3</code>.</p>
+                    <p>Since the ratios are not equal, one vector is not a scalar multiple of the other.</p>
+                    <p><strong>Answer (b):</strong> No, the lines are not parallel.</p>
                 </div>
             </details>
         </li>
     </ol>
 
-    <!-- Chapter 11.6 Problems -->
+<!-- Chapter 11.6 Problems -->
     <h2>Chapter 11.6: Planes in 3-Space</h2>
-    <ol class="problem-list">
+    <ol class="problem-list" start="22">
         <li>
-            <strong>Problem 3:</strong> Find an equation of the plane that passes through the point <code>P(2, 6, 1)</code> and has the vector <code>n = &lt;1, 4, 2&gt;</code> as a normal.
+            <strong>Problem 22:</strong> Find an equation of the plane that passes through the point P and has the vector n as a normal.<br>
+            (a) <code>P(2, 6, 1), n = &lt;1, 4, 2&gt;</code><br>
+            (b) <code>P(-1, -1, 2), n = &lt;-1, 7, 6&gt;</code><br>
+            (c) <code>P(1, 0, 0), n = &lt;0, 0, 1&gt;</code>
             <details>
                 <summary>Show Solution</summary>
                 <div class="solution-steps">
-                    <p><strong>Step 1: Use the point-normal form of a plane.</strong></p>
-                    <p><code>a(x - x₀) + b(y - y₀) + c(z - z₀) = 0</code></p>
-                    <p>Here, <code>(x₀, y₀, z₀) = (2, 6, 1)</code> and <code>&lt;a, b, c&gt; = &lt;1, 4, 2&gt;</code>.</p>
+                    <p>Use the point-normal form of a plane: <code>a(x - x₀) + b(y - y₀) + c(z - z₀) = 0</code></p>
                     <hr>
-                    <p><strong>Step 2: Substitute the values and expand.</strong></p>
+                    <p><strong>(a)</strong> <code>P(2, 6, 1), n = &lt;1, 4, 2&gt;</code></p>
                     <p><code>1(x - 2) + 4(y - 6) + 2(z - 1) = 0</code></p>
                     <p><code>x - 2 + 4y - 24 + 2z - 2 = 0</code></p>
-                    <p><code>x + 4y + 2z - 28 = 0</code></p>
-                    <p><strong>Answer:</strong> <code>x + 4y + 2z = 28</code></p>
+                    <p><strong>Answer (a):</strong> <code>x + 4y + 2z = 28</code></p>
+                    <hr>
+                    <p><strong>(b)</strong> <code>P(-1, -1, 2), n = &lt;-1, 7, 6&gt;</code></p>
+                    <p><code>-1(x - (-1)) + 7(y - (-1)) + 6(z - 2) = 0</code></p>
+                    <p><code>-1(x + 1) + 7(y + 1) + 6(z - 2) = 0</code></p>
+                    <p><code>-x - 1 + 7y + 7 + 6z - 12 = 0</code></p>
+                    <p><strong>Answer (b):</strong> <code>-x + 7y + 6z = 6</code> (or <code>x - 7y - 6z = -6</code>)</p>
+                    <hr>
+                    <p><strong>(c)</strong> <code>P(1, 0, 0), n = &lt;0, 0, 1&gt;</code></p>
+                    <p><code>0(x - 1) + 0(y - 0) + 1(z - 0) = 0</code></p>
+                    <p><strong>Answer (c):</strong> <code>z = 0</code> (This is the xy-plane).</p>
                 </div>
             </details>
         </li>
+        
         <li>
-            <strong>Problem 4:</strong> Find an equation of the plane that passes through the given points: <code>A(-2, 1, 1)</code>, <code>B(0, 2, 3)</code>, and <code>C(1, 0, -1)</code>.
+            <strong>Problem 23:</strong> Find the distance between the point and the plane.<br>
+            (a) <code>(1, -2, 3); 2x - 2y + z = 4</code><br>
+            (b) <code>(0, 1, 5); 3x + 6y - 2z - 5 = 0</code>
             <details>
                 <summary>Show Solution</summary>
                 <div class="solution-steps">
-                    <p><strong>Step 1: Find two vectors that lie in the plane.</strong></p>
-                    <p><code><strong>AB</strong> = &lt;0 - (-2), 2 - 1, 3 - 1&gt; = &lt;2, 1, 2&gt;</code></p>
-                    <p><code><strong>AC</strong> = &lt;1 - (-2), 0 - 1, -1 - 1&gt; = &lt;3, -1, -2&gt;</code></p>
+                    <p>Use the distance formula: <code>D = |ax₀ + by₀ + cz₀ + d| / &radic;(a&sup2; + b&sup2; + c&sup2;)</code></p>
                     <hr>
-                    <p><strong>Step 2: Find the normal vector <code>n</code> by taking the cross product of AB and AC.</strong></p>
-                    <p><code>n = <strong>AB</strong> &times; <strong>AC</strong> = | i   j   k |</code><br>
-                       <code>                   | 2   1   2 |</code><br>
-                       <code>                   | 3  -1  -2 |</code></p>
-                    <p><code>n = i((1)(-2) - (2)(-1)) - j((2)(-2) - (2)(3)) + k((2)(-1) - (1)(3))</code></p>
-                    <p><code>n = i(-2 + 2) - j(-4 - 6) + k(-2 - 3)</code></p>
-                    <p><code>n = &lt;0, 10, -5&gt;</code></p>
+                    <p><strong>(a)</strong> Point <code>(1, -2, 3)</code>, Plane <code>2x - 2y + z - 4 = 0</code> (Note: move 4 to the left side).</p>
+                    <p><code>D = |2(1) - 2(-2) + 1(3) - 4| / &radic;(2&sup2; + (-2)&sup2; + 1&sup2;)</code></p>
+                    <p><code>D = |2 + 4 + 3 - 4| / &radic;(4 + 4 + 1)</code></p>
+                    <p><code>D = |5| / &radic;9 = 5 / 3</code></p>
+                    <p><strong>Answer (a):</strong> <code>5/3</code></p>
                     <hr>
-                    <p><strong>Step 3: Use the normal vector and one of the points to write the equation.</strong></p>
-                    <p>Using point <code>B(0, 2, 3)</code> and <code>n = &lt;0, 10, -5&gt;</code>:</p>
-                    <p><code>0(x - 0) + 10(y - 2) - 5(z - 3) = 0</code></p>
-                    <p><code>10y - 20 - 5z + 15 = 0</code></p>
-                    <p><code>10y - 5z = 5</code></p>
-                    <p>Divide by 5 to simplify:</p>
-                    <p><strong>Answer:</strong> <code>2y - z = 1</code></p>
+                    <p><strong>(b)</strong> Point <code>(0, 1, 5)</code>, Plane <code>3x + 6y - 2z - 5 = 0</code>.</p>
+                    <p><code>D = |3(0) + 6(1) - 2(5) - 5| / &radic;(3&sup2; + 6&sup2; + (-2)&sup2;)</code></p>
+                    <p><code>D = |0 + 6 - 10 - 5| / &radic;(9 + 36 + 4)</code></p>
+                    <p><code>D = |-9| / &radic;49 = 9 / 7</code></p>
+                    <p><strong>Answer (b):</strong> <code>9/7</code></p>
                 </div>
             </details>
         </li>
-<li>
-            <strong>Problem 5:</strong> Find the distance between the point <code>(1, -2, 3)</code> and the plane <code>2x - 2y + z = 4</code>.
-            <details>
-                <summary>Show Solution</summary>
-                <div class="solution-steps">
-                    <p><strong>Step 1: Write the plane equation in standard general form <code>ax + by + cz + d = 0</code>.</strong></p>
-                    <p><code>2x - 2y + z - 4 = 0</code>. Thus, <code>a=2, b=-2, c=1, d=-4</code>.</p>
-                    <hr>
-                    <p><strong>Step 2: Apply the point-to-plane distance formula.</strong></p>
-                    <p><code>D = |ax₀ + by₀ + cz₀ + d| / √(a² + b² + c²)</code></p>
-                    <p><code>D = |(2)(1) + (-2)(-2) + (1)(3) - 4| / √(2² + (-2)² + 1²)</code></p>
-                    <p><code>D = |2 + 4 + 3 - 4| / √(4 + 4 + 1)</code></p>
-                    <p><code>D = |5| / √9 = 5 / 3</code></p>
-                    <p><strong>Answer:</strong> The distance is <code>5/3</code>.</p>
-                </div>
-            </details>
-        </li>
+
         <li>
-            <strong>Problem 6:</strong> Determine whether the line and plane intersect; if so, find the coordinates of the intersection.<br>
-            Line: <code>x = t, y = t, z = t</code><br>
-            Plane: <code>3x - 2y + z - 5 = 0</code>
+            <strong>Problem 24:</strong> Find the distance between the given parallel planes.<br>
+            (a) <code>-2x + y + z = 0, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6x - 3y - 3z - 5 = 0</code><br>
+            (b) <code>x + y + z = 1, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x + y + z = -1</code>
             <details>
                 <summary>Show Solution</summary>
                 <div class="solution-steps">
-                    <p><strong>Step 1: Substitute the line's parametric equations into the plane's equation.</strong></p>
-                    <p>Replace x, y, and z in the plane equation with <code>t</code>.</p>
-                    <p><code>3(t) - 2(t) + (t) - 5 = 0</code></p>
+                    <p>To find the distance between parallel planes, pick an arbitrary point on one plane and use the point-to-plane distance formula to the second plane.</p>
                     <hr>
-                    <p><strong>Step 2: Solve for t.</strong></p>
-                    <p><code>3t - 2t + t = 5</code></p>
-                    <p><code>2t = 5</code></p>
-                    <p><code>t = 5/2</code></p>
-                    <p>Because we found a single valid value for <code>t</code>, the line and plane <strong>do intersect</strong>.</p>
+                    <p><strong>(a)</strong> Planes: <code>-2x + y + z = 0</code> and <code>6x - 3y - 3z - 5 = 0</code></p>
+                    <p>Find a point on the first plane. Let <code>x = 0, y = 0</code>, then <code>z = 0</code>. Point: <code>(0, 0, 0)</code>.</p>
+                    <p>Calculate distance from <code>(0, 0, 0)</code> to <code>6x - 3y - 3z - 5 = 0</code>:</p>
+                    <p><code>D = |6(0) - 3(0) - 3(0) - 5| / &radic;(6&sup2; + (-3)&sup2; + (-3)&sup2;)</code></p>
+                    <p><code>D = |-5| / &radic;(36 + 9 + 9) = 5 / &radic;54 = 5 / (3&radic;6)</code></p>
+                    <p><strong>Answer (a):</strong> <code>5 / (3&radic;6)</code></p>
                     <hr>
-                    <p><strong>Step 3: Find the coordinates of the intersection point.</strong></p>
-                    <p>Plug <code>t = 5/2</code> back into the parametric equations of the line.</p>
-                    <p><code>x = 5/2</code>, <code>y = 5/2</code>, <code>z = 5/2</code></p>
-                    <p><strong>Answer:</strong> The point of intersection is <code>(5/2, 5/2, 5/2)</code>.</p>
+                    <p><strong>(b)</strong> Planes: <code>x + y + z - 1 = 0</code> and <code>x + y + z + 1 = 0</code></p>
+                    <p>Find a point on the first plane. Let <code>y = 0, z = 0</code>, then <code>x = 1</code>. Point: <code>(1, 0, 0)</code>.</p>
+                    <p>Calculate distance from <code>(1, 0, 0)</code> to <code>x + y + z + 1 = 0</code>:</p>
+                    <p><code>D = |1(1) + 1(0) + 1(0) + 1| / &radic;(1&sup2; + 1&sup2; + 1&sup2;)</code></p>
+                    <p><code>D = |2| / &radic;3 = 2 / &radic;3</code></p>
+                    <p><strong>Answer (b):</strong> <code>2 / &radic;3</code></p>
                 </div>
             </details>
         </li>
+
+        <li>
+            <strong>Problem 25:</strong> Find the distance between the given skew lines.<br>
+            (a) L₁: <code>x = 1 + 7t, y = 3 + t, z = 5 - 3t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L₂: <code>x = 4 - t, y = 6, z = 7 + 2t</code><br><br>
+            (b) L₁: <code>x = 3 - t, y = 4 + 4t, z = 1 + 2t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L₂: <code>x = t, y = 3 - t, z = 2t</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>To find the distance between skew lines, find a plane that contains L₂ and is parallel to L₁. The distance from any point on L₁ to this plane is the distance between the skew lines.</p>
+                    <hr>
+                    <p><strong>(a)</strong><br>
+                    Direction vectors: <code>v₁ = &lt;7, 1, -3&gt;</code> and <code>v₂ = &lt;-1, 0, 2&gt;</code>.<br>
+                    Point on L₁ (let t=0): <code>P₁(1, 3, 5)</code>.<br>
+                    Point on L₂ (let t=0): <code>P₂(4, 6, 7)</code>.</p>
+                    <p>Find normal vector <code>n</code> for the plane containing L₂ parallel to L₁: <code>n = v₁ &times; v₂</code><br>
+                    <code>n = &lt;7, 1, -3&gt; &times; &lt;-1, 0, 2&gt; = &lt;(1)(2)-(0)(-3), -((7)(2)-(-1)(-3)), (7)(0)-(-1)(1)&gt;</code><br>
+                    <code>n = &lt;2, -(14 - 3), 1&gt; = &lt;2, -11, 1&gt;</code></p>
+                    <p>Equation of plane containing L₂: use P₂(4, 6, 7) and n=&lt;2, -11, 1&gt;.<br>
+                    <code>2(x - 4) - 11(y - 6) + 1(z - 7) = 0</code><br>
+                    <code>2x - 8 - 11y + 66 + z - 7 = 0  &implies;  2x - 11y + z + 51 = 0</code></p>
+                    <p>Find distance from P₁(1, 3, 5) to this plane:<br>
+                    <code>D = |2(1) - 11(3) + 1(5) + 51| / &radic;(2&sup2; + (-11)&sup2; + 1&sup2;)</code><br>
+                    <code>D = |2 - 33 + 5 + 51| / &radic;(4 + 121 + 1) = |25| / &radic;126</code></p>
+                    <p><strong>Answer (a):</strong> <code>25 / &radic;126</code></p>
+                    <hr>
+                    <p><strong>(b)</strong><br>
+                    Direction vectors: <code>v₁ = &lt;-1, 4, 2&gt;</code> and <code>v₂ = &lt;1, -1, 2&gt;</code>.<br>
+                    Point on L₁ (let t=0): <code>P₁(3, 4, 1)</code>.<br>
+                    Point on L₂ (let t=0): <code>P₂(0, 3, 0)</code>.</p>
+                    <p>Find normal vector <code>n</code>: <code>n = v₁ &times; v₂</code><br>
+                    <code>n = &lt;-1, 4, 2&gt; &times; &lt;1, -1, 2&gt; = &lt;(4)(2)-(-1)(2), -((-1)(2)-(1)(2)), (-1)(-1)-(1)(4)&gt;</code><br>
+                    <code>n = &lt;8 + 2, -(-2 - 2), 1 - 4&gt; = &lt;10, 4, -3&gt;</code></p>
+                    <p>Equation of plane containing L₂: use P₂(0, 3, 0) and n=&lt;10, 4, -3&gt;.<br>
+                    <code>10(x - 0) + 4(y - 3) - 3(z - 0) = 0</code><br>
+                    <code>10x + 4y - 12 - 3z = 0  &implies;  10x + 4y - 3z - 12 = 0</code></p>
+                    <p>Find distance from P₁(3, 4, 1) to this plane:<br>
+                    <code>D = |10(3) + 4(4) - 3(1) - 12| / &radic;(10&sup2; + 4&sup2; + (-3)&sup2;)</code><br>
+                    <code>D = |30 + 16 - 3 - 12| / &radic;(100 + 16 + 9) = |31| / &radic;125</code></p>
+                    <p><strong>Answer (b):</strong> <code>31 / &radic;125</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 26:</strong> Find an equation of the plane that passes through the given points.<br>
+            (a) <code>(-2, 1, 1), (0, 2, 3), (1, 0, -1)</code><br>
+            (b) <code>(3, 2, 1), (2, 1, -1), (-1, 3, 2)</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>Find two vectors in the plane, cross them to find the normal vector <code>n</code>, then use point-normal form.</p>
+                    <hr>
+                    <p><strong>(a)</strong> Let A(-2,1,1), B(0,2,3), C(1,0,-1).<br>
+                    <code>AB = &lt;0 - (-2), 2 - 1, 3 - 1&gt; = &lt;2, 1, 2&gt;</code><br>
+                    <code>AC = &lt;1 - (-2), 0 - 1, -1 - 1&gt; = &lt;3, -1, -2&gt;</code></p>
+                    <p><code>n = AB &times; AC = |i  j  k|</code><br>
+                    <code>                |2  1  2|</code><br>
+                    <code>                |3 -1 -2|</code><br>
+                    <code>n = &lt;(1)(-2)-(2)(-1), -((2)(-2)-(3)(2)), (2)(-1)-(3)(1)&gt;</code><br>
+                    <code>n = &lt;-2 + 2, -(-4 - 6), -2 - 3&gt; = &lt;0, 10, -5&gt;</code></p>
+                    <p>Use point B(0,2,3):<br>
+                    <code>0(x - 0) + 10(y - 2) - 5(z - 3) = 0</code><br>
+                    <code>10y - 20 - 5z + 15 = 0</code><br>
+                    <code>10y - 5z = 5</code> (Divide by 5)</p>
+                    <p><strong>Answer (a):</strong> <code>2y - z = 1</code></p>
+                    <hr>
+                    <p><strong>(b)</strong> Let A(3,2,1), B(2,1,-1), C(-1,3,2).<br>
+                    <code>AB = &lt;2-3, 1-2, -1-1&gt; = &lt;-1, -1, -2&gt;</code><br>
+                    <code>AC = &lt;-1-3, 3-2, 2-1&gt; = &lt;-4, 1, 1&gt;</code></p>
+                    <p><code>n = AB &times; AC = | i   j   k|</code><br>
+                    <code>                |-1  -1  -2|</code><br>
+                    <code>                |-4   1   1|</code><br>
+                    <code>n = &lt;(-1)(1)-(-2)(1), -((-1)(1)-(-2)(-4)), (-1)(1)-(-1)(-4)&gt;</code><br>
+                    <code>n = &lt;-1 + 2, -(-1 - 8), -1 - 4&gt; = &lt;1, 9, -5&gt;</code></p>
+                    <p>Use point A(3,2,1):<br>
+                    <code>1(x - 3) + 9(y - 2) - 5(z - 1) = 0</code><br>
+                    <code>x - 3 + 9y - 18 - 5z + 5 = 0</code><br>
+                    <code>x + 9y - 5z - 16 = 0</code></p>
+                    <p><strong>Answer (b):</strong> <code>x + 9y - 5z = 16</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 27:</strong> Determine whether the planes are parallel, perpendicular, or neither.<br>
+            (a) <code>2x - 8y - 6z - 2 = 0, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -x + 4y + 3z - 5 = 0</code><br>
+            (b) <code>x - y + 3z - 2 = 0, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2x + z = 1</code><br>
+            (c) <code>3x - 2y + z = 4, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6x - 4y + 3z = 7</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>Examine the normal vectors of the planes. If they are scalar multiples, the planes are parallel. If their dot product is 0, they are perpendicular.</p>
+                    <hr>
+                    <p><strong>(a)</strong> <code>n₁ = &lt;2, -8, -6&gt;</code>, <code>n₂ = &lt;-1, 4, 3&gt;</code><br>
+                    Notice that <code>n₁ = -2(n₂)</code>. They are scalar multiples.<br>
+                    <strong>Answer (a):</strong> Parallel.</p>
+                    <hr>
+                    <p><strong>(b)</strong> <code>n₁ = &lt;1, -1, 3&gt;</code>, <code>n₂ = &lt;2, 0, 1&gt;</code><br>
+                    They are not scalar multiples.<br>
+                    Dot product: <code>n₁ · n₂ = (1)(2) + (-1)(0) + (3)(1) = 2 + 0 + 3 = 5</code>.<br>
+                    Since the dot product is not 0, they are not perpendicular.<br>
+                    <strong>Answer (b):</strong> Neither.</p>
+                    <hr>
+                    <p><strong>(c)</strong> <code>n₁ = &lt;3, -2, 1&gt;</code>, <code>n₂ = &lt;6, -4, 3&gt;</code><br>
+                    Check ratios: <code>6/3=2</code>, <code>-4/-2=2</code>, but <code>3/1 &ne; 2</code>. Not parallel.<br>
+                    Dot product: <code>n₁ · n₂ = (3)(6) + (-2)(-4) + (1)(3) = 18 + 8 + 3 = 29</code>.<br>
+                    Since the dot product is not 0, they are not perpendicular.<br>
+                    <strong>Answer (c):</strong> Neither.</p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 28:</strong> Determine whether the line and plane are parallel, perpendicular, or neither.<br>
+            (a) Line: <code>x = 4 + 2t, y = -t, z = -1 - 4t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>3x + 2y + z - 7 = 0</code><br><br>
+            (b) Line: <code>x = 1, y = 2t, z = 3t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>x - y + 2z = 5</code><br><br>
+            (c) Line: <code>x = -1 + 2t, y = 4 + t, z = 1 - r</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>4x + 2y - 2z = 7</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>Compare the line's direction vector (<code>v</code>) to the plane's normal vector (<code>n</code>).<br>
+                    - If <code>v</code> and <code>n</code> are parallel (scalar multiples), the line is <strong>perpendicular</strong> to the plane.<br>
+                    - If <code>v</code> and <code>n</code> are perpendicular (dot product = 0), the line is <strong>parallel</strong> to the plane.</p>
+                    <hr>
+                    <p><strong>(a)</strong> <code>v = &lt;2, -1, -4&gt;</code>, <code>n = &lt;3, 2, 1&gt;</code><br>
+                    Not scalar multiples (not perpendicular).<br>
+                    Dot product: <code>v · n = (2)(3) + (-1)(2) + (-4)(1) = 6 - 2 - 4 = 0</code>.<br>
+                    Because v is perpendicular to n, the line runs along the plane.<br>
+                    <strong>Answer (a):</strong> Parallel.</p>
+                    <hr>
+                    <p><strong>(b)</strong> <code>v = &lt;0, 2, 3&gt;</code>, <code>n = &lt;1, -1, 2&gt;</code><br>
+                    Not scalar multiples (not perpendicular).<br>
+                    Dot product: <code>v · n = (0)(1) + (2)(-1) + (3)(2) = 0 - 2 + 6 = 4</code>.<br>
+                    Not zero (not parallel).<br>
+                    <strong>Answer (b):</strong> Neither.</p>
+                    <hr>
+                    <p><strong>(c)</strong> <code>v = &lt;2, 1, -1&gt;</code> (assuming r is the parameter, so z = 1 - 1r), <code>n = &lt;4, 2, -2&gt;</code><br>
+                    Notice that <code>n = 2(v)</code>. They are scalar multiples.<br>
+                    Because v is parallel to n, the line shoots straight through the plane.<br>
+                    <strong>Answer (c):</strong> Perpendicular.</p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 29:</strong> (Missing explicit instructions in PDF, assuming "Determine whether line and plane intersect, and find intersection")<br>
+            (a) Line: <code>x = 3 - r, y = 2 + r, z = 1 - 3r</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>2x + 2y - 5 = 0</code><br><br>
+            (b) Line: <code>x = 1 - 2r, y = r, z = -r</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>6x - 3y + 3z = 1</code><br><br>
+            (c) Line: <code>x = r, y = 1 - t, z = 2 + t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>x + y + z = 1</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>Substitute the line equations into the plane equation and solve for the parameter.</p>
+                    <hr>
+                    <p><strong>(a)</strong> Substitute into <code>2x + 2y - 5 = 0</code>:<br>
+                    <code>2(3 - r) + 2(2 + r) - 5 = 0</code><br>
+                    <code>6 - 2r + 4 + 2r - 5 = 0</code><br>
+                    <code>10 - 5 = 0  &implies;  5 = 0</code><br>
+                    This is a contradiction. The line never intersects the plane.<br>
+                    <strong>Answer (a):</strong> They are parallel and do not intersect.</p>
+                    <hr>
+                    <p><strong>(b)</strong> Substitute into <code>6x - 3y + 3z = 1</code>:<br>
+                    <code>6(1 - 2r) - 3(r) + 3(-r) = 1</code><br>
+                    <code>6 - 12r - 3r - 3r = 1</code><br>
+                    <code>-18r = -5  &implies;  r = 5/18</code><br>
+                    Find point: <code>x = 1 - 2(5/18) = 1 - 5/9 = 4/9</code><br>
+                    <code>y = 5/18</code><br>
+                    <code>z = -5/18</code><br>
+                    <strong>Answer (b):</strong> They intersect at <code>(4/9, 5/18, -5/18)</code>.</p>
+                    <hr>
+                    <p><strong>(c)</strong> <em>Note: The problem uses both 'r' and 't'. Assuming a typo and they meant uniform parameter 't': <code>x = t, y = 1 - t, z = 2 + t</code></em><br>
+                    Substitute into <code>x + y + z = 1</code>:<br>
+                    <code>(t) + (1 - t) + (2 + t) = 1</code><br>
+                    <code>3 + t = 1  &implies;  t = -2</code><br>
+                    Find point: <code>x = -2</code><br>
+                    <code>y = 1 - (-2) = 3</code><br>
+                    <code>z = 2 + (-2) = 0</code><br>
+                    <strong>Answer (c):</strong> They intersect at <code>(-2, 3, 0)</code>.</p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 30:</strong> Determine whether the line and plane intersect; if so, find the coordinates of the intersection.<br>
+            (a) Line: <code>x = t, y = t, z = t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>3x - 2y + z - 5 = 0</code><br><br>
+            (b) Line: <code>x = 2 - t, y = 3 + t, z = t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>2x + y + z = 1</code><br><br>
+            (c) Line: <code>x = 3t, y = 5t, z = -t</code><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plane: <code>2x - y + z + 1 = 0</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>(a)</strong> Substitute into <code>3x - 2y + z - 5 = 0</code>:<br>
+                    <code>3(t) - 2(t) + (t) - 5 = 0</code><br>
+                    <code>2t = 5  &implies;  t = 5/2</code><br>
+                    Point: <code>(5/2, 5/2, 5/2)</code>.<br>
+                    <strong>Answer (a):</strong> They intersect at <code>(5/2, 5/2, 5/2)</code>.</p>
+                    <hr>
+                    <p><strong>(b)</strong> Substitute into <code>2x + y + z = 1</code>:<br>
+                    <code>2(2 - t) + (3 + t) + (t) = 1</code><br>
+                    <code>4 - 2t + 3 + 2t = 1</code><br>
+                    <code>7 = 1</code><br>
+                    This is a contradiction.<br>
+                    <strong>Answer (b):</strong> They are parallel and do not intersect.</p>
+                    <hr>
+                    <p><strong>(c)</strong> Substitute into <code>2x - y + z + 1 = 0</code>:<br>
+                    <code>2(3t) - (5t) + (-t) + 1 = 0</code><br>
+                    <code>6t - 5t - t + 1 = 0</code><br>
+                    <code>0 + 1 = 0  &implies;  1 = 0</code><br>
+                    This is a contradiction.<br>
+                    <strong>Answer (c):</strong> They are parallel and do not intersect.</p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 31:</strong> Find the acute angle of intersection of the planes to the nearest degree.<br>
+            (a) <code>x = 0, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2x - y + z - 4 = 0</code><br>
+            (b) <code>x + 2y - 2z = 5, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6x - 3y + 2z = 8</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p>The angle between two planes is the angle between their normal vectors: <code>cos(&theta;) = |n₁ · n₂| / (||n₁|| ||n₂||)</code></p>
+                    <hr>
+                    <p><strong>(a)</strong> <code>n₁ = &lt;1, 0, 0&gt;</code>, <code>n₂ = &lt;2, -1, 1&gt;</code><br>
+                    <code>n₁ · n₂ = (1)(2) + 0 + 0 = 2</code><br>
+                    <code>||n₁|| = 1</code><br>
+                    <code>||n₂|| = &radic;(2&sup2; + (-1)&sup2; + 1&sup2;) = &radic;6</code><br>
+                    <code>cos(&theta;) = |2| / (1 * &radic;6) = 2/&radic;6</code><br>
+                    <code>&theta; = cos&hyphen;&sup1;(2/&radic;6) &approx; 35.26&deg;</code><br>
+                    <strong>Answer (a):</strong> 35&deg;</p>
+                    <hr>
+                    <p><strong>(b)</strong> <code>n₁ = &lt;1, 2, -2&gt;</code>, <code>n₂ = &lt;6, -3, 2&gt;</code><br>
+                    <code>n₁ · n₂ = (1)(6) + (2)(-3) + (-2)(2) = 6 - 6 - 4 = -4</code><br>
+                    <code>||n₁|| = &radic;(1&sup2; + 2&sup2; + (-2)&sup2;) = &radic;9 = 3</code><br>
+                    <code>||n₂|| = &radic;(6&sup2; + (-3)&sup2; + 2&sup2;) = &radic;49 = 7</code><br>
+                    <code>cos(&theta;) = |-4| / (3 * 7) = 4/21</code><br>
+                    <code>&theta; = cos&hyphen;&sup1;(4/21) &approx; 79.02&deg;</code><br>
+                    <strong>Answer (b):</strong> 79&deg;</p>
+                </div>
+            </details>
+        </li>
+    </ol>
