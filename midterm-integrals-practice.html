@@ -202,5 +202,336 @@
             </details>
         </li>
     </ol>
+
+    <!-- Chapter 14.2 Problems -->
+    <h2>Chapter 14.2: Double Integrals over General Regions</h2>
+    <ol class="problem-list" start="38">
+        <li>
+            <strong>Problem 38:</strong> Evaluate the double integral:<br><br>
+            <code>&int; [0 to 1] &int; [y to 1] e&circ;(-x&sup2;) dx dy</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Recognize the need to reverse the order of integration.</strong></p>
+                    <p>The inner integral is <code>&int; e&circ;(-x&sup2;) dx</code>, which has no elementary antiderivative. We <em>must</em> change the order of integration to <code>dy dx</code>.</p>
+                    <hr>
+                    <p><strong>Step 2: Sketch the region of integration.</strong></p>
+                    <p>From the given bounds, the region R is defined by:<br>
+                    Inner bounds: <code>x = y</code> to <code>x = 1</code> (Right of the line y=x, bounded by the vertical line x=1)<br>
+                    Outer bounds: <code>y = 0</code> to <code>y = 1</code></p>
+                    <p>This forms a triangle with vertices at (0,0), (1,0), and (1,1).</p>
+                    <hr>
+                    <p><strong>Step 3: Set up the new bounds for dy dx.</strong></p>
+                    <p>To integrate with respect to y first (vertical strips), we look at the y-values from bottom to top:<br>
+                    Bottom curve: <code>y = 0</code><br>
+                    Top curve: <code>y = x</code></p>
+                    <p>The x-values for this entire triangle go from <code>x = 0</code> to <code>x = 1</code>.</p>
+                    <p>The new integral is: <code>&int; [0 to 1] &int; [0 to x] e&circ;(-x&sup2;) dy dx</code></p>
+                    <hr>
+                    <p><strong>Step 4: Evaluate the new integral.</strong></p>
+                    <p>Inner integral (dy): <code>&int; [0 to x] e&circ;(-x&sup2;) dy = [ y * e&circ;(-x&sup2;) ] from 0 to x = x * e&circ;(-x&sup2;)</code></p>
+                    <p>Outer integral (dx): <code>&int; [0 to 1] x * e&circ;(-x&sup2;) dx</code></p>
+                    <p>Use u-substitution: Let <code>u = -x&sup2;</code>, then <code>du = -2x dx</code>, so <code>x dx = -1/2 du</code>.<br>
+                    Change bounds: When x=0, u=0. When x=1, u=-1.</p>
+                    <p><code>= &int; [0 to -1] (-1/2) e&circ;u du = [-1/2 e&circ;u] from 0 to -1</code></p>
+                    <p><code>= -1/2(e&circ;(-1) - e&circ;0) = -1/2(1/e - 1) = 1/2(1 - 1/e)</code></p>
+                    <p><strong>Answer:</strong> <code>(1/2)(1 - 1/e)</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 39:</strong> Using a double integral to find the area enclosed by the equations:<br><br>
+            <code>y = -x</code>, <code>-x + y = 2</code>, and <code>y = 2</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Identify the bounding curves and intersection points.</strong></p>
+                    <p>Curve 1: <code>y = -x &implies; x = -y</code><br>
+                    Curve 2: <code>-x + y = 2 &implies; x = y - 2</code><br>
+                    Curve 3: <code>y = 2</code> (Horizontal line)</p>
+                    <p>Find where Curve 1 and Curve 2 intersect:<br>
+                    <code>-y = y - 2 &implies; 2y = 2 &implies; y = 1</code>. (Point: (-1, 1))</p>
+                    <p>The region is bounded below by <code>y = 1</code> and above by <code>y = 2</code>.</p>
+                    <hr>
+                    <p><strong>Step 2: Set up the integral.</strong></p>
+                    <p>Since the left and right boundaries are cleanly defined by functions of y, it's easiest to integrate with respect to x first (horizontal strips, dx dy).<br>
+                    Left curve (smaller x): <code>x = -y</code><br>
+                    Right curve (larger x): <code>x = y - 2</code></p>
+                    <p><em>(Check at y=2: left x=-2, right x=0. So x = -y is indeed on the left).</em></p>
+                    <p>Area = <code>&int;&int;_R 1 dA = &int; [1 to 2] &int; [-y to y-2] 1 dx dy</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate.</strong></p>
+                    <p>Inner integral: <code>&int; [-y to y-2] 1 dx = [x] from -y to y-2 = (y - 2) - (-y) = 2y - 2</code></p>
+                    <p>Outer integral: <code>&int; [1 to 2] (2y - 2) dy = [y&sup2; - 2y] from 1 to 2</code></p>
+                    <p>Upper bound (y=2): <code>(2)&sup2; - 2(2) = 4 - 4 = 0</code></p>
+                    <p>Lower bound (y=1): <code>(1)&sup2; - 2(1) = 1 - 2 = -1</code></p>
+                    <p><code>0 - (-1) = 1</code></p>
+                    <p><strong>Answer:</strong> The area is <code>1</code>.</p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 40:</strong> Use a double integral to find the volume of the region bounded above by the plane <code>x + y + z = 3</code> and below by the rectangle with equations <code>x = -2, y = 1, x = 0, and y = 5</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Set up the volume integral.</strong></p>
+                    <p>Volume = <code>&int;&int;_R f(x,y) dA</code></p>
+                    <p>The top surface is <code>z = 3 - x - y</code>. The region R is a rectangle with <code>-2 &le; x &le; 0</code> and <code>1 &le; y &le; 5</code>.</p>
+                    <p><code>V = &int; [-2 to 0] &int; [1 to 5] (3 - x - y) dy dx</code></p>
+                    <hr>
+                    <p><strong>Step 2: Evaluate the inner integral (dy).</strong></p>
+                    <p><code>&int; [1 to 5] (3 - x - y) dy = [ 3y - xy - y&sup2;/2 ] from 1 to 5</code></p>
+                    <p>Upper bound (y=5): <code>15 - 5x - 25/2 = 5/2 - 5x</code></p>
+                    <p>Lower bound (y=1): <code>3 - x - 1/2 = 5/2 - x</code></p>
+                    <p>Subtract lower from upper: <code>(5/2 - 5x) - (5/2 - x) = -4x</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate the outer integral (dx).</strong></p>
+                    <p><code>&int; [-2 to 0] (-4x) dx = [ -2x&sup2; ] from -2 to 0</code></p>
+                    <p><code>= 0 - (-2(-2)&sup2;) = 0 - (-8) = 8</code></p>
+                    <p><strong>Answer:</strong> The volume is <code>8</code>.</p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 41:</strong> Use a double integral to find the area of the region R enclosed by:<br><br>
+            <code>y = -x + 1</code>, <code>y = e&circ;x</code>, <code>y = 0</code>, and <code>x = 2</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Sketch and understand the region.</strong></p>
+                    <p>The curve <code>y = e&circ;x</code> and the line <code>y = -x + 1</code> intersect precisely at <code>(0, 1)</code> because <code>e&circ;0 = 1</code> and <code>-0 + 1 = 1</code>.</p>
+                    <p>The line <code>y = -x + 1</code> hits the x-axis (<code>y = 0</code>) at <code>x = 1</code>.</p>
+                    <p>The region is bounded on the right by the vertical line <code>x = 2</code>.</p>
+                    <p>Therefore, the region spans from <code>x = 0</code> to <code>x = 2</code>, but the "bottom" curve changes halfway:<br>
+                    From x=0 to x=1, the bottom curve is the line <code>y = -x + 1</code>.<br>
+                    From x=1 to x=2, the bottom curve is the x-axis <code>y = 0</code>.</p>
+                    <p>The top curve is always <code>y = e&circ;x</code>.</p>
+                    <hr>
+                    <p><strong>Step 2: Set up the integral(s).</strong></p>
+                    <p>We split the area into two integrals:</p>
+                    <p>Area = <code>&int; [0 to 1] (Top - Bottom) dx  +  &int; [1 to 2] (Top - Bottom) dx</code></p>
+                    <p>Area = <code>&int; [0 to 1] (e&circ;x - (-x + 1)) dx  +  &int; [1 to 2] (e&circ;x - 0) dx</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate the integrals.</strong></p>
+                    <p>First integral: <code>&int; [0 to 1] (e&circ;x + x - 1) dx = [e&circ;x + x&sup2;/2 - x] from 0 to 1</code></p>
+                    <p><code>= (e&circ;1 + 1/2 - 1) - (e&circ;0 + 0 - 0) = e - 1/2 - 1 = e - 3/2</code></p>
+                    <p>Second integral: <code>&int; [1 to 2] e&circ;x dx = [e&circ;x] from 1 to 2 = e&sup2; - e</code></p>
+                    <p>Total Area = <code>(e - 3/2) + (e&sup2; - e) = e&sup2; - 3/2</code></p>
+                    <p><strong>Answer:</strong> <code>e&sup2; - 3/2</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 42:</strong> Find the volume of the solid bounded by <code>f(x, y) = 2xy</code> and bounded region R in the xy-plane, where R is the region in the first quadrant enclosed between <code>y&sup2; = 4x</code> and the line <code>y = &frac12;x</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Find the intersection points to determine bounds.</strong></p>
+                    <p>Substitute <code>x = 2y</code> (from the line equation) into the parabola equation:</p>
+                    <p><code>y&sup2; = 4(2y) &implies; y&sup2; = 8y &implies; y&sup2; - 8y = 0 &implies; y(y - 8) = 0</code></p>
+                    <p>The intersections are at <code>y = 0</code> and <code>y = 8</code>.</p>
+                    <hr>
+                    <p><strong>Step 2: Set up the integral.</strong></p>
+                    <p>We'll integrate with respect to x first (horizontal strips, dx dy).<br>
+                    Left boundary (smaller x): <code>y&sup2; = 4x &implies; x = y&sup2;/4</code><br>
+                    Right boundary (larger x): <code>y = &frac12;x &implies; x = 2y</code></p>
+                    <p><code>V = &int; [0 to 8] &int; [y&sup2;/4 to 2y] (2xy) dx dy</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate inner integral (dx).</strong></p>
+                    <p><code>&int; [y&sup2;/4 to 2y] 2xy dx = [ x&sup2;y ] from y&sup2;/4 to 2y</code></p>
+                    <p>Upper: <code>(2y)&sup2;y = 4y&sup2; * y = 4y&sup3;</code></p>
+                    <p>Lower: <code>(y&sup2;/4)&sup2;y = (y&circ;4 / 16)y = y&circ;5 / 16</code></p>
+                    <p>Result: <code>4y&sup3; - y&circ;5 / 16</code></p>
+                    <hr>
+                    <p><strong>Step 4: Evaluate outer integral (dy).</strong></p>
+                    <p><code>&int; [0 to 8] (4y&sup3; - y&circ;5 / 16) dy = [ y&circ;4 - y&circ;6 / 96 ] from 0 to 8</code></p>
+                    <p>Evaluate at y=8:</p>
+                    <p><code>8&circ;4 - 8&circ;6 / 96 = 4096 - 262144 / 96</code></p>
+                    <p>Simplify the fraction: <code>262144 / 96 = 8192 / 3</code></p>
+                    <p><code>4096 - 8192/3 = 12288/3 - 8192/3 = 4096/3</code></p>
+                    <p><strong>Answer:</strong> The volume is <code>4096/3</code>.</p>
+                </div>
+            </details>
+        </li>
+    </ol>
+
+    <!-- Chapter 14.5 Problems -->
+    <h2>Chapter 14.5: Triple Integrals</h2>
+    <ol class="problem-list" start="43">
+        <li>
+            <strong>Problem 43:</strong> Evaluate the triple integral:<br><br>
+            <code>&int; [0 to 2] &int; [-1 to 1] &int; [0 to 2] yz dx dz dy</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Evaluate the inner integral with respect to x.</strong></p>
+                    <p><code>&int; [0 to 2] yz dx = [xyz] from x=0 to x=2</code></p>
+                    <p><code>= 2yz - 0 = 2yz</code></p>
+                    <hr>
+                    <p><strong>Step 2: Evaluate the middle integral with respect to z.</strong></p>
+                    <p><code>&int; [-1 to 1] 2yz dz = [yz&sup2;] from z=-1 to z=1</code></p>
+                    <p><code>= y(1)&sup2; - y(-1)&sup2; = y - y = 0</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate the outer integral with respect to y.</strong></p>
+                    <p><code>&int; [0 to 2] 0 dy = 0</code></p>
+                    <p><strong>Answer:</strong> <code>0</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 44:</strong> Evaluate the triple integral:<br><br>
+            <code>&int; [0 to &pi;/4] &int; [0 to x&sup2;] &int; [0 to 2] x cos(y) dz dy dx</code>
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Evaluate the inner integral with respect to z.</strong></p>
+                    <p><code>&int; [0 to 2] x cos(y) dz = [z * x cos(y)] from z=0 to z=2</code></p>
+                    <p><code>= 2x cos(y)</code></p>
+                    <hr>
+                    <p><strong>Step 2: Evaluate the middle integral with respect to y.</strong></p>
+                    <p><code>&int; [0 to x&sup2;] 2x cos(y) dy = [2x sin(y)] from y=0 to y=x&sup2;</code></p>
+                    <p><code>= 2x sin(x&sup2;) - 2x sin(0) = 2x sin(x&sup2;)</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate the outer integral with respect to x.</strong></p>
+                    <p><code>&int; [0 to &pi;/4] 2x sin(x&sup2;) dx</code></p>
+                    <p>Use u-substitution: Let <code>u = x&sup2;</code>, then <code>du = 2x dx</code>.<br>
+                    Change bounds: When <code>x = 0, u = 0</code>. When <code>x = &pi;/4, u = &pi;&sup2;/16</code>.</p>
+                    <p><code>&int; [0 to &pi;&sup2;/16] sin(u) du = [-cos(u)] from 0 to &pi;&sup2;/16</code></p>
+                    <p><code>= -cos(&pi;&sup2;/16) - (-cos(0)) = 1 - cos(&pi;&sup2;/16)</code></p>
+                    <p><strong>Answer:</strong> <code>1 - cos(&pi;&sup2;/16)</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 45:</strong> Evaluate the triple integral:<br><br>
+            <code>&int;&int;&int;_G xy sin(yz) dV</code><br><br>
+            where G is the rectangular box defined by the inequalities <code>0 &le; x &le; &pi;</code>, <code>0 &le; y &le; 1</code>, and <code>0 &le; z &le; &pi;/6</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Set up the integral.</strong></p>
+                    <p>Integrate with respect to z first to simplify the sine term:<br>
+                    <code>&int; [0 to &pi;] &int; [0 to 1] &int; [0 to &pi;/6] xy sin(yz) dz dy dx</code></p>
+                    <hr>
+                    <p><strong>Step 2: Evaluate inner integral (dz).</strong></p>
+                    <p><code>&int; [0 to &pi;/6] xy sin(yz) dz</code></p>
+                    <p>The antiderivative of <code>sin(yz)</code> with respect to z is <code>(-1/y)cos(yz)</code>.</p>
+                    <p><code>= [xy * (-1/y)cos(yz)] = [-x cos(yz)] from 0 to &pi;/6</code></p>
+                    <p><code>= -x cos(&pi;y/6) - (-x cos(0)) = x - x cos(&pi;y/6) = x(1 - cos(&pi;y/6))</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate middle integral (dy).</strong></p>
+                    <p><code>&int; [0 to 1] x(1 - cos(&pi;y/6)) dy = x [y - (6/&pi;)sin(&pi;y/6)] from 0 to 1</code></p>
+                    <p><code>= x(1 - (6/&pi;)sin(&pi;/6)) - x(0 - 0)</code></p>
+                    <p>Since <code>sin(&pi;/6) = 1/2</code>, this becomes: <code>x(1 - 3/&pi;)</code></p>
+                    <hr>
+                    <p><strong>Step 4: Evaluate outer integral (dx).</strong></p>
+                    <p><code>&int; [0 to &pi;] (1 - 3/&pi;)x dx = (1 - 3/&pi;) [x&sup2;/2] from 0 to &pi;</code></p>
+                    <p><code>= (1 - 3/&pi;) * (&pi;&sup2;/2) = &pi;&sup2;/2 - 3&pi;/2</code></p>
+                    <p><strong>Answer:</strong> <code>&pi;&sup2;/2 - 3&pi;/2</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 46:</strong> Evaluate the triple integral:<br><br>
+            <code>&int;&int;&int;_G y dV</code><br><br>
+            where G is the solid enclosed by the plane <code>z = y</code>, the xy-plane (<code>z = 0</code>), and the parabolic cylinder <code>y = 1 - x&sup2;</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Set up the bounds.</strong></p>
+                    <p>The solid is bounded below by <code>z = 0</code> and above by <code>z = y</code>.</p>
+                    <p>In the xy-plane, the base region is bounded by <code>y = 1 - x&sup2;</code>. Since <code>z &ge; 0</code> and <code>z = y</code>, we must have <code>y &ge; 0</code>. The intersections of <code>y = 1 - x&sup2;</code> and <code>y = 0</code> are <code>x = -1</code> and <code>x = 1</code>.</p>
+                    <p>Integral: <code>&int; [-1 to 1] &int; [0 to 1-x&sup2;] &int; [0 to y] y dz dy dx</code></p>
+                    <hr>
+                    <p><strong>Step 2: Evaluate inner integral (dz).</strong></p>
+                    <p><code>&int; [0 to y] y dz = [yz] from 0 to y = y(y) - 0 = y&sup2;</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate middle integral (dy).</strong></p>
+                    <p><code>&int; [0 to 1-x&sup2;] y&sup2; dy = [y&sup3;/3] from 0 to 1-x&sup2; = (1/3)(1 - x&sup2;)&sup3;</code></p>
+                    <hr>
+                    <p><strong>Step 4: Evaluate outer integral (dx).</strong></p>
+                    <p>Expand <code>(1 - x&sup2;)&sup3; = 1 - 3x&sup2; + 3x&circ;4 - x&circ;6</code>.</p>
+                    <p><code>(1/3) &int; [-1 to 1] (1 - 3x&sup2; + 3x&circ;4 - x&circ;6) dx</code></p>
+                    <p>Since the function is even, we can integrate from 0 to 1 and multiply by 2:</p>
+                    <p><code>= (2/3) [x - x&sup3; + (3/5)x&circ;5 - (1/7)x&circ;7] from 0 to 1</code></p>
+                    <p><code>= (2/3)(1 - 1 + 3/5 - 1/7) = (2/3)(21/35 - 5/35) = (2/3)(16/35) = 32/105</code></p>
+                    <p><strong>Answer:</strong> <code>32/105</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 47:</strong> Evaluate the triple integral:<br><br>
+            <code>&int;&int;&int;_G xyz dV</code><br><br>
+            where G is the solid in the first octant bounded by the parabolic cylinder <code>z = 2 - x&sup2;</code> and the planes <code>z = 0</code>, <code>y = x</code>, and <code>y = 0</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Set up the bounds.</strong></p>
+                    <p>First octant means <code>x, y, z &ge; 0</code>.<br>
+                    z bounds: <code>0 &le; z &le; 2 - x&sup2;</code><br>
+                    y bounds: bounded by <code>y = 0</code> and <code>y = x</code>, so <code>0 &le; y &le; x</code><br>
+                    x bounds: To stay in the first octant with <code>z &ge; 0</code>, <code>2 - x&sup2; &ge; 0</code> meaning <code>x&sup2; &le; 2</code>, so <code>x &le; &radic;2</code>.</p>
+                    <p>Integral: <code>&int; [0 to &radic;2] &int; [0 to x] &int; [0 to 2-x&sup2;] xyz dz dy dx</code></p>
+                    <hr>
+                    <p><strong>Step 2: Evaluate inner integral (dz).</strong></p>
+                    <p><code>&int; [0 to 2-x&sup2;] xyz dz = xy[z&sup2;/2] from 0 to 2-x&sup2; = (1/2)xy(2 - x&sup2;)&sup2;</code></p>
+                    <p>Expand: <code>(1/2)xy(4 - 4x&sup2; + x&circ;4) = 2xy - 2x&sup3;y + (1/2)x&circ;5y</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate middle integral (dy).</strong></p>
+                    <p><code>&int; [0 to x] (2xy - 2x&sup3;y + (1/2)x&circ;5y) dy = [xy&sup2; - x&sup3;y&sup2; + (1/4)x&circ;5y&sup2;] from 0 to x</code></p>
+                    <p>Substitute <code>y = x</code>:</p>
+                    <p><code>= x(x&sup2;) - x&sup3;(x&sup2;) + (1/4)x&circ;5(x&sup2;) = x&sup3; - x&circ;5 + (1/4)x&circ;7</code></p>
+                    <hr>
+                    <p><strong>Step 4: Evaluate outer integral (dx).</strong></p>
+                    <p><code>&int; [0 to &radic;2] (x&sup3; - x&circ;5 + (1/4)x&circ;7) dx = [x&circ;4/4 - x&circ;6/6 + x&circ;8/32] from 0 to &radic;2</code></p>
+                    <p>Substitute <code>x = &radic;2</code> (so <code>x&sup2; = 2</code>, <code>x&circ;4 = 4</code>, <code>x&circ;6 = 8</code>, <code>x&circ;8 = 16</code>):</p>
+                    <p><code>= (4/4) - (8/6) + (16/32) = 1 - 4/3 + 1/2</code></p>
+                    <p>Find common denominator (6): <code>6/6 - 8/6 + 3/6 = 1/6</code></p>
+                    <p><strong>Answer:</strong> <code>1/6</code></p>
+                </div>
+            </details>
+        </li>
+
+        <li>
+            <strong>Problem 48:</strong> Evaluate the triple integral:<br><br>
+            <code>&int;&int;&int;_G cos(z/y) dV</code><br><br>
+            where G is the solid defined by the inequalities <code>&pi;/6 &le; y &le; &pi;/2</code>, <code>y &le; x &le; &pi;/2</code>, and <code>0 &le; z &le; xy</code>.
+            <details>
+                <summary>Show Solution</summary>
+                <div class="solution-steps">
+                    <p><strong>Step 1: Set up the integral based on given inequalities.</strong></p>
+                    <p><code>&int; [&pi;/6 to &pi;/2] &int; [y to &pi;/2] &int; [0 to xy] cos(z/y) dz dx dy</code></p>
+                    <hr>
+                    <p><strong>Step 2: Evaluate inner integral (dz).</strong></p>
+                    <p><code>&int; [0 to xy] cos(z/y) dz = [y sin(z/y)] from 0 to xy</code></p>
+                    <p><code>= y sin(xy/y) - y sin(0) = y sin(x)</code></p>
+                    <hr>
+                    <p><strong>Step 3: Evaluate middle integral (dx).</strong></p>
+                    <p><code>&int; [y to &pi;/2] y sin(x) dx = [-y cos(x)] from y to &pi;/2</code></p>
+                    <p><code>= -y cos(&pi;/2) - (-y cos(y)) = 0 + y cos(y) = y cos(y)</code></p>
+                    <hr>
+                    <p><strong>Step 4: Evaluate outer integral (dy).</strong></p>
+                    <p><code>&int; [&pi;/6 to &pi;/2] y cos(y) dy</code></p>
+                    <p>Use integration by parts: Let <code>u = y</code>, <code>dv = cos(y) dy</code>.<br>
+                    Then <code>du = dy</code>, <code>v = sin(y)</code>.</p>
+                    <p><code>&int; u dv = uv - &int; v du = [y sin(y)] - &int; sin(y) dy = [y sin(y) + cos(y)]</code></p>
+                    <p>Evaluate from <code>&pi;/6</code> to <code>&pi;/2</code>:</p>
+                    <p>Upper bound: <code>(&pi;/2)sin(&pi;/2) + cos(&pi;/2) = &pi;/2(1) + 0 = &pi;/2</code></p>
+                    <p>Lower bound: <code>(&pi;/6)sin(&pi;/6) + cos(&pi;/6) = (&pi;/6)(1/2) + &radic;3/2 = &pi;/12 + &radic;3/2</code></p>
+                    <p>Subtract lower from upper: <code>&pi;/2 - (&pi;/12 + &radic;3/2) = 6&pi;/12 - &pi;/12 - &radic;3/2 = 5&pi;/12 - &radic;3/2</code></p>
+                    <p><strong>Answer:</strong> <code>5&pi;/12 - &radic;3/2</code></p>
+                </div>
+            </details>
+        </li>
+    </ol>
 </body>
 </html>
