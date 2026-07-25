@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revision Notes | MATH 2201</title>
+    <style>
+        :root {
+            --primary-color: #f37021; /* UIU Orange */
+            --primary-dark: #d35400;
+            --secondary-color: #2c3e50;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-dark: #333;
+            --text-light: #666;
+            --midterm-accent: #2980b9;
+            --final-accent: #27ae60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
+
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom: 6px solid var(--primary-color);
+        }
+
+        header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
+        header h2 { font-size: 1.5rem; color: #bdc3c7; font-weight: 400; margin-bottom: 1.5rem; }
+
+        .nav-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .nav-links a {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover { background-color: var(--primary-dark); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+        .term-section { margin-bottom: 4rem; }
+        .section-header {
+            font-size: 2.2rem; margin-bottom: 2rem; padding-bottom: 0.5rem;
+            border-bottom: 3px solid #ccc; display: inline-block;
+        }
+
+        .midterm-title { color: var(--midterm-accent); border-color: var(--midterm-accent); }
+        .final-title { color: var(--final-accent); border-color: var(--final-accent); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+
+        .card {
+            background-color: var(--card-bg); border-radius: 10px; padding: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s;
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
+        }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; }
+        .card.midterm::before { background-color: var(--midterm-accent); }
+        .card.final::before { background-color: var(--final-accent); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        
+        .card h3 { font-size: 1.4rem; color: var(--secondary-color); margin-bottom: 1rem; margin-top: 0.5rem;}
+        .card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+        
+        .btn {
+            text-align: center; text-decoration: none; padding: 0.7rem;
+            border-radius: 5px; font-weight: bold; transition: all 0.3s ease; display: block;
+        }
+        .btn-primary.midterm { background-color: var(--midterm-accent); color: white; }
+        .btn-primary.midterm:hover { background-color: #2471a3; }
+        .btn-primary.final { background-color: var(--final-accent); color: white; }
+        .btn-primary.final:hover { background-color: #229954; }
+        
+        footer {
+            text-align: center; padding: 2rem; background-color: var(--secondary-color);
+            color: white; margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Revision Notes</h1>
+        <h2>MATH 2201 - Structured Study Materials</h2>
+        <div class="nav-links">
+            <a href="index.html">Back to Main Study Guide</a>
+            <a href="#midterm">Midterm Notes</a>
+            <a href="#final">Final Notes</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- MIDTERM SECTION -->
+        <section id="midterm" class="term-section">
+            <h2 class="section-header midterm-title">Midterm Notes</h2>
+            <div class="grid">
+                
+                <div class="card midterm">
+                    <h3>Vectors & Coordinate Geometry</h3>
+                    <p>Comprehensive notes on vector properties, vector operations, vector equations of lines, and dot/cross products.</p>
+                    <a href="unit_01_vectors.html" class="btn btn-primary midterm">Read Notes</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FINAL SECTION -->
+        <section id="final" class="term-section">
+            <h2 class="section-header final-title">Final Notes</h2>
+            <div class="grid">
+                
+                <div class="card final">
+                    <h3>More Topics Coming Soon</h3>
+                    <p>Notes for the final examination syllabus will be added here.</p>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>MATH 2201 Study Guide | Hosted on GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
