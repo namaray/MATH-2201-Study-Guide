@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CT2 Exam Notes | MATH 2201</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.65;
+      color: #333;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f7f6;
+    }
+    h1, h2, h3 { color: #2c3e50; line-height: 1.3; }
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 3px solid #f37021;
+      padding-bottom: 12px;
+      margin-bottom: 0.4rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 2rem; }
+    p { margin: 0.6rem 0; }
+
+    .note-card {
+      background: #ffffff;
+      padding: 1.4rem 1.75rem 1.6rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+      border-top: 4px solid #2980b9;
+    }
+    .note-card h2 {
+      font-size: 1.4rem;
+      margin: 0 0 0.75rem;
+      color: #2980b9;
+    }
+    .note-card h2 .num {
+      display: inline-block;
+      background: #2980b9;
+      color: #fff;
+      width: 1.7rem;
+      height: 1.7rem;
+      line-height: 1.7rem;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      margin-right: 8px;
+      vertical-align: 2px;
+    }
+    .label { display: block; font-weight: bold; margin: 1rem 0 0.2rem; color: #34495e; }
+    .math-block {
+      text-align: center;
+      margin: 0.9rem 0;
+      font-size: 1.08rem;
+      overflow-x: auto;
+      padding: 5px 0;
+    }
+    ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.35rem; }
+
+    .key {
+      background: #e8f8f0;
+      border-left: 4px solid #27ae60;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-weight: bold;
+    }
+    .warn {
+      background: #fdecea;
+      border-left: 4px solid #e74c3c;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.94rem;
+      margin: 0.5rem 0;
+    }
+    th, td {
+      border: 1px solid #dfe6e9;
+      padding: 0.55rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #2c3e50; color: #fff; font-weight: bold; }
+    tbody tr:nth-child(even) { background: #f8fafb; }
+
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      background: #f37021;
+      color: #fff;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
+    .back-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #f37021; }
+    .back-btn.accent:hover { background-color: #d35400; }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="ct2-practice.html" class="back-btn accent">CT2 Questions &amp; Solutions →</a>
+  </div>
+
+  <h1>CT2 Exam Notes</h1>
+  <p class="subtitle">MATH-2201 &nbsp;·&nbsp; everything the CT2 worksheet tests, on one page</p>
+
+  <!-- Method picker -->
+  <div class="note-card" style="border-top-color: #f37021;">
+    <h2 style="color:#d35400;">Which method do I use?</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>The question says…</th><th>Use</th><th>Answer looks like</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"Find the volume of the parallelepiped / container"</td><td>\(\big|\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})\big|\)</td><td>A positive number</td></tr>
+          <tr><td>"Are these vectors coplanar?"</td><td>\(\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) \overset{?}{=} 0\)</td><td>Yes / No</td></tr>
+          <tr><td>"Plane through three points"</td><td>\(\mathbf{n} = \overrightarrow{AB}\times\overrightarrow{AC}\)</td><td>\(n_1x+n_2y+n_3z=d\)</td></tr>
+          <tr><td>"Plane through a point, parallel to two vectors"</td><td>\(\mathbf{r} = \mathbf{a}+s\mathbf{u}+t\mathbf{v}\)</td><td>Vector equation</td></tr>
+          <tr><td>"Where does the line meet the plane?"</td><td>Substitute \(x,y,z\) of the line into the plane, solve for \(t\)</td><td>A point \((x,y,z)\)</td></tr>
+          <tr><td>"Angle between two planes"</td><td>\(\cos\theta\) with the two normals</td><td>An angle</td></tr>
+          <tr><td>"Angle between a line and a plane"</td><td>\(\sin\theta\) with direction &amp; normal</td><td>An angle</td></tr>
+          <tr><td>"Find \(k\) so the planes are perpendicular"</td><td>\(\mathbf{n_1}\cdot\mathbf{n_2}=0\)</td><td>A value of \(k\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <div class="note-card">
+    <h2><span class="num">1</span>Scalar Triple Product</h2>
+    <p>The one formula behind volume <em>and</em> coplanarity.</p>
+    <div class="math-block">
+      $$ \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) = \begin{vmatrix} a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3 \end{vmatrix} $$
+    </div>
+    <div class="key">
+      Volume of parallelepiped \(= \big|\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})\big|\) &nbsp;·&nbsp;
+      Coplanar \(\iff \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) = 0\)
+    </div>
+    <p><strong>Why:</strong> coplanar vectors lie flat in one plane, so the "box" they make is squashed — it has zero volume.</p>
+    <div class="warn">⚠ Volume is <strong>always positive</strong> — take the modulus. A negative value only means the vectors are left-handed.</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="note-card">
+    <h2><span class="num">2</span>Cross Product (the workhorse)</h2>
+    <div class="math-block">
+      $$ \mathbf{a}\times\mathbf{b} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \end{vmatrix}
+      = (a_2b_3 - a_3b_2)\mathbf{i} - (a_1b_3 - a_3b_1)\mathbf{j} + (a_1b_2 - a_2b_1)\mathbf{k} $$
+    </div>
+    <div class="warn">⚠ The middle term carries a <strong>minus sign</strong>. This is the single most common CT mistake.</div>
+    <p>The result is perpendicular to both vectors — which is exactly why it gives you the normal of a plane.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="note-card">
+    <h2><span class="num">3</span>Equation of a Plane</h2>
+
+    <span class="label">Three ways to write the same plane</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Form</th><th>Equation</th></tr></thead>
+        <tbody>
+          <tr><td>Vector (parametric)</td><td>\(\mathbf{r} = \mathbf{a} + s\mathbf{u} + t\mathbf{v}\)</td></tr>
+          <tr><td>Vector (normal)</td><td>\((\mathbf{r}-\mathbf{a})\cdot\mathbf{n} = 0\) &nbsp;or&nbsp; \(\mathbf{r}\cdot\mathbf{n} = \mathbf{a}\cdot\mathbf{n}\)</td></tr>
+          <tr><td>Cartesian</td><td>\(n_1x + n_2y + n_3z = d\), &nbsp; where \(d = \mathbf{a}\cdot\mathbf{n}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">Read the normal straight off the Cartesian equation: \(2x - y + 2z = 5 \Rightarrow \mathbf{n} = \langle 2,-1,2\rangle\).</div>
+
+    <span class="label">Case A — plane through three points \(A, B, C\)</span>
+    <ol class="steps">
+      <li>\(\overrightarrow{AB} = B - A\), &nbsp; \(\overrightarrow{AC} = C - A\)</li>
+      <li>\(\mathbf{n} = \overrightarrow{AB}\times\overrightarrow{AC}\)</li>
+      <li>\(n_1(x-a_1) + n_2(y-a_2) + n_3(z-a_3) = 0\), then expand</li>
+    </ol>
+
+    <span class="label">Case B — plane through \(P\), parallel to \(\mathbf{u}\) and \(\mathbf{v}\)</span>
+    <p>The vector equation is immediate: \(\mathbf{r} = \mathbf{p} + s\mathbf{u} + t\mathbf{v}\). For the Cartesian form, take \(\mathbf{n} = \mathbf{u}\times\mathbf{v}\) and continue as above.</p>
+
+    <div class="key">Always check your answer by substituting the given points back in. It takes 10 seconds and catches every sign error.</div>
+  </div>
+
+  <!-- 4 -->
+  <div class="note-card">
+    <h2><span class="num">4</span>Line Meets Plane</h2>
+    <p>Line \(\mathbf{r} = \mathbf{a} + t\mathbf{d}\), plane \(n_1x+n_2y+n_3z = d\).</p>
+    <ol class="steps">
+      <li>Write the line in parametric form: \(x = a_1 + td_1\), \(y = a_2 + td_2\), \(z = a_3 + td_3\)</li>
+      <li>Substitute all three into the plane equation</li>
+      <li>Solve the resulting linear equation for \(t\)</li>
+      <li>Put that \(t\) back into the line to get the point</li>
+    </ol>
+    <div class="key">For a <strong>horizontal plane \(z = c\)</strong> (aircraft-type questions), only the \(z\)-component matters — set \(a_3 + td_3 = c\) and solve.</div>
+    <p><strong>Special cases:</strong> if \(\mathbf{d}\cdot\mathbf{n} = 0\) the line is parallel to the plane — either no solution (no intersection) or \(0=0\) (the line lies in the plane).</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="note-card">
+    <h2><span class="num">5</span>Angles — Cosine or Sine?</h2>
+
+    <span class="label">Plane ↔ Plane &nbsp;→&nbsp; cosine</span>
+    <div class="math-block">$$ \cos\theta = \frac{|\mathbf{n_1}\cdot\mathbf{n_2}|}{|\mathbf{n_1}|\,|\mathbf{n_2}|} $$</div>
+
+    <span class="label">Line ↔ Plane &nbsp;→&nbsp; sine</span>
+    <div class="math-block">$$ \sin\theta = \frac{|\mathbf{d}\cdot\mathbf{n}|}{|\mathbf{d}|\,|\mathbf{n}|} $$</div>
+
+    <p><strong>How to remember:</strong> the normal sticks <em>out</em> of the plane, so the angle you compute with it is \(90^\circ - \theta\). Flipping cosine to sine does that flip for you automatically.</p>
+
+    <span class="label">Line ↔ Line &nbsp;→&nbsp; cosine of the two directions</span>
+    <div class="math-block">$$ \cos\theta = \frac{|\mathbf{d_1}\cdot\mathbf{d_2}|}{|\mathbf{d_1}|\,|\mathbf{d_2}|} $$</div>
+
+    <div class="warn">⚠ Keep the <strong>absolute value</strong> on top whenever the question asks for the <em>acute</em> angle. Without it you get the obtuse supplement (e.g. \(116.39^\circ\) instead of \(63.61^\circ\)).</div>
+  </div>
+
+  <!-- 6 -->
+  <div class="note-card">
+    <h2><span class="num">6</span>Perpendicular &amp; Parallel Conditions</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Relationship</th><th>Perpendicular</th><th>Parallel</th></tr></thead>
+        <tbody>
+          <tr><td>Plane &amp; plane</td><td>\(\mathbf{n_1}\cdot\mathbf{n_2} = 0\)</td><td>\(\mathbf{n_1} = \lambda\mathbf{n_2}\)</td></tr>
+          <tr><td>Line &amp; plane</td><td>\(\mathbf{d} = \lambda\mathbf{n}\)</td><td>\(\mathbf{d}\cdot\mathbf{n} = 0\)</td></tr>
+          <tr><td>Line &amp; line</td><td>\(\mathbf{d_1}\cdot\mathbf{d_2} = 0\)</td><td>\(\mathbf{d_1} = \lambda\mathbf{d_2}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn">⚠ Note the swap on the middle row: a line ⟂ plane means the line is <em>along</em> the normal, and a line ∥ plane means it is ⟂ to the normal. This trips people up under time pressure.</div>
+    <p><strong>Typical "find \(k\)" question:</strong> write both normals, set the dot product to \(0\), solve the linear equation in \(k\).</p>
+  </div>
+
+  <!-- Mistakes -->
+  <div class="note-card" style="border-top-color: #e74c3c;">
+    <h2 style="color:#c0392b;">Last-minute checklist</h2>
+    <ul>
+      <li><strong>Minus sign</strong> on the \(\mathbf{j}\) term of every cross product.</li>
+      <li><strong>Modulus</strong> on volume, and on the dot product in every angle formula.</li>
+      <li><strong>Sine</strong> for line–plane, <strong>cosine</strong> for plane–plane.</li>
+      <li>Subtract in the right order: \(\overrightarrow{AB} = B - A\), not \(A - B\).</li>
+      <li>The normal comes from the <em>coefficients</em> of \(x, y, z\) — ignore the constant.</li>
+      <li>Substitute the given points back into your plane equation to verify.</li>
+      <li>Give units where the question has them (m³ for a container, seconds for time).</li>
+      <li>You may simplify a normal by a common factor: \(\langle 2,2,4\rangle \to \langle 1,1,2\rangle\).</li>
+    </ul>
+  </div>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="ct2-practice.html" class="back-btn accent">CT2 Questions &amp; Solutions →</a>
+  </div>
+
+</body>
+</html>

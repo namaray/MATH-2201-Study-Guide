@@ -125,7 +125,6 @@
 
     .back-btn {
       display: inline-block;
-      margin-bottom: 24px;
       padding: 8px 15px;
       background-color: #2c3e50;
       color: #ffffff !important;
@@ -135,11 +134,17 @@
       transition: background 0.3s;
     }
     .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #f37021; }
+    .back-btn.accent:hover { background-color: #d35400; }
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
   </style>
 </head>
 <body>
 
-  <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="ct2-notes.html" class="back-btn accent">CT2 Exam Notes →</a>
+  </div>
 
   <h1>Review Questions — CT2</h1>
   <p class="subtitle">MATH-2201 &nbsp;·&nbsp; triple products, planes, and line–plane problems &nbsp;·&nbsp; full worked solutions</p>
@@ -255,11 +260,11 @@
     </div>
 
     <span class="label">Step 1 — Two vectors lying in the plane</span>
-    <div class="math-block">$$ \vec{AB} = B - A = \langle 2,-2,0\rangle, \qquad \vec{AC} = C - A = \langle 1,1,-1\rangle $$</div>
+    <div class="math-block">$$ \overrightarrow{AB} = B - A = \langle 2,-2,0\rangle, \qquad \overrightarrow{AC} = C - A = \langle 1,1,-1\rangle $$</div>
 
     <span class="label">Step 2 — Normal vector</span>
     <div class="math-block">
-      $$ \mathbf{n} = \vec{AB}\times\vec{AC} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 2 & -2 & 0 \\ 1 & 1 & -1 \end{vmatrix}
+      $$ \mathbf{n} = \overrightarrow{AB}\times\overrightarrow{AC} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 2 & -2 & 0 \\ 1 & 1 & -1 \end{vmatrix}
       = \big[(-2)(-1)-(0)(1)\big]\mathbf{i} - \big[(2)(-1)-(0)(1)\big]\mathbf{j} + \big[(2)(1)-(-2)(1)\big]\mathbf{k} $$
     </div>
     <div class="math-block">$$ \mathbf{n} = 2\mathbf{i} + 2\mathbf{j} + 4\mathbf{k} \;\;\parallel\;\; \langle 1,1,2\rangle $$</div>
@@ -355,11 +360,11 @@
     </div>
 
     <span class="label">Step 1 — Two vectors in the plane</span>
-    <div class="math-block">$$ \vec{AB} = \langle 4,1,1\rangle, \qquad \vec{AC} = \langle 1,4,2\rangle $$</div>
+    <div class="math-block">$$ \overrightarrow{AB} = \langle 4,1,1\rangle, \qquad \overrightarrow{AC} = \langle 1,4,2\rangle $$</div>
 
     <span class="label">Step 2 — Normal vector</span>
     <div class="math-block">
-      $$ \mathbf{n} = \vec{AB}\times\vec{AC} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 4 & 1 & 1 \\ 1 & 4 & 2 \end{vmatrix}
+      $$ \mathbf{n} = \overrightarrow{AB}\times\overrightarrow{AC} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 4 & 1 & 1 \\ 1 & 4 & 2 \end{vmatrix}
       = \big[(1)(2)-(1)(4)\big]\mathbf{i} - \big[(4)(2)-(1)(1)\big]\mathbf{j} + \big[(4)(4)-(1)(1)\big]\mathbf{k} $$
     </div>
     <div class="math-block">$$ \mathbf{n} = -2\mathbf{i} - 7\mathbf{j} + 15\mathbf{k} $$</div>
@@ -423,7 +428,10 @@
     <div class="note">If you had used \(\cos^{-1}(2/7) \approx 73.40^\circ\) you would have found the angle between the line and the <em>normal</em> — the complement of the answer.</div>
   </div>
 
-  <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="ct2-notes.html" class="back-btn accent">CT2 Exam Notes →</a>
+  </div>
 
 </body>
 </html>
