@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate Midterm Review Guide | MATH 2201</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.65;
+      color: #333;
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f7f6;
+    }
+    h1, h2, h3 { color: #2c3e50; line-height: 1.3; }
+    h1 {
+      font-size: 2.3rem;
+      border-bottom: 3px solid #f37021;
+      padding-bottom: 12px;
+      margin-bottom: 0.4rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 2rem; }
+    p { margin: 0.6rem 0; }
+
+    /* Part divider */
+    .part {
+      margin: 3rem 0 1.25rem;
+      padding: 0.9rem 1.4rem;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      scroll-margin-top: 1rem;
+    }
+    .part .badge {
+      display: inline-block;
+      background: #f37021;
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 12px;
+      vertical-align: 4px;
+      margin-left: 10px;
+    }
+
+    .note-card {
+      background: #ffffff;
+      padding: 1.3rem 1.7rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+      border-top: 4px solid #2980b9;
+    }
+    .note-card h3 {
+      font-size: 1.25rem;
+      margin: 0 0 0.6rem;
+      color: #2980b9;
+    }
+    .label { display: block; font-weight: bold; margin: 1rem 0 0.2rem; color: #34495e; }
+    .math-block {
+      text-align: center;
+      margin: 0.9rem 0;
+      font-size: 1.08rem;
+      overflow-x: auto;
+      padding: 5px 0;
+    }
+    ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.35rem; }
+
+    .key {
+      background: #e8f8f0;
+      border-left: 4px solid #27ae60;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-weight: bold;
+    }
+    .warn {
+      background: #fdecea;
+      border-left: 4px solid #e74c3c;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-size: 0.95rem;
+    }
+    .example {
+      background: #eef6fb;
+      border-left: 4px solid #3498db;
+      padding: 0.8rem 1.1rem 1rem;
+      border-radius: 5px;
+      margin: 1.1rem 0 0.4rem;
+    }
+    .example .etitle {
+      font-weight: bold;
+      color: #21618c;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .from-slide {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #16a085;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: 1px;
+    }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.93rem;
+      margin: 0.5rem 0;
+    }
+    th, td {
+      border: 1px solid #dfe6e9;
+      padding: 0.5rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #2c3e50; color: #fff; font-weight: bold; }
+    tbody tr:nth-child(even) { background: #f8fafb; }
+
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      background: #f37021;
+      color: #fff;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* Contents */
+    .toc {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.2rem 1.7rem 1.4rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #f37021;
+    }
+    .toc h2 { font-size: 1.15rem; margin: 0 0 0.6rem; }
+    .toc ol { padding-left: 1.3rem; margin: 0; }
+    .toc a { color: #2980b9; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .sub { color: #7f8c8d; font-size: 0.88rem; }
+
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
+    .back-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #f37021; }
+    .back-btn.accent:hover { background-color: #d35400; }
+
+    /* Phone: shrink formulas so they fit instead of needing a sideways swipe */
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.7rem; }
+      .part { font-size: 1.2rem; padding: 0.75rem 1rem; }
+      .note-card { padding: 1rem 1.1rem 1.2rem; }
+      .math-block { font-size: 0.86rem; }
+      .example { padding: 0.7rem 0.8rem 0.85rem; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="midterm-formula-sheet.html" class="back-btn accent">Formula Sheet →</a>
+  </div>
+
+  <h1>Ultimate Midterm Review Guide</h1>
+  <p class="subtitle">MATH-2201 &nbsp;·&nbsp; Units 1–3 &nbsp;·&nbsp; every formula, method, and worked example in one place</p>
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#p1">Vectors in 3-Space</a> <span class="sub">— magnitude, dot, cross, projections</span></li>
+      <li><a href="#p2">Triple Products</a> <span class="sub">— volume &amp; coplanarity</span></li>
+      <li><a href="#p3">Lines in 3-Space</a> <span class="sub">— three equivalent forms</span></li>
+      <li><a href="#p4">Planes</a> <span class="sub">— equations, angles, distances, intersections</span></li>
+      <li><a href="#p5">Vector-Valued Functions &amp; Arc Length</a> <span class="sub">— Unit 2</span></li>
+      <li><a href="#p6">Multiple Integrals</a> <span class="sub">— Unit 3</span></li>
+      <li><a href="#p7">Exam Strategy &amp; Common Mistakes</a></li>
+    </ol>
+  </div>
+
+  <div class="note-card" style="border-top-color:#16a085;">
+    <h3 style="color:#117864;">What this guide is built from</h3>
+    <p>
+      Everything below comes from your own course material: the <strong>Unit 1</strong> vectors notes,
+      the <strong>CT1</strong> and <strong>CT2</strong> worksheets, and the <strong>Unit 2</strong> and
+      <strong>Unit 3</strong> lecture slides. Examples tagged
+      <span class="from-slide">from slides</span> are taken directly from the lecture decks — including
+      the ones your lecturer left unfinished, worked out to a final answer here.
+    </p>
+    <div class="warn">
+      Two gaps worth knowing about. <strong>Curvature</strong> appears in the Unit 2 title but is not
+      covered on any of its 7 slides, and <strong>directional derivatives (Ch 13.6)</strong> is on the
+      syllabus but has no slide deck among the files shared. Neither is covered below — check with your
+      lecturer whether they are examinable.
+    </div>
+  </div>
+
+  <!-- =============== PART 1 =============== -->
+  <h2 class="part" id="p1">Part 1 — Vectors in 3-Space <span class="badge">Unit 1</span></h2>
+
+  <div class="note-card">
+    <h3>The Basics</h3>
+    <p>A vector \(\mathbf{a} = a_1\mathbf{i} + a_2\mathbf{j} + a_3\mathbf{k} = \langle a_1, a_2, a_3\rangle\) has both magnitude and direction.</p>
+    <div class="math-block">$$ |\mathbf{a}| = \sqrt{a_1^2 + a_2^2 + a_3^2}, \qquad \hat{\mathbf{a}} = \frac{\mathbf{a}}{|\mathbf{a}|} $$</div>
+    <p>The vector from point \(A\) to point \(B\) is always <strong>head minus tail</strong>:</p>
+    <div class="math-block">$$ \overrightarrow{AB} = B - A = \langle b_1-a_1,\; b_2-a_2,\; b_3-a_3\rangle $$</div>
+    <div class="warn">⚠ \(\overrightarrow{AB} = B - A\), not \(A - B\). Getting this backwards flips every sign downstream.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Dot Product — "how much do these align?"</h3>
+    <p>Produces a <strong>scalar</strong>.</p>
+    <div class="math-block">$$ \mathbf{a}\cdot\mathbf{b} = a_1b_1 + a_2b_2 + a_3b_3 = |\mathbf{a}|\,|\mathbf{b}|\cos\theta $$</div>
+    <div class="math-block">$$ \cos\theta = \frac{\mathbf{a}\cdot\mathbf{b}}{|\mathbf{a}|\,|\mathbf{b}|} $$</div>
+    <div class="key">Perpendicular \(\iff \mathbf{a}\cdot\mathbf{b} = 0\)</div>
+
+    <div class="example">
+      <span class="etitle">Worked example — angle between two flight paths (CT1 Q1)</span>
+      <p>\(\mathbf{a} = 3\mathbf{i}+2\mathbf{j}+6\mathbf{k}\), \(\mathbf{b} = 2\mathbf{i}-2\mathbf{j}+5\mathbf{k}\).</p>
+      <div class="math-block">$$ \mathbf{a}\cdot\mathbf{b} = 6 - 4 + 30 = 32, \qquad |\mathbf{a}| = 7, \qquad |\mathbf{b}| = \sqrt{33} $$</div>
+      <div class="math-block">$$ \cos\theta = \frac{32}{7\sqrt{33}} \approx 0.7958 \;\Longrightarrow\; \theta \approx 37.27^\circ $$</div>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Cross Product — "give me something perpendicular"</h3>
+    <p>Produces a <strong>vector</strong> perpendicular to both inputs.</p>
+    <div class="math-block">
+      $$ \mathbf{a}\times\mathbf{b} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \end{vmatrix} $$
+    </div>
+    <div class="math-block">
+      $$ = (a_2b_3 - a_3b_2)\mathbf{i} - (a_1b_3 - a_3b_1)\mathbf{j} + (a_1b_2 - a_2b_1)\mathbf{k} $$
+    </div>
+    <div class="math-block">$$ |\mathbf{a}\times\mathbf{b}| = |\mathbf{a}|\,|\mathbf{b}|\sin\theta $$</div>
+    <div class="warn">⚠ The \(\mathbf{j}\) term carries a <strong>minus sign</strong>. This is the single most common exam error.</div>
+
+    <span class="label">What the magnitude means geometrically</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Quantity</th><th>Formula</th></tr></thead>
+        <tbody>
+          <tr><td>Area of parallelogram on \(\mathbf{a}, \mathbf{b}\)</td><td>\(|\mathbf{a}\times\mathbf{b}|\)</td></tr>
+          <tr><td>Area of triangle \(ABC\)</td><td>\(\tfrac{1}{2}\big|\overrightarrow{AB}\times\overrightarrow{AC}\big|\)</td></tr>
+          <tr><td>Normal to a surface through \(\mathbf{a}, \mathbf{b}\)</td><td>\(\mathbf{n} = \mathbf{a}\times\mathbf{b}\)</td></tr>
+          <tr><td>Parallel vectors</td><td>\(\mathbf{a}\times\mathbf{b} = \mathbf{0}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Worked example — area of a triangular park (CT1 Q4)</span>
+      <p>\(A(1,2,1)\), \(B(4,3,5)\), \(C(2,7,4)\).</p>
+      <div class="math-block">$$ \overrightarrow{AB} = \langle 3,1,4\rangle, \qquad \overrightarrow{AC} = \langle 1,5,3\rangle $$</div>
+      <div class="math-block">$$ \overrightarrow{AB}\times\overrightarrow{AC} = \langle -17,\,-5,\,14\rangle, \qquad \big|\cdot\big| = \sqrt{510} \approx 22.58 $$</div>
+      <div class="math-block">$$ \text{Area} = \tfrac{1}{2}(22.58) \approx 11.29 \text{ square units} $$</div>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Projections</h3>
+    <p>"How much of \(\mathbf{a}\) points along \(\mathbf{b}\)?"</p>
+    <div class="math-block">$$ \text{comp}_{\mathbf{b}}\mathbf{a} = \frac{\mathbf{a}\cdot\mathbf{b}}{|\mathbf{b}|} \quad(\text{a scalar}) $$</div>
+    <div class="math-block">$$ \text{proj}_{\mathbf{b}}\mathbf{a} = \left(\frac{\mathbf{a}\cdot\mathbf{b}}{|\mathbf{b}|^2}\right)\mathbf{b} \quad(\text{a vector}) $$</div>
+    <div class="key">Scalar version divides by \(|\mathbf{b}|\); vector version divides by \(|\mathbf{b}|^2\) and keeps the \(\mathbf{b}\).</div>
+
+    <div class="example">
+      <span class="etitle">Worked example — wind along a runway (CT1 Q7)</span>
+      <p>\(\mathbf{W} = \langle 6,4,2\rangle\), \(\mathbf{R} = \langle 3,4,0\rangle\). \(\mathbf{W}\cdot\mathbf{R} = 34\), \(|\mathbf{R}| = 5\).</p>
+      <div class="math-block">$$ \text{proj}_{\mathbf{R}}\mathbf{W} = \tfrac{34}{25}\langle 3,4,0\rangle = \langle 4.08,\,5.44,\,0\rangle $$</div>
+      <div class="math-block">$$ \text{comp}_{\mathbf{R}}\mathbf{W} = \tfrac{34}{5} = 6.8 $$</div>
+    </div>
+  </div>
+
+  <!-- =============== PART 2 =============== -->
+  <h2 class="part" id="p2">Part 2 — Triple Products <span class="badge">CT2</span></h2>
+
+  <div class="note-card">
+    <h3>One Formula, Two Questions</h3>
+    <div class="math-block">
+      $$ \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) = \begin{vmatrix} a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3 \end{vmatrix} $$
+    </div>
+    <div class="key">
+      Volume of parallelepiped \(= \big|\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})\big|\) &nbsp;·&nbsp;
+      Coplanar \(\iff \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) = 0\)
+    </div>
+    <p><strong>Why they're the same formula:</strong> coplanar vectors lie flat in one plane, so the box they span is squashed — zero volume.</p>
+    <div class="warn">⚠ Volume takes the modulus. A negative triple product only means the vectors form a left-handed set.</div>
+
+    <div class="example">
+      <span class="etitle">Worked example — volume of a container (CT2 Q3)</span>
+      <p>\(\mathbf{P}\langle 4,0,1\rangle\), \(\mathbf{Q}\langle 1,3,0\rangle\), \(\mathbf{R}\langle 0,1,2\rangle\) in metres.</p>
+      <div class="math-block">$$ \mathbf{Q}\times\mathbf{R} = \langle 6,-2,1\rangle, \qquad \mathbf{P}\cdot(\mathbf{Q}\times\mathbf{R}) = 24 + 0 + 1 = 25 $$</div>
+      <div class="math-block">$$ V = 25 \text{ m}^3 $$</div>
+    </div>
+
+    <p>Full solutions to all 11 CT2 questions are on the <a href="ct2-practice.html">CT2 review page</a>.</p>
+  </div>
+
+  <!-- =============== PART 3 =============== -->
+  <h2 class="part" id="p3">Part 3 — Lines in 3-Space <span class="badge">Unit 1</span></h2>
+
+  <div class="note-card">
+    <h3>Three Ways to Write One Line</h3>
+    <p>A line needs one <strong>point</strong> \(\mathbf{a}\) and one <strong>direction</strong> \(\mathbf{b}\).</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Form</th><th>Equation</th></tr></thead>
+        <tbody>
+          <tr><td>Vector</td><td>\(\mathbf{r} = \mathbf{a} + \lambda\mathbf{b}\)</td></tr>
+          <tr><td>Parametric</td><td>\(x = a_1 + \lambda b_1,\quad y = a_2 + \lambda b_2,\quad z = a_3 + \lambda b_3\)</td></tr>
+          <tr><td>Symmetric</td><td>\(\dfrac{x-a_1}{b_1} = \dfrac{y-a_2}{b_2} = \dfrac{z-a_3}{b_3}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Through two points \(A\) and \(B\): take \(\mathbf{a} = A\) and \(\mathbf{b} = B - A\).</p>
+    <div class="warn">⚠ Symmetric form needs all three direction components non-zero. If \(b_2 = 0\), write that piece separately as \(y = a_2\).</div>
+
+    <div class="example">
+      <span class="etitle">Worked example — drone flight path (CT1 Q5)</span>
+      <p>\(P(2,-1,4)\), direction \(\mathbf{d} = 3\mathbf{i}-2\mathbf{j}+\mathbf{k}\).</p>
+      <div class="math-block">$$ \mathbf{r} = (2\mathbf{i}-\mathbf{j}+4\mathbf{k}) + \lambda(3\mathbf{i}-2\mathbf{j}+\mathbf{k}) $$</div>
+      <div class="math-block">$$ x = 2+3\lambda,\quad y = -1-2\lambda,\quad z = 4+\lambda $$</div>
+      <div class="math-block">$$ \frac{x-2}{3} = \frac{y+1}{-2} = \frac{z-4}{1} $$</div>
+    </div>
+  </div>
+
+  <!-- =============== PART 4 =============== -->
+  <h2 class="part" id="p4">Part 4 — Planes <span class="badge">Unit 1 · Unit 3 · CT2</span></h2>
+
+  <div class="note-card">
+    <h3>Three Ways to Write One Plane</h3>
+    <p>A plane needs one <strong>point</strong> and either two <strong>in-plane directions</strong> or one <strong>normal</strong>.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Form</th><th>Equation</th></tr></thead>
+        <tbody>
+          <tr><td>Vector (parametric)</td><td>\(\mathbf{r} = \mathbf{a} + s\mathbf{u} + t\mathbf{v}\)</td></tr>
+          <tr><td>Vector (normal)</td><td>\((\mathbf{r}-\mathbf{a})\cdot\mathbf{n} = 0\) &nbsp;or&nbsp; \(\mathbf{r}\cdot\mathbf{n} = \mathbf{a}\cdot\mathbf{n}\)</td></tr>
+          <tr><td>Cartesian</td><td>\(n_1x + n_2y + n_3z = d\), &nbsp; \(d = \mathbf{a}\cdot\mathbf{n}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">The normal is just the coefficients: \(2x - y + 2z = 5 \;\Rightarrow\; \mathbf{n} = \langle 2,-1,2\rangle\). Ignore the constant.</div>
+
+    <span class="label">Plane through three points \(A, B, C\)</span>
+    <ol class="steps">
+      <li>\(\overrightarrow{AB} = B-A\), &nbsp; \(\overrightarrow{AC} = C-A\)</li>
+      <li>\(\mathbf{n} = \overrightarrow{AB}\times\overrightarrow{AC}\)</li>
+      <li>\(n_1(x-a_1) + n_2(y-a_2) + n_3(z-a_3) = 0\), then expand</li>
+      <li>Verify by substituting all three points back in</li>
+    </ol>
+
+    <span class="label">Plane through \(P\), parallel to \(\mathbf{u}\) and \(\mathbf{v}\)</span>
+    <p>Vector form is immediate: \(\mathbf{r} = \mathbf{p} + s\mathbf{u} + t\mathbf{v}\). For Cartesian, take \(\mathbf{n} = \mathbf{u}\times\mathbf{v}\) and continue as above.</p>
+
+    <div class="example">
+      <span class="etitle">Worked example — solar panel plane (CT2 Q8)</span>
+      <p>\(A(2,1,4)\), \(B(6,2,5)\), \(C(3,5,6)\).</p>
+      <div class="math-block">$$ \overrightarrow{AB} = \langle 4,1,1\rangle,\quad \overrightarrow{AC} = \langle 1,4,2\rangle,\quad \mathbf{n} = \langle -2,-7,15\rangle $$</div>
+      <div class="math-block">$$ -2(x-2) - 7(y-1) + 15(z-4) = 0 $$</div>
+      <div class="math-block">$$ \Longrightarrow\quad 2x + 7y - 15z + 49 = 0 $$</div>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Angles — Cosine or Sine?</h3>
+    <span class="label">Plane ↔ Plane &nbsp;→&nbsp; cosine</span>
+    <div class="math-block">$$ \cos\theta = \frac{|\mathbf{n_1}\cdot\mathbf{n_2}|}{|\mathbf{n_1}|\,|\mathbf{n_2}|} $$</div>
+    <span class="label">Line ↔ Plane &nbsp;→&nbsp; sine</span>
+    <div class="math-block">$$ \sin\theta = \frac{|\mathbf{d}\cdot\mathbf{n}|}{|\mathbf{d}|\,|\mathbf{n}|} $$</div>
+    <span class="label">Line ↔ Line &nbsp;→&nbsp; cosine</span>
+    <div class="math-block">$$ \cos\theta = \frac{|\mathbf{d_1}\cdot\mathbf{d_2}|}{|\mathbf{d_1}|\,|\mathbf{d_2}|} $$</div>
+    <p><strong>How to remember:</strong> the normal sticks <em>out</em> of the plane, so any angle you measure against it is \(90^\circ - \theta\). Swapping cosine for sine performs that flip automatically.</p>
+    <div class="warn">⚠ Keep the absolute value on top whenever the question says <em>acute</em>. Without it you get the obtuse supplement.</div>
+
+    <span class="label">Perpendicular and parallel conditions</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Relationship</th><th>Perpendicular</th><th>Parallel</th></tr></thead>
+        <tbody>
+          <tr><td>Plane &amp; plane</td><td>\(\mathbf{n_1}\cdot\mathbf{n_2} = 0\)</td><td>\(\mathbf{n_1} = \lambda\mathbf{n_2}\)</td></tr>
+          <tr><td>Line &amp; plane</td><td>\(\mathbf{d} = \lambda\mathbf{n}\)</td><td>\(\mathbf{d}\cdot\mathbf{n} = 0\)</td></tr>
+          <tr><td>Line &amp; line</td><td>\(\mathbf{d_1}\cdot\mathbf{d_2} = 0\)</td><td>\(\mathbf{d_1} = \lambda\mathbf{d_2}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn">⚠ Note the swap on the middle row: line ⟂ plane means the line runs <em>along</em> the normal; line ∥ plane means it is ⟂ to the normal.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Where a Line Meets a Plane</h3>
+    <ol class="steps">
+      <li>Write the line parametrically: \(x = a_1+td_1\), \(y = a_2+td_2\), \(z = a_3+td_3\)</li>
+      <li>Substitute all three into the plane equation</li>
+      <li>Solve the resulting linear equation for \(t\)</li>
+      <li>Put that \(t\) back into the line to get the point</li>
+    </ol>
+    <div class="key">For a horizontal plane \(z = c\), only the \(z\)-component matters — set \(a_3 + td_3 = c\) and solve directly.</div>
+    <p><strong>Special cases:</strong> if \(\mathbf{d}\cdot\mathbf{n} = 0\) the line is parallel to the plane — either no solution, or \(0=0\) meaning the line lies entirely in the plane.</p>
+
+    <div class="example">
+      <span class="etitle">Worked example — aircraft crossing an altitude (CT2 Q7)</span>
+      <p>\(\mathbf{r}(t) = \langle 100+20t,\; 50+10t,\; 500-25t\rangle\) crossing \(z = 200\).</p>
+      <div class="math-block">$$ 500 - 25t = 200 \;\Longrightarrow\; t = 12 \text{ s} $$</div>
+      <div class="math-block">$$ (x,y,z) = (100+240,\; 50+120,\; 200) = (340,\,170,\,200) \text{ m} $$</div>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Distance from a Point to a Plane <span class="from-slide">from slides</span></h3>
+    <p>The distance \(PN\) is the shortest — the perpendicular — from \(P\) to the plane. The point \(N\) where it lands is the <strong>foot of the perpendicular</strong>.</p>
+    <div class="math-block">$$ D = \frac{\big|Ax_1 + By_1 + Cz_1 - D_0\big|}{\sqrt{A^2 + B^2 + C^2}} $$</div>
+    <p style="text-align:center; color:#7f8c8d; font-size:0.92rem; margin-top:-0.3rem;">for the plane \(Ax+By+Cz = D_0\) and the point \((x_1,y_1,z_1)\)</p>
+    <div class="warn">
+      ⚠ Watch the sign convention. Written as \(Ax+By+Cz = D_0\) you <strong>subtract</strong> \(D_0\);
+      written as \(Ax+By+Cz+d = 0\) you <strong>add</strong> \(d\). Same formula — put the plane in one
+      form and stay there.
+    </div>
+    <span class="label">Finding the foot of the perpendicular \(N\)</span>
+    <ol class="steps">
+      <li>Build the line through \(P\) along the normal: \(\mathbf{r} = P + t\mathbf{n}\)</li>
+      <li>Substitute into the plane equation and solve for \(t\)</li>
+      <li>That \(t\) gives \(N\); the distance is \(|PN| = |t|\,|\mathbf{n}|\)</li>
+    </ol>
+  </div>
+
+  <!-- =============== PART 5 =============== -->
+  <h2 class="part" id="p5">Part 5 — Vector-Valued Functions &amp; Arc Length <span class="badge">Unit 2</span></h2>
+
+  <div class="note-card">
+    <h3>What a Vector-Valued Function Is <span class="from-slide">from slides</span></h3>
+    <p>
+      A rule that takes a <strong>real number input</strong> (usually time \(t\)) and <strong>outputs a
+      vector</strong>. It maps a single parameter to multi-dimensional coordinates, describing paths like
+      lines, circles, and helixes.
+    </p>
+    <div class="math-block">$$ \mathbf{r}(t) = x(t)\mathbf{i} + y(t)\mathbf{j} + z(t)\mathbf{k} = \langle x(t),\,y(t),\,z(t)\rangle $$</div>
+    <ul>
+      <li>\(t\) is the <strong>parameter</strong></li>
+      <li>\(x(t), y(t), z(t)\) are ordinary <strong>scalar functions</strong></li>
+      <li>\(\mathbf{r}(t)\) represents a <strong>point</strong> in 3-space at time \(t\)</li>
+    </ul>
+
+    <span class="label">Three equivalent forms — same function, three notations</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Form</th><th>Written as</th></tr></thead>
+        <tbody>
+          <tr><td>Component</td><td>\(\mathbf{r}(t) = \langle t^2,\; \sin t,\; e^t\rangle\)</td></tr>
+          <tr><td>Unit-vector / position-vector</td><td>\(\mathbf{r}(t) = t^2\mathbf{i} + \sin t\,\mathbf{j} + e^t\mathbf{k}\)</td></tr>
+          <tr><td>Parametric</td><td>\(x = t^2,\quad y = \sin t,\quad z = e^t\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">If a question asks to "convert between forms", it is only asking you to rewrite — nothing is calculated.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Differentiating a Vector-Valued Function <span class="from-slide">from slides</span></h3>
+    <p>Differentiate <strong>each component separately</strong> with respect to the parameter. That is the whole rule.</p>
+    <div class="math-block">$$ \frac{d\mathbf{r}}{dt} = \mathbf{r}'(t) = x'(t)\mathbf{i} + y'(t)\mathbf{j} + z'(t)\mathbf{k} $$</div>
+
+    <span class="label">The six rules of differentiation</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>\(\dfrac{d}{dt}\mathbf{c} = \mathbf{0}\)</td></tr>
+          <tr><td>2</td><td>\(\dfrac{d}{dt}(k\mathbf{r}) = k\dfrac{d\mathbf{r}}{dt}\)</td></tr>
+          <tr><td>3</td><td>\(\dfrac{d}{dt}(\mathbf{r_1} + \mathbf{r_2}) = \mathbf{r_1}' + \mathbf{r_2}'\)</td></tr>
+          <tr><td>4</td><td>\(\dfrac{d}{dt}(\mathbf{r_1} - \mathbf{r_2}) = \mathbf{r_1}' - \mathbf{r_2}'\)</td></tr>
+          <tr><td>5</td><td>\(\dfrac{d}{dt}(a\mathbf{r_1} + b\mathbf{r_2}) = a\mathbf{r_1}' + b\mathbf{r_2}'\)</td></tr>
+          <tr><td>6</td><td>\(\dfrac{d}{dt}\big(f(t)\mathbf{r}\big) = f'(t)\mathbf{r} + f(t)\mathbf{r}'\) &nbsp;<em>(chain / product rule)</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Here \(\mathbf{c}\) is a constant vector, \(a, b, k\) are constants, and \(f\) is any function of \(t\).</p>
+
+    <span class="label">What the derivatives mean physically</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Quantity</th><th>Formula</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Position</td><td>\(\mathbf{r}(t)\)</td><td>vector</td></tr>
+          <tr><td>Velocity</td><td>\(\mathbf{v}(t) = \mathbf{r}'(t)\)</td><td>vector</td></tr>
+          <tr><td>Speed</td><td>\(|\mathbf{v}(t)| = |\mathbf{r}'(t)|\)</td><td>scalar</td></tr>
+          <tr><td>Acceleration</td><td>\(\mathbf{a}(t) = \mathbf{r}''(t)\)</td><td>vector</td></tr>
+          <tr><td>Unit tangent</td><td>\(\mathbf{T}(t) = \dfrac{\mathbf{r}'(t)}{|\mathbf{r}'(t)|}\)</td><td>vector</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">Speed is the magnitude of velocity — and it is exactly the thing you integrate to get arc length.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Arc Length <span class="from-slide">from slides</span></h3>
+    <p>
+      Arc length is the distance measured <strong>along the curve</strong> between two points — not the
+      straight-line distance between the endpoints.
+    </p>
+    <span class="label">Where the formula comes from</span>
+    <p>For a small change in \(t\), the displacement is \(d\mathbf{r} = (dx, dy, dz)\), so the small distance along the curve is</p>
+    <div class="math-block">$$ ds = \sqrt{[x'(t)]^2 + [y'(t)]^2 + [z'(t)]^2}\;dt $$</div>
+    <p>Adding up every \(ds\) from \(t=a\) to \(t=b\) gives</p>
+    <div class="math-block">$$ \boxed{\;L = \int_a^b \sqrt{[x'(t)]^2 + [y'(t)]^2 + [z'(t)]^2}\;dt = \int_a^b |\mathbf{r}'(t)|\,dt\;} $$</div>
+    <div class="key">The integrand <em>is</em> the speed. Every arc-length problem is: differentiate → take the magnitude → integrate.</div>
+
+    <span class="label">The method, every time</span>
+    <ol class="steps">
+      <li>Differentiate componentwise to get \(\mathbf{r}'(t)\)</li>
+      <li>Compute \(|\mathbf{r}'(t)|\) and <strong>simplify before integrating</strong></li>
+      <li>Integrate over the given range of \(t\)</li>
+    </ol>
+    <div class="warn">
+      ⚠ Step 2 is where the marks are. In almost every exam problem the \(\sin^2 + \cos^2 = 1\) identity
+      collapses the square root to a <strong>constant</strong>, turning a frightening integral into
+      \(\int_a^b(\text{number})\,dt\). If your square root doesn't simplify, re-check the differentiation.
+    </div>
+
+    <div class="example">
+      <span class="etitle">Worked example 1 — circular motion <span class="from-slide">from slides</span></span>
+      <p>\(\mathbf{r}(t) = \langle 4\cos t,\; 4\sin t\rangle\), &nbsp; \(0 \le t \le 2\pi\).</p>
+      <div class="math-block">$$ \mathbf{r}'(t) = \langle -4\sin t,\; 4\cos t\rangle $$</div>
+      <div class="math-block">$$ |\mathbf{r}'(t)| = \sqrt{16\sin^2 t + 16\cos^2 t} $$</div>
+      <div class="math-block">$$ = \sqrt{16(\sin^2 t + \cos^2 t)} = \sqrt{16} = 4 $$</div>
+      <div class="math-block">$$ L = \int_0^{2\pi} 4\,dt = 4\big[t\big]_0^{2\pi} = 8\pi \approx 25.13 $$</div>
+      <div class="key">Sanity check: this is a circle of radius 4, and its circumference is \(2\pi r = 8\pi\). ✓</div>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Worked example 2 — helix <span class="from-slide">from slides</span></span>
+      <p>\(\mathbf{r}(t) = \langle 3\cos t,\; 3\sin t,\; 4t\rangle\), &nbsp; \(0 \le t \le 2\pi\).</p>
+      <div class="math-block">$$ \mathbf{r}'(t) = \langle -3\sin t,\; 3\cos t,\; 4\rangle $$</div>
+      <div class="math-block">$$ |\mathbf{r}'(t)| = \sqrt{9\sin^2 t + 9\cos^2 t + 16} = \sqrt{9 + 16} = \sqrt{25} = 5 $$</div>
+      <div class="math-block">$$ L = \int_0^{2\pi} 5\,dt = 5\big[t\big]_0^{2\pi} = 10\pi \approx 31.42 $$</div>
+      <p>
+        Note the pattern: for a helix \(\langle a\cos t,\, a\sin t,\, ct\rangle\) the speed is always the
+        constant \(\sqrt{a^2 + c^2}\), so \(L = \sqrt{a^2+c^2}\,(b-a_{\text{start}})\).
+      </p>
+    </div>
+
+    <span class="label">The one integral worth memorising <span class="from-slide">from slides</span></span>
+    <p>If the square root does <em>not</em> collapse, the slides give you the standard result:</p>
+    <div class="math-block">$$ \int \sqrt{x^2 + a^2}\;dx = \frac{x}{2}\sqrt{x^2+a^2} + \frac{a^2}{2}\ln\!\left(x + \sqrt{x^2+a^2}\right) + c $$</div>
+  </div>
+
+  <!-- =============== PART 6 =============== -->
+  <h2 class="part" id="p6">Part 6 — Multiple Integrals <span class="badge">Unit 3</span></h2>
+
+  <div class="note-card">
+    <h3>The Big Picture <span class="from-slide">from slides</span></h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Integral</th><th>Adds up quantities…</th><th>Gives you</th></tr></thead>
+        <tbody>
+          <tr><td>Single \(\displaystyle\int_a^b f(x)\,dx\)</td><td>along a <strong>line</strong></td><td>Area under a curve</td></tr>
+          <tr><td>Double \(\displaystyle\iint_R f(x,y)\,dA\)</td><td>over an <strong>area</strong></td><td>Volume under a surface</td></tr>
+          <tr><td>Triple \(\displaystyle\iiint_V f(x,y,z)\,dV\)</td><td>throughout a <strong>volume</strong></td><td>Mass, charge, or volume itself</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">Each step up adds one dimension of "sweeping". The mechanics never change: integrate one variable at a time, innermost first.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Double Integrals <span class="from-slide">from slides</span></h3>
+    <p>For a surface \(z = f(x,y)\) above a region \(R\) in the \(xy\)-plane, the double integral</p>
+    <div class="math-block">$$ \iint_R f(x,y)\,dA $$</div>
+    <p>represents the <strong>volume under the surface and above the region \(R\)</strong>.</p>
+
+    <span class="label">Over a rectangle \(R = [a,b]\times[c,d]\)</span>
+    <div class="math-block">$$ \iint_R f(x,y)\,dA = \int_a^b\!\!\int_c^d f(x,y)\,dy\,dx = \int_c^d\!\!\int_a^b f(x,y)\,dx\,dy $$</div>
+    <div class="key">
+      <strong>Fubini's theorem:</strong> over a rectangle with constant limits, the order does not matter —
+      you get the same answer either way. Pick whichever order integrates more easily.
+    </div>
+
+    <span class="label">How to evaluate an iterated integral</span>
+    <ol class="steps">
+      <li>Work <strong>innermost first</strong> — match the integral sign to its \(dy\) or \(dx\)</li>
+      <li>While integrating with respect to \(y\), treat \(x\) as a <strong>constant</strong> (and vice versa)</li>
+      <li>Substitute the inner limits — you now have a single-variable function</li>
+      <li>Integrate that with respect to the outer variable and substitute its limits</li>
+    </ol>
+    <div class="warn">⚠ The limits pair with the differentials from the inside out: \(\int_a^b\!\int_c^d f\,dy\,dx\) means \(y\) runs \(c \to d\) and \(x\) runs \(a \to b\).</div>
+
+    <div class="example">
+      <span class="etitle">Example 1 — volume under a plane <span class="from-slide">from slides</span></span>
+      <p>Find the volume under \(z = x + y\) over the rectangle \(0 \le x \le 1\), \(0 \le y \le 2\); that is, \(R = [0,1]\times[0,2]\).</p>
+      <div class="math-block">$$ V = \int_0^1\!\!\int_0^2 (x+y)\,dy\,dx $$</div>
+      <p><strong>Inner integral</strong> (treat \(x\) as constant):</p>
+      <div class="math-block">$$ \int_0^2 (x+y)\,dy = \left[xy + \frac{y^2}{2}\right]_0^2 = 2x + 2 $$</div>
+      <p><strong>Outer integral:</strong></p>
+      <div class="math-block">$$ V = \int_0^1 (2x+2)\,dx = \big[x^2 + 2x\big]_0^1 = 1 + 2 = 3 $$</div>
+      <div class="key">\(V = 3\) cubic units</div>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Example 2 — order doesn't matter <span class="from-slide">from slides</span></span>
+      <p><strong>(a)</strong> \(\displaystyle\int_1^3\!\!\int_2^4 (40 - 2xy)\,dy\,dx\)</p>
+      <div class="math-block">$$ \int_2^4 (40-2xy)\,dy = \big[40y - xy^2\big]_2^4 $$</div>
+      <div class="math-block">$$ = (160 - 16x) - (80 - 4x) = 80 - 12x $$</div>
+      <div class="math-block">$$ \int_1^3 (80 - 12x)\,dx = \big[80x - 6x^2\big]_1^3 $$</div>
+      <div class="math-block">$$ = (240 - 54) - (80 - 6) = 112 $$</div>
+
+      <p><strong>(b)</strong> \(\displaystyle\int_2^4\!\!\int_1^3 (40 - 2xy)\,dx\,dy\)</p>
+      <div class="math-block">$$ \int_1^3 (40-2xy)\,dx = \big[40x - x^2y\big]_1^3 $$</div>
+      <div class="math-block">$$ = (120 - 9y) - (40 - y) = 80 - 8y $$</div>
+      <div class="math-block">$$ \int_2^4 (80 - 8y)\,dy = \big[80y - 4y^2\big]_2^4 $$</div>
+      <div class="math-block">$$ = (320 - 64) - (160 - 16) = 112 $$</div>
+      <div class="key">Both give <strong>112</strong> — this is Fubini's theorem in action.</div>
+    </div>
+
+    <span class="label">Over a general (non-rectangular) region</span>
+    <p>When the region is bounded by curves, the <strong>inner</strong> limits become functions and the <strong>outer</strong> limits must be constants.</p>
+    <div class="math-block">$$ \int_a^b\!\!\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx \qquad\text{or}\qquad \int_c^d\!\!\int_{h_1(y)}^{h_2(y)} f(x,y)\,dx\,dy $$</div>
+    <div class="warn">⚠ The outer limits are <strong>always</strong> numbers. If a variable survives to your final answer, your limits are in the wrong order.</div>
+    <p>Setting \(f = 1\) gives the plain <strong>area</strong> of the region: \(\text{Area} = \iint_R dA\).</p>
+  </div>
+
+  <div class="note-card">
+    <h3>Triple Integrals <span class="from-slide">from slides</span></h3>
+    <p>
+      A triple integral adds up infinitely many tiny quantities throughout a three-dimensional region
+      (a solid). A double integral works over an <strong>area</strong>; a triple integral works over a
+      <strong>volume</strong>.
+    </p>
+    <div class="math-block">$$ \iiint_V f(x,y,z)\,dV, \qquad dV = dx\,dy\,dz $$</div>
+
+    <span class="label">The special case that shows up most</span>
+    <div class="key">Setting \(f(x,y,z) = 1\) makes the triple integral give the <strong>volume</strong> of the solid: \(V = \iiint_V 1\,dV\).</div>
+
+    <div class="example">
+      <span class="etitle">Example — a rectangular box <span class="from-slide">from slides</span></span>
+      <p>Suppose \(0 \le x \le 2\), \(0 \le y \le 3\), \(0 \le z \le 4\) — a box with dimensions \(2\times3\times4\).</p>
+      <div class="math-block">$$ V = \int_0^2\!\!\int_0^3\!\!\int_0^4 1\;dz\,dy\,dx $$</div>
+      <p><strong>Innermost:</strong> \(\displaystyle\int_0^4 1\,dz = \big[z\big]_0^4 = 4\)</p>
+      <p><strong>Middle:</strong> \(\displaystyle\int_0^3 4\,dy = \big[4y\big]_0^3 = 12\)</p>
+      <p><strong>Outer:</strong> \(\displaystyle\int_0^2 12\,dx = \big[12x\big]_0^2 = 24\)</p>
+      <div class="key">\(V = 24\) cubic units — which is just \(2 \times 3 \times 4\), exactly as expected. ✓</div>
+      <p>
+        That check is the point of the example: when all six limits are constants, a triple integral of 1
+        is simply the product of the three side lengths. Use it to verify your setup before attempting
+        harder solids.
+      </p>
+    </div>
+  </div>
+
+  <!-- =============== PART 7 =============== -->
+  <h2 class="part" id="p7">Part 7 — Exam Strategy &amp; Common Mistakes</h2>
+
+  <div class="note-card" style="border-top-color:#f37021;">
+    <h3 style="color:#d35400;">Reading the question — what to reach for</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>The question says…</th><th>Reach for</th></tr></thead>
+        <tbody>
+          <tr><td>"angle between" two vectors</td><td>Dot product, \(\cos\theta\)</td></tr>
+          <tr><td>"area of parallelogram / triangle"</td><td>Cross product (halve it for a triangle)</td></tr>
+          <tr><td>"perpendicular to both" / "normal"</td><td>Cross product</td></tr>
+          <tr><td>"volume of parallelepiped / container"</td><td>Scalar triple product, take modulus</td></tr>
+          <tr><td>"are they coplanar?"</td><td>Scalar triple product \(= 0\)?</td></tr>
+          <tr><td>"equation of the plane through 3 points"</td><td>\(\mathbf{n} = \overrightarrow{AB}\times\overrightarrow{AC}\)</td></tr>
+          <tr><td>"where does the line cross"</td><td>Substitute parametric line into the plane</td></tr>
+          <tr><td>"shortest distance from a point to a plane"</td><td>\(\frac{|Ax_1+By_1+Cz_1-D|}{\sqrt{A^2+B^2+C^2}}\)</td></tr>
+          <tr><td>"how far does it travel along the path"</td><td>Arc length, \(\int|\mathbf{r}'(t)|\,dt\)</td></tr>
+          <tr><td>"how fast" at an instant</td><td>Speed, \(|\mathbf{r}'(t)|\) — no integral</td></tr>
+          <tr><td>"volume under the surface"</td><td>Double integral of \(f\)</td></tr>
+          <tr><td>"volume of the solid"</td><td>Triple integral of 1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-card" style="border-top-color:#e74c3c;">
+    <h3 style="color:#c0392b;">The mistakes that actually cost marks</h3>
+    <ol>
+      <li><strong>The \(\mathbf{j}\) minus sign</strong> in every cross product determinant.</li>
+      <li><strong>Forgetting the modulus</strong> — on volume, and on the dot product inside angle formulas.</li>
+      <li><strong>Sine vs cosine</strong> — sine for line–plane, cosine for plane–plane and line–line.</li>
+      <li><strong>Wrong subtraction order</strong> — \(\overrightarrow{AB} = B - A\).</li>
+      <li><strong>Halving, or not halving</strong> — triangles need the \(\tfrac{1}{2}\); parallelograms don't.</li>
+      <li><strong>Not simplifying \(|\mathbf{r}'(t)|\)</strong> before integrating — use \(\sin^2+\cos^2=1\).</li>
+      <li><strong>Mismatched integral limits</strong> — innermost limits belong to the innermost differential.</li>
+      <li><strong>A variable left in a definite-integral answer</strong> — a sure sign the limits are wrong.</li>
+      <li><strong>Dropping units</strong> — m³ for a container, seconds for a time, "square units" for an area.</li>
+    </ol>
+  </div>
+
+  <div class="note-card" style="border-top-color:#27ae60;">
+    <h3 style="color:#1e8449;">Checks that take ten seconds and save whole questions</h3>
+    <ul>
+      <li>Substitute every given point back into a plane equation you derived.</li>
+      <li>Substitute your intersection point into the plane equation.</li>
+      <li>Arc length of a circle should equal \(2\pi r\); of a box, the product of its sides.</li>
+      <li>Volumes, areas, lengths, and distances are never negative.</li>
+      <li>An acute angle must come out below \(90^\circ\) — if it doesn't, you dropped a modulus.</li>
+      <li>A normal can be scaled down by a common factor: \(\langle 2,2,4\rangle \to \langle 1,1,2\rangle\).</li>
+    </ul>
+  </div>
+
+  <div class="btn-row" style="margin-top:2rem;">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="midterm-formula-sheet.html" class="back-btn accent">Formula Sheet →</a>
+  </div>
+
+</body>
+</html>

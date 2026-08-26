@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Midterm Formula Sheet | MATH 2201</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.5;
+      color: #333;
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 1.75rem;
+      background-color: #f4f7f6;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      border-bottom: 3px solid #f37021;
+      padding-bottom: 10px;
+      margin-bottom: 0.3rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .box {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 0.9rem 1.15rem 1.1rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      border-top: 3px solid #2980b9;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .box h2 {
+      font-size: 1.02rem;
+      margin: 0 0 0.5rem;
+      color: #2980b9;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .box.green { border-top-color: #27ae60; }
+    .box.green h2 { color: #1e8449; }
+    .box.orange { border-top-color: #f37021; }
+    .box.orange h2 { color: #d35400; }
+    .box.red { border-top-color: #e74c3c; }
+    .box.red h2 { color: #c0392b; }
+
+    .f {
+      margin: 0.45rem 0;
+      overflow-x: auto;
+      font-size: 0.98rem;
+    }
+    .f .cap {
+      display: block;
+      font-size: 0.78rem;
+      color: #7f8c8d;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 1px;
+    }
+    .center { text-align: center; }
+
+    hr.sep {
+      border: 0;
+      border-top: 1px dashed #dfe6e9;
+      margin: 0.7rem 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.87rem;
+      margin: 0.3rem 0;
+    }
+    th, td {
+      border: 1px solid #dfe6e9;
+      padding: 0.35rem 0.5rem;
+      text-align: left;
+      vertical-align: middle;
+    }
+    th { background: #2c3e50; color: #fff; font-weight: bold; font-size: 0.82rem; }
+    tbody tr:nth-child(even) { background: #f8fafb; }
+
+    ul { padding-left: 1.15rem; margin: 0.35rem 0; }
+    li { margin-bottom: 0.28rem; font-size: 0.93rem; }
+
+    .tip {
+      background: #e8f8f0;
+      border-left: 3px solid #27ae60;
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      margin: 0.55rem 0 0.2rem;
+      font-size: 0.87rem;
+    }
+    .trap {
+      background: #fdecea;
+      border-left: 3px solid #e74c3c;
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      margin: 0.55rem 0 0.2rem;
+      font-size: 0.87rem;
+    }
+
+    .btn-row { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 20px; }
+    .back-btn {
+      display: inline-block;
+      padding: 7px 14px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 0.92rem;
+      transition: background 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #f37021; }
+    .back-btn.accent:hover { background-color: #d35400; }
+
+    /* Phone: shrink formulas so they fit instead of needing a sideways swipe */
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.55rem; }
+      .grid { grid-template-columns: 1fr; }
+      .f { font-size: 0.84rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.3rem 0.4rem; }
+    }
+
+    /* ---- Print: strip chrome, tighten, keep boxes intact ---- */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+        max-width: none;
+        font-size: 9.5pt;
+        line-height: 1.35;
+      }
+      .btn-row, .no-print { display: none !important; }
+      h1 { font-size: 15pt; margin-bottom: 2pt; }
+      .subtitle { font-size: 8pt; margin-bottom: 8pt; }
+      .grid { grid-template-columns: 1fr 1fr; gap: 7pt; }
+      .box {
+        box-shadow: none;
+        border: 1px solid #bbb;
+        border-top-width: 2.5pt;
+        padding: 5pt 7pt 6pt;
+      }
+      .box h2 { font-size: 8.5pt; margin-bottom: 3pt; }
+      .f { font-size: 8.5pt; margin: 2.5pt 0; }
+      .f .cap { font-size: 6.5pt; }
+      table { font-size: 7.5pt; }
+      th, td { padding: 2pt 3.5pt; }
+      li { font-size: 8pt; margin-bottom: 1.5pt; }
+      .tip, .trap { font-size: 7.5pt; padding: 2.5pt 5pt; margin: 3pt 0 1pt; }
+      @page { margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="midterm-review-guide.html" class="back-btn accent">Full Review Guide →</a>
+    <button class="back-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+  </div>
+
+  <h1>MATH 2201 — Midterm Formula Sheet</h1>
+  <p class="subtitle">Units 1–3 &nbsp;·&nbsp; vectors, lines &amp; planes, vector-valued functions, multiple integrals</p>
+
+  <div class="grid">
+
+    <!-- Vector basics -->
+    <div class="box">
+      <h2>Vector Basics</h2>
+      <div class="f center">$$ \mathbf{a} = \langle a_1,a_2,a_3\rangle = a_1\mathbf{i}+a_2\mathbf{j}+a_3\mathbf{k} $$</div>
+      <div class="f center">$$ |\mathbf{a}| = \sqrt{a_1^2+a_2^2+a_3^2} $$</div>
+      <div class="f center">$$ \hat{\mathbf{a}} = \frac{\mathbf{a}}{|\mathbf{a}|} \quad(\text{unit vector}) $$</div>
+      <div class="f center">$$ \overrightarrow{AB} = B - A $$</div>
+      <div class="f center">$$ |AB| = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2} $$</div>
+      <div class="trap">Head minus tail: \(\overrightarrow{AB} = B-A\), never \(A-B\).</div>
+    </div>
+
+    <!-- Dot product -->
+    <div class="box">
+      <h2>Dot Product → scalar</h2>
+      <div class="f center">$$ \mathbf{a}\cdot\mathbf{b} = a_1b_1+a_2b_2+a_3b_3 $$</div>
+      <div class="f center">$$ \mathbf{a}\cdot\mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos\theta $$</div>
+      <div class="f center">$$ \cos\theta = \frac{\mathbf{a}\cdot\mathbf{b}}{|\mathbf{a}||\mathbf{b}|} $$</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">Projections of a onto b</span></div>
+      <div class="f center">$$ \text{comp}_{\mathbf{b}}\mathbf{a} = \frac{\mathbf{a}\cdot\mathbf{b}}{|\mathbf{b}|} \quad(\text{scalar}) $$</div>
+      <div class="f center">$$ \text{proj}_{\mathbf{b}}\mathbf{a} = \frac{\mathbf{a}\cdot\mathbf{b}}{|\mathbf{b}|^2}\,\mathbf{b} \quad(\text{vector}) $$</div>
+      <div class="tip">\(\mathbf{a}\perp\mathbf{b} \iff \mathbf{a}\cdot\mathbf{b}=0\)</div>
+    </div>
+
+    <!-- Cross product -->
+    <div class="box">
+      <h2>Cross Product → vector</h2>
+      <div class="f center">$$ \mathbf{a}\times\mathbf{b} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \end{vmatrix} $$</div>
+      <div class="f center">$$ = (a_2b_3-a_3b_2)\mathbf{i} - (a_1b_3-a_3b_1)\mathbf{j} + (a_1b_2-a_2b_1)\mathbf{k} $$</div>
+      <div class="f center">$$ |\mathbf{a}\times\mathbf{b}| = |\mathbf{a}||\mathbf{b}|\sin\theta $$</div>
+      <hr class="sep">
+      <table>
+        <tbody>
+          <tr><td>Area, parallelogram</td><td>\(|\mathbf{a}\times\mathbf{b}|\)</td></tr>
+          <tr><td>Area, triangle \(ABC\)</td><td>\(\tfrac12|\overrightarrow{AB}\times\overrightarrow{AC}|\)</td></tr>
+          <tr><td>Normal to a surface</td><td>\(\mathbf{n}=\mathbf{a}\times\mathbf{b}\)</td></tr>
+          <tr><td>\(\mathbf{a}\parallel\mathbf{b}\)</td><td>\(\mathbf{a}\times\mathbf{b}=\mathbf{0}\)</td></tr>
+        </tbody>
+      </table>
+      <div class="trap">The \(\mathbf{j}\) term is <strong>minus</strong>.</div>
+    </div>
+
+    <!-- Triple product -->
+    <div class="box green">
+      <h2>Scalar Triple Product</h2>
+      <div class="f center">$$ \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) = \begin{vmatrix} a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3 \end{vmatrix} $$</div>
+      <div class="f center">$$ V_{\text{parallelepiped}} = \big|\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})\big| $$</div>
+      <div class="tip">Coplanar \(\iff \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) = 0\) (zero volume).</div>
+      <div class="trap">Volume takes the modulus — never negative.</div>
+    </div>
+
+    <!-- Lines -->
+    <div class="box">
+      <h2>Lines in 3-Space</h2>
+      <div class="f"><span class="cap">Vector form</span></div>
+      <div class="f center">$$ \mathbf{r} = \mathbf{a} + \lambda\mathbf{b} $$</div>
+      <div class="f"><span class="cap">Parametric</span></div>
+      <div class="f center">$$ x=a_1+\lambda b_1,\;\; y=a_2+\lambda b_2,\;\; z=a_3+\lambda b_3 $$</div>
+      <div class="f"><span class="cap">Symmetric</span></div>
+      <div class="f center">$$ \frac{x-a_1}{b_1}=\frac{y-a_2}{b_2}=\frac{z-a_3}{b_3} $$</div>
+      <div class="tip">Through \(A\) and \(B\): use \(\mathbf{a}=A\), \(\mathbf{b}=B-A\).</div>
+    </div>
+
+    <!-- Planes -->
+    <div class="box">
+      <h2>Planes</h2>
+      <div class="f"><span class="cap">Parametric</span></div>
+      <div class="f center">$$ \mathbf{r} = \mathbf{a} + s\mathbf{u} + t\mathbf{v} $$</div>
+      <div class="f"><span class="cap">Normal form</span></div>
+      <div class="f center">$$ (\mathbf{r}-\mathbf{a})\cdot\mathbf{n}=0 \;\;\Leftrightarrow\;\; \mathbf{r}\cdot\mathbf{n}=\mathbf{a}\cdot\mathbf{n} $$</div>
+      <div class="f"><span class="cap">Cartesian</span></div>
+      <div class="f center">$$ n_1x+n_2y+n_3z = d,\qquad d=\mathbf{a}\cdot\mathbf{n} $$</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">Through 3 points A, B, C</span></div>
+      <div class="f center">$$ \mathbf{n} = \overrightarrow{AB}\times\overrightarrow{AC} $$</div>
+      <div class="tip">Read \(\mathbf{n}\) straight off the coefficients of \(x,y,z\).</div>
+    </div>
+
+    <!-- Angles -->
+    <div class="box orange">
+      <h2>Angles — Cos or Sin?</h2>
+      <div class="f"><span class="cap">Plane ↔ plane · line ↔ line</span></div>
+      <div class="f center">$$ \cos\theta = \frac{|\mathbf{n_1}\cdot\mathbf{n_2}|}{|\mathbf{n_1}||\mathbf{n_2}|} $$</div>
+      <div class="f"><span class="cap">Line ↔ plane</span></div>
+      <div class="f center">$$ \sin\theta = \frac{|\mathbf{d}\cdot\mathbf{n}|}{|\mathbf{d}||\mathbf{n}|} $$</div>
+      <div class="tip">The normal sticks out of the plane, so line–plane needs the complement — sine does that flip.</div>
+      <div class="trap">Keep \(|\cdot|\) on top for the <em>acute</em> angle.</div>
+    </div>
+
+    <!-- Perp/parallel -->
+    <div class="box orange">
+      <h2>Perpendicular / Parallel</h2>
+      <table>
+        <thead><tr><th></th><th>⟂</th><th>∥</th></tr></thead>
+        <tbody>
+          <tr><td>Plane–plane</td><td>\(\mathbf{n_1}\cdot\mathbf{n_2}=0\)</td><td>\(\mathbf{n_1}=\lambda\mathbf{n_2}\)</td></tr>
+          <tr><td>Line–plane</td><td>\(\mathbf{d}=\lambda\mathbf{n}\)</td><td>\(\mathbf{d}\cdot\mathbf{n}=0\)</td></tr>
+          <tr><td>Line–line</td><td>\(\mathbf{d_1}\cdot\mathbf{d_2}=0\)</td><td>\(\mathbf{d_1}=\lambda\mathbf{d_2}\)</td></tr>
+        </tbody>
+      </table>
+      <div class="trap">Line–plane row is <strong>swapped</strong> vs the others.</div>
+    </div>
+
+    <!-- Distances & intersection -->
+    <div class="box">
+      <h2>Distance &amp; Intersection</h2>
+      <div class="f"><span class="cap">Point to plane · Ax+By+Cz = D</span></div>
+      <div class="f center">$$ \text{dist} = \frac{|Ax_1+By_1+Cz_1-D|}{\sqrt{A^2+B^2+C^2}} $$</div>
+      <div class="tip">Written \(Ax+By+Cz+d=0\) instead? Then <strong>add</strong> \(d\). Pick one form and stay in it.</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">Line meets plane</span></div>
+      <ul>
+        <li>Write line parametrically</li>
+        <li>Substitute \(x,y,z\) into the plane</li>
+        <li>Solve for \(t\), put \(t\) back in the line</li>
+      </ul>
+      <div class="tip">Horizontal plane \(z=c\): only the \(z\)-component matters.</div>
+    </div>
+
+    <!-- VVF -->
+    <div class="box green">
+      <h2>Vector-Valued Functions</h2>
+      <div class="f center">$$ \mathbf{r}(t) = x(t)\mathbf{i}+y(t)\mathbf{j}+z(t)\mathbf{k} $$</div>
+      <div class="f center">$$ \mathbf{r}'(t) = x'(t)\mathbf{i}+y'(t)\mathbf{j}+z'(t)\mathbf{k} $$</div>
+      <div class="tip">Differentiate <strong>each component separately</strong>. That's the whole rule.</div>
+      <hr class="sep">
+      <table>
+        <tbody>
+          <tr><td>Velocity</td><td>\(\mathbf{v}=\mathbf{r}'(t)\)</td></tr>
+          <tr><td>Speed</td><td>\(|\mathbf{r}'(t)|\) &nbsp;(scalar)</td></tr>
+          <tr><td>Acceleration</td><td>\(\mathbf{a}=\mathbf{r}''(t)\)</td></tr>
+          <tr><td>Unit tangent</td><td>\(\mathbf{T}=\mathbf{r}'/|\mathbf{r}'|\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Differentiation rules -->
+    <div class="box green">
+      <h2>Rules of Differentiation</h2>
+      <table>
+        <tbody>
+          <tr><td>1</td><td>\(\frac{d}{dt}\mathbf{c} = \mathbf{0}\)</td></tr>
+          <tr><td>2</td><td>\(\frac{d}{dt}(k\mathbf{r}) = k\mathbf{r}'\)</td></tr>
+          <tr><td>3</td><td>\(\frac{d}{dt}(\mathbf{r_1}+\mathbf{r_2}) = \mathbf{r_1}'+\mathbf{r_2}'\)</td></tr>
+          <tr><td>4</td><td>\(\frac{d}{dt}(\mathbf{r_1}-\mathbf{r_2}) = \mathbf{r_1}'-\mathbf{r_2}'\)</td></tr>
+          <tr><td>5</td><td>\(\frac{d}{dt}(a\mathbf{r_1}+b\mathbf{r_2}) = a\mathbf{r_1}'+b\mathbf{r_2}'\)</td></tr>
+          <tr><td>6</td><td>\(\frac{d}{dt}\big(f(t)\mathbf{r}\big) = f'\mathbf{r}+f\mathbf{r}'\)</td></tr>
+        </tbody>
+      </table>
+      <div class="f" style="font-size:0.85rem; color:#7f8c8d;">\(\mathbf{c}\) constant vector; \(a,b,k\) constants; \(f\) any function of \(t\).</div>
+    </div>
+
+    <!-- Arc length -->
+    <div class="box green">
+      <h2>Arc Length</h2>
+      <div class="f center">$$ ds = \sqrt{[x'(t)]^2+[y'(t)]^2+[z'(t)]^2}\,dt $$</div>
+      <div class="f center">$$ L = \int_a^b \sqrt{[x']^2+[y']^2+[z']^2}\;dt = \int_a^b |\mathbf{r}'(t)|\,dt $$</div>
+      <div class="tip">The integrand <strong>is</strong> the speed: differentiate → magnitude → integrate.</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">Standard results</span></div>
+      <table>
+        <tbody>
+          <tr><td>Circle \(\langle a\cos t, a\sin t\rangle\)</td><td>\(|\mathbf{r}'| = a\)</td></tr>
+          <tr><td>Helix \(\langle a\cos t, a\sin t, ct\rangle\)</td><td>\(|\mathbf{r}'| = \sqrt{a^2+c^2}\)</td></tr>
+        </tbody>
+      </table>
+      <div class="trap">Simplify with \(\sin^2+\cos^2=1\) <em>before</em> integrating — the root nearly always collapses to a constant.</div>
+      <div class="f"><span class="cap">If it doesn't collapse</span></div>
+      <div class="f center">$$ \int\!\sqrt{x^2+a^2}\,dx = \frac{x}{2}\sqrt{x^2+a^2}+\frac{a^2}{2}\ln\!\left(x+\sqrt{x^2+a^2}\right)+c $$</div>
+    </div>
+
+    <!-- Double integrals -->
+    <div class="box">
+      <h2>Double Integrals</h2>
+      <div class="f center">$$ \iint_R f(x,y)\,dA = \text{volume under } z=f(x,y) $$</div>
+      <div class="f"><span class="cap">Over a rectangle [a,b]×[c,d]</span></div>
+      <div class="f center">$$ \int_a^b\!\!\int_c^d f\,dy\,dx = \int_c^d\!\!\int_a^b f\,dx\,dy $$</div>
+      <div class="tip"><strong>Fubini:</strong> with constant limits the order doesn't matter — pick the easier one.</div>
+      <div class="f"><span class="cap">General region</span></div>
+      <div class="f center">$$ \int_a^b\!\!\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx $$</div>
+      <div class="f center">$$ \text{Area of } R = \iint_R dA $$</div>
+      <div class="trap">Outer limits are <strong>always constants</strong>. A variable left in your answer = wrong order.</div>
+    </div>
+
+    <!-- Triple integrals -->
+    <div class="box">
+      <h2>Triple Integrals</h2>
+      <div class="f center">$$ \iiint_V f(x,y,z)\,dV, \qquad dV = dx\,dy\,dz $$</div>
+      <div class="f center">$$ V = \iiint_V 1\,dV $$</div>
+      <div class="tip">Integrand \(=1\) gives the plain <strong>volume</strong> of the solid.</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">Method</span></div>
+      <ul>
+        <li>Innermost integral first</li>
+        <li>Treat the other variables as constants</li>
+        <li>Substitute limits, move outward</li>
+      </ul>
+      <div class="tip">All-constant limits on a box: the answer is just the product of the side lengths — use it to check your setup.</div>
+    </div>
+
+    <!-- Question decoder -->
+    <div class="box orange">
+      <h2>Question Decoder</h2>
+      <table>
+        <thead><tr><th>Asks for…</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>Angle between vectors</td><td>Dot, \(\cos\theta\)</td></tr>
+          <tr><td>Area (parallelogram / triangle)</td><td>Cross (halve for triangle)</td></tr>
+          <tr><td>Perpendicular vector / normal</td><td>Cross</td></tr>
+          <tr><td>Volume of parallelepiped</td><td>Triple product, \(|\cdot|\)</td></tr>
+          <tr><td>Coplanar?</td><td>Triple product \(=0\)?</td></tr>
+          <tr><td>Plane through 3 points</td><td>\(\overrightarrow{AB}\times\overrightarrow{AC}\)</td></tr>
+          <tr><td>Where line crosses plane</td><td>Substitute &amp; solve for \(t\)</td></tr>
+          <tr><td>Shortest distance to plane</td><td>Distance formula</td></tr>
+          <tr><td>Distance travelled on a path</td><td>Arc length \(\int|\mathbf{r}'|dt\)</td></tr>
+          <tr><td>How fast right now</td><td>Speed \(|\mathbf{r}'|\), no integral</td></tr>
+          <tr><td>Volume under a surface</td><td>Double integral of \(f\)</td></tr>
+          <tr><td>Volume of a solid</td><td>Triple integral of 1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Traps -->
+    <div class="box red">
+      <h2>Final Checklist</h2>
+      <ul>
+        <li>Minus sign on the \(\mathbf{j}\) term of every cross product</li>
+        <li>Modulus on volume, and inside every angle formula</li>
+        <li><strong>Sine</strong> line–plane, <strong>cosine</strong> plane–plane</li>
+        <li>\(\overrightarrow{AB}=B-A\)</li>
+        <li>\(\tfrac12\) for triangles only</li>
+        <li>Simplify \(|\mathbf{r}'(t)|\) before integrating</li>
+        <li>Inner limits belong to the inner differential</li>
+        <li>Substitute given points back into your plane</li>
+        <li>Lengths, areas, volumes are never negative</li>
+        <li>Units: m³, seconds, square units</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="btn-row no-print" style="margin-top:1.5rem;">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="midterm-review-guide.html" class="back-btn accent">Full Review Guide →</a>
+    <button class="back-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+  </div>
+
+</body>
+</html>
