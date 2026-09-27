@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polar, Cylindrical &amp; Spherical Coordinates | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.65;
+      color: #333;
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f7f6;
+    }
+    h1, h2, h3 { color: #2c3e50; line-height: 1.3; }
+    h1 {
+      font-size: 2.3rem;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 12px;
+      margin-bottom: 0.4rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 2rem; }
+    p { margin: 0.6rem 0; }
+
+    .part {
+      margin: 3rem 0 1.25rem;
+      padding: 0.9rem 1.4rem;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      scroll-margin-top: 1rem;
+    }
+    .part .badge {
+      display: inline-block;
+      background: #27ae60;
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 12px;
+      vertical-align: 4px;
+      margin-left: 10px;
+    }
+
+    .note-card {
+      background: #ffffff;
+      padding: 1.3rem 1.7rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+      border-top: 4px solid #27ae60;
+    }
+    .note-card h3 {
+      font-size: 1.25rem;
+      margin: 0 0 0.6rem;
+      color: #1e8449;
+    }
+    .label { display: block; font-weight: bold; margin: 1rem 0 0.2rem; color: #34495e; }
+    .math-block {
+      text-align: center;
+      margin: 0.9rem 0;
+      font-size: 1.08rem;
+      overflow-x: auto;
+      padding: 5px 0;
+    }
+    ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.35rem; }
+
+    .key {
+      background: #e8f8f0;
+      border-left: 4px solid #27ae60;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-weight: bold;
+    }
+    .warn {
+      background: #fdecea;
+      border-left: 4px solid #e74c3c;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-size: 0.95rem;
+    }
+    .example {
+      background: #eef6fb;
+      border-left: 4px solid #3498db;
+      padding: 0.8rem 1.1rem 1rem;
+      border-radius: 5px;
+      margin: 1.1rem 0 0.4rem;
+    }
+    .example .etitle {
+      font-weight: bold;
+      color: #21618c;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .from-slide {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #16a085;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: 1px;
+    }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.93rem;
+      margin: 0.5rem 0;
+    }
+    th, td {
+      border: 1px solid #dfe6e9;
+      padding: 0.5rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #2c3e50; color: #fff; font-weight: bold; }
+    tbody tr:nth-child(even) { background: #f8fafb; }
+
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      background: #27ae60;
+      color: #fff;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    figure.diagram {
+      margin: 1.1rem 0 0.6rem;
+      text-align: center;
+    }
+    figure.diagram svg {
+      width: 100%;
+      max-width: 460px;
+      height: auto;
+      background: #fbfcfc;
+      border: 1px solid #e5e8e8;
+      border-radius: 8px;
+    }
+    figure.diagram figcaption {
+      font-size: 0.88rem;
+      color: #7f8c8d;
+      margin-top: 0.4rem;
+    }
+    svg text { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #2c3e50; }
+    svg .lbl-sm { font-size: 11.5px; }
+    svg .greek { font-family: 'Times New Roman', serif; font-style: italic; font-size: 17px; font-weight: bold; }
+
+    .toc {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.2rem 1.7rem 1.4rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #f37021;
+    }
+    .toc h2 { font-size: 1.15rem; margin: 0 0 0.6rem; }
+    .toc ol { padding-left: 1.3rem; margin: 0; }
+    .toc a { color: #1e8449; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .sub { color: #7f8c8d; font-size: 0.88rem; }
+
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
+    .back-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #27ae60; }
+    .back-btn.accent:hover { background-color: #1e8449; }
+    .back-btn.orange { background-color: #f37021; }
+    .back-btn.orange:hover { background-color: #d35400; }
+
+    /* Long inline formulas scroll inside their box rather than widening the page */
+    .answer, .note, .prompt, .key, .warn, .example, td { overflow-x: auto; }
+
+    /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
+    mjx-container { position: relative; }
+    mjx-assistive-mml { max-width: 100%; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.7rem; }
+      .part { font-size: 1.2rem; padding: 0.75rem 1rem; }
+      .note-card { padding: 1rem 1.1rem 1.2rem; }
+      .math-block { font-size: 0.86rem; }
+      .example { padding: 0.7rem 0.8rem 0.85rem; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-coordinate-systems-practice.html" class="back-btn accent">Worksheet Solutions →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+  <h1>Polar, Cylindrical &amp; Spherical Coordinates</h1>
+  <p class="subtitle">MATH-2201 Finals &nbsp;·&nbsp; Unit 5 &nbsp;·&nbsp; conversions, the Jacobian, and integrating in curved coordinates</p>
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#p1">Why Change Coordinates?</a></li>
+      <li><a href="#p2">Polar Coordinates</a> <span class="sub">— points and equations</span></li>
+      <li><a href="#p3">The Jacobian</a> <span class="sub">— where the extra \(r\) comes from</span></li>
+      <li><a href="#p4">Double Integrals in Polar</a></li>
+      <li><a href="#p5">Cylindrical Coordinates</a></li>
+      <li><a href="#p6">Spherical Coordinates</a></li>
+      <li><a href="#p7">Which System? + Jacobian Summary</a></li>
+      <li><a href="#p8">Exam Strategy &amp; Common Mistakes</a></li>
+    </ol>
+  </div>
+
+  <div class="note-card" style="border-top-color:#16a085;">
+    <h3 style="color:#117864;">What these notes are built from</h3>
+    <p>
+      Everything below comes from your <strong>Unit 5 lecture slides</strong>. Three slide exercises and
+      two slide problems stopped at the integral set-up or one step short of the answer — they're all
+      carried through to a final number here, tagged <span class="from-slide">from slides</span>. Full
+      solutions to the 14-question practice worksheet are on the
+      <a href="final-coordinate-systems-practice.html">worksheet solutions page</a>.
+    </p>
+  </div>
+
+  <!-- =============== PART 1 =============== -->
+  <h2 class="part" id="p1">Part 1 — Why Change Coordinates? <span class="badge">Unit 5</span></h2>
+
+  <div class="note-card">
+    <h3>A Coordinate System Is a Language for Locating Points <span class="from-slide">from slides</span></h3>
+    <p>
+      The same region can have ugly limits in one system and constant limits in another. A disk
+      \(x^2 + y^2 \le a^2\) needs \(y\) from \(-\sqrt{a^2 - x^2}\) to \(\sqrt{a^2 - x^2}\) in Cartesian
+      coordinates — but in polar it's simply \(0 \le r \le a\), \(0 \le \theta \le 2\pi\).
+    </p>
+    <div class="key">"Good coordinates don't change the problem — they make the problem easier to see." — Unit 5 slides</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>System</th><th>Dimensions</th><th>Coordinates</th><th>Built for</th></tr></thead>
+        <tbody>
+          <tr><td>Polar</td><td>2D</td><td>\((r, \theta)\)</td><td>Circles, disks, sectors, rotational patterns</td></tr>
+          <tr><td>Cylindrical</td><td>3D</td><td>\((r, \theta, z)\)</td><td>Cylinders, cones, paraboloids — symmetry about the \(z\)-axis</td></tr>
+          <tr><td>Spherical</td><td>3D</td><td>\((\rho, \theta, \phi)\)</td><td>Spheres, balls, cones from the origin</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- =============== PART 2 =============== -->
+  <h2 class="part" id="p2">Part 2 — Polar Coordinates <span class="badge">Unit 5</span></h2>
+
+  <div class="note-card">
+    <h3>Definition &amp; Conversions <span class="from-slide">from slides</span></h3>
+    <p>
+      A point is located by \(r\), its <strong>distance from the origin</strong> (the pole), and \(\theta\),
+      the <strong>angle</strong> measured counterclockwise from the positive \(x\)-axis.
+    </p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 360 250" role="img" aria-label="Polar coordinates: a point P at distance r from the origin and angle theta from the positive x-axis, with horizontal leg x equals r cos theta and vertical leg y equals r sin theta.">
+        <line x1="20" y1="210" x2="345" y2="210" stroke="#b2bec3" stroke-width="1.3"/>
+        <line x1="60" y1="20" x2="60" y2="240" stroke="#b2bec3" stroke-width="1.3"/>
+        <text x="338" y="228" class="lbl-sm">x</text>
+        <text x="68" y="28" class="lbl-sm">y</text>
+        <line x1="60" y1="210" x2="213.2" y2="81.4" stroke="#2980b9" stroke-width="2.6"/>
+        <line x1="213.2" y1="81.4" x2="213.2" y2="210" stroke="#27ae60" stroke-width="1.8" stroke-dasharray="5 4"/>
+        <line x1="60" y1="210" x2="213.2" y2="210" stroke="#27ae60" stroke-width="2.4"/>
+        <path d="M105,210 A45,45 0 0 0 94.5,181.1" fill="none" stroke="#e67e22" stroke-width="2"/>
+        <text x="112" y="200" class="greek" style="fill:#d35400">θ</text>
+        <text x="128" y="136" class="greek" style="fill:#2471a3">r</text>
+        <text x="220" y="152" class="lbl-sm" style="fill:#1e8449;font-weight:bold">y = r sin θ</text>
+        <text x="136" y="228" text-anchor="middle" class="lbl-sm" style="fill:#1e8449;font-weight:bold">x = r cos θ</text>
+        <circle cx="213.2" cy="81.4" r="5" fill="#2c3e50"/>
+        <text x="221" y="76">P(r, θ) = (x, y)</text>
+        <text x="48" y="226" class="lbl-sm">O</text>
+      </svg>
+      <figcaption>The right triangle gives every conversion formula.</figcaption>
+    </figure>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Polar → Cartesian</th><th>Cartesian → Polar</th></tr></thead>
+        <tbody>
+          <tr><td>\(x = r\cos\theta\)</td><td>\(r = \sqrt{x^2 + y^2}\)</td></tr>
+          <tr><td>\(y = r\sin\theta\)</td><td>\(\tan\theta = \dfrac{y}{x}\) &nbsp;(then fix the quadrant)</td></tr>
+          <tr><td colspan="2" style="text-align:center">\(x^2 + y^2 = r^2\) &nbsp;— the identity you'll use most</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <span class="label">Getting \(\theta\) into the right quadrant</span>
+    <p>\(\tan^{-1}\) only ever returns angles between \(-\tfrac{\pi}{2}\) and \(\tfrac{\pi}{2}\), so it can't tell \((1,1)\) from \((-1,-1)\). The safe method: find the reference angle \(\alpha = \tan^{-1}\left|\tfrac{y}{x}\right|\), then place it:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Quadrant</th><th>Signs</th><th>\(\theta\)</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td>\(x &gt; 0,\ y &gt; 0\)</td><td>\(\alpha\)</td></tr>
+          <tr><td>II</td><td>\(x &lt; 0,\ y &gt; 0\)</td><td>\(\pi - \alpha\)</td></tr>
+          <tr><td>III</td><td>\(x &lt; 0,\ y &lt; 0\)</td><td>\(\pi + \alpha\)</td></tr>
+          <tr><td>IV</td><td>\(x &gt; 0,\ y &lt; 0\)</td><td>\(2\pi - \alpha\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="example">
+      <span class="etitle">Quick example</span>
+      <p>Convert \((-1, \sqrt3)\) to polar. \(r = \sqrt{1 + 3} = 2\). Reference angle \(\alpha = \tan^{-1}\sqrt3 = \tfrac{\pi}{3}\).</p>
+      <p>\(x &lt; 0\), \(y &gt; 0\) → Quadrant II → \(\theta = \pi - \tfrac{\pi}{3} = \tfrac{2\pi}{3}\). Answer: \(\left(2, \tfrac{2\pi}{3}\right)\).</p>
+    </div>
+    <div class="warn">⚠ Typing \(\tan^{-1}(\sqrt3 / -1)\) into a calculator gives \(-\tfrac{\pi}{3}\) — a point in Quadrant IV. Always sketch where the point is first.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Converting Equations</h3>
+    <p>Substitute \(x = r\cos\theta\), \(y = r\sin\theta\), and \(x^2 + y^2 = r^2\), then simplify.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Cartesian</th><th>Polar</th><th>Curve</th></tr></thead>
+        <tbody>
+          <tr><td>\(x^2 + y^2 = a^2\)</td><td>\(r = a\)</td><td>Circle, radius \(a\), centred at origin</td></tr>
+          <tr><td>\(y = x\tan\alpha\)</td><td>\(\theta = \alpha\)</td><td>Line through the origin</td></tr>
+          <tr><td>\(x^2 + y^2 = 2ax\)</td><td>\(r = 2a\cos\theta\)</td><td>Circle, radius \(a\), centre \((a, 0)\)</td></tr>
+          <tr><td>\(x^2 + y^2 = 2ay\)</td><td>\(r = 2a\sin\theta\)</td><td>Circle, radius \(a\), centre \((0, a)\)</td></tr>
+          <tr><td>—</td><td>\(r = a(1 + \cos\theta)\)</td><td>Cardioid</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Worked example — Exercise 02 <span class="from-slide">from slides</span></span>
+      <p>Convert \((x^2 + y^2 - 2x)^2 = 4(x^2 + y^2)\) to polar.</p>
+      <div class="math-block">$$ (r^2 - 2r\cos\theta)^2 = 4r^2 $$</div>
+      <div class="math-block">$$ r^2(r - 2\cos\theta)^2 = 4r^2 $$</div>
+      <div class="math-block">$$ \;\Longrightarrow\; (r - 2\cos\theta)^2 = 4 $$</div>
+      <div class="math-block">$$ r - 2\cos\theta = 2 \;\Longrightarrow\; r = 2(1 + \cos\theta) $$</div>
+      <p>A <strong>cardioid</strong>. (Its area is worked out in Part 4.)</p>
+    </div>
+  </div>
+
+  <!-- =============== PART 3 =============== -->
+  <h2 class="part" id="p3">Part 3 — The Jacobian <span class="badge">Unit 5</span></h2>
+
+  <div class="note-card">
+    <h3>What It Is and Why You Need It <span class="from-slide">from slides</span></h3>
+    <p>
+      The <strong>Jacobian</strong> tells you how much a tiny area (or volume) gets <strong>stretched or
+      compressed</strong> when you change coordinate systems. A small polar patch \(dr \times d\theta\) is not
+      a square — its width grows with \(r\) — so \(dA\) can't just be \(dr\,d\theta\).
+    </p>
+    <div class="math-block">$$ J = \frac{\partial(x, y)}{\partial(u, v)} = \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[2mm] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} $$</div>
+    <div class="math-block">$$ dx\,dy = |J|\,du\,dv $$</div>
+    <div class="warn">⚠ Use the <strong>absolute value</strong> \(|J|\). Area can't be negative, but a determinant can.</div>
+
+    <span class="label">Derivation for polar — the most important one</span>
+    <p>With \(x = r\cos\theta\), \(y = r\sin\theta\):</p>
+    <div class="math-block">$$ \frac{\partial x}{\partial r} = \cos\theta,\qquad \frac{\partial x}{\partial \theta} = -r\sin\theta $$</div>
+    <div class="math-block">$$ \frac{\partial y}{\partial r} = \sin\theta,\qquad \frac{\partial y}{\partial \theta} = r\cos\theta $$</div>
+    <div class="math-block">$$ J = \begin{vmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta \end{vmatrix} = r\cos^2\theta + r\sin^2\theta = r $$</div>
+    <div class="key">\(dA = dx\,dy = r\,dr\,d\theta\). That extra \(r\) is the Jacobian — never drop it.</div>
+
+    <div class="example">
+      <span class="etitle">Worked example — a non-polar substitution <span class="from-slide">from slides</span></span>
+      <p>Find the Jacobian when \(x = uv\), \(y = \dfrac{u}{v}\).</p>
+      <div class="math-block">$$ \frac{\partial x}{\partial u} = v,\qquad \frac{\partial x}{\partial v} = u $$</div>
+      <div class="math-block">$$ \frac{\partial y}{\partial u} = \frac{1}{v},\qquad \frac{\partial y}{\partial v} = -\frac{u}{v^2} $$</div>
+      <div class="math-block">$$ J = \begin{vmatrix} v & u \\ \frac1v & -\frac{u}{v^2} \end{vmatrix} $$</div>
+      <div class="math-block">$$ = v\left(-\frac{u}{v^2}\right) - u\left(\frac1v\right) $$</div>
+      <div class="math-block">$$ = -\frac{u}{v} - \frac{u}{v} = -\frac{2u}{v} $$</div>
+      <div class="math-block">$$ dx\,dy = \left|-\frac{2u}{v}\right| du\,dv $$</div>
+      <div class="math-block">$$ = \frac{2u}{v}\,du\,dv \quad (u, v &gt; 0) $$</div>
+    </div>
+  </div>
+
+  <!-- =============== PART 4 =============== -->
+  <h2 class="part" id="p4">Part 4 — Double Integrals in Polar <span class="badge">Unit 5</span></h2>
+
+  <div class="note-card">
+    <h3>The Conversion</h3>
+    <div class="math-block">$$ \iint_R f(x, y)\,dA $$</div>
+    <div class="math-block">$$ = \int_{\alpha}^{\beta}\!\!\int_{r_1(\theta)}^{r_2(\theta)} f(r\cos\theta,\, r\sin\theta)\; r\,dr\,d\theta $$</div>
+    <span class="label">Area of a region</span>
+    <div class="math-block">$$ A = \iint_R r\,dr\,d\theta $$</div>
+    <div class="math-block">$$ \text{and if } 0 \le r \le f(\theta): \quad A = \frac12\int_{\alpha}^{\beta} [f(\theta)]^2\,d\theta $$</div>
+
+    <span class="label">The method</span>
+    <ol class="steps">
+      <li>Sketch the region; convert its boundary curves to polar</li>
+      <li>\(r\) limits: from where a ray from the origin <em>enters</em> the region to where it <em>leaves</em></li>
+      <li>\(\theta\) limits: the range of angles that sweep out the whole region</li>
+      <li>Replace \(dA\) with \(r\,dr\,d\theta\) — don't forget the \(r\)</li>
+      <li>Integrate \(r\) first, then \(\theta\)</li>
+    </ol>
+
+    <span class="label">Trig integrals you'll need</span>
+    <div class="math-block">$$ \cos^2\theta = \frac{1 + \cos 2\theta}{2} $$</div>
+    <div class="math-block">$$ \sin^2\theta = \frac{1 - \cos 2\theta}{2} $$</div>
+    <div class="math-block">$$ \int_0^{2\pi} \cos^2\theta\,d\theta = \int_0^{2\pi} \sin^2\theta\,d\theta = \pi $$</div>
+    <div class="math-block">$$ \int_{-\pi/2}^{\pi/2} \cos^2\theta\,d\theta = \frac{\pi}{2} $$</div>
+    <div class="math-block">$$ \int_0^{2\pi}\cos\theta\,d\theta = 0 $$</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Worked Examples</h3>
+
+    <div class="example">
+      <span class="etitle">Example 1 — area of a circle, two ways <span class="from-slide">from slides</span></span>
+      <p>Region: \(x^2 + y^2 \le a^2\).</p>
+      <p><strong>Cartesian:</strong> \(\displaystyle A = \int_{-a}^{a}\int_{-\sqrt{a^2-x^2}}^{\sqrt{a^2-x^2}} dy\,dx\) — correct, but the integral needs a trig substitution.</p>
+      <p><strong>Polar:</strong> constant limits, easy integral:</p>
+      <div class="math-block">$$ A = \int_0^{2\pi}\!\!\int_0^{a} r\,dr\,d\theta = \int_0^{2\pi} \frac{a^2}{2}\,d\theta = \pi a^2 $$</div>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Example 2 — an off-centre circle (Exercise 01) <span class="from-slide">from slides</span></span>
+      <p>Evaluate \(\iint_R 1\,dA\) where \(R: x^2 + y^2 \le 6x\).</p>
+      <p><strong>Convert:</strong> \(r^2 \le 6r\cos\theta \Rightarrow r \le 6\cos\theta\). Since \(r \ge 0\), we need \(\cos\theta \ge 0\), so \(-\tfrac{\pi}{2} \le \theta \le \tfrac{\pi}{2}\).</p>
+      <div class="math-block">$$ \iint_R 1\,dA = \int_{-\pi/2}^{\pi/2}\!\!\int_0^{6\cos\theta} r\,dr\,d\theta $$</div>
+      <div class="math-block">$$ = \int_{-\pi/2}^{\pi/2} \frac{36\cos^2\theta}{2}\,d\theta $$</div>
+      <div class="math-block">$$ = 18\int_{-\pi/2}^{\pi/2}\cos^2\theta\,d\theta = 18 \cdot \frac{\pi}{2} = 9\pi $$</div>
+      <div class="key">Check: \(x^2 + y^2 = 6x\) is \((x-3)^2 + y^2 = 9\), a circle of radius 3, so its area is \(9\pi\). ✓</div>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Example 3 — area of the cardioid (Exercise 02) <span class="from-slide">from slides</span></span>
+      <p>Area enclosed by \(r = 2(1 + \cos\theta)\), from Part 2.</p>
+      <div class="math-block">$$ A = \frac12\int_0^{2\pi} [2(1 + \cos\theta)]^2\,d\theta $$</div>
+      <div class="math-block">$$ = 2\int_0^{2\pi} \left(1 + 2\cos\theta + \cos^2\theta\right) d\theta $$</div>
+      <div class="math-block">$$ = 2\,\big(2\pi + 0 + \pi\big) = 6\pi $$</div>
+    </div>
+
+    <div class="warn">
+      ⚠ <strong>The off-centre circle trap.</strong> For \(r = 2a\cos\theta\) the whole circle is traced once as
+      \(\theta\) runs from \(-\tfrac{\pi}{2}\) to \(\tfrac{\pi}{2}\). Using \(0\) to \(2\pi\) traces it
+      <em>twice</em> and doubles your answer. For \(r = 2a\sin\theta\), use \(0 \le \theta \le \pi\).
+    </div>
+  </div>
+
+  <!-- =============== PART 5 =============== -->
+  <h2 class="part" id="p5">Part 5 — Cylindrical Coordinates <span class="badge">Unit 5</span></h2>
+
+  <div class="note-card">
+    <h3>Polar in the \(xy\)-Plane, Plus a Height <span class="from-slide">from slides</span></h3>
+    <p>A point is \((r, \theta, z)\), where</p>
+    <ul>
+      <li>\(r\) = perpendicular distance from the <strong>\(z\)-axis</strong></li>
+      <li>\(\theta\) = angle counterclockwise from the positive \(x\)-axis, in the \(xy\)-plane</li>
+      <li>\(z\) = height above (or below) the \(xy\)-plane — unchanged from Cartesian</li>
+    </ul>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 440 320" role="img" aria-label="Three-dimensional point P with its projection Q on the xy-plane. Cylindrical coordinates: r is the distance from O to Q, theta is the angle from the x-axis to OQ, and z is the height QP. Spherical coordinates: rho is the distance OP and phi is the angle from the positive z-axis down to OP.">
+        <line x1="160" y1="245" x2="51.5" y2="329" stroke="#95a5a6" stroke-width="1.4"/>
+        <line x1="160" y1="245" x2="430" y2="245" stroke="#95a5a6" stroke-width="1.4"/>
+        <line x1="160" y1="245" x2="160" y2="20" stroke="#95a5a6" stroke-width="1.4"/>
+        <text x="58" y="316" class="lbl-sm">x</text>
+        <text x="424" y="237" class="lbl-sm">y</text>
+        <text x="170" y="26" class="lbl-sm">z</text>
+        <line x1="160" y1="245" x2="241.2" y2="275.9" stroke="#16a085" stroke-width="2.4" stroke-dasharray="6 4"/>
+        <line x1="241.2" y1="275.9" x2="241.2" y2="123.6" stroke="#2980b9" stroke-width="2.2" stroke-dasharray="6 4"/>
+        <path d="M241.2,265.9 L231.8,262.4 L231.8,272.4" fill="none" stroke="#7f8c8d" stroke-width="1"/>
+        <line x1="160" y1="245" x2="241.2" y2="123.6" stroke="#c0392b" stroke-width="2.8"/>
+        <path d="M125.9,271.4 L128.4,271.4 L131.0,271.3 L133.6,271.2 L136.3,271.0 L139.1,270.7 L141.8,270.4 L144.7,270.1 L147.5,269.7 L150.4,269.3 L153.3,268.8 L156.2,268.2 L159.1,267.6 L162.0,267.0 L164.9,266.3 L167.8,265.6 L170.7,264.8 L173.6,264.0 L176.4,263.2 L179.2,262.3 L182.0,261.4 L184.7,260.4 L187.4,259.4 L190.0,258.4 L192.6,257.4" fill="none" stroke="#8e44ad" stroke-width="2.2"/>
+        <path d="M160.0,185.0 L161.1,185.4 L162.2,185.9 L163.2,186.5 L164.3,187.1 L165.4,187.8 L166.5,188.5 L167.5,189.2 L168.6,190.1 L169.6,190.9 L170.7,191.8 L171.7,192.8 L172.7,193.8 L173.7,194.9 L174.7,196.0 L175.7,197.2 L176.7,198.4 L177.6,199.6 L178.6,200.9 L179.5,202.2 L180.4,203.6 L181.2,205.0 L182.1,206.5 L182.9,207.9 L183.8,209.5" fill="none" stroke="#e67e22" stroke-width="2.2"/>
+        <text x="158" y="293" text-anchor="middle" class="greek" style="fill:#8e44ad">θ</text>
+        <text x="171" y="176" class="greek" style="fill:#d35400">φ</text>
+        <text x="210" y="178" class="greek" style="fill:#c0392b">ρ</text>
+        <text x="249" y="205" class="greek" style="fill:#2471a3">z</text>
+        <text x="204" y="285" text-anchor="middle" class="greek" style="fill:#117864">r</text>
+        <circle cx="241.2" cy="123.6" r="5" fill="#2c3e50"/>
+        <circle cx="241.2" cy="275.9" r="4" fill="#16a085"/>
+        <text x="250" y="120">P</text>
+        <text x="250" y="292" class="lbl-sm">Q (shadow of P)</text>
+        <text x="152" y="240" text-anchor="end" class="lbl-sm">O</text>
+      </svg>
+      <figcaption>Cylindrical uses \((r, \theta, z)\); spherical uses \((\rho, \theta, \phi)\) — both share \(\theta\). The right triangle \(O\)–\(Q\)–\(P\) gives \(r = \rho\sin\phi\) and \(z = \rho\cos\phi\).</figcaption>
+    </figure>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Cylindrical → Cartesian</th><th>Cartesian → Cylindrical</th></tr></thead>
+        <tbody>
+          <tr><td>\(x = r\cos\theta\)</td><td>\(r = \sqrt{x^2 + y^2}\)</td></tr>
+          <tr><td>\(y = r\sin\theta\)</td><td>\(\theta = \tan^{-1}\dfrac{y}{x}\) (fix the quadrant)</td></tr>
+          <tr><td>\(z = z\)</td><td>\(z = z\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <span class="label">Common surfaces</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Cylindrical equation</th><th>Cartesian</th><th>Surface</th></tr></thead>
+        <tbody>
+          <tr><td>\(r = a\)</td><td>\(x^2 + y^2 = a^2\)</td><td>Cylinder of radius \(a\) around the \(z\)-axis</td></tr>
+          <tr><td>\(\theta = \alpha\)</td><td>—</td><td>Vertical half-plane</td></tr>
+          <tr><td>\(z = c\)</td><td>\(z = c\)</td><td>Horizontal plane</td></tr>
+          <tr><td>\(z = r^2\)</td><td>\(z = x^2 + y^2\)</td><td>Paraboloid</td></tr>
+          <tr><td>\(z = r\)</td><td>\(z = \sqrt{x^2 + y^2}\)</td><td>Cone</td></tr>
+          <tr><td>\(r^2 + z^2 = a^2\)</td><td>\(x^2 + y^2 + z^2 = a^2\)</td><td>Sphere</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>The Cylindrical Jacobian <span class="from-slide">from slides</span></h3>
+    <div class="math-block">$$ J = \frac{\partial(x, y, z)}{\partial(r, \theta, z)} = \begin{vmatrix} \cos\theta & -r\sin\theta & 0 \\ \sin\theta & r\cos\theta & 0 \\ 0 & 0 & 1 \end{vmatrix} $$</div>
+    <div class="math-block">$$ = r\cos^2\theta + r\sin^2\theta = r $$</div>
+    <div class="key">\(dV = dx\,dy\,dz = r\,dz\,dr\,d\theta\) — the same extra \(r\) as polar, because \(z\) doesn't stretch anything.</div>
+
+    <span class="label">The method</span>
+    <ol class="steps">
+      <li>\(z\) limits first: from the bottom surface to the top surface, written in terms of \(r\) (and \(\theta\))</li>
+      <li>Then \(r\) and \(\theta\): exactly the polar limits of the region's shadow on the \(xy\)-plane</li>
+      <li>Integrand gets the extra factor \(r\)</li>
+    </ol>
+  </div>
+
+  <div class="note-card">
+    <h3>Worked Examples</h3>
+
+    <div class="example">
+      <span class="etitle">Example 1 — a cylinder <span class="from-slide">from slides</span></span>
+      <p>Volume of \(x^2 + y^2 \le 9\), \(0 \le z \le 4\): \(0 \le r \le 3\), \(0 \le \theta \le 2\pi\), \(0 \le z \le 4\).</p>
+      <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^3\!\!\int_0^4 r\,dz\,dr\,d\theta $$</div>
+      <div class="math-block">$$ = \int_0^{2\pi}\!\!\int_0^3 4r\,dr\,d\theta = \int_0^{2\pi} 18\,d\theta = 36\pi $$</div>
+      <div class="key">Check: \(\pi r^2 h = \pi(9)(4) = 36\pi\). ✓</div>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Example 2 — under a paraboloid <span class="from-slide">from slides</span></span>
+      <p>Volume enclosed by \(z = x^2 + y^2\) and the cylinder \(x^2 + y^2 = 4\) (above the \(xy\)-plane).</p>
+      <p>Convert: \(z = r^2\) and \(r = 2\). Limits: \(0 \le z \le r^2\), \(0 \le r \le 2\), \(0 \le \theta \le 2\pi\).</p>
+      <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^2\!\!\int_0^{r^2} r\,dz\,dr\,d\theta $$</div>
+      <div class="math-block">$$ = \int_0^{2\pi}\!\!\int_0^2 r^3\,dr\,d\theta = \int_0^{2\pi} 4\,d\theta = 8\pi $$</div>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Example 3 — an off-centre cylinder <span class="from-slide">from slides</span></span>
+      <p>Volume inside \(x^2 + y^2 \le 4x\), between \(z = 0\) and \(z = 3\).</p>
+      <p>Convert: \(r \le 4\cos\theta\), with \(-\tfrac{\pi}{2} \le \theta \le \tfrac{\pi}{2}\).</p>
+      <div class="math-block">$$ V = \int_{-\pi/2}^{\pi/2}\!\!\int_0^{4\cos\theta}\!\!\int_0^3 r\,dz\,dr\,d\theta $$</div>
+      <div class="math-block">$$ = 3\int_{-\pi/2}^{\pi/2}\!\!\int_0^{4\cos\theta} r\,dr\,d\theta $$</div>
+      <div class="math-block">$$ = \frac32\int_{-\pi/2}^{\pi/2} 16\cos^2\theta\,d\theta = 24 \cdot \frac{\pi}{2} = 12\pi $$</div>
+      <div class="key">Check: the base is a circle of radius 2 (area \(4\pi\)) and the height is 3, so \(V = 12\pi\). ✓</div>
+    </div>
+  </div>
+
+  <!-- =============== PART 6 =============== -->
+  <h2 class="part" id="p6">Part 6 — Spherical Coordinates <span class="badge">Unit 5</span></h2>
+
+  <div class="note-card">
+    <h3>One Distance and Two Angles <span class="from-slide">from slides</span></h3>
+    <p>A point is \(P(\rho, \theta, \phi)\), where</p>
+    <ul>
+      <li>\(\rho\) = distance from the <strong>origin</strong> — \(\rho = \sqrt{x^2 + y^2 + z^2}\)</li>
+      <li>\(\theta\) = azimuthal angle in the \(xy\)-plane, from the positive \(x\)-axis (same \(\theta\) as polar)</li>
+      <li>\(\phi\) = polar angle measured <strong>down from the positive \(z\)-axis</strong></li>
+    </ul>
+    <div class="math-block">$$ \rho \ge 0, \qquad 0 \le \theta \le 2\pi, \qquad 0 \le \phi \le \pi $$</div>
+    <div class="warn">⚠ \(\phi\) only goes to \(\pi\), not \(2\pi\). \(\phi = 0\) is straight up the \(z\)-axis, \(\phi = \tfrac{\pi}{2}\) is the \(xy\)-plane, \(\phi = \pi\) is straight down. Together with \(\theta\) going all the way round, that covers every direction exactly once.</div>
+
+    <span class="label">Deriving the conversions (see the 3D diagram in Part 5)</span>
+    <p>In the right triangle \(O\)–\(Q\)–\(P\), the hypotenuse is \(\rho\) and the angle at the top is \(\phi\), so</p>
+    <div class="math-block">$$ r = \rho\sin\phi, \qquad z = \rho\cos\phi $$</div>
+    <p>Then substitute \(r\) into \(x = r\cos\theta\), \(y = r\sin\theta\):</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Spherical → Cartesian</th><th>Cartesian → Spherical</th></tr></thead>
+        <tbody>
+          <tr><td>\(x = \rho\sin\phi\cos\theta\)</td><td>\(\rho = \sqrt{x^2 + y^2 + z^2}\)</td></tr>
+          <tr><td>\(y = \rho\sin\phi\sin\theta\)</td><td>\(\theta = \tan^{-1}\dfrac{y}{x}\) (fix the quadrant)</td></tr>
+          <tr><td>\(z = \rho\cos\phi\)</td><td>\(\phi = \cos^{-1}\dfrac{z}{\rho}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">\(\phi = \cos^{-1}(z/\rho)\) never needs a quadrant fix: \(\cos^{-1}\) returns exactly the range \(0\) to \(\pi\) that \(\phi\) lives in.</div>
+
+    <span class="label">Common surfaces</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Spherical equation</th><th>Surface</th></tr></thead>
+        <tbody>
+          <tr><td>\(\rho = a\)</td><td>Sphere of radius \(a\), centred at the origin</td></tr>
+          <tr><td>\(\phi = \alpha\)</td><td>Cone with vertex at the origin (e.g. \(\phi = \tfrac{\pi}{4}\) is \(z = \sqrt{x^2 + y^2}\))</td></tr>
+          <tr><td>\(\phi = \tfrac{\pi}{2}\)</td><td>The \(xy\)-plane</td></tr>
+          <tr><td>\(\theta = \alpha\)</td><td>Vertical half-plane</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>The Spherical Jacobian <span class="from-slide">from slides</span></h3>
+    <div class="math-block">$$ J = \frac{\partial(x, y, z)}{\partial(\rho, \phi, \theta)} = \begin{vmatrix} \sin\phi\cos\theta & \rho\cos\phi\cos\theta & -\rho\sin\phi\sin\theta \\ \sin\phi\sin\theta & \rho\cos\phi\sin\theta & \rho\sin\phi\cos\theta \\ \cos\phi & -\rho\sin\phi & 0 \end{vmatrix} $$</div>
+    <div class="math-block">$$ |J| = \rho^2\sin\phi $$</div>
+    <div class="key">\(dV = \rho^2\sin\phi\;d\rho\,d\phi\,d\theta\). Memorise this one — deriving it in the exam takes too long.</div>
+
+    <div class="example">
+      <span class="etitle">Worked example — volume of a ball <span class="from-slide">from slides</span></span>
+      <p>Volume of \(x^2 + y^2 + z^2 \le a^2\): \(0 \le \rho \le a\), \(0 \le \phi \le \pi\), \(0 \le \theta \le 2\pi\).</p>
+      <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^{\pi}\!\!\int_0^{a} \rho^2\sin\phi\;d\rho\,d\phi\,d\theta $$</div>
+      <p>All limits are constants and the integrand factors, so it splits into three separate integrals:</p>
+      <div class="math-block">$$ \int_0^{a}\rho^2\,d\rho = \frac{a^3}{3} $$</div>
+      <div class="math-block">$$ \int_0^{\pi}\sin\phi\,d\phi = \big[-\cos\phi\big]_0^{\pi} = 2 $$</div>
+      <div class="math-block">$$ \int_0^{2\pi}d\theta = 2\pi $$</div>
+      <div class="math-block">$$ V = \frac{a^3}{3}\cdot 2 \cdot 2\pi = \frac{4}{3}\pi a^3 \;\checkmark $$</div>
+    </div>
+    <div class="key">Half the ball (above the \(xy\)-plane) just changes \(\phi\) to \(0 \le \phi \le \tfrac{\pi}{2}\), which makes \(\int\sin\phi\,d\phi = 1\) instead of 2 — exactly half the volume.</div>
+  </div>
+
+  <!-- =============== PART 7 =============== -->
+  <h2 class="part" id="p7">Part 7 — Which System? + Jacobian Summary</h2>
+
+  <div class="note-card" style="border-top-color:#f37021;">
+    <h3 style="color:#d35400;">Choosing the right coordinates</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>If you see…</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>Disk, circle, ring, sector; or \(x^2 + y^2\) in the integrand</td><td>Polar</td></tr>
+          <tr><td>Solid with a circular cross-section around the \(z\)-axis — cylinder, paraboloid, cone with flat top</td><td>Cylindrical</td></tr>
+          <tr><td>Ball, hemisphere, spherical shell; or \(x^2 + y^2 + z^2\) in the integrand</td><td>Spherical</td></tr>
+          <tr><td>Box, or a region bounded by flat planes and lines</td><td>Stay Cartesian</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Every Area and Volume Element</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>System</th><th>Coordinates</th><th>Element</th><th>Jacobian</th></tr></thead>
+        <tbody>
+          <tr><td>Cartesian (2D)</td><td>\((x, y)\)</td><td>\(dA = dx\,dy\)</td><td>\(1\)</td></tr>
+          <tr><td>Polar</td><td>\((r, \theta)\)</td><td>\(dA = r\,dr\,d\theta\)</td><td>\(r\)</td></tr>
+          <tr><td>Cartesian (3D)</td><td>\((x, y, z)\)</td><td>\(dV = dx\,dy\,dz\)</td><td>\(1\)</td></tr>
+          <tr><td>Cylindrical</td><td>\((r, \theta, z)\)</td><td>\(dV = r\,dz\,dr\,d\theta\)</td><td>\(r\)</td></tr>
+          <tr><td>Spherical</td><td>\((\rho, \theta, \phi)\)</td><td>\(dV = \rho^2\sin\phi\,d\rho\,d\phi\,d\theta\)</td><td>\(\rho^2\sin\phi\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- =============== PART 8 =============== -->
+  <h2 class="part" id="p8">Part 8 — Exam Strategy &amp; Common Mistakes</h2>
+
+  <div class="note-card" style="border-top-color:#e74c3c;">
+    <h3 style="color:#c0392b;">The mistakes that actually cost marks</h3>
+    <ol>
+      <li><strong>Dropping the Jacobian</strong> — the \(r\) in polar and cylindrical, the \(\rho^2\sin\phi\) in spherical. This is the most common single error in the whole unit.</li>
+      <li><strong>\(\theta\) in the wrong quadrant</strong> — \(\tan^{-1}\) can't tell Quadrant II from IV. Sketch the point.</li>
+      <li><strong>\(\phi\) from 0 to \(2\pi\)</strong> — it stops at \(\pi\).</li>
+      <li><strong>Off-centre circle limits</strong> — \(r = 2a\cos\theta\) uses \(-\tfrac{\pi}{2} \le \theta \le \tfrac{\pi}{2}\).</li>
+      <li><strong>Mixing up \(r\) and \(\rho\)</strong> — \(r\) is distance from the \(z\)-axis; \(\rho\) is distance from the origin. \(r = \rho\sin\phi\).</li>
+      <li><strong>Swapping \(\theta\) and \(\phi\)</strong> — in your course \(\theta\) is around the \(z\)-axis and \(\phi\) is down from it. Some books and physics courses swap them; stick to the slides' convention.</li>
+      <li><strong>"Above the \(xy\)-plane"</strong> means \(0 \le \phi \le \tfrac{\pi}{2}\), not a change to \(\theta\).</li>
+      <li><strong>Negative Jacobian</strong> — take the absolute value.</li>
+    </ol>
+  </div>
+
+  <div class="note-card" style="border-top-color:#27ae60;">
+    <h3 style="color:#1e8449;">Ten-second checks</h3>
+    <ul>
+      <li>Converted a point? Check \(\sqrt{x^2 + y^2 + z^2}\) is the same before and after.</li>
+      <li>Volume of a cylinder should be \(\pi r^2 h\); a ball \(\tfrac43\pi a^3\); a hemisphere \(\tfrac23\pi a^3\).</li>
+      <li>Area of a region bounded by a circle should be \(\pi(\text{radius})^2\) — find the radius by completing the square.</li>
+      <li>Your final answer should have no \(r\), \(\theta\), \(\rho\), or \(\phi\) left in it.</li>
+    </ul>
+  </div>
+
+  <div class="btn-row" style="margin-top:2rem;">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-coordinate-systems-practice.html" class="back-btn accent">Worksheet Solutions →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+</body>
+</html>

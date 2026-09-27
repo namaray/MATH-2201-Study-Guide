@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finals Formula Sheet | MATH 2201</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.5;
+      color: #333;
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 1.75rem;
+      background-color: #f4f7f6;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 10px;
+      margin-bottom: 0.3rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .group-title {
+      grid-column: 1 / -1;
+      margin: 1rem 0 0;
+      padding: 0.55rem 1rem;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      break-after: avoid;
+    }
+    .group-title:first-child { margin-top: 0; }
+    .group-title .sub { font-weight: normal; color: #bdc3c7; font-size: 0.88rem; margin-left: 0.4rem; }
+
+    .box {
+      min-width: 0;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 0.9rem 1.15rem 1.1rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      border-top: 3px solid #27ae60;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .box h2 {
+      font-size: 1.02rem;
+      margin: 0 0 0.5rem;
+      color: #1e8449;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .box.blue { border-top-color: #2980b9; }
+    .box.blue h2 { color: #21618c; }
+    .box.orange { border-top-color: #f37021; }
+    .box.orange h2 { color: #d35400; }
+    .box.red { border-top-color: #e74c3c; }
+    .box.red h2 { color: #c0392b; }
+    .box.later {
+      border: 2px dashed #bdc3c7;
+      border-top: 2px dashed #bdc3c7;
+      background: transparent;
+      box-shadow: none;
+    }
+    .box.later h2 { color: #7f8c8d; }
+    .box.later li { color: #7f8c8d; }
+
+    .f {
+      margin: 0.45rem 0;
+      overflow-x: auto;
+      font-size: 0.98rem;
+    }
+    .f .cap {
+      display: block;
+      font-size: 0.78rem;
+      color: #7f8c8d;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 1px;
+    }
+    .center { text-align: center; }
+
+    hr.sep {
+      border: 0;
+      border-top: 1px dashed #dfe6e9;
+      margin: 0.7rem 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.87rem;
+      margin: 0.3rem 0;
+    }
+    th, td {
+      border: 1px solid #dfe6e9;
+      padding: 0.35rem 0.5rem;
+      text-align: left;
+      vertical-align: middle;
+    }
+    th { background: #2c3e50; color: #fff; font-weight: bold; font-size: 0.82rem; }
+    tbody tr:nth-child(even) { background: #f8fafb; }
+
+    ul { padding-left: 1.15rem; margin: 0.35rem 0; }
+    li { margin-bottom: 0.28rem; font-size: 0.93rem; }
+
+    .tip {
+      background: #e8f8f0;
+      border-left: 3px solid #27ae60;
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      margin: 0.55rem 0 0.2rem;
+      font-size: 0.87rem;
+    }
+    .trap {
+      background: #fdecea;
+      border-left: 3px solid #e74c3c;
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      margin: 0.55rem 0 0.2rem;
+      font-size: 0.87rem;
+    }
+
+    .btn-row { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 20px; }
+    .back-btn {
+      display: inline-block;
+      padding: 7px 14px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 0.92rem;
+      transition: background 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #27ae60; }
+    .back-btn.accent:hover { background-color: #1e8449; }
+
+    /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
+    mjx-container { position: relative; }
+    mjx-assistive-mml { max-width: 100%; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.55rem; }
+      .grid { grid-template-columns: 1fr; }
+      .f { font-size: 0.84rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.3rem 0.4rem; }
+    }
+
+    /* ---- Print: strip chrome, tighten, keep boxes intact ---- */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+        max-width: none;
+        font-size: 9.5pt;
+        line-height: 1.35;
+      }
+      .btn-row, .no-print { display: none !important; }
+      h1 { font-size: 15pt; margin-bottom: 2pt; }
+      .subtitle { font-size: 8pt; margin-bottom: 8pt; }
+      .grid { grid-template-columns: 1fr 1fr; gap: 7pt; }
+      .group-title {
+        background: #fff;
+        color: #2c3e50;
+        border-bottom: 1.5pt solid #2c3e50;
+        border-radius: 0;
+        padding: 2pt 0;
+        font-size: 10pt;
+        margin-top: 4pt;
+      }
+      .group-title .sub { color: #7f8c8d; }
+      .box {
+        box-shadow: none;
+        border: 1px solid #bbb;
+        border-top-width: 2.5pt;
+        padding: 5pt 7pt 6pt;
+      }
+      .box h2 { font-size: 8.5pt; margin-bottom: 3pt; }
+      .f { font-size: 8.5pt; margin: 2.5pt 0; }
+      .f .cap { font-size: 6.5pt; }
+      table { font-size: 7.5pt; }
+      th, td { padding: 2pt 3.5pt; }
+      li { font-size: 8pt; margin-bottom: 1.5pt; }
+      .tip, .trap { font-size: 7.5pt; padding: 2.5pt 5pt; margin: 3pt 0 1pt; }
+      @page { margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-conic-sections.html" class="back-btn accent">Conics Notes</a>
+    <a href="final-coordinate-systems.html" class="back-btn accent">Coordinates Notes</a>
+    <button class="back-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+  </div>
+
+  <h1>MATH 2201 — Finals Formula Sheet</h1>
+  <p class="subtitle">Unit 4 conic sections &nbsp;·&nbsp; Unit 5 polar, cylindrical &amp; spherical coordinates &nbsp;·&nbsp; more units added as they're covered</p>
+
+  <div class="grid">
+
+    <!-- ===================== UNIT 4 ===================== -->
+    <div class="group-title">Unit 4 — Conic Sections <span class="sub">Ch 10.4–10.5</span></div>
+
+    <div class="box">
+      <h2>Eccentricity</h2>
+      <div class="f center">$$ e = \frac{PF}{PD} = \frac{\text{dist. to focus}}{\text{dist. to directrix}} $$</div>
+      <table>
+        <tbody>
+          <tr><td>\(e = 0\)</td><td>Circle</td></tr>
+          <tr><td>\(0 &lt; e &lt; 1\)</td><td>Ellipse</td></tr>
+          <tr><td>\(e = 1\)</td><td>Parabola</td></tr>
+          <tr><td>\(e &gt; 1\)</td><td>Hyperbola</td></tr>
+        </tbody>
+      </table>
+      <div class="tip">Ellipse & hyperbola: \(e = c/a\). Use the range as a sanity check.</div>
+    </div>
+
+    <div class="box">
+      <h2>Parabola · \(PF = PD\)</h2>
+      <table>
+        <thead><tr><th>Equation</th><th>Opens</th><th>Focus</th><th>Directrix</th></tr></thead>
+        <tbody>
+          <tr><td>\(y^2 = 4ax\)</td><td>Right</td><td>\((a,0)\)</td><td>\(x=-a\)</td></tr>
+          <tr><td>\(y^2 = -4ax\)</td><td>Left</td><td>\((-a,0)\)</td><td>\(x=a\)</td></tr>
+          <tr><td>\(x^2 = 4ay\)</td><td>Up</td><td>\((0,a)\)</td><td>\(y=-a\)</td></tr>
+          <tr><td>\(x^2 = -4ay\)</td><td>Down</td><td>\((0,-a)\)</td><td>\(y=a\)</td></tr>
+        </tbody>
+      </table>
+      <div class="f">Vertex \((0,0)\) · latus rectum \(= 4a\) · \(e = 1\)</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">Shifted to vertex (h, k)</span></div>
+      <div class="f center">$$ (x-h)^2 = 4a(y-k) $$</div>
+      <div class="f center">Focus \((h, k+a)\), directrix \(y = k - a\)</div>
+      <div class="trap">Match the number to \(4a\): \(y^2 = 12x \Rightarrow a = 3\).</div>
+    </div>
+
+    <div class="box">
+      <h2>Ellipse · \(PF_1 + PF_2 = 2a\)</h2>
+      <div class="f center">$$ \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1, \qquad a &gt; b $$</div>
+      <table>
+        <tbody>
+          <tr><td>Vertices / co-vertices</td><td>\((\pm a, 0)\) / \((0, \pm b)\)</td></tr>
+          <tr><td>Major / minor axis</td><td>\(2a\) / \(2b\)</td></tr>
+          <tr><td>Focal distance</td><td>\(c^2 = a^2 - b^2\)</td></tr>
+          <tr><td>Foci</td><td>\((\pm c, 0) = (\pm ae, 0)\)</td></tr>
+          <tr><td>Eccentricity</td><td>\(e = \frac{c}{a} = \sqrt{1 - \frac{b^2}{a^2}}\)</td></tr>
+          <tr><td>Directrices</td><td>\(x = \pm \frac{a}{e}\)</td></tr>
+          <tr><td>Latus rectum</td><td>\(\frac{2b^2}{a}\)</td></tr>
+        </tbody>
+      </table>
+      <div class="tip"><strong>Larger denominator</strong> is \(a^2\) — its variable is the major-axis direction.</div>
+    </div>
+
+    <div class="box">
+      <h2>Hyperbola · \(|PF_1 - PF_2| = 2a\)</h2>
+      <div class="f center">$$ \frac{x^2}{a^2} - \frac{y^2}{b^2} = 1 $$</div>
+      <table>
+        <tbody>
+          <tr><td>Vertices</td><td>\((\pm a, 0)\)</td></tr>
+          <tr><td>Transverse / conjugate</td><td>\(2a\) / \(2b\)</td></tr>
+          <tr><td>Focal distance</td><td>\(c^2 = a^2 + b^2\)</td></tr>
+          <tr><td>Foci</td><td>\((\pm c, 0) = (\pm ae, 0)\)</td></tr>
+          <tr><td>Eccentricity</td><td>\(e = \frac{c}{a} = \frac{\sqrt{a^2+b^2}}{a}\)</td></tr>
+          <tr><td>Directrices</td><td>\(x = \pm \frac{a}{e}\)</td></tr>
+          <tr><td>Asymptotes</td><td>\(y = \pm \frac{b}{a}x\)</td></tr>
+        </tbody>
+      </table>
+      <div class="tip"><strong>Positive term</strong> is \(a^2\) (size doesn't matter). Vertical: \(\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1\), asymptotes \(y = \pm\frac{a}{b}x\).</div>
+      <div class="trap">Asymptotes: set the RHS to 0 and solve for \(y\).</div>
+    </div>
+
+    <div class="box">
+      <h2>Translated Conics &amp; Identifying</h2>
+      <div class="f"><span class="cap">Centre (h, k) — shift every point</span></div>
+      <div class="f center">$$ \frac{(x-h)^2}{a^2} \pm \frac{(y-k)^2}{b^2} = 1 $$</div>
+      <div class="f">Vertices \((h \pm a, k)\), foci \((h \pm c, k)\), asymptotes \(y - k = \pm\frac{b}{a}(x - h)\)</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">\(Ax^2 + Cy^2 + Dx + Ey + F = 0\)</span></div>
+      <table>
+        <tbody>
+          <tr><td>\(A = C\)</td><td>Circle</td></tr>
+          <tr><td>\(A, C\) same sign</td><td>Ellipse</td></tr>
+          <tr><td>\(A, C\) opposite signs</td><td>Hyperbola</td></tr>
+          <tr><td>\(A = 0\) or \(C = 0\)</td><td>Parabola</td></tr>
+        </tbody>
+      </table>
+      <div class="trap">Completing the square: what you add inside \(k(\;\cdot\;)\) adds \(k\times\) that to the RHS.</div>
+    </div>
+
+    <div class="box">
+      <h2>Rotation of Axes</h2>
+      <div class="f center">$$ Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0 $$</div>
+      <table>
+        <tbody>
+          <tr><td>\(B^2 - 4AC &lt; 0\)</td><td>Ellipse</td></tr>
+          <tr><td>\(B^2 - 4AC = 0\)</td><td>Parabola</td></tr>
+          <tr><td>\(B^2 - 4AC &gt; 0\)</td><td>Hyperbola</td></tr>
+        </tbody>
+      </table>
+      <div class="f center">$$ \cot 2\theta = \frac{A - C}{B} \qquad (A = C \Rightarrow \theta = 45^\circ) $$</div>
+      <div class="f center">$$ x = x'\cos\theta - y'\sin\theta, \quad y = x'\sin\theta + y'\cos\theta $$</div>
+      <div class="f center">$$ A' = A\cos^2\theta + B\sin\theta\cos\theta + C\sin^2\theta $$</div>
+      <div class="f center">$$ C' = A\sin^2\theta - B\sin\theta\cos\theta + C\cos^2\theta $$</div>
+      <div class="f center">$$ D' = D\cos\theta + E\sin\theta $$</div>
+      <div class="f center">$$ E' = -D\sin\theta + E\cos\theta $$</div>
+      <div class="f center">$$ \cos\theta = \sqrt{\tfrac{1 + \cos 2\theta}{2}}, \quad \sin\theta = \sqrt{\tfrac{1 - \cos 2\theta}{2}} $$</div>
+      <div class="tip">Check: \(A' + C' = A + C\), and \(B^2 - 4AC\) is unchanged.</div>
+    </div>
+
+    <!-- ===================== UNIT 5 ===================== -->
+    <div class="group-title">Unit 5 — Polar, Cylindrical &amp; Spherical <span class="sub">Ch 11.8, 14.6</span></div>
+
+    <div class="box blue">
+      <h2>Polar \((r, \theta)\)</h2>
+      <div class="f center">$$ x = r\cos\theta, \qquad y = r\sin\theta $$</div>
+      <div class="f center">$$ r = \sqrt{x^2 + y^2}, \qquad \tan\theta = \frac{y}{x} $$</div>
+      <div class="f center">$$ x^2 + y^2 = r^2 $$</div>
+      <div class="f"><span class="cap">\(\theta\) from reference angle \(\alpha = \tan^{-1}|y/x|\)</span></div>
+      <table>
+        <tbody>
+          <tr><td>QI: \(\alpha\)</td><td>QII: \(\pi - \alpha\)</td><td>QIII: \(\pi + \alpha\)</td><td>QIV: \(2\pi - \alpha\)</td></tr>
+        </tbody>
+      </table>
+      <div class="trap">Never trust \(\tan^{-1}(y/x)\) alone — sketch the quadrant.</div>
+    </div>
+
+    <div class="box blue">
+      <h2>Polar Curves</h2>
+      <table>
+        <thead><tr><th>Polar</th><th>Cartesian</th><th>Curve</th></tr></thead>
+        <tbody>
+          <tr><td>\(r = a\)</td><td>\(x^2 + y^2 = a^2\)</td><td>Circle at origin</td></tr>
+          <tr><td>\(\theta = \alpha\)</td><td>\(y = x\tan\alpha\)</td><td>Line through origin</td></tr>
+          <tr><td>\(r = 2a\cos\theta\)</td><td>\(x^2 + y^2 = 2ax\)</td><td>Circle, centre \((a, 0)\)</td></tr>
+          <tr><td>\(r = 2a\sin\theta\)</td><td>\(x^2 + y^2 = 2ay\)</td><td>Circle, centre \((0, a)\)</td></tr>
+          <tr><td>\(r = a(1 + \cos\theta)\)</td><td>—</td><td>Cardioid</td></tr>
+        </tbody>
+      </table>
+      <div class="trap">\(r = 2a\cos\theta\): \(-\tfrac{\pi}{2} \le \theta \le \tfrac{\pi}{2}\). \(r = 2a\sin\theta\): \(0 \le \theta \le \pi\). Using \(0\)–\(2\pi\) doubles the area.</div>
+    </div>
+
+    <div class="box blue">
+      <h2>The Jacobian</h2>
+      <div class="f center">$$ J = \frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix} x_u & x_v \\ y_u & y_v \end{vmatrix} $$</div>
+      <div class="f center">$$ dx\,dy = |J|\,du\,dv $$</div>
+      <div class="f"><span class="cap">Polar</span></div>
+      <div class="f center">$$ J = \begin{vmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta \end{vmatrix} = r $$</div>
+      <div class="f"><span class="cap">Example: \(x = uv,\ y = u/v\)</span></div>
+      <div class="f center">$$ J = -\frac{2u}{v} \;\Rightarrow\; dx\,dy = \frac{2u}{v}\,du\,dv $$</div>
+      <div class="tip">Jacobian = how much a tiny area is stretched. Always take \(|J|\).</div>
+    </div>
+
+    <div class="box blue">
+      <h2>Double Integrals in Polar</h2>
+      <div class="f center">$$ \iint_R f\,dA = \int_\alpha^\beta\!\!\int_{r_1}^{r_2} f(r\cos\theta, r\sin\theta)\,r\,dr\,d\theta $$</div>
+      <div class="f center">$$ \text{Area} = \iint r\,dr\,d\theta = \frac12\int_\alpha^\beta r(\theta)^2\,d\theta $$</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">Trig you'll need</span></div>
+      <div class="f center">$$ \cos^2\theta = \tfrac{1 + \cos 2\theta}{2}, \quad \sin^2\theta = \tfrac{1 - \cos 2\theta}{2} $$</div>
+      <div class="f center">$$ \int_0^{2\pi}\!\cos^2\theta\,d\theta = \pi, \quad \int_{-\pi/2}^{\pi/2}\!\cos^2\theta\,d\theta = \frac{\pi}{2} $$</div>
+      <div class="f center">$$ \int_0^{\pi}\sin\phi\,d\phi = 2, \quad \int_0^{\pi/2}\sin\phi\,d\phi = 1 $$</div>
+    </div>
+
+    <div class="box blue">
+      <h2>Cylindrical \((r, \theta, z)\)</h2>
+      <div class="f center">$$ x = r\cos\theta, \quad y = r\sin\theta, \quad z = z $$</div>
+      <div class="f center">$$ r = \sqrt{x^2+y^2} \;\;(\text{distance from } z\text{-axis}) $$</div>
+      <div class="f center">$$ dV = r\,dz\,dr\,d\theta $$</div>
+      <table>
+        <tbody>
+          <tr><td>\(r = a\)</td><td>Cylinder</td><td>\(z = r^2\)</td><td>Paraboloid</td></tr>
+          <tr><td>\(z = r\)</td><td>Cone</td><td>\(r^2 + z^2 = a^2\)</td><td>Sphere</td></tr>
+        </tbody>
+      </table>
+      <div class="tip">\(z\) limits first (bottom surface → top surface), then the polar limits of the shadow.</div>
+    </div>
+
+    <div class="box blue">
+      <h2>Spherical \((\rho, \theta, \phi)\)</h2>
+      <div class="f center">$$ x = \rho\sin\phi\cos\theta, \quad y = \rho\sin\phi\sin\theta $$</div>
+      <div class="f center">$$ z = \rho\cos\phi $$</div>
+      <div class="f center">$$ \rho = \sqrt{x^2+y^2+z^2}, \quad \phi = \cos^{-1}\frac{z}{\rho} $$</div>
+      <div class="f center">$$ r = \rho\sin\phi, \qquad z = \rho\cos\phi $$</div>
+      <div class="f center">$$ dV = \rho^2\sin\phi\;d\rho\,d\phi\,d\theta $$</div>
+      <div class="f">\(\rho \ge 0\), &nbsp;\(0 \le \theta \le 2\pi\), &nbsp;\(0 \le \phi \le \pi\) (down from \(+z\))</div>
+      <table>
+        <tbody>
+          <tr><td>\(\rho = a\)</td><td>Sphere</td><td>\(\phi = \alpha\)</td><td>Cone</td></tr>
+          <tr><td>\(\phi = \tfrac{\pi}{2}\)</td><td>\(xy\)-plane</td><td>\(\theta = \alpha\)</td><td>Half-plane</td></tr>
+        </tbody>
+      </table>
+      <div class="trap">Above the \(xy\)-plane → \(0 \le \phi \le \tfrac{\pi}{2}\). \(\phi\) never exceeds \(\pi\).</div>
+    </div>
+
+    <div class="box blue">
+      <h2>Area &amp; Volume Elements</h2>
+      <table>
+        <thead><tr><th>System</th><th>Element</th></tr></thead>
+        <tbody>
+          <tr><td>Cartesian 2D</td><td>\(dA = dx\,dy\)</td></tr>
+          <tr><td>Polar</td><td>\(dA = r\,dr\,d\theta\)</td></tr>
+          <tr><td>Cartesian 3D</td><td>\(dV = dx\,dy\,dz\)</td></tr>
+          <tr><td>Cylindrical</td><td>\(dV = r\,dz\,dr\,d\theta\)</td></tr>
+          <tr><td>Spherical</td><td>\(dV = \rho^2\sin\phi\,d\rho\,d\phi\,d\theta\)</td></tr>
+        </tbody>
+      </table>
+      <hr class="sep">
+      <div class="f"><span class="cap">Volumes to check against</span></div>
+      <div class="f">Cylinder \(\pi r^2 h\) · ball \(\tfrac43\pi a^3\) · hemisphere \(\tfrac23\pi a^3\)</div>
+    </div>
+
+    <!-- ===================== STRATEGY ===================== -->
+    <div class="group-title">Exam Strategy</div>
+
+    <div class="box orange">
+      <h2>Question Decoder</h2>
+      <table>
+        <thead><tr><th>Given / asked…</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>One squared variable</td><td>Parabola — match to \(4a\)</td></tr>
+          <tr><td>Two squares, same sign</td><td>Ellipse — \(c^2 = a^2 - b^2\)</td></tr>
+          <tr><td>Two squares, opposite signs</td><td>Hyperbola — \(c^2 = a^2 + b^2\)</td></tr>
+          <tr><td>Linear \(x\) or \(y\) terms</td><td>Complete the square</td></tr>
+          <tr><td>An \(xy\) term</td><td>Discriminant, then rotate</td></tr>
+          <tr><td>Disk / circle region</td><td>Polar, \(dA = r\,dr\,d\theta\)</td></tr>
+          <tr><td>Cylinder / paraboloid solid</td><td>Cylindrical</td></tr>
+          <tr><td>Ball / hemisphere / \(x^2+y^2+z^2\)</td><td>Spherical</td></tr>
+          <tr><td>Convert a point</td><td>Formulas + fix the quadrant</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box red">
+      <h2>Final Checklist</h2>
+      <ul>
+        <li>Ellipse subtracts for \(c\); hyperbola adds</li>
+        <li>Hyperbola: \(a^2\) is under the <strong>positive</strong> term</li>
+        <li>After completing the square, shift by \((h, k)\)</li>
+        <li>Axis <em>length</em> is \(2a\), not \(a\)</li>
+        <li>Never drop the Jacobian: \(r\) or \(\rho^2\sin\phi\)</li>
+        <li>Sketch the point before choosing \(\theta\)</li>
+        <li>\(\phi \in [0, \pi]\); off-centre circles need \(\theta \in [-\tfrac{\pi}{2}, \tfrac{\pi}{2}]\)</li>
+        <li>\(r\) = distance from \(z\)-axis; \(\rho\) = distance from origin</li>
+        <li>Check eccentricity range and known volumes</li>
+      </ul>
+    </div>
+
+    <div class="box later no-print">
+      <h2>Coming later</h2>
+      <ul>
+        <li>Vector fields &amp; line integrals</li>
+        <li>Conservative fields &amp; path independence</li>
+        <li>Green's Theorem</li>
+        <li>Surface integrals &amp; flux</li>
+        <li>Divergence Theorem &amp; Stokes' Theorem</li>
+      </ul>
+      <p style="margin:0.4rem 0 0; font-size:0.85rem; color:#7f8c8d;">These sections will be added to this sheet as each unit is covered.</p>
+    </div>
+
+  </div>
+
+  <div class="btn-row no-print" style="margin-top:1.5rem;">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-conic-sections.html" class="back-btn accent">Conics Notes</a>
+    <a href="final-coordinate-systems.html" class="back-btn accent">Coordinates Notes</a>
+    <button class="back-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinates Worksheet Solutions | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f7f6;
+    }
+    h1, h2, h3 { color: #2c3e50; line-height: 1.3; }
+    h1 {
+      font-size: 2.3rem;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 12px;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 2rem; }
+    p { margin: 0.75rem 0; }
+
+    .toc {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.25rem 1.75rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #f37021;
+    }
+    .toc h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+    .toc ol { padding-left: 1.4rem; margin: 0; columns: 2; column-gap: 2rem; }
+    .toc li { margin-bottom: 0.25rem; break-inside: avoid; }
+    .toc a { color: #1e8449; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .group { color: #7f8c8d; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; margin: 0.6rem 0 0.2rem; }
+
+    .section-title {
+      margin: 2.5rem 0 1rem;
+      padding: 0.7rem 1.2rem;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1.3rem;
+    }
+
+    .problem {
+      background: #ffffff;
+      padding: 1.25rem 1.75rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 1.75rem;
+      border-top: 4px solid #27ae60;
+      scroll-margin-top: 1rem;
+    }
+    .problem h2 {
+      font-size: 1.3rem;
+      margin: 0 0 0.5rem;
+      color: #1e8449;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #16a085;
+      padding: 2px 9px;
+      border-radius: 12px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+    .tag.assign { background: #2980b9; }
+    .prompt {
+      background: #eef6fb;
+      border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .label { display: block; font-weight: bold; margin: 1rem 0 0.25rem; color: #34495e; }
+    .math-block {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      overflow-x: auto;
+      padding: 6px 0;
+    }
+    .answer {
+      background: #e8f8f0;
+      border-left: 4px solid #27ae60;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      margin: 1.25rem 0 0.5rem;
+      font-weight: bold;
+    }
+    .note {
+      background: #fdf3e7;
+      border-left: 4px solid #f37021;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      margin: 1rem 0 0.5rem;
+      font-size: 0.95rem;
+    }
+    ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.4rem; }
+
+    details.reveal {
+      border: 1px dashed #2980b9;
+      border-radius: 8px;
+      background: #fbfdff;
+      margin-top: 0.5rem;
+    }
+    details.reveal summary {
+      cursor: pointer;
+      padding: 0.6rem 1rem;
+      font-weight: bold;
+      color: #21618c;
+      user-select: none;
+    }
+    details.reveal summary:hover { color: #d35400; }
+    details.reveal[open] summary { border-bottom: 1px dashed #aed6f1; }
+    details.reveal .body { padding: 0.2rem 1rem 0.8rem; }
+
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
+    .back-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #27ae60; }
+    .back-btn.accent:hover { background-color: #1e8449; }
+    .back-btn.orange { background-color: #f37021; }
+    .back-btn.orange:hover { background-color: #d35400; }
+
+    /* Long inline formulas scroll inside their box rather than widening the page */
+    .answer, .note, .prompt, .key, .warn, .example, td { overflow-x: auto; }
+
+    /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
+    mjx-container { position: relative; }
+    mjx-assistive-mml { max-width: 100%; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.7rem; }
+      .toc ol { columns: 1; }
+      .problem { padding: 1rem 1.1rem 1.2rem; }
+      .math-block { font-size: 0.86rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-coordinate-systems.html" class="back-btn accent">Coordinate Systems Notes →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+  <h1>Polar, Cylindrical &amp; Spherical — Worksheet Solutions</h1>
+  <p class="subtitle">MATH-2201 Finals &nbsp;·&nbsp; all 14 questions from the practice worksheet, fully worked</p>
+
+  <div class="note" style="margin-bottom:1.5rem;">
+    Questions marked <span class="tag assign">Assignment</span> on your sheet have their solution hidden
+    behind a button — have a go first, then open it to check.
+  </div>
+
+  <div class="toc">
+    <h2>Questions</h2>
+    <ol>
+      <li><a href="#q1">\((3,4)\) → polar</a></li>
+      <li><a href="#q2">\((-5,12)\) → polar</a> ✎</li>
+      <li><a href="#q3">\((5, \pi/6)\) → Cartesian</a> ✎</li>
+      <li><a href="#q4">\((6, 4\pi/3)\) → Cartesian</a></li>
+      <li><a href="#q5">\(x^2+y^2=6x\) → polar</a></li>
+      <li><a href="#q6">Area inside \(r = 4\cos\theta\)</a> ✎</li>
+      <li><a href="#q7">\((3,4,5)\) → cylindrical</a> ✎</li>
+      <li><a href="#q8">\(x^2+y^2=16\) → cylindrical</a></li>
+      <li><a href="#q9">\(x^2+y^2+z^2=25\) → cylindrical</a> ✎</li>
+      <li><a href="#q10">Volume inside a cylinder</a></li>
+      <li><a href="#q11">\((1,1,1)\) → spherical</a></li>
+      <li><a href="#q12">Spherical → Cartesian</a></li>
+      <li><a href="#q13">Volume of a ball</a> ✎</li>
+      <li><a href="#q14">Volume of a hemisphere</a></li>
+    </ol>
+    <p style="margin:0.6rem 0 0; font-size:0.88rem; color:#7f8c8d;">✎ = marked Assignment on the sheet</p>
+  </div>
+
+  <!-- ============ POLAR ============ -->
+  <h2 class="section-title">Polar Coordinates (Q1–Q6)</h2>
+
+  <div class="problem" id="q1">
+    <h2>Q1. Cartesian → Polar <span class="tag">Point</span></h2>
+    <div class="prompt">Convert the Cartesian point \((3, 4)\) to polar coordinates.</div>
+    <div class="math-block">$$ r = \sqrt{3^2 + 4^2} = \sqrt{25} = 5 $$</div>
+    <p>\(x &gt; 0\), \(y &gt; 0\) → Quadrant I, so \(\tan^{-1}\) gives the angle directly:</p>
+    <div class="math-block">$$ \theta = \tan^{-1}\frac43 \approx 0.927 \text{ rad} \approx 53.13^\circ $$</div>
+    <div class="answer">\(\left(5,\ \tan^{-1}\tfrac43\right) \approx (5,\ 0.927)\)</div>
+  </div>
+
+  <div class="problem" id="q2">
+    <h2>Q2. Cartesian → Polar <span class="tag">Point</span><span class="tag assign">Assignment</span></h2>
+    <div class="prompt">Convert the Cartesian point \((-5, 12)\) to polar coordinates.</div>
+    <details class="reveal">
+      <summary>Show solution</summary>
+      <div class="body">
+        <div class="math-block">$$ r = \sqrt{(-5)^2 + 12^2} = \sqrt{169} = 13 $$</div>
+        <p>\(x &lt; 0\), \(y &gt; 0\) → <strong>Quadrant II</strong>. Reference angle:</p>
+        <div class="math-block">$$ \alpha = \tan^{-1}\frac{12}{5} \approx 1.176 \text{ rad} \approx 67.38^\circ $$</div>
+        <div class="math-block">$$ \theta = \pi - \alpha \approx 1.966 \text{ rad} \approx 112.62^\circ $$</div>
+        <div class="answer">\(\left(13,\ \pi - \tan^{-1}\tfrac{12}{5}\right) \approx (13,\ 1.966)\)</div>
+        <div class="note">This is the question the quadrant rule exists for. A calculator's \(\tan^{-1}(12/{-5})\) gives \(-67.38^\circ\), which points into Quadrant IV — the wrong side of the plane.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem" id="q3">
+    <h2>Q3. Polar → Cartesian <span class="tag">Point</span><span class="tag assign">Assignment</span></h2>
+    <div class="prompt">Convert the polar point \(\left(5, \tfrac{\pi}{6}\right)\) to Cartesian coordinates.</div>
+    <details class="reveal">
+      <summary>Show solution</summary>
+      <div class="body">
+        <div class="math-block">$$ x = 5\cos\frac{\pi}{6} = 5\cdot\frac{\sqrt3}{2} = \frac{5\sqrt3}{2} $$</div>
+        <div class="math-block">$$ y = 5\sin\frac{\pi}{6} = 5\cdot\frac12 = \frac52 $$</div>
+        <div class="answer">\(\left(\tfrac{5\sqrt3}{2},\ \tfrac52\right) \approx (4.330,\ 2.5)\)</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem" id="q4">
+    <h2>Q4. Polar → Cartesian <span class="tag">Point</span></h2>
+    <div class="prompt">Convert \(\left(6, \tfrac{4\pi}{3}\right)\) from polar to Cartesian coordinates.</div>
+    <p>\(\tfrac{4\pi}{3} = 240^\circ\), in Quadrant III — expect both coordinates negative.</p>
+    <div class="math-block">$$ x = 6\cos\frac{4\pi}{3} = 6\left(-\frac12\right) = -3 $$</div>
+    <div class="math-block">$$ y = 6\sin\frac{4\pi}{3} = 6\left(-\frac{\sqrt3}{2}\right) = -3\sqrt3 $$</div>
+    <div class="answer">\(\left(-3,\ -3\sqrt3\right) \approx (-3,\ -5.196)\)</div>
+  </div>
+
+  <div class="problem" id="q5">
+    <h2>Q5. Cartesian Equation → Polar <span class="tag">Equation</span></h2>
+    <div class="prompt">Convert \(x^2 + y^2 = 6x\) to a polar equation.</div>
+    <p>Substitute \(x^2 + y^2 = r^2\) and \(x = r\cos\theta\):</p>
+    <div class="math-block">$$ r^2 = 6r\cos\theta \;\Longrightarrow\; r = 6\cos\theta $$</div>
+    <div class="answer">\(r = 6\cos\theta\)</div>
+    <div class="note">
+      Dividing by \(r\) looks like it throws away the solution \(r = 0\), but the origin is still on the
+      curve: \(r = 6\cos\theta\) gives \(r = 0\) at \(\theta = \tfrac{\pi}{2}\). Completing the square shows
+      it's the circle \((x-3)^2 + y^2 = 9\) — centre \((3, 0)\), radius 3.
+    </div>
+  </div>
+
+  <div class="problem" id="q6">
+    <h2>Q6. Area in Polar <span class="tag">Double Integral</span><span class="tag assign">Assignment</span></h2>
+    <div class="prompt">Find the area inside the circle \(r = 4\cos\theta\).</div>
+    <details class="reveal">
+      <summary>Show solution</summary>
+      <div class="body">
+        <p>\(r \ge 0\) requires \(\cos\theta \ge 0\), so the circle is traced once for \(-\tfrac{\pi}{2} \le \theta \le \tfrac{\pi}{2}\).</p>
+        <div class="math-block">$$ A = \int_{-\pi/2}^{\pi/2}\!\!\int_0^{4\cos\theta} r\,dr\,d\theta $$</div>
+        <div class="math-block">$$ = \int_{-\pi/2}^{\pi/2} \frac{16\cos^2\theta}{2}\,d\theta = 8\int_{-\pi/2}^{\pi/2}\cos^2\theta\,d\theta $$</div>
+        <div class="math-block">$$ = 8\int_{-\pi/2}^{\pi/2}\frac{1 + \cos 2\theta}{2}\,d\theta $$</div>
+        <div class="math-block">$$ = 4\left[\theta + \frac{\sin 2\theta}{2}\right]_{-\pi/2}^{\pi/2} = 4\pi $$</div>
+        <div class="answer">\(A = 4\pi \approx 12.57\)</div>
+        <div class="note">Check: \(r = 4\cos\theta\) is \(x^2 + y^2 = 4x\), a circle of radius 2, area \(\pi(2)^2 = 4\pi\). ✓ If you'd integrated \(\theta\) from 0 to \(2\pi\) you'd have got \(8\pi\) — the circle traced twice.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ============ CYLINDRICAL ============ -->
+  <h2 class="section-title">Cylindrical Coordinates (Q7–Q10)</h2>
+
+  <div class="problem" id="q7">
+    <h2>Q7. Cartesian → Cylindrical <span class="tag">Point</span><span class="tag assign">Assignment</span></h2>
+    <div class="prompt">Convert the Cartesian point \((3, 4, 5)\) to cylindrical coordinates.</div>
+    <details class="reveal">
+      <summary>Show solution</summary>
+      <div class="body">
+        <p>\(r\) and \(\theta\) come from \((x, y) = (3, 4)\) exactly as in Q1; \(z\) is unchanged.</p>
+        <div class="math-block">$$ r = \sqrt{3^2 + 4^2} = 5 $$</div>
+        <div class="math-block">$$ \theta = \tan^{-1}\frac43 \approx 0.927 $$</div>
+        <div class="math-block">$$ z = 5 $$</div>
+        <div class="answer">\(\left(5,\ \tan^{-1}\tfrac43,\ 5\right) \approx (5,\ 0.927,\ 5)\)</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem" id="q8">
+    <h2>Q8. Cartesian Equation → Cylindrical <span class="tag">Equation</span></h2>
+    <div class="prompt">Convert the Cartesian equation \(x^2 + y^2 = 16\) to cylindrical coordinates.</div>
+    <div class="math-block">$$ x^2 + y^2 = r^2 = 16 \;\Longrightarrow\; r = 4 $$</div>
+    <div class="answer">\(r = 4\) — a cylinder of radius 4 around the \(z\)-axis</div>
+    <div class="note">In 2D this equation is a circle; in 3D, with \(z\) free, it's a whole cylinder. That's where "cylindrical" coordinates get their name.</div>
+  </div>
+
+  <div class="problem" id="q9">
+    <h2>Q9. Cartesian Equation → Cylindrical <span class="tag">Equation</span><span class="tag assign">Assignment</span></h2>
+    <div class="prompt">Convert \(x^2 + y^2 + z^2 = 25\) to cylindrical coordinates.</div>
+    <details class="reveal">
+      <summary>Show solution</summary>
+      <div class="body">
+        <p>Replace only \(x^2 + y^2\) with \(r^2\); \(z\) stays as it is.</p>
+        <div class="math-block">$$ r^2 + z^2 = 25 $$</div>
+        <div class="answer">\(r^2 + z^2 = 25\) — a sphere of radius 5 (or \(z = \pm\sqrt{25 - r^2}\))</div>
+        <div class="note">In <em>spherical</em> coordinates the same surface is simply \(\rho = 5\) — a hint that spherical is the natural system for spheres.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem" id="q10">
+    <h2>Q10. Volume of a Cylinder <span class="tag">Triple Integral</span></h2>
+    <div class="prompt">Find the volume inside the cylinder \(x^2 + y^2 \le 4\), between \(z = 0\) and \(z = 5\).</div>
+    <p>Limits: \(0 \le r \le 2\), \(0 \le \theta \le 2\pi\), \(0 \le z \le 5\). Don't forget the Jacobian \(r\).</p>
+    <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^2\!\!\int_0^5 r\,dz\,dr\,d\theta $$</div>
+    <div class="math-block">$$ = \int_0^{2\pi}\!\!\int_0^2 5r\,dr\,d\theta = \int_0^{2\pi}\left[\frac{5r^2}{2}\right]_0^2 d\theta $$</div>
+    <div class="math-block">$$ = \int_0^{2\pi} 10\,d\theta = 20\pi $$</div>
+    <div class="answer">\(V = 20\pi \approx 62.83\) cubic units</div>
+    <div class="note">Check: \(\pi r^2 h = \pi(2)^2(5) = 20\pi\). ✓</div>
+  </div>
+
+  <!-- ============ SPHERICAL ============ -->
+  <h2 class="section-title">Spherical Coordinates (Q11–Q14)</h2>
+
+  <div class="problem" id="q11">
+    <h2>Q11. Cartesian → Spherical <span class="tag">Point</span></h2>
+    <div class="prompt">Convert the Cartesian point \((1, 1, 1)\) to spherical coordinates.</div>
+    <div class="math-block">$$ \rho = \sqrt{1^2 + 1^2 + 1^2} = \sqrt3 $$</div>
+    <div class="math-block">$$ \theta = \tan^{-1}\frac{1}{1} = \frac{\pi}{4} \quad (\text{Quadrant I}) $$</div>
+    <div class="math-block">$$ \phi = \cos^{-1}\frac{z}{\rho} = \cos^{-1}\frac{1}{\sqrt3} $$</div>
+    <div class="math-block">$$ \approx 0.955 \text{ rad} \approx 54.74^\circ $$</div>
+    <div class="answer">\((\rho, \theta, \phi) = \left(\sqrt3,\ \tfrac{\pi}{4},\ \cos^{-1}\tfrac{1}{\sqrt3}\right)\)<br>\(\approx (1.732,\ 0.785,\ 0.955)\)</div>
+    <div class="note">Sanity check on \(\phi\): the point is above the \(xy\)-plane (\(z &gt; 0\)), so \(\phi\) must be less than \(90^\circ\). ✓</div>
+  </div>
+
+  <div class="problem" id="q12">
+    <h2>Q12. Spherical → Cartesian <span class="tag">Point</span></h2>
+    <div class="prompt">Convert \(\left(4, \tfrac{\pi}{3}, \tfrac{\pi}{4}\right)\) into Cartesian coordinates.</div>
+    <div class="note" style="margin-top:0">
+      <strong>The prompt on the sheet is garbled</strong> — it contains two overlapping versions of the point,
+      one of which is broken. This solution uses the cleanly typeset one, \(\left(4, \tfrac{\pi}{3}, \tfrac{\pi}{4}\right)\),
+      read in the slides' order \((\rho, \theta, \phi)\): \(\rho = 4\), \(\theta = \tfrac{\pi}{3}\), \(\phi = \tfrac{\pi}{4}\).
+    </div>
+    <div class="math-block">$$ x = \rho\sin\phi\cos\theta = 4\cdot\frac{\sqrt2}{2}\cdot\frac12 = \sqrt2 $$</div>
+    <div class="math-block">$$ y = \rho\sin\phi\sin\theta = 4\cdot\frac{\sqrt2}{2}\cdot\frac{\sqrt3}{2} = \sqrt6 $$</div>
+    <div class="math-block">$$ z = \rho\cos\phi = 4\cdot\frac{\sqrt2}{2} = 2\sqrt2 $$</div>
+    <div class="answer">\(\left(\sqrt2,\ \sqrt6,\ 2\sqrt2\right)\)<br>\(\approx (1.414,\ 2.449,\ 2.828)\)</div>
+    <div class="note">
+      Check: \(x^2 + y^2 + z^2 = 2 + 6 + 8 = 16 = \rho^2\). ✓<br>
+      If the intended point was the other version, \(\left(4, \tfrac{\pi}{3}, \tfrac{3\pi}{4}\right)\), only \(z\)
+      changes sign: \(\left(\sqrt2,\ \sqrt6,\ -2\sqrt2\right)\), because \(\cos\tfrac{3\pi}{4} = -\tfrac{\sqrt2}{2}\)
+      while \(\sin\tfrac{3\pi}{4}\) is unchanged.
+    </div>
+  </div>
+
+  <div class="problem" id="q13">
+    <h2>Q13. Volume of a Ball <span class="tag">Triple Integral</span><span class="tag assign">Assignment</span></h2>
+    <div class="prompt">Find the volume of the sphere \(x^2 + y^2 + z^2 \le 9\) using spherical coordinates.</div>
+    <details class="reveal">
+      <summary>Show solution</summary>
+      <div class="body">
+        <p>Radius 3, whole ball: \(0 \le \rho \le 3\), \(0 \le \phi \le \pi\), \(0 \le \theta \le 2\pi\).</p>
+        <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^{\pi}\!\!\int_0^{3} \rho^2\sin\phi\;d\rho\,d\phi\,d\theta $$</div>
+        <p>Constant limits, so it splits into three single integrals:</p>
+        <div class="math-block">$$ \int_0^3 \rho^2\,d\rho = 9 $$</div>
+        <div class="math-block">$$ \int_0^{\pi}\sin\phi\,d\phi = 2 $$</div>
+        <div class="math-block">$$ \int_0^{2\pi} d\theta = 2\pi $$</div>
+        <div class="math-block">$$ V = 9 \cdot 2 \cdot 2\pi = 36\pi $$</div>
+        <div class="answer">\(V = 36\pi \approx 113.10\) cubic units</div>
+        <div class="note">Check: \(\tfrac43\pi(3)^3 = 36\pi\). ✓</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem" id="q14">
+    <h2>Q14. Volume of a Hemisphere <span class="tag">Triple Integral</span></h2>
+    <div class="prompt">Find the volume inside the sphere \(\rho \le 4\) and above the \(xy\)-plane.</div>
+    <p>"Above the \(xy\)-plane" means \(z \ge 0\), which in spherical coordinates is \(0 \le \phi \le \tfrac{\pi}{2}\). \(\theta\) still goes all the way round.</p>
+    <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^{\pi/2}\!\!\int_0^{4} \rho^2\sin\phi\;d\rho\,d\phi\,d\theta $$</div>
+    <div class="math-block">$$ \int_0^4 \rho^2\,d\rho = \frac{64}{3} $$</div>
+    <div class="math-block">$$ \int_0^{\pi/2}\sin\phi\,d\phi = \big[-\cos\phi\big]_0^{\pi/2} = 1 $$</div>
+    <div class="math-block">$$ \int_0^{2\pi} d\theta = 2\pi $$</div>
+    <div class="math-block">$$ V = \frac{64}{3}\cdot 1\cdot 2\pi = \frac{128\pi}{3} $$</div>
+    <div class="answer">\(V = \dfrac{128\pi}{3} \approx 134.04\) cubic units</div>
+    <div class="note">Check: half of \(\tfrac43\pi(4)^3 = \tfrac{256\pi}{3}\) is \(\tfrac{128\pi}{3}\). ✓ The only change from a full ball is the \(\phi\) limit.</div>
+  </div>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-coordinate-systems.html" class="back-btn accent">Coordinate Systems Notes →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+</body>
+</html>

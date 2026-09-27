@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conics Exercise Solutions | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f7f6;
+    }
+    h1, h2, h3 { color: #2c3e50; line-height: 1.3; }
+    h1 {
+      font-size: 2.3rem;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 12px;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 2rem; }
+    p { margin: 0.75rem 0; }
+
+    .toc {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.25rem 1.75rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #f37021;
+    }
+    .toc h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+    .toc ol { padding-left: 1.4rem; margin: 0; }
+    .toc li { margin-bottom: 0.25rem; }
+    .toc a { color: #1e8449; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .problem {
+      background: #ffffff;
+      padding: 1.25rem 1.75rem 1.75rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #27ae60;
+      scroll-margin-top: 1rem;
+    }
+    .problem h2 {
+      font-size: 1.35rem;
+      margin: 0 0 0.5rem;
+      color: #1e8449;
+    }
+    .problem h3 {
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.4rem;
+      color: #2c3e50;
+      border-bottom: 1px dashed #dfe6e9;
+      padding-bottom: 0.25rem;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #16a085;
+      padding: 2px 9px;
+      border-radius: 12px;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+    .prompt {
+      background: #eef6fb;
+      border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .label { display: block; font-weight: bold; margin: 1rem 0 0.25rem; color: #34495e; }
+    .math-block {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      overflow-x: auto;
+      padding: 6px 0;
+    }
+    .answer {
+      background: #e8f8f0;
+      border-left: 4px solid #27ae60;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .note {
+      background: #fdf3e7;
+      border-left: 4px solid #f37021;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      margin: 1rem 0 0.5rem;
+      font-size: 0.95rem;
+    }
+    ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.4rem; }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.95rem;
+      margin: 0.5rem 0;
+    }
+    th, td {
+      border: 1px solid #c8e6d0;
+      padding: 0.45rem 0.7rem;
+      text-align: left;
+      vertical-align: middle;
+    }
+    th { background: #1e8449; color: #fff; }
+    tbody tr:nth-child(even) { background: #f4fbf6; }
+
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
+    .back-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #27ae60; }
+    .back-btn.accent:hover { background-color: #1e8449; }
+    .back-btn.orange { background-color: #f37021; }
+    .back-btn.orange:hover { background-color: #d35400; }
+
+    /* Long inline formulas scroll inside their box rather than widening the page */
+    .answer, .note, .prompt, .key, .warn, .example, td { overflow-x: auto; }
+
+    /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
+    mjx-container { position: relative; }
+    mjx-assistive-mml { max-width: 100%; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.7rem; }
+      .problem { padding: 1rem 1.1rem 1.3rem; }
+      .math-block { font-size: 0.86rem; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 0.35rem 0.45rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-conic-sections.html" class="back-btn accent">Conic Sections Notes →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+  <h1>Exercise on Conic Sections — Solutions</h1>
+  <p class="subtitle">MATH-2201 Finals &nbsp;·&nbsp; all four questions from the conics exercise sheet, fully worked</p>
+
+  <div class="toc">
+    <h2>Questions</h2>
+    <ol>
+      <li><a href="#q1">Identify two conics and find centre, axes, vertices, foci, eccentricity</a></li>
+      <li><a href="#q2">Parabola — vertex, focus, directrix, axis, latus rectum</a></li>
+      <li><a href="#q3">Ellipse — centre, axes, vertices, co-vertices, foci, eccentricity</a></li>
+      <li><a href="#q4">Rotation of axes — eliminate the \(xy\) term</a></li>
+    </ol>
+  </div>
+
+  <!-- Q1 -->
+  <div class="problem" id="q1">
+    <h2>Q1. Identify the Conics <span class="tag">Completing the Square</span></h2>
+    <div class="prompt">
+      Identify the following conics:
+      $$ 9x^2 + 16y^2 - 54x + 64y - 47 = 0 $$
+      $$ 16x^2 - 9y^2 - 64x - 54y - 161 = 0 $$
+      Find their centre, lengths of the major and minor axes, vertices, foci, and eccentricity.
+    </div>
+
+    <h3>(a) \(9x^2 + 16y^2 - 54x + 64y - 47 = 0\)</h3>
+    <p><strong>Identify:</strong> coefficients of \(x^2\) and \(y^2\) are \(9\) and \(16\) — same sign, different values → <strong>ellipse</strong>.</p>
+
+    <span class="label">Complete the square</span>
+    <div class="math-block">$$ 9(x^2 - 6x) + 16(y^2 + 4y) = 47 $$</div>
+    <div class="math-block">$$ 9(x^2 - 6x + 9) + 16(y^2 + 4y + 4) $$</div>
+    <div class="math-block">$$ = 47 + 9(9) + 16(4) $$</div>
+    <div class="math-block">$$ 9(x-3)^2 + 16(y+2)^2 = 192 $$</div>
+    <div class="math-block">$$ \frac{(x-3)^2}{64/3} + \frac{(y+2)^2}{12} = 1 $$</div>
+
+    <span class="label">Read off the values</span>
+    <p>\(\tfrac{64}{3} \approx 21.3 &gt; 12\), so \(a^2 = \tfrac{64}{3}\) sits under \(x\): the major axis is <strong>horizontal</strong>.</p>
+    <div class="math-block">$$ a = \frac{8}{\sqrt3} = \frac{8\sqrt3}{3} \approx 4.619 $$</div>
+    <div class="math-block">$$ b = \sqrt{12} = 2\sqrt3 \approx 3.464 $$</div>
+    <div class="math-block">$$ c = \sqrt{a^2 - b^2} = \sqrt{\tfrac{64}{3} - 12} $$</div>
+    <div class="math-block">$$ = \sqrt{\tfrac{28}{3}} = \frac{2\sqrt{21}}{3} \approx 3.055 $$</div>
+
+    <div class="answer">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Property</th><th>Exact</th><th>Decimal</th></tr></thead>
+          <tbody>
+            <tr><td>Type</td><td colspan="2">Ellipse, horizontal major axis</td></tr>
+            <tr><td>Centre</td><td colspan="2">\((3, -2)\)</td></tr>
+            <tr><td>Major axis length \(2a\)</td><td>\(\tfrac{16\sqrt3}{3}\)</td><td>\(\approx 9.24\)</td></tr>
+            <tr><td>Minor axis length \(2b\)</td><td>\(4\sqrt3\)</td><td>\(\approx 6.93\)</td></tr>
+            <tr><td>Vertices</td><td>\(\left(3 \pm \tfrac{8\sqrt3}{3},\, -2\right)\)</td><td>\((7.62, -2),\ (-1.62, -2)\)</td></tr>
+            <tr><td>Foci</td><td>\(\left(3 \pm \tfrac{2\sqrt{21}}{3},\, -2\right)\)</td><td>\((6.06, -2),\ (-0.06, -2)\)</td></tr>
+            <tr><td>Eccentricity</td><td>\(e = \tfrac{c}{a} = \tfrac{\sqrt7}{4}\)</td><td>\(\approx 0.661\)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="note">
+      <strong>These numbers aren't round — possibly a typo on the sheet.</strong> If the constant were
+      \(+1\) instead of \(-47\), the right-hand side would be 144, giving the tidy textbook ellipse
+      \(\tfrac{(x-3)^2}{16} + \tfrac{(y+2)^2}{9} = 1\) with \(a = 4\), \(b = 3\), \(c = \sqrt7\), vertices
+      \((7,-2), (-1,-2)\), foci \((3 \pm \sqrt7, -2)\). The eccentricity \(\sqrt7/4\) is the same either way.
+      The solution above follows the sheet exactly as written — worth confirming the sign with your lecturer.
+    </div>
+
+    <h3>(b) \(16x^2 - 9y^2 - 64x - 54y - 161 = 0\)</h3>
+    <p><strong>Identify:</strong> coefficients \(16\) and \(-9\) have opposite signs → <strong>hyperbola</strong>.</p>
+
+    <span class="label">Complete the square</span>
+    <div class="math-block">$$ 16(x^2 - 4x) - 9(y^2 + 6y) = 161 $$</div>
+    <div class="math-block">$$ 16(x^2 - 4x + 4) - 9(y^2 + 6y + 9) $$</div>
+    <div class="math-block">$$ = 161 + 16(4) - 9(9) $$</div>
+    <div class="math-block">$$ 16(x-2)^2 - 9(y+3)^2 = 144 $$</div>
+    <div class="math-block">$$ \frac{(x-2)^2}{9} - \frac{(y+3)^2}{16} = 1 $$</div>
+    <div class="note">Careful with the \(-9\): adding 9 inside \(-9(\;\cdot\;)\) adds \(-81\) to the left, so you add \(-81\) to the right too.</div>
+
+    <span class="label">Read off the values</span>
+    <p>The positive term is under \(x\), so it opens <strong>left–right</strong> and \(a^2 = 9\), even though \(16 &gt; 9\).</p>
+    <div class="math-block">$$ a = 3 $$</div>
+    <div class="math-block">$$ b = 4 $$</div>
+    <div class="math-block">$$ c = \sqrt{a^2 + b^2} = \sqrt{9 + 16} = 5 $$</div>
+
+    <div class="answer">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Property</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Type</td><td>Hyperbola, opens left–right</td></tr>
+            <tr><td>Centre</td><td>\((2, -3)\)</td></tr>
+            <tr><td>Transverse axis length \(2a\)</td><td>\(6\)</td></tr>
+            <tr><td>Conjugate axis length \(2b\)</td><td>\(8\)</td></tr>
+            <tr><td>Vertices</td><td>\((2 \pm 3, -3) = (5, -3),\ (-1, -3)\)</td></tr>
+            <tr><td>Foci</td><td>\((2 \pm 5, -3) = (7, -3),\ (-3, -3)\)</td></tr>
+            <tr><td>Eccentricity</td><td>\(e = \tfrac{5}{3} \approx 1.667\)</td></tr>
+            <tr><td>Asymptotes (bonus)</td><td>\(y + 3 = \pm\tfrac43(x - 2)\)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="note">For a hyperbola, "major and minor axes" means the <strong>transverse</strong> axis (\(2a\), through the vertices) and the <strong>conjugate</strong> axis (\(2b\)). Say so in your answer to show you know the difference.</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="problem" id="q2">
+    <h2>Q2. Parabola <span class="tag">Parabola</span></h2>
+    <div class="prompt">
+      For the parabola \((x-2)^2 = 12(y+1)\), find the vertex, focus, directrix, axis of symmetry, and length of the latus rectum.
+    </div>
+
+    <span class="label">Match to the standard form</span>
+    <div class="math-block">$$ (x-h)^2 = 4a(y-k) $$</div>
+    <div class="math-block">$$ h = 2,\quad k = -1,\quad 4a = 12 \;\Rightarrow\; a = 3 $$</div>
+    <p>\(x\) is squared and \(a &gt; 0\), so the parabola opens <strong>upward</strong>.</p>
+
+    <span class="label">Read off everything</span>
+    <ul>
+      <li><strong>Vertex:</strong> \((h, k) = (2, -1)\)</li>
+      <li><strong>Focus:</strong> \(a\) units <em>above</em> the vertex: \((h, k + a) = (2, 2)\)</li>
+      <li><strong>Directrix:</strong> \(a\) units <em>below</em> the vertex: \(y = k - a = -4\)</li>
+      <li><strong>Axis of symmetry:</strong> the vertical line through the vertex: \(x = 2\)</li>
+      <li><strong>Latus rectum:</strong> \(|4a| = 12\), running from \((-4, 2)\) to \((8, 2)\)</li>
+    </ul>
+
+    <div class="answer">
+      Vertex \((2, -1)\) · Focus \((2, 2)\) · Directrix \(y = -4\) · Axis \(x = 2\) · Latus rectum \(= 12\)
+    </div>
+    <div class="note">Check: the vertex \(y = -1\) is exactly halfway between the focus \(y = 2\) and the directrix \(y = -4\). ✓ And the latus-rectum endpoint \((8, 2)\) is 6 from the focus and 6 from the directrix. ✓</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="problem" id="q3">
+    <h2>Q3. Ellipse <span class="tag">Ellipse</span></h2>
+    <div class="prompt">
+      For the ellipse \(\dfrac{(x-3)^2}{25} + \dfrac{(y+2)^2}{9} = 1\), find the centre, major and minor axes, vertices, co-vertices, foci, and eccentricity.
+    </div>
+
+    <span class="label">Read off \(h, k, a, b\)</span>
+    <p>Already in standard form. The larger denominator, 25, is under \(x\) → major axis <strong>horizontal</strong>.</p>
+    <div class="math-block">$$ h = 3,\qquad k = -2 $$</div>
+    <div class="math-block">$$ a = 5,\quad b = 3,\quad c = \sqrt{25 - 9} = 4 $$</div>
+
+    <div class="answer">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Property</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>1. Centre</td><td>\((3, -2)\)</td></tr>
+            <tr><td>2. Major / minor axis</td><td>Major \(2a = 10\) (horizontal, along \(y = -2\)); minor \(2b = 6\) (vertical, along \(x = 3\))</td></tr>
+            <tr><td>3. Vertices</td><td>\((3 \pm 5, -2) = (8, -2),\ (-2, -2)\)</td></tr>
+            <tr><td>4. Co-vertices</td><td>\((3, -2 \pm 3) = (3, 1),\ (3, -5)\)</td></tr>
+            <tr><td>5. Foci</td><td>\((3 \pm 4, -2) = (7, -2),\ (-1, -2)\)</td></tr>
+            <tr><td>6. Eccentricity</td><td>\(e = \tfrac{c}{a} = \tfrac{4}{5} = 0.8\)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="note">Check: foci \((7,-2)\) and \((-1,-2)\) lie between the vertices \((8,-2)\) and \((-2,-2)\), and \(e = 0.8 &lt; 1\). ✓</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="problem" id="q4">
+    <h2>Q4. Rotation of Axes <span class="tag">Rotation</span></h2>
+    <div class="prompt">
+      Consider the equation \(3x^2 + 4xy + 3y^2 - 10x + 2y - 5 = 0\).
+      <ul style="margin-bottom:0">
+        <li>Identify the type of conic.</li>
+        <li>Determine the angle through which the axes should be rotated to eliminate the \(xy\)-term.</li>
+        <li>Write the equation after rotation of axes.</li>
+      </ul>
+    </div>
+
+    <h3>Identify the conic</h3>
+    <div class="math-block">$$ A = 3,\quad B = 4,\quad C = 3 $$</div>
+    <div class="math-block">$$ D = -10,\quad E = 2,\quad F = -5 $$</div>
+    <div class="math-block">$$ B^2 - 4AC = 16 - 36 = -20 &lt; 0 $$</div>
+    <div class="answer">Discriminant negative → the conic is an <strong>ellipse</strong>.</div>
+
+    <h3>Angle of rotation</h3>
+    <div class="math-block">$$ \cot 2\theta = \frac{A - C}{B} = \frac{3 - 3}{4} = 0 $$</div>
+    <div class="math-block">$$ \;\Longrightarrow\; 2\theta = 90^\circ \;\Longrightarrow\; \theta = 45^\circ $$</div>
+    <div class="answer">Rotate the axes through \(\theta = 45^\circ\) \(\left(= \tfrac{\pi}{4}\right)\).</div>
+
+    <h3>Equation after rotation</h3>
+    <p>With \(\cos 45^\circ = \sin 45^\circ = \tfrac{1}{\sqrt2}\):</p>
+    <div class="math-block">$$ x = \frac{x' - y'}{\sqrt2}, \qquad y = \frac{x' + y'}{\sqrt2} $$</div>
+
+    <span class="label">Quadratic terms</span>
+    <div class="math-block">$$ 3x^2 = \tfrac32\,(x'^2 - 2x'y' + y'^2) $$</div>
+    <div class="math-block">$$ 4xy = 2\,(x'^2 - y'^2) $$</div>
+    <div class="math-block">$$ 3y^2 = \tfrac32\,(x'^2 + 2x'y' + y'^2) $$</div>
+    <p>Adding: the \(x'y'\) terms cancel (that's the point of the rotation), leaving</p>
+    <div class="math-block">$$ 3x'^2 + 3y'^2 + 2x'^2 - 2y'^2 = 5x'^2 + y'^2 $$</div>
+
+    <span class="label">Linear terms</span>
+    <div class="math-block">$$ -10x = -\tfrac{10}{\sqrt2}(x' - y') = -5\sqrt2\,x' + 5\sqrt2\,y' $$</div>
+    <div class="math-block">$$ 2y = \tfrac{2}{\sqrt2}(x' + y') = \sqrt2\,x' + \sqrt2\,y' $$</div>
+    <div class="math-block">$$ \text{Sum: } -4\sqrt2\,x' + 6\sqrt2\,y' $$</div>
+
+    <div class="answer">
+      $$ 5x'^2 + y'^2 - 4\sqrt2\,x' + 6\sqrt2\,y' - 5 = 0 $$
+    </div>
+    <div class="note">
+      Check with the invariant: \(A' + C' = 5 + 1 = 6 = A + C\). ✓ And the new discriminant
+      \(0 - 4(5)(1) = -20\) matches the old one. ✓
+    </div>
+
+    <h3>Bonus — standard form (not asked, but it confirms the answer)</h3>
+    <div class="math-block">$$ 5\left(x'^2 - \tfrac{4\sqrt2}{5}x'\right) + \left(y'^2 + 6\sqrt2\,y'\right) = 5 $$</div>
+    <div class="math-block">$$ 5\left(x' - \tfrac{2\sqrt2}{5}\right)^2 - \tfrac85 + \left(y' + 3\sqrt2\right)^2 - 18 = 5 $$</div>
+    <div class="math-block">$$ 5\left(x' - \tfrac{2\sqrt2}{5}\right)^2 + \left(y' + 3\sqrt2\right)^2 = \tfrac{123}{5} $$</div>
+    <div class="math-block">$$ \frac{\left(x' - \frac{2\sqrt2}{5}\right)^2}{123/25} + \frac{\left(y' + 3\sqrt2\right)^2}{123/5} = 1 $$</div>
+    <p>
+      A genuine ellipse (the right-hand side is positive) with semi-axes \(\sqrt{123/5} \approx 4.96\)
+      along \(y'\) and \(\sqrt{123}/5 \approx 2.22\) along \(x'\). Its centre is
+      \(\left(\tfrac{2\sqrt2}{5}, -3\sqrt2\right)\) in the rotated frame, which is
+      \(\left(\tfrac{17}{5}, -\tfrac{13}{5}\right) = (3.4, -2.6)\) in the original \(xy\)-frame.
+    </p>
+  </div>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-conic-sections.html" class="back-btn accent">Conic Sections Notes →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+</body>
+</html>
