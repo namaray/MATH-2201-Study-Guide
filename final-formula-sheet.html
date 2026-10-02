@@ -73,6 +73,8 @@
     .box.blue h2 { color: #21618c; }
     .box.orange { border-top-color: #f37021; }
     .box.orange h2 { color: #d35400; }
+    .box.purple { border-top-color: #8e44ad; }
+    .box.purple h2 { color: #6c3483; }
     .box.red { border-top-color: #e74c3c; }
     .box.red h2 { color: #c0392b; }
     .box.later {
@@ -218,11 +220,12 @@
     <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
     <a href="final-conic-sections.html" class="back-btn accent">Conics Notes</a>
     <a href="final-coordinate-systems.html" class="back-btn accent">Coordinates Notes</a>
+    <a href="final-vector-fields.html" class="back-btn accent">Unit 6 Notes</a>
     <button class="back-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
   </div>
 
   <h1>MATH 2201 — Finals Formula Sheet</h1>
-  <p class="subtitle">Unit 4 conic sections &nbsp;·&nbsp; Unit 5 polar, cylindrical &amp; spherical coordinates &nbsp;·&nbsp; more units added as they're covered</p>
+  <p class="subtitle">Unit 4 conic sections &nbsp;·&nbsp; Unit 5 polar, cylindrical &amp; spherical coordinates &nbsp;·&nbsp; Unit 6 gradient, divergence &amp; curl &nbsp;·&nbsp; more units added as they're covered</p>
 
   <div class="grid">
 
@@ -437,6 +440,104 @@
       <div class="f">Cylinder \(\pi r^2 h\) · ball \(\tfrac43\pi a^3\) · hemisphere \(\tfrac23\pi a^3\)</div>
     </div>
 
+    <!-- ===================== UNIT 6 ===================== -->
+    <div class="group-title">Unit 6 — Gradient, Divergence &amp; Curl <span class="sub">Ch 13.6, 15.1–15.4</span></div>
+
+    <div class="box purple">
+      <h2>Fields &amp; the Gradient</h2>
+      <table>
+        <tbody>
+          <tr><td>Scalar field</td><td>\(f:\mathbb{R}^n \to \mathbb{R}\) — one number per point</td></tr>
+          <tr><td>Vector field</td><td>\(\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}\)</td></tr>
+          <tr><td>Contour</td><td>\(f(x,y) = c\)</td></tr>
+        </tbody>
+      </table>
+      <div class="f center">$$ \nabla = \frac{\partial}{\partial x}\mathbf{i} + \frac{\partial}{\partial y}\mathbf{j} + \frac{\partial}{\partial z}\mathbf{k} $$</div>
+      <div class="f center">$$ \nabla f = \langle f_x,\ f_y,\ f_z\rangle $$</div>
+      <div class="tip">\(\nabla f\) points to steepest increase, has length = that max rate, and is ⟂ to contours.</div>
+      <div class="trap">Differentiate first, substitute the point second.</div>
+    </div>
+
+    <div class="box purple">
+      <h2>Directional Derivative</h2>
+      <div class="f center">$$ D_{\mathbf{u}}f = \nabla f \cdot \mathbf{u}, \qquad \mathbf{u} = \frac{\mathbf{v}}{|\mathbf{v}|} $$</div>
+      <div class="f center">$$ D_{\mathbf{u}}f = |\nabla f|\cos\theta $$</div>
+      <table>
+        <tbody>
+          <tr><td>Max rate</td><td>\(|\nabla f|\), along \(\nabla f\)</td></tr>
+          <tr><td>Min rate</td><td>\(-|\nabla f|\), along \(-\nabla f\)</td></tr>
+          <tr><td>Zero</td><td>⟂ \(\nabla f\) (along contour)</td></tr>
+        </tbody>
+      </table>
+      <div class="trap"><strong>Normalise \(\mathbf{v}\)!</strong> From \(P\) to \(Q\): \(\mathbf{v} = \overrightarrow{PQ}\).</div>
+    </div>
+
+    <div class="box purple">
+      <h2>Normals, Tangent Planes, Lagrange</h2>
+      <div class="f"><span class="cap">Surface F(x,y,z) = C</span></div>
+      <div class="f center">$$ \mathbf{n} = \nabla F(x_0, y_0, z_0) $$</div>
+      <div class="f center">$$ F_x(x - x_0) + F_y(y - y_0) + F_z(z - z_0) = 0 $$</div>
+      <div class="f"><span class="cap">Surface z = f(x,y)</span></div>
+      <div class="f center">$$ z - z_0 = f_x(x - x_0) + f_y(y - y_0) $$</div>
+      <hr class="sep">
+      <div class="f"><span class="cap">Lagrange: optimise f subject to g = k</span></div>
+      <div class="f center">$$ \nabla f = \lambda\,\nabla g, \qquad g(x,y) = k $$</div>
+    </div>
+
+    <div class="box purple">
+      <h2>Divergence &amp; Curl</h2>
+      <div class="f center">$$ \nabla\cdot\mathbf{F} = P_x + Q_y + R_z \quad(\text{scalar}) $$</div>
+      <div class="f center">$$ \nabla\times\mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \partial_x & \partial_y & \partial_z \\ P & Q & R \end{vmatrix} \quad(\text{vector}) $$</div>
+      <div class="f center">$$ = (R_y - Q_z)\,\mathbf{i} + (P_z - R_x)\,\mathbf{j} + (Q_x - P_y)\,\mathbf{k} $$</div>
+      <table>
+        <tbody>
+          <tr><td>\(\nabla\cdot\mathbf{F} &gt; 0\) / \(&lt; 0\)</td><td>Source (expanding) / sink</td></tr>
+          <tr><td>\(\nabla\cdot\mathbf{F} = 0\)</td><td>Incompressible</td></tr>
+          <tr><td>\(\nabla\times\mathbf{F} = \mathbf{0}\)</td><td>Irrotational</td></tr>
+        </tbody>
+      </table>
+      <div class="f center">$$ \nabla\times(\nabla f) = \mathbf{0}, \qquad \nabla\cdot(\nabla\times\mathbf{F}) = 0 $$</div>
+    </div>
+
+    <div class="box purple">
+      <h2>Conservative Fields</h2>
+      <div class="f center">$$ \mathbf{F} = \nabla\phi \iff P = \phi_x,\ Q = \phi_y,\ R = \phi_z $$</div>
+      <table>
+        <tbody>
+          <tr><td>2D test</td><td>\(P_y = Q_x\)</td></tr>
+          <tr><td>3D test</td><td>\(\nabla\times\mathbf{F} = \mathbf{0}\)</td></tr>
+        </tbody>
+      </table>
+      <div class="f"><span class="cap">Finding φ</span></div>
+      <ul>
+        <li>\(\phi = \int P\,dx + g(y,z)\)</li>
+        <li>\(\phi_y = Q\) → solve for \(g\); then \(\phi_z = R\)</li>
+        <li>Add \(+\,C\); check \(\nabla\phi = \mathbf{F}\)</li>
+      </ul>
+      <div class="f center">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = \phi(B) - \phi(A), \qquad \oint_C \mathbf{F}\cdot d\mathbf{r} = 0 $$</div>
+      <div class="tip">Conservative ⟺ potential exists ⟹ path independent.</div>
+    </div>
+
+    <div class="box purple">
+      <h2>Line Integrals</h2>
+      <div class="f"><span class="cap">Scalar field</span></div>
+      <div class="f center">$$ \int_C f\,ds = \int_a^b f\big(x(t), y(t)\big)\sqrt{x'^2 + y'^2}\,dt $$</div>
+      <div class="f center">$$ y = g(x):\quad ds = \sqrt{1 + g'(x)^2}\,dx $$</div>
+      <div class="f"><span class="cap">Vector field (work)</span></div>
+      <div class="f center">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t))\cdot\mathbf{r}'(t)\,dt $$</div>
+      <div class="f center">$$ = \int_C P\,dx + Q\,dy\;(+\,R\,dz) $$</div>
+      <div class="f">Straight line \(A \to B\): \(\mathbf{r}(t) = A + t(B - A)\), \(0 \le t \le 1\)</div>
+      <div class="tip">Check conservative <strong>first</strong> — it can save the whole integral.</div>
+    </div>
+
+    <div class="box purple">
+      <h2>Green's Theorem</h2>
+      <div class="f center">$$ \oint_C P\,dx + Q\,dy = \iint_R \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dA $$</div>
+      <div class="f">\(C\) closed, <strong>counterclockwise</strong>, bounding \(R\).</div>
+      <div class="tip">Constant integrand \(k\): answer \(= k \times \text{area}(R)\).</div>
+      <div class="trap">It's \(Q_x - P_y\) (not the reverse). Clockwise flips the sign.</div>
+    </div>
+
     <!-- ===================== STRATEGY ===================== -->
     <div class="group-title">Exam Strategy</div>
 
@@ -454,6 +555,13 @@
           <tr><td>Cylinder / paraboloid solid</td><td>Cylindrical</td></tr>
           <tr><td>Ball / hemisphere / \(x^2+y^2+z^2\)</td><td>Spherical</td></tr>
           <tr><td>Convert a point</td><td>Formulas + fix the quadrant</td></tr>
+          <tr><td>Steepest direction / max rate</td><td>\(\nabla f\) / \(|\nabla f|\)</td></tr>
+          <tr><td>Rate "in the direction of…"</td><td>\(\nabla f\cdot\mathbf{u}\), unit \(\mathbf{u}\)</td></tr>
+          <tr><td>Normal / tangent plane</td><td>\(\nabla F\) at the point</td></tr>
+          <tr><td>Expanding? Rotating?</td><td>\(\nabla\cdot\mathbf{F}\) / \(\nabla\times\mathbf{F}\)</td></tr>
+          <tr><td>Potential / conservative?</td><td>\(P_y = Q_x\) or curl \(=\mathbf{0}\)</td></tr>
+          <tr><td>Work, \(\int_C\mathbf{F}\cdot d\mathbf{r}\)</td><td>\(\phi(B)-\phi(A)\), else parametrise</td></tr>
+          <tr><td>\(\oint_C P\,dx + Q\,dy\)</td><td>Green's theorem</td></tr>
         </tbody>
       </table>
     </div>
@@ -470,15 +578,16 @@
         <li>\(\phi \in [0, \pi]\); off-centre circles need \(\theta \in [-\tfrac{\pi}{2}, \tfrac{\pi}{2}]\)</li>
         <li>\(r\) = distance from \(z\)-axis; \(\rho\) = distance from origin</li>
         <li>Check eccentricity range and known volumes</li>
+        <li>Directional derivative needs a <strong>unit</strong> vector</li>
+        <li>Divergence is a scalar; curl is a vector</li>
+        <li>Find \(\phi\) via \(g(y)\) — don't just add integrals; include \(+C\)</li>
+        <li>Green's: \(Q_x - P_y\), counterclockwise</li>
       </ul>
     </div>
 
     <div class="box later no-print">
       <h2>Coming later</h2>
       <ul>
-        <li>Vector fields &amp; line integrals</li>
-        <li>Conservative fields &amp; path independence</li>
-        <li>Green's Theorem</li>
         <li>Surface integrals &amp; flux</li>
         <li>Divergence Theorem &amp; Stokes' Theorem</li>
       </ul>
@@ -491,6 +600,7 @@
     <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
     <a href="final-conic-sections.html" class="back-btn accent">Conics Notes</a>
     <a href="final-coordinate-systems.html" class="back-btn accent">Coordinates Notes</a>
+    <a href="final-vector-fields.html" class="back-btn accent">Unit 6 Notes</a>
     <button class="back-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
   </div>
 

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CT4 Worksheet Solutions | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f7f6;
+    }
+    h1, h2, h3 { color: #2c3e50; line-height: 1.3; }
+    h1 {
+      font-size: 2.3rem;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 12px;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 2rem; }
+    p { margin: 0.75rem 0; }
+
+    .toc {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.25rem 1.75rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #f37021;
+    }
+    .toc h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+    .toc ol { padding-left: 1.4rem; margin: 0; columns: 2; column-gap: 2rem; }
+    .toc li { margin-bottom: 0.25rem; break-inside: avoid; }
+    .toc a { color: #1e8449; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .section-title {
+      margin: 2.5rem 0 1rem;
+      padding: 0.7rem 1.2rem;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1.3rem;
+    }
+
+    .problem {
+      background: #ffffff;
+      padding: 1.25rem 1.75rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 1.75rem;
+      border-top: 4px solid #27ae60;
+      scroll-margin-top: 1rem;
+    }
+    .problem h2 {
+      font-size: 1.3rem;
+      margin: 0 0 0.5rem;
+      color: #1e8449;
+    }
+    .problem h3 {
+      font-size: 1.05rem;
+      margin: 1.3rem 0 0.3rem;
+      color: #2c3e50;
+      border-bottom: 1px dashed #dfe6e9;
+      padding-bottom: 0.2rem;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #16a085;
+      padding: 2px 9px;
+      border-radius: 12px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+    .tag.book { background: #8e44ad; }
+    .prompt {
+      background: #eef6fb;
+      border-left: 4px solid #3498db;
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .label { display: block; font-weight: bold; margin: 1rem 0 0.25rem; color: #34495e; }
+    .math-block {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      overflow-x: auto;
+      padding: 6px 0;
+    }
+    .answer {
+      background: #e8f8f0;
+      border-left: 4px solid #27ae60;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      margin: 1.25rem 0 0.5rem;
+      font-weight: bold;
+    }
+    .note {
+      background: #fdf3e7;
+      border-left: 4px solid #f37021;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      margin: 1rem 0 0.5rem;
+      font-size: 0.95rem;
+    }
+    ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.4rem; }
+
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
+    .back-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #27ae60; }
+    .back-btn.accent:hover { background-color: #1e8449; }
+    .back-btn.orange { background-color: #f37021; }
+    .back-btn.orange:hover { background-color: #d35400; }
+
+    /* Long inline formulas scroll inside their box rather than widening the page */
+    .answer, .note, .prompt, td { overflow-x: auto; }
+
+    /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
+    mjx-container { position: relative; }
+    mjx-assistive-mml { max-width: 100%; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.7rem; }
+      .toc ol { columns: 1; }
+      .problem { padding: 1rem 1.1rem 1.2rem; }
+      .math-block { font-size: 0.86rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-vector-fields.html" class="back-btn accent">Unit 6 Notes →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+  <h1>CT4 Practice Worksheet — Solutions</h1>
+  <p class="subtitle">MATH-2201 &nbsp;·&nbsp; Unit 6 &nbsp;·&nbsp; all 16 questions, fully worked and numerically checked</p>
+
+  <div class="toc">
+    <h2>Questions</h2>
+    <ol>
+      <li><a href="#q1">Temperature scalar field</a></li>
+      <li><a href="#q2">Concentration scalar field</a></li>
+      <li><a href="#q3">Fluid velocity field</a></li>
+      <li><a href="#q4">Force field — magnitude &amp; direction</a></li>
+      <li><a href="#q5">Gradient of \(\phi\)</a></li>
+      <li><a href="#q6">Gradient of an elevation</a></li>
+      <li><a href="#q7">Directional derivative</a></li>
+      <li><a href="#q8">Rate of change from \(P\) toward \(Q\)</a></li>
+      <li><a href="#q9">Does a potential exist?</a></li>
+      <li><a href="#q10">Recover \(\phi\) from \(\nabla\phi\)</a></li>
+      <li><a href="#q11">Conservative on \(\mathbb{R}^2\)?</a></li>
+      <li><a href="#q12">Conservative in 3D?</a></li>
+      <li><a href="#q13">Line integral, straight path</a></li>
+      <li><a href="#q14">Work along \(y = x^2\)</a></li>
+      <li><a href="#q15">Green's theorem — rectangle</a></li>
+      <li><a href="#q16">Green's theorem — triangle</a></li>
+    </ol>
+  </div>
+
+  <!-- ============ FIELDS ============ -->
+  <h2 class="section-title">Scalar &amp; Vector Fields (Q1–Q4)</h2>
+
+  <div class="problem" id="q1">
+    <h2>Q1. Temperature in a Metal Block <span class="tag">Scalar Field</span></h2>
+    <div class="prompt">
+      \(T(x,y,z) = 4x^2 + y^2 + 3z\).
+      <strong>(a)</strong> Explain why \(T\) represents a scalar field.
+      <strong>(b)</strong> Find the temperature at \((1, -2, 3)\).
+    </div>
+    <span class="label">(a)</span>
+    <p>
+      \(T\) assigns a <strong>single real number</strong> — a temperature — to every point \((x,y,z)\) of the block.
+      It has magnitude but no direction, so \(T: \mathbb{R}^3 \to \mathbb{R}\) is a scalar field.
+    </p>
+    <span class="label">(b)</span>
+    <div class="math-block">$$ T(1,-2,3) = 4(1)^2 + (-2)^2 + 3(3) $$</div>
+    <div class="math-block">$$ = 4 + 4 + 9 = 17 $$</div>
+    <div class="answer">\(T(1,-2,3) = 17\) (temperature units)</div>
+  </div>
+
+  <div class="problem" id="q2">
+    <h2>Q2. Chemical Concentration <span class="tag">Scalar Field</span></h2>
+    <div class="prompt">
+      \(C(x,y,z) = x^2 + 2y^2 + z^2 - 4x\).
+      <strong>(a)</strong> Find \(C(2,1,-1)\).
+      <strong>(b)</strong> Describe what information \(C\) provides at each point in space.
+    </div>
+    <span class="label">(a)</span>
+    <div class="math-block">$$ C(2,1,-1) = 4 + 2 + 1 - 8 = -1 $$</div>
+    <div class="answer">\(C(2,1,-1) = -1\)</div>
+    <div class="note">A real concentration can't be negative, so read this as the model's output (for example, relative to a reference level). Mathematically, the answer is \(-1\).</div>
+    <span class="label">(b)</span>
+    <p>
+      At each point, \(C\) gives <strong>one number</strong>: how much chemical is present there. It tells you
+      <em>how much</em>, not <em>which way</em>. Points with equal \(C\) form level surfaces, and \(\nabla C\) at a
+      point would show the direction in which the concentration increases fastest.
+    </p>
+  </div>
+
+  <div class="problem" id="q3">
+    <h2>Q3. Fluid Velocity Field <span class="tag">Vector Field</span></h2>
+    <div class="prompt">
+      \(\mathbf{V} = (y + z)\mathbf{i} + (x - z)\mathbf{j} + (x + y)\mathbf{k}\).
+      <strong>(a)</strong> Find the velocity at \(P(1,2,-1)\).
+      <strong>(b)</strong> Find its magnitude.
+    </div>
+    <div class="math-block">$$ \mathbf{V}(1,2,-1) = (2 - 1)\mathbf{i} + (1 + 1)\mathbf{j} + (1 + 2)\mathbf{k} $$</div>
+    <div class="math-block">$$ = \mathbf{i} + 2\mathbf{j} + 3\mathbf{k} $$</div>
+    <div class="math-block">$$ |\mathbf{V}| = \sqrt{1 + 4 + 9} = \sqrt{14} $$</div>
+    <div class="answer">(a) \(\mathbf{V} = \mathbf{i} + 2\mathbf{j} + 3\mathbf{k}\) &nbsp;·&nbsp; (b) \(|\mathbf{V}| = \sqrt{14} \approx 3.742\)</div>
+    <div class="note">Watch the \(\mathbf{j}\)-component: \(x - z = 1 - (-1) = 2\).</div>
+  </div>
+
+  <div class="problem" id="q4">
+    <h2>Q4. Force Field <span class="tag">Vector Field</span></h2>
+    <div class="prompt">
+      \(\mathbf{F}(x,y) = (3x^2 - 2y)\mathbf{i} + (4y + x)\mathbf{j}\).
+      <strong>(a)</strong> Find \(\mathbf{F}(2,-1)\).
+      <strong>(b)</strong> Find the magnitude and direction of the force there.
+    </div>
+    <span class="label">(a)</span>
+    <div class="math-block">$$ \mathbf{F}(2,-1) = (12 + 2)\mathbf{i} + (-4 + 2)\mathbf{j} = 14\mathbf{i} - 2\mathbf{j} $$</div>
+    <span class="label">(b) Magnitude</span>
+    <div class="math-block">$$ |\mathbf{F}| = \sqrt{14^2 + (-2)^2} $$</div>
+    <div class="math-block">$$ = \sqrt{200} = 10\sqrt2 \approx 14.14 $$</div>
+    <span class="label">(b) Direction</span>
+    <div class="math-block">$$ \hat{\mathbf{F}} = \frac{14\mathbf{i} - 2\mathbf{j}}{10\sqrt2} = \frac{7\mathbf{i} - \mathbf{j}}{5\sqrt2} \approx 0.990\,\mathbf{i} - 0.141\,\mathbf{j} $$</div>
+    <div class="math-block">$$ \theta = \tan^{-1}\!\left(\frac{-2}{14}\right) \approx -8.13^\circ $$</div>
+    <div class="answer">
+      (a) \(14\mathbf{i} - 2\mathbf{j}\) &nbsp;·&nbsp; (b) \(|\mathbf{F}| = 10\sqrt2 \approx 14.14\),
+      pointing \(8.13^\circ\) below the positive \(x\)-axis
+    </div>
+  </div>
+
+  <!-- ============ GRADIENT ============ -->
+  <h2 class="section-title">Gradient &amp; Directional Derivatives (Q5–Q8)</h2>
+
+  <div class="problem" id="q5">
+    <h2>Q5. Gradient <span class="tag">Gradient</span></h2>
+    <div class="prompt">
+      \(\phi(x,y,z) = x^2y + 2yz^2 + 3x\).
+      <strong>(a)</strong> Find \(\nabla\phi\).
+      <strong>(b)</strong> Evaluate it at \((1, 2, -1)\).
+    </div>
+    <div class="math-block">$$ \phi_x = 2xy + 3 $$</div>
+    <div class="math-block">$$ \phi_y = x^2 + 2z^2 $$</div>
+    <div class="math-block">$$ \phi_z = 4yz $$</div>
+    <div class="math-block">$$ \nabla\phi = (2xy + 3)\mathbf{i} + (x^2 + 2z^2)\mathbf{j} + 4yz\,\mathbf{k} $$</div>
+    <div class="math-block">$$ \nabla\phi(1,2,-1) = (4 + 3)\mathbf{i} + (1 + 2)\mathbf{j} + (-8)\mathbf{k} $$</div>
+    <div class="answer">(a) \(\nabla\phi = (2xy + 3)\mathbf{i} + (x^2 + 2z^2)\mathbf{j} + 4yz\,\mathbf{k}\) &nbsp;·&nbsp; (b) \(7\mathbf{i} + 3\mathbf{j} - 8\mathbf{k}\)</div>
+  </div>
+
+  <div class="problem" id="q6">
+    <h2>Q6. Gradient of an Elevation <span class="tag">Gradient</span></h2>
+    <div class="prompt">
+      \(h(x,y) = x^2 + 4y^2 - 2xy\).
+      <strong>(a)</strong> Find \(\nabla h\).
+      <strong>(b)</strong> Find the gradient at \((2,1)\).
+      <strong>(c)</strong> What does its direction indicate geometrically?
+    </div>
+    <div class="math-block">$$ \nabla h = (2x - 2y)\mathbf{i} + (8y - 2x)\mathbf{j} $$</div>
+    <div class="math-block">$$ \nabla h(2,1) = (4 - 2)\mathbf{i} + (8 - 4)\mathbf{j} = 2\mathbf{i} + 4\mathbf{j} $$</div>
+    <div class="answer">(a) \((2x - 2y)\mathbf{i} + (8y - 2x)\mathbf{j}\) &nbsp;·&nbsp; (b) \(2\mathbf{i} + 4\mathbf{j}\)</div>
+    <span class="label">(c)</span>
+    <ul>
+      <li>It points in the direction of <strong>steepest ascent</strong> — the way straight uphill on the surface from \((2,1)\).</li>
+      <li>It is <strong>perpendicular to the contour</strong> (level curve) of \(h\) through \((2,1)\).</li>
+      <li>Its length, \(|\nabla h| = \sqrt{20} = 2\sqrt5 \approx 4.47\), is the steepest slope available there.</li>
+    </ul>
+  </div>
+
+  <div class="problem" id="q7">
+    <h2>Q7. Directional Derivative <span class="tag">Directional Derivative</span></h2>
+    <div class="prompt">
+      \(f(x,y) = x^2y + 3y^2\). Find the directional derivative at \(P(1,2)\) in the direction of \(\mathbf{v} = 3\mathbf{i} + 4\mathbf{j}\).
+    </div>
+    <span class="label">Step 1 — gradient at P</span>
+    <div class="math-block">$$ \nabla f = \langle 2xy,\ x^2 + 6y\rangle $$</div>
+    <div class="math-block">$$ \nabla f(1,2) = \langle 4,\ 13\rangle $$</div>
+    <span class="label">Step 2 — unit direction</span>
+    <div class="math-block">$$ |\mathbf{v}| = 5 $$</div>
+    <div class="math-block">$$ \mathbf{u} = \left\langle \tfrac35,\ \tfrac45\right\rangle $$</div>
+    <span class="label">Step 3 — dot product</span>
+    <div class="math-block">$$ D_{\mathbf{u}}f = 4\cdot\tfrac35 + 13\cdot\tfrac45 = \frac{12 + 52}{5} = \frac{64}{5} $$</div>
+    <div class="answer">\(D_{\mathbf{u}}f(1,2) = \dfrac{64}{5} = 12.8\)</div>
+    <div class="note">Check: \(|\nabla f| = \sqrt{16 + 169} \approx 13.6\), and \(12.8 &lt; 13.6\) as it must be. Forgetting to divide by 5 would give 64, which is impossible.</div>
+  </div>
+
+  <div class="problem" id="q8">
+    <h2>Q8. Rate of Change Toward a Point <span class="tag">Directional Derivative</span></h2>
+    <div class="prompt">
+      \(T(x,y,z) = x^2 + 2y^2 + 3z^2\). Find the rate of change at \(P(1,-1,2)\) in the direction from \(P\) toward \(Q(3,2,3)\).
+    </div>
+    <span class="label">Step 1 — gradient at P</span>
+    <div class="math-block">$$ \nabla T = \langle 2x,\ 4y,\ 6z\rangle $$</div>
+    <div class="math-block">$$ \nabla T(1,-1,2) = \langle 2,\ -4,\ 12\rangle $$</div>
+    <span class="label">Step 2 — unit direction from P to Q</span>
+    <div class="math-block">$$ \overrightarrow{PQ} = Q - P = \langle 2,\ 3,\ 1\rangle $$</div>
+    <div class="math-block">$$ |\overrightarrow{PQ}| = \sqrt{14} $$</div>
+    <span class="label">Step 3 — dot product</span>
+    <div class="math-block">$$ D_{\mathbf{u}}T = \frac{2(2) + (-4)(3) + 12(1)}{\sqrt{14}} = \frac{4}{\sqrt{14}} $$</div>
+    <div class="answer">\(D_{\mathbf{u}}T = \dfrac{4}{\sqrt{14}} = \dfrac{2\sqrt{14}}{7} \approx 1.069\)</div>
+  </div>
+
+  <!-- ============ CONSERVATIVE ============ -->
+  <h2 class="section-title">Potential Functions &amp; Conservative Fields (Q9–Q12)</h2>
+
+  <div class="problem" id="q9">
+    <h2>Q9. Does a Potential Exist? <span class="tag">Conservative Field</span></h2>
+    <div class="prompt">
+      \(\mathbf{F} = (2xy + 3)\mathbf{i} + x^2\mathbf{j} + 4z\mathbf{k}\). Determine whether a potential \(\phi\) exists; if so, find \(\phi\) with \(\nabla\phi = \mathbf{F}\).
+    </div>
+    <span class="label">Test: is the curl zero?</span>
+    <p>\(P = 2xy + 3\), \(Q = x^2\), \(R = 4z\).</p>
+    <div class="math-block">$$ R_y - Q_z = 0 - 0 = 0 $$</div>
+    <div class="math-block">$$ P_z - R_x = 0 - 0 = 0 $$</div>
+    <div class="math-block">$$ Q_x - P_y = 2x - 2x = 0 $$</div>
+    <p>\(\nabla \times \mathbf{F} = \mathbf{0}\), so a potential exists.</p>
+    <span class="label">Find \(\phi\)</span>
+    <div class="math-block">$$ \phi = \int (2xy + 3)\,dx = x^2y + 3x + g(y,z) $$</div>
+    <div class="math-block">$$ \phi_y = x^2 + g_y = x^2 $$</div>
+    <div class="math-block">$$ \Longrightarrow\; g_y = 0 $$</div>
+    <div class="math-block">$$ \Longrightarrow\; g = h(z) $$</div>
+    <div class="math-block">$$ \phi_z = h'(z) = 4z $$</div>
+    <div class="math-block">$$ \Longrightarrow\; h = 2z^2 $$</div>
+    <div class="answer">Yes, \(\mathbf{F}\) is conservative: \(\phi = x^2y + 3x + 2z^2 + C\)</div>
+  </div>
+
+  <div class="problem" id="q10">
+    <h2>Q10. Recover \(\phi\) From Its Gradient <span class="tag">Potential Function</span></h2>
+    <div class="prompt">
+      \(\nabla\phi = (2x + yz)\mathbf{i} + (xz + 2y)\mathbf{j} + xy\,\mathbf{k}\). Find \(\phi(x,y,z)\), including the arbitrary constant.
+    </div>
+    <div class="math-block">$$ \phi = \int (2x + yz)\,dx = x^2 + xyz + g(y,z) $$</div>
+    <div class="math-block">$$ \phi_y = xz + g_y = xz + 2y $$</div>
+    <div class="math-block">$$ \Longrightarrow\; g_y = 2y $$</div>
+    <div class="math-block">$$ \Longrightarrow\; g = y^2 + h(z) $$</div>
+    <div class="math-block">$$ \phi_z = xy + h'(z) = xy $$</div>
+    <div class="math-block">$$ \Longrightarrow\; h'(z) = 0 $$</div>
+    <div class="math-block">$$ \Longrightarrow\; h = C $$</div>
+    <div class="answer">\(\phi(x,y,z) = x^2 + y^2 + xyz + C\)</div>
+    <div class="note">Check: \(\nabla(x^2 + y^2 + xyz) = \langle 2x + yz,\ 2y + xz,\ xy\rangle\). ✓ The question says "including the arbitrary constant", so the \(+C\) is worth marks.</div>
+  </div>
+
+  <div class="problem" id="q11">
+    <h2>Q11. Conservative on \(\mathbb{R}^2\)? <span class="tag">Conservative Field</span></h2>
+    <div class="prompt">
+      \(\mathbf{F} = (y\cos x + 2x)\mathbf{i} + (\sin x + 2y)\mathbf{j}\). Is it conservative on \(\mathbb{R}^2\)? If so, find its potential.
+    </div>
+    <span class="label">Test</span>
+    <div class="math-block">$$ \frac{\partial P}{\partial y} = \cos x $$</div>
+    <div class="math-block">$$ \frac{\partial Q}{\partial x} = \cos x $$</div>
+    <p>Equal, and \(\mathbb{R}^2\) is simply connected → <strong>conservative</strong>.</p>
+    <span class="label">Potential</span>
+    <div class="math-block">$$ \phi = \int (y\cos x + 2x)\,dx = y\sin x + x^2 + g(y) $$</div>
+    <div class="math-block">$$ \phi_y = \sin x + g'(y) = \sin x + 2y $$</div>
+    <div class="math-block">$$ \Longrightarrow\; g = y^2 $$</div>
+    <div class="answer">Conservative: \(\phi = y\sin x + x^2 + y^2 + C\)</div>
+  </div>
+
+  <div class="problem" id="q12">
+    <h2>Q12. Conservative in 3D? <span class="tag">Conservative Field</span></h2>
+    <div class="prompt">
+      \(\mathbf{F} = (2x + yz)\mathbf{i} + (xz + 2y)\mathbf{j} + (xy + 2z)\mathbf{k}\).
+      <strong>(a)</strong> Is \(\mathbf{F}\) conservative?
+      <strong>(b)</strong> If so, find \(\phi\).
+    </div>
+    <span class="label">(a) Curl test</span>
+    <div class="math-block">$$ R_y - Q_z = x - x = 0 $$</div>
+    <div class="math-block">$$ P_z - R_x = y - y = 0 $$</div>
+    <div class="math-block">$$ Q_x - P_y = z - z = 0 $$</div>
+    <p>\(\nabla \times \mathbf{F} = \mathbf{0}\) → <strong>conservative</strong>.</p>
+    <span class="label">(b) Potential</span>
+    <div class="math-block">$$ \phi = x^2 + xyz + g(y,z) $$</div>
+    <div class="math-block">$$ \phi_y = xz + g_y = xz + 2y $$</div>
+    <div class="math-block">$$ \Rightarrow\; g = y^2 + h(z) $$</div>
+    <div class="math-block">$$ \phi_z = xy + h'(z) = xy + 2z $$</div>
+    <div class="math-block">$$ \Rightarrow\; h = z^2 $$</div>
+    <div class="answer">(a) Yes &nbsp;·&nbsp; (b) \(\phi = x^2 + y^2 + z^2 + xyz + C\)</div>
+    <div class="note">This is Q10's field plus \(2z\,\mathbf{k}\) — so \(\phi\) is Q10's answer plus \(z^2\).</div>
+  </div>
+
+  <!-- ============ LINE INTEGRALS ============ -->
+  <h2 class="section-title">Line Integrals (Q13–Q14)</h2>
+
+  <div class="problem" id="q13">
+    <h2>Q13. Line Integral Along a Straight Path <span class="tag">Line Integral</span></h2>
+    <div class="prompt">
+      Evaluate \(\int_C \mathbf{F}\cdot d\mathbf{r}\) where \(\mathbf{F} = (y + 2x)\mathbf{i} + (x + z)\mathbf{j} + y\,\mathbf{k}\) and \(C\) is the straight line from \(A(1,0,0)\) to \(B(2,1,2)\).
+    </div>
+
+    <h3>Method 1 — the shortcut (check conservative first)</h3>
+    <div class="math-block">$$ R_y - Q_z = 1 - 1 = 0 $$</div>
+    <div class="math-block">$$ P_z - R_x = 0 - 0 = 0 $$</div>
+    <div class="math-block">$$ Q_x - P_y = 1 - 1 = 0 $$</div>
+    <p>Conservative. Potential:</p>
+    <div class="math-block">$$ \phi = xy + x^2 + g(y,z), \quad \phi_y = x + g_y = x + z $$</div>
+    <div class="math-block">$$ \Rightarrow\; g = yz + h(z), \quad h' = 0 $$</div>
+    <div class="math-block">$$ \phi = x^2 + xy + yz $$</div>
+    <div class="math-block">$$ \phi(B) - \phi(A) $$</div>
+    <div class="math-block">$$ = (4 + 2 + 2) - (1 + 0 + 0) = 7 $$</div>
+
+    <h3>Method 2 — parametrise (works for any field)</h3>
+    <div class="math-block">$$ \mathbf{r}(t) = A + t(B - A) = \langle 1 + t,\ t,\ 2t\rangle $$</div>
+    <div class="math-block">$$ \mathbf{r}'(t) = \langle 1, 1, 2\rangle $$</div>
+    <div class="math-block">$$ \mathbf{F}(\mathbf{r}(t)) = \langle 3t + 2,\ 3t + 1,\ t\rangle $$</div>
+    <div class="math-block">$$ \mathbf{F}\cdot\mathbf{r}' = (3t + 2) + (3t + 1) + 2t = 8t + 3 $$</div>
+    <div class="math-block">$$ \int_0^1 (8t + 3)\,dt = 4 + 3 = 7 $$</div>
+    <div class="answer">\(\displaystyle\int_C \mathbf{F}\cdot d\mathbf{r} = 7\)</div>
+    <div class="note">Both methods agree. In the exam, the shortcut is faster — but the question says "straight-line path", which suggests they expect Method 2. Showing both is the safest answer.</div>
+  </div>
+
+  <div class="problem" id="q14">
+    <h2>Q14. Work Along a Parabola <span class="tag">Line Integral</span></h2>
+    <div class="prompt">
+      Find the work done by \(\mathbf{F} = (x^2 - y)\mathbf{i} + (2xy + 1)\mathbf{j}\) on a particle moving along \(y = x^2\) from \((0,0)\) to \((1,1)\), using \(W = \int_C \mathbf{F}\cdot d\mathbf{r}\).
+    </div>
+    <p><strong>Not conservative:</strong> \(P_y = -1\) but \(Q_x = 2y\). So we must use the actual path.</p>
+    <span class="label">Parametrise</span>
+    <div class="math-block">$$ x = t,\quad y = t^2,\quad 0 \le t \le 1 $$</div>
+    <div class="math-block">$$ \Longrightarrow\quad dx = dt,\quad dy = 2t\,dt $$</div>
+    <span class="label">Substitute into \(P\,dx + Q\,dy\)</span>
+    <div class="math-block">$$ P = t^2 - t^2 = 0 $$</div>
+    <div class="math-block">$$ Q = 2t\cdot t^2 + 1 = 2t^3 + 1 $$</div>
+    <div class="math-block">$$ W = \int_0^1 \left[0 + (2t^3 + 1)(2t)\right] dt $$</div>
+    <div class="math-block">$$ = \int_0^1 (4t^4 + 2t)\,dt $$</div>
+    <div class="math-block">$$ = \left[\frac{4t^5}{5} + t^2\right]_0^1 = \frac45 + 1 = \frac95 $$</div>
+    <div class="answer">\(W = \dfrac{9}{5} = 1.8\) units of work</div>
+    <div class="note">The \(\mathbf{i}\)-component vanishes along this curve because \(x^2 - y = 0\) when \(y = x^2\) — a nice simplification, not a mistake.</div>
+  </div>
+
+  <!-- ============ GREEN ============ -->
+  <h2 class="section-title">Green's Theorem (Q15–Q16)</h2>
+
+  <div class="note" style="margin-bottom:1.5rem;">
+    Green's theorem isn't on the Unit 6 slides — see <a href="final-vector-fields.html#p9">Part 9 of the notes</a>.
+    For a counterclockwise closed curve \(C\) bounding \(R\):
+    \(\displaystyle\oint_C P\,dx + Q\,dy = \iint_R \left(Q_x - P_y\right) dA\).
+  </div>
+
+  <div class="problem" id="q15">
+    <h2>Q15. Green's Theorem — Rectangle <span class="tag book">Green's Theorem</span></h2>
+    <div class="prompt">
+      Evaluate \(\displaystyle\oint_C (3x^2 - 2y)\,dx + (4x + y^2)\,dy\), where \(C\) is the positively oriented boundary of \(0 \le x \le 2\), \(0 \le y \le 1\).
+    </div>
+    <div class="math-block">$$ P = 3x^2 - 2y $$</div>
+    <div class="math-block">$$ Q = 4x + y^2 $$</div>
+    <div class="math-block">$$ \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 4 - (-2) = 6 $$</div>
+    <div class="math-block">$$ \oint_C = \iint_R 6\,dA $$</div>
+    <div class="math-block">$$ = 6 \times \text{area}(R) = 6 \times (2 \times 1) = 12 $$</div>
+    <div class="answer">\(12\)</div>
+    <div class="note">Checked by integrating directly around all four sides of the rectangle — also 12.</div>
+  </div>
+
+  <div class="problem" id="q16">
+    <h2>Q16. Green's Theorem — Triangle <span class="tag book">Green's Theorem</span></h2>
+    <div class="prompt">
+      Evaluate \(\displaystyle\oint_C (y^2 + 2x)\,dx + (x^2 + 3y)\,dy\), where \(C\) is the positively oriented boundary of the triangle with vertices \((0,0)\), \((2,0)\), \((2,1)\).
+    </div>
+    <span class="label">Integrand</span>
+    <div class="math-block">$$ P = y^2 + 2x, \quad Q = x^2 + 3y $$</div>
+    <div class="math-block">$$ \Longrightarrow\quad Q_x - P_y = 2x - 2y $$</div>
+    <span class="label">Describe the region</span>
+    <p>The triangle sits above \(y = 0\), left of \(x = 2\), and below the line through \((0,0)\) and \((2,1)\), which is \(y = \tfrac{x}{2}\). So</p>
+    <div class="math-block">$$ 0 \le x \le 2 $$</div>
+    <div class="math-block">$$ 0 \le y \le \frac{x}{2} $$</div>
+    <span class="label">Evaluate</span>
+    <div class="math-block">$$ \int_0^2\!\!\int_0^{x/2} (2x - 2y)\,dy\,dx $$</div>
+    <div class="math-block">$$ = \int_0^2 \Big[2xy - y^2\Big]_0^{x/2} dx $$</div>
+    <div class="math-block">$$ = \int_0^2 \left(x^2 - \frac{x^2}{4}\right) dx $$</div>
+    <div class="math-block">$$ = \int_0^2 \frac34 x^2\,dx = \frac34\cdot\frac83 = 2 $$</div>
+    <div class="answer">\(2\)</div>
+    <div class="note">Checked by integrating directly along the three edges counterclockwise — also 2. The trickiest part is the hypotenuse \(y = x/2\); sketch the triangle before writing limits.</div>
+  </div>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-vector-fields.html" class="back-btn accent">Unit 6 Notes →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+</body>
+</html>

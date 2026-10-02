@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gradient, Divergence &amp; Curl | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.65;
+      color: #333;
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f7f6;
+    }
+    h1, h2, h3 { color: #2c3e50; line-height: 1.3; }
+    h1 {
+      font-size: 2.3rem;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 12px;
+      margin-bottom: 0.4rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 2rem; }
+    p { margin: 0.6rem 0; }
+
+    .part {
+      margin: 3rem 0 1.25rem;
+      padding: 0.9rem 1.4rem;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      scroll-margin-top: 1rem;
+    }
+    .part .badge {
+      display: inline-block;
+      background: #27ae60;
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 12px;
+      vertical-align: 4px;
+      margin-left: 10px;
+    }
+    .part .badge.book { background: #8e44ad; }
+
+    .note-card {
+      background: #ffffff;
+      padding: 1.3rem 1.7rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+      border-top: 4px solid #27ae60;
+    }
+    .note-card h3 {
+      font-size: 1.25rem;
+      margin: 0 0 0.6rem;
+      color: #1e8449;
+    }
+    .label { display: block; font-weight: bold; margin: 1rem 0 0.2rem; color: #34495e; }
+    .math-block {
+      text-align: center;
+      margin: 0.9rem 0;
+      font-size: 1.08rem;
+      overflow-x: auto;
+      padding: 5px 0;
+    }
+    ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.35rem; }
+
+    .key {
+      background: #e8f8f0;
+      border-left: 4px solid #27ae60;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-weight: bold;
+    }
+    .warn {
+      background: #fdecea;
+      border-left: 4px solid #e74c3c;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-size: 0.95rem;
+    }
+    .example {
+      background: #eef6fb;
+      border-left: 4px solid #3498db;
+      padding: 0.8rem 1.1rem 1rem;
+      border-radius: 5px;
+      margin: 1.1rem 0 0.4rem;
+    }
+    .example .etitle {
+      font-weight: bold;
+      color: #21618c;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .from-slide {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #16a085;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: 1px;
+    }
+    .from-slide.book { background: #8e44ad; }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.93rem;
+      margin: 0.5rem 0;
+    }
+    th, td {
+      border: 1px solid #dfe6e9;
+      padding: 0.5rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #2c3e50; color: #fff; font-weight: bold; }
+    tbody tr:nth-child(even) { background: #f8fafb; }
+
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      background: #27ae60;
+      color: #fff;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    figure.diagram {
+      margin: 1.1rem 0 0.6rem;
+      text-align: center;
+    }
+    figure.diagram svg {
+      width: 100%;
+      max-width: 520px;
+      height: auto;
+      background: #fbfcfc;
+      border: 1px solid #e5e8e8;
+      border-radius: 8px;
+    }
+    figure.diagram figcaption {
+      font-size: 0.88rem;
+      color: #7f8c8d;
+      margin-top: 0.4rem;
+    }
+    svg text { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #2c3e50; }
+    svg .lbl-sm { font-size: 11.5px; }
+    svg .greek { font-family: 'Times New Roman', serif; font-style: italic; font-size: 17px; font-weight: bold; }
+
+    .toc {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.2rem 1.7rem 1.4rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #f37021;
+    }
+    .toc h2 { font-size: 1.15rem; margin: 0 0 0.6rem; }
+    .toc ol { padding-left: 1.3rem; margin: 0; }
+    .toc a { color: #1e8449; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .sub { color: #7f8c8d; font-size: 0.88rem; }
+
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
+    .back-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #27ae60; }
+    .back-btn.accent:hover { background-color: #1e8449; }
+    .back-btn.orange { background-color: #f37021; }
+    .back-btn.orange:hover { background-color: #d35400; }
+
+    /* Long inline formulas scroll inside their box rather than widening the page */
+    .answer, .note, .prompt, .key, .warn, .example, td { overflow-x: auto; }
+
+    /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
+    mjx-container { position: relative; }
+    mjx-assistive-mml { max-width: 100%; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.7rem; }
+      .part { font-size: 1.2rem; padding: 0.75rem 1rem; }
+      .note-card { padding: 1rem 1.1rem 1.2rem; }
+      .math-block { font-size: 0.86rem; }
+      .example { padding: 0.7rem 0.8rem 0.85rem; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-row">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-vector-fields-practice.html" class="back-btn accent">CT4 Worksheet Solutions →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+  <h1>Gradient, Divergence &amp; Curl</h1>
+  <p class="subtitle">MATH-2201 Finals &nbsp;·&nbsp; Unit 6 &nbsp;·&nbsp; fields, gradients, directional derivatives, conservative fields, line integrals and Green's theorem</p>
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#p1">Scalar &amp; Vector Fields</a> <span class="sub">— what's being differentiated</span></li>
+      <li><a href="#p2">The Gradient</a> <span class="sub">— which way is uphill?</span></li>
+      <li><a href="#p3">Directional Derivatives</a> <span class="sub">— how fast in <em>this</em> direction?</span></li>
+      <li><a href="#p4">Normal Vectors &amp; Tangent Planes</a></li>
+      <li><a href="#p5">Lagrange Multipliers</a></li>
+      <li><a href="#p6">Divergence &amp; Curl</a> <span class="sub">— spreading and rotating</span></li>
+      <li><a href="#p7">Conservative Fields &amp; Potential Functions</a></li>
+      <li><a href="#p8">Line Integrals</a></li>
+      <li><a href="#p9">Green's Theorem</a> <span class="sub">— not on the slides</span></li>
+      <li><a href="#p10">Exam Strategy &amp; Common Mistakes</a></li>
+    </ol>
+  </div>
+
+  <div class="note-card" style="border-top-color:#16a085;">
+    <h3 style="color:#117864;">What these notes are built from</h3>
+    <p>
+      Parts 1–8 follow your <strong>Unit 6 lecture slides</strong> (35 slides). Many slide examples stop
+      at the set-up or list practice questions with no answers — every one is carried to a final number
+      here, tagged <span class="from-slide">from slides</span>, and checked numerically.
+    </p>
+    <div class="warn">
+      <strong>Green's theorem is not on any Unit 6 slide</strong>, but CT4 worksheet Q15 and Q16 both ask you
+      to use it. Part 9 covers it from the textbook and is tagged <span class="from-slide book">textbook</span>.
+      Check with your lecturer whether it's examinable in CT4.
+    </div>
+  </div>
+
+  <!-- =============== PART 1 =============== -->
+  <h2 class="part" id="p1">Part 1 — Scalar &amp; Vector Fields <span class="badge">Unit 6</span></h2>
+
+  <div class="note-card">
+    <h3>Two Kinds of Field <span class="from-slide">from slides</span></h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Scalar field</th><th>Vector field</th></tr></thead>
+        <tbody>
+          <tr><td>Assigns to each point…</td><td>one <strong>number</strong></td><td>a <strong>vector</strong> (magnitude + direction)</td></tr>
+          <tr><td>Form</td><td>\(f(x,y)\) or \(f(x,y,z)\); &nbsp;\(f:\mathbb{R}^n \to \mathbb{R}\)</td><td>\(\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}\)</td></tr>
+          <tr><td>Examples</td><td>Temperature, pressure, height, concentration</td><td>Fluid velocity, force, wind, electric field</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Scalar field — temperature in a room <span class="from-slide">from slides</span></span>
+      <p>\(T(x,y,z) = 20 + x^2 + y^2 + z^2\). At \((1,2,1)\): \(T = 20 + 1 + 4 + 1 = 26^\circ\text{C}\).</p>
+      <p>The temperature varies from point to point, but at each point it has exactly <strong>one value</strong> — that's what makes it a scalar field.</p>
+    </div>
+    <div class="example">
+      <span class="etitle">Vector field — evaluate at a point <span class="from-slide">from slides</span></span>
+      <p>\(\mathbf{F}(x,y,z) = \langle x^2,\ yz,\ zx\rangle\) at \(P(2,1,3)\):</p>
+      <div class="math-block">$$ \mathbf{F}(2,1,3) = \langle 4,\ 3,\ 6\rangle = 4\mathbf{i} + 3\mathbf{j} + 6\mathbf{k} $$</div>
+      <p>The magnitude \(|\mathbf{F}| = \sqrt{16 + 9 + 36} = \sqrt{61}\) is the "strength" of the field there.</p>
+    </div>
+
+    <span class="label">Contours (level curves) <span class="from-slide">from slides</span></span>
+    <p>
+      Fixing \(f(x,y) = c\) gives a <strong>contour</strong>: a curve joining points where the function has the
+      same value — like the height lines on a hiking map. In 3D, \(F(x,y,z) = c\) is a <strong>level surface</strong>.
+    </p>
+  </div>
+
+  <!-- =============== PART 2 =============== -->
+  <h2 class="part" id="p2">Part 2 — The Gradient <span class="badge">Unit 6</span></h2>
+
+  <div class="note-card">
+    <h3>Scalar Field In, Vector Field Out <span class="from-slide">from slides</span></h3>
+    <p>
+      Stand on a hill with height \(z = f(x,y)\). Of all the directions you could walk, the
+      <strong>gradient</strong> points the way the height increases <strong>fastest</strong>.
+    </p>
+    <div class="math-block">$$ \nabla = \frac{\partial}{\partial x}\mathbf{i} + \frac{\partial}{\partial y}\mathbf{j} + \frac{\partial}{\partial z}\mathbf{k} $$</div>
+    <div class="math-block">$$ (\text{the "del" operator}) $$</div>
+    <div class="math-block">$$ \nabla f = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j} + \frac{\partial f}{\partial z}\mathbf{k} = \langle f_x,\ f_y,\ f_z\rangle $$</div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 400 300" role="img" aria-label="Contour ellipses of f equals x squared plus 2 y squared. At a point P on one contour, the gradient vector points outward perpendicular to the contour, the tangent line touches the contour, and a unit vector u makes an angle theta with the gradient.">
+        <defs>
+          <marker id="ah-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker>
+          <marker id="ah-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2471a3"/></marker>
+        </defs>
+        <ellipse cx="190" cy="165" rx="45" ry="31.8" fill="none" stroke="#a9cce3" stroke-width="1.5"/>
+        <ellipse cx="190" cy="165" rx="80" ry="56.6" fill="none" stroke="#a9cce3" stroke-width="1.5"/>
+        <ellipse cx="190" cy="165" rx="115" ry="81.3" fill="none" stroke="#2980b9" stroke-width="2.2"/>
+        <ellipse cx="190" cy="165" rx="150" ry="106.1" fill="none" stroke="#a9cce3" stroke-width="1.5"/>
+        <text x="190" y="169" text-anchor="middle" class="lbl-sm" style="fill:#7f8c8d">low</text>
+        <text x="48" y="288" class="lbl-sm" style="fill:#7f8c8d">contours f = c (higher further out)</text>
+        <line x1="216.3" y1="72.3" x2="317.6" y2="136.8" stroke="#7f8c8d" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <text x="322" y="146" class="lbl-sm" style="fill:#7f8c8d">tangent</text>
+        <line x1="267" y1="104.6" x2="312.6" y2="32.9" stroke="#c0392b" stroke-width="2.8" marker-end="url(#ah-red)"/>
+        <line x1="267" y1="104.6" x2="341.9" y2="101.3" stroke="#2471a3" stroke-width="2.4" marker-end="url(#ah-blue)"/>
+        <path d="M283.1,79.3 L285.0,80.6 L286.9,82.2 L288.6,83.8 L290.2,85.6 L291.6,87.5 L292.9,89.6 L294.0,91.7 L295.0,93.9 L295.7,96.2 L296.3,98.5 L296.7,100.9 L296.9,103.3" fill="none" stroke="#e67e22" stroke-width="1.8"/>
+        <text x="303" y="88" class="greek" style="fill:#d35400">θ</text>
+        <text x="318" y="30" style="fill:#c0392b;font-weight:bold">∇f</text>
+        <text x="347" y="105" style="fill:#2471a3;font-weight:bold">u</text>
+        <circle cx="267" cy="104.6" r="4.5" fill="#2c3e50"/>
+        <text x="252" y="102" text-anchor="end">P</text>
+      </svg>
+      <figcaption>\(\nabla f\) is perpendicular to the contour through \(P\) and points "uphill". Moving along \(\mathbf{u}\) gives the rate \(|\nabla f|\cos\theta\).</figcaption>
+    </figure>
+
+    <span class="label">What the gradient tells you</span>
+    <ul>
+      <li><strong>Direction</strong> of \(\nabla f\): steepest increase of \(f\).</li>
+      <li><strong>Magnitude</strong> \(|\nabla f|\): that steepest rate of increase.</li>
+      <li>\(-\nabla f\): steepest <em>decrease</em> (the way water flows downhill).</li>
+      <li>\(\nabla f\) is always <strong>perpendicular to the contour</strong> through the point.</li>
+    </ul>
+
+    <div class="example">
+      <span class="etitle">Example 1 — metal plate <span class="from-slide">from slides</span></span>
+      <p>\(T(x,y) = 100 + 4x + 3y\) (°C, metres). \(T_x = 4\), \(T_y = 3\), so \(\nabla T = 4\mathbf{i} + 3\mathbf{j}\) everywhere.</p>
+      <p>Temperature rises fastest in the direction \(4\mathbf{i} + 3\mathbf{j}\), at \(|\nabla T| = 5\) °C per metre.</p>
+    </div>
+    <div class="example">
+      <span class="etitle">Example 2 — evaluate at a point <span class="from-slide">from slides</span></span>
+      <p>\(f(x,y) = x^2 + 3xy + y^2\): \(f_x = 2x + 3y\), \(f_y = 3x + 2y\).</p>
+      <div class="math-block">$$ \nabla f = (2x + 3y)\mathbf{i} + (3x + 2y)\mathbf{j} $$</div>
+      <div class="math-block">$$ \nabla f(1,2) = \langle 8,\ 7\rangle $$</div>
+    </div>
+    <div class="warn">⚠ Find the general \(\nabla f\) <strong>first</strong>, then substitute the point. Substituting before differentiating gives zero.</div>
+  </div>
+
+  <!-- =============== PART 3 =============== -->
+  <h2 class="part" id="p3">Part 3 — Directional Derivatives <span class="badge">Unit 6</span></h2>
+
+  <div class="note-card">
+    <h3>Rate of Change in a Chosen Direction <span class="from-slide">from slides</span></h3>
+    <p>
+      The gradient answers "which way is fastest?". The directional derivative answers "if I walk
+      <strong>this</strong> way, how fast does \(f\) change?" — it generalises \(f_x\) and \(f_y\) to any direction.
+    </p>
+    <div class="math-block">$$ D_{\mathbf{u}}f = \nabla f \cdot \mathbf{u} $$</div>
+    <div class="math-block">$$ \mathbf{u} = \frac{\mathbf{v}}{|\mathbf{v}|} \;(\text{a unit vector}) $$</div>
+    <div class="math-block">$$ D_{\mathbf{u}}f = f_x\,a + f_y\,b \quad\text{for } \mathbf{u} = \langle a, b\rangle $$</div>
+
+    <span class="label">The method</span>
+    <ol class="steps">
+      <li>Compute \(\nabla f\) and evaluate it at the point</li>
+      <li>Turn the direction into a <strong>unit</strong> vector: \(\mathbf{u} = \mathbf{v}/|\mathbf{v}|\). If you're given two points \(P \to Q\), use \(\mathbf{v} = \overrightarrow{PQ}\)</li>
+      <li>Dot product: \(D_{\mathbf{u}}f = \nabla f \cdot \mathbf{u}\)</li>
+    </ol>
+    <div class="warn">⚠ <strong>Normalise the direction vector.</strong> Using \(\mathbf{v} = \langle 3,4\rangle\) instead of \(\langle \tfrac35, \tfrac45\rangle\) makes your answer 5 times too big. This is the most common mistake in the unit.</div>
+
+    <span class="label">Since \(D_{\mathbf{u}}f = |\nabla f|\cos\theta\):</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Direction</th><th>\(D_{\mathbf{u}}f\)</th></tr></thead>
+        <tbody>
+          <tr><td>Along \(\nabla f\) (\(\theta = 0\))</td><td>Maximum: \(|\nabla f|\)</td></tr>
+          <tr><td>Opposite \(\nabla f\) (\(\theta = \pi\))</td><td>Minimum: \(-|\nabla f|\)</td></tr>
+          <tr><td>Perpendicular to \(\nabla f\) (along the contour)</td><td>\(0\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="example">
+      <span class="etitle">Example 1 <span class="from-slide">from slides</span></span>
+      <p>\(f(x,y) = x^2 + y^2\) at \((1,2)\), toward \(\mathbf{v} = \langle 3, 4\rangle\).</p>
+      <div class="math-block">$$ \nabla f(1,2) = \langle 2x, 2y\rangle = \langle 2, 4\rangle $$</div>
+      <div class="math-block">$$ \mathbf{u} = \tfrac15\langle 3, 4\rangle $$</div>
+      <div class="math-block">$$ D_{\mathbf{u}}f = \frac{2(3) + 4(4)}{5} = \frac{22}{5} = 4.4 $$</div>
+    </div>
+    <div class="example">
+      <span class="etitle">Example 2 <span class="from-slide">from slides</span></span>
+      <p>\(f(x,y) = x^2 + 3xy\), find \(D_{\mathbf{u}}f(1,2)\) toward \(\mathbf{v} = \langle 3, 4\rangle\).</p>
+      <div class="math-block">$$ \nabla f = \langle 2x + 3y,\ 3x\rangle $$</div>
+      <div class="math-block">$$ \nabla f(1,2) = \langle 8, 3\rangle $$</div>
+      <div class="math-block">$$ D_{\mathbf{u}}f = \frac{8(3) + 3(4)}{5} = \frac{36}{5} = 7.2 $$</div>
+    </div>
+  </div>
+
+  <!-- =============== PART 4 =============== -->
+  <h2 class="part" id="p4">Part 4 — Normal Vectors &amp; Tangent Planes <span class="badge">Unit 6</span></h2>
+
+  <div class="note-card">
+    <h3>The Gradient Is a Normal <span class="from-slide">from slides</span></h3>
+    <p>A <strong>normal vector</strong> is perpendicular to a surface at a point — it shows which way the surface faces.</p>
+    <ul>
+      <li><strong>Plane</strong> \(ax + by + cz = d\): normal \(\langle a, b, c\rangle\) everywhere. E.g. \(2x + 3y + 4z = 12\) → \(\mathbf{n} = \langle 2, 3, 4\rangle\).</li>
+      <li><strong>Curved surface</strong> \(F(x,y,z) = C\): the normal changes from point to point, and equals \(\nabla F\) evaluated there.</li>
+    </ul>
+    <div class="math-block">$$ \mathbf{n} = \nabla F(x_0, y_0, z_0) $$</div>
+    <div class="math-block">$$ = \left\langle \frac{\partial F}{\partial x},\ \frac{\partial F}{\partial y},\ \frac{\partial F}{\partial z} \right\rangle_{(x_0,y_0,z_0)} $$</div>
+    <div class="example">
+      <span class="etitle">Example — sphere <span class="from-slide">from slides</span></span>
+      <p>Normal to \(x^2 + y^2 + z^2 = 25\) at \((3, 4, 0)\): \(\nabla F = \langle 2x, 2y, 2z\rangle = \langle 6, 8, 0\rangle\), so \(\mathbf{n} = 6\mathbf{i} + 8\mathbf{j}\) — pointing straight out from the centre, as you'd expect.</p>
+    </div>
+
+    <span class="label">Tangent planes</span>
+    <p>The tangent plane just touches the surface at a point and is its best flat approximation there.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Surface given as…</th><th>Tangent plane at \((x_0, y_0, z_0)\)</th></tr></thead>
+        <tbody>
+          <tr><td>\(z = f(x,y)\) <span class="from-slide">from slides</span></td><td>\(z - z_0 = f_x(x - x_0) + f_y(y - y_0)\)</td></tr>
+          <tr><td>\(F(x,y,z) = C\)</td><td>\(F_x(x - x_0) + F_y(y - y_0) + F_z(z - z_0) = 0\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The second form is just "plane through a point with normal \(\nabla F\)" — the same plane equation from the midterm.</p>
+    <div class="example">
+      <span class="etitle">Example — tangent plane to a sphere <span class="from-slide">from slides</span></span>
+      <p>\(x^2 + y^2 + z^2 = 25\) at \((0, 3, 4)\). Normal: \(\nabla F(0,3,4) = \langle 0, 6, 8\rangle\).</p>
+      <div class="math-block">$$ 0(x - 0) + 6(y - 3) + 8(z - 4) = 0 $$</div>
+      <div class="math-block">$$ \Longrightarrow\quad 3y + 4z = 25 $$</div>
+      <p>Check: \((0,3,4)\) gives \(9 + 16 = 25\). ✓</p>
+    </div>
+  </div>
+
+  <!-- =============== PART 5 =============== -->
+  <h2 class="part" id="p5">Part 5 — Lagrange Multipliers <span class="badge">Unit 6</span></h2>
+
+  <div class="note-card">
+    <h3>Max / Min With a Constraint <span class="from-slide">from slides</span></h3>
+    <ul>
+      <li><strong>Objective</strong> \(f(x,y)\): what you maximise or minimise.</li>
+      <li><strong>Constraint</strong> \(g(x,y) = k\): the condition the variables must obey.</li>
+      <li><strong>Multiplier</strong> \(\lambda\): a new unknown that links them.</li>
+    </ul>
+    <p>
+      At the optimum, the contour of \(f\) just touches the constraint curve, so their gradients are
+      <strong>parallel</strong>:
+    </p>
+    <div class="math-block">$$ \nabla f = \lambda\,\nabla g $$</div>
+    <div class="math-block">$$ g(x,y) = k $$</div>
+    <ol class="steps">
+      <li>Write \(f_x = \lambda g_x\) and \(f_y = \lambda g_y\)</li>
+      <li>Eliminate \(\lambda\) (often by dividing or equating)</li>
+      <li>Substitute into the constraint and solve; evaluate \(f\) at each candidate point</li>
+    </ol>
+    <div class="example">
+      <span class="etitle">Example — smallest sum of squares <span class="from-slide">from slides</span></span>
+      <p>Minimise \(f = x^2 + y^2\) subject to \(x + y = 4\).</p>
+      <div class="math-block">$$ \nabla f = \langle 2x, 2y\rangle, \quad \nabla g = \langle 1, 1\rangle $$</div>
+      <div class="math-block">$$ \Longrightarrow\; 2x = \lambda,\ 2y = \lambda $$</div>
+      <p>So \(x = y\); the constraint gives \(x = y = 2\), and the minimum is \(f(2,2) = 8\).</p>
+      <p>Same answer as substituting \(y = 4 - x\) and setting \(f'(x) = 4x - 8 = 0\) — the slides show both methods.</p>
+    </div>
+  </div>
+
+  <!-- =============== PART 6 =============== -->
+  <h2 class="part" id="p6">Part 6 — Divergence &amp; Curl <span class="badge">Unit 6</span></h2>
+
+  <div class="note-card">
+    <h3>Three Operators, Three Questions <span class="from-slide">from slides</span></h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Operation</th><th>Acts on → gives</th><th>Think of</th></tr></thead>
+        <tbody>
+          <tr><td>\(\nabla f\) &nbsp;gradient</td><td>scalar → <strong>vector</strong></td><td>Which way is uphill?</td></tr>
+          <tr><td>\(\nabla \cdot \mathbf{F}\) &nbsp;divergence</td><td>vector → <strong>scalar</strong></td><td>Is stuff spreading out or gathering?</td></tr>
+          <tr><td>\(\nabla \times \mathbf{F}\) &nbsp;curl</td><td>vector → <strong>vector</strong></td><td>Is stuff rotating?</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 480 170" role="img" aria-label="Three small vector field sketches: a source with arrows pointing outward labelled divergence positive; a sink with arrows pointing inward labelled divergence negative; and arrows circulating around a point labelled curl non-zero.">
+        <defs>
+          <marker id="ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e8449"/></marker>
+          <marker id="ah-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker>
+          <marker id="ah-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8e44ad"/></marker>
+        </defs>
+        <g stroke="#1e8449" stroke-width="2" marker-end="url(#ah-g)">
+          <line x1="94" y1="70" x2="124" y2="70"/><line x1="66" y1="70" x2="36" y2="70"/>
+          <line x1="80" y1="56" x2="80" y2="26"/><line x1="80" y1="84" x2="80" y2="114"/>
+          <line x1="90" y1="60" x2="111" y2="39"/><line x1="70" y1="60" x2="49" y2="39"/>
+          <line x1="90" y1="80" x2="111" y2="101"/><line x1="70" y1="80" x2="49" y2="101"/>
+        </g>
+        <circle cx="80" cy="70" r="4" fill="#1e8449"/>
+        <text x="80" y="140" text-anchor="middle" style="font-weight:bold;fill:#1e8449">∇·F &gt; 0</text>
+        <text x="80" y="158" text-anchor="middle" class="lbl-sm">source — spreading out</text>
+        <g stroke="#c0392b" stroke-width="2" marker-end="url(#ah-r)">
+          <line x1="284" y1="70" x2="254" y2="70"/><line x1="196" y1="70" x2="226" y2="70"/>
+          <line x1="240" y1="26" x2="240" y2="56"/><line x1="240" y1="114" x2="240" y2="84"/>
+          <line x1="271" y1="39" x2="250" y2="60"/><line x1="209" y1="39" x2="230" y2="60"/>
+          <line x1="271" y1="101" x2="250" y2="80"/><line x1="209" y1="101" x2="230" y2="80"/>
+        </g>
+        <circle cx="240" cy="70" r="4" fill="#c0392b"/>
+        <text x="240" y="140" text-anchor="middle" style="font-weight:bold;fill:#c0392b">∇·F &lt; 0</text>
+        <text x="240" y="158" text-anchor="middle" class="lbl-sm">sink — gathering in</text>
+        <g fill="none" stroke="#8e44ad" stroke-width="2" marker-end="url(#ah-p)">
+          <path d="M440,70 A40,40 0 0 0 400,30"/>
+          <path d="M400,30 A40,40 0 0 0 360,70"/>
+          <path d="M360,70 A40,40 0 0 0 400,110"/>
+          <path d="M400,110 A40,40 0 0 0 440,70"/>
+        </g>
+        <circle cx="400" cy="70" r="4" fill="#8e44ad"/>
+        <text x="400" y="140" text-anchor="middle" style="font-weight:bold;fill:#8e44ad">∇×F ≠ 0</text>
+        <text x="400" y="158" text-anchor="middle" class="lbl-sm">rotating</text>
+      </svg>
+      <figcaption>Divergence measures outflow at a point; curl measures spin.</figcaption>
+    </figure>
+  </div>
+
+  <div class="note-card">
+    <h3>Divergence <span class="from-slide">from slides</span></h3>
+    <p>For \(\mathbf{F} = F_x\mathbf{i} + F_y\mathbf{j} + F_z\mathbf{k}\) (or \(P, Q, R\)):</p>
+    <div class="math-block">$$ \nabla \cdot \mathbf{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z} $$</div>
+    <p>A <strong>dot product</strong> with \(\nabla\), so the result is a <strong>scalar</strong>.</p>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><td>\(\nabla \cdot \mathbf{F} &gt; 0\)</td><td>Source — the field spreads out (fluid expanding)</td></tr>
+          <tr><td>\(\nabla \cdot \mathbf{F} &lt; 0\)</td><td>Sink — the field gathers in (fluid compressing)</td></tr>
+          <tr><td>\(\nabla \cdot \mathbf{F} = 0\)</td><td>No net expansion — <strong>incompressible</strong> flow</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn">⚠ Each component is differentiated with respect to <strong>its own</strong> variable only: \(P\) by \(x\), \(Q\) by \(y\), \(R\) by \(z\). Not all three by everything.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Curl <span class="from-slide">from slides</span></h3>
+    <div class="math-block">$$ \nabla \times \mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\ P & Q & R \end{vmatrix} $$</div>
+    <div class="math-block">$$ = \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\right)\mathbf{i} + \left(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}\right)\mathbf{j} $$</div>
+    <div class="math-block">$$ + \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)\mathbf{k} $$</div>
+    <p>A <strong>cross product</strong> with \(\nabla\), so the result is a <strong>vector</strong>. If \(\nabla \times \mathbf{F} = \mathbf{0}\) the field is <strong>irrotational</strong>.</p>
+    <div class="key">Expand it exactly like the midterm cross product — same \(\mathbf{j}\)-term minus sign trap. Writing the middle term as \(\left(P_z - R_x\right)\) already absorbs that minus.</div>
+
+    <span class="label">Two identities that always hold <span class="from-slide">from slides</span></span>
+    <div class="math-block">$$ \nabla \times (\nabla f) = \mathbf{0} $$</div>
+    <div class="math-block">$$ \text{(the curl of a gradient is zero)} $$</div>
+    <div class="math-block">$$ \nabla \cdot (\nabla \times \mathbf{F}) = 0 $$</div>
+    <div class="math-block">$$ \text{(the divergence of a curl is zero)} $$</div>
+    <p>The first one is why "curl = 0" is the test for a conservative field in Part 7.</p>
+  </div>
+
+  <div class="note-card">
+    <h3>Worked Examples <span class="from-slide">from slides</span></h3>
+    <div class="example">
+      <span class="etitle">Question 1 — divergence</span>
+      <p>\(\mathbf{F} = x^2\mathbf{i} + 3xy\mathbf{j} + 2z^2\mathbf{k}\)</p>
+      <div class="math-block">$$ \nabla \cdot \mathbf{F} = \frac{\partial (x^2)}{\partial x} + \frac{\partial (3xy)}{\partial y} + \frac{\partial (2z^2)}{\partial z} $$</div>
+      <div class="math-block">$$ = 2x + 3x + 4z = 5x + 4z $$</div>
+    </div>
+    <div class="example">
+      <span class="etitle">Question 2 — curl</span>
+      <p>\(\mathbf{F} = yz\,\mathbf{i} + xz\,\mathbf{j} + xy\,\mathbf{k}\), so \(P = yz\), \(Q = xz\), \(R = xy\).</p>
+      <div class="math-block">$$ \nabla \times \mathbf{F} $$</div>
+      <div class="math-block">$$ = (x - x)\mathbf{i} + (y - y)\mathbf{j} + (z - z)\mathbf{k} = \mathbf{0} $$</div>
+      <p>Irrotational — and indeed \(\mathbf{F} = \nabla(xyz)\), a gradient.</p>
+    </div>
+    <div class="example">
+      <span class="etitle">Question 3 — is the fluid compressible?</span>
+      <p>\(\mathbf{V} = 2x\,\mathbf{i} + 3y\,\mathbf{j} + 4z\,\mathbf{k}\)</p>
+      <div class="math-block">$$ \nabla \cdot \mathbf{V} = 2 + 3 + 4 = 9 $$</div>
+      <ol>
+        <li>The divergence is \(9\).</li>
+        <li>\(9 &gt; 0\) everywhere, so the fluid is <strong>expanding</strong> (every point acts as a source).</li>
+        <li>\(\nabla \cdot \mathbf{V} \ne 0\), so the flow is <strong>not incompressible</strong> — it's compressible.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- =============== PART 7 =============== -->
+  <h2 class="part" id="p7">Part 7 — Conservative Fields &amp; Potential Functions <span class="badge">Unit 6</span></h2>
+
+  <div class="note-card">
+    <h3>The Big Equivalence <span class="from-slide">from slides</span></h3>
+    <p>\(\mathbf{F}\) is <strong>conservative</strong> if it's the gradient of some scalar <strong>potential function</strong> \(\phi\):</p>
+    <div class="math-block">$$ \mathbf{F} = \nabla\phi $$</div>
+    <div class="math-block">$$ \Longleftrightarrow\quad P = \phi_x,\quad Q = \phi_y,\quad R = \phi_z $$</div>
+    <div class="key">Conservative field ⟺ has a potential function ⟹ path independence</div>
+    <p>For a conservative field (on a simply connected region), all of these hold together:</p>
+    <ul>
+      <li>\(\mathbf{F} = \nabla\phi\) for some \(\phi\)</li>
+      <li>\(\displaystyle\int_C \mathbf{F}\cdot d\mathbf{r}\) depends only on the endpoints, not the path</li>
+      <li>\(\displaystyle\oint_C \mathbf{F}\cdot d\mathbf{r} = 0\) around every closed curve</li>
+    </ul>
+    <div class="example">
+      <span class="etitle">Example — a gradient field <span class="from-slide">from slides</span></span>
+      <p>\(\phi = x^2 + y^2\) gives \(\mathbf{F} = \nabla\phi = 2x\,\mathbf{i} + 2y\,\mathbf{j}\) — every vector points radially outward from the origin.</p>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Testing Whether a Field Is Conservative</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Field</th><th>Conservative if…</th></tr></thead>
+        <tbody>
+          <tr><td>2D: \(P\mathbf{i} + Q\mathbf{j}\) <span class="from-slide">from slides</span></td><td>\(\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}\)</td></tr>
+          <tr><td>3D: \(P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}\)</td><td>\(\nabla \times \mathbf{F} = \mathbf{0}\): &nbsp;\(R_y = Q_z,\ \ P_z = R_x,\ \ Q_x = P_y\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The 3D test follows from the slide identity \(\nabla \times (\nabla\phi) = \mathbf{0}\): a gradient can't have curl, so a field with curl can't be a gradient. The 2D test is just the \(\mathbf{k}\)-component of the same thing.</p>
+    <div class="warn">⚠ The test pairs <strong>cross</strong> derivatives: \(P\) by \(y\) against \(Q\) by \(x\). Comparing \(P_x\) with \(Q_y\) is a common slip and tells you nothing.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Finding the Potential Function \(\phi\)</h3>
+    <ol class="steps">
+      <li>Integrate \(P\) with respect to \(x\): \(\phi = \int P\,dx + g(y, z)\). The "constant" can depend on the other variables</li>
+      <li>Differentiate that \(\phi\) with respect to \(y\) and set it equal to \(Q\) — solve for \(g_y\)</li>
+      <li>Integrate to get \(g\); in 3D repeat with \(z\) and \(R\)</li>
+      <li>Write \(\phi\) with a final \(+\,C\), and check \(\nabla\phi = \mathbf{F}\)</li>
+    </ol>
+    <div class="example">
+      <span class="etitle">Worked example <span class="from-slide">from slides</span></span>
+      <p>\(\mathbf{F} = (2x + 3y)\mathbf{i} + (3x + 4y)\mathbf{j}\). Test: \(P_y = 3 = Q_x\) ✓ conservative.</p>
+      <div class="math-block">$$ \phi = \int (2x + 3y)\,dx = x^2 + 3xy + g(y) $$</div>
+      <div class="math-block">$$ \phi_y = 3x + g'(y) = 3x + 4y $$</div>
+      <div class="math-block">$$ \Longrightarrow\; g'(y) = 4y $$</div>
+      <div class="math-block">$$ \Longrightarrow\; g = 2y^2 $$</div>
+      <div class="math-block">$$ \phi = x^2 + 3xy + 2y^2 + C $$</div>
+    </div>
+    <div class="warn">⚠ Don't just integrate \(P\) by \(x\) and \(Q\) by \(y\) and add — the shared terms (like \(3xy\)) get counted twice. Always go through \(g(y)\).</div>
+
+    <span class="label">Fundamental theorem for line integrals <span class="from-slide">from slides</span></span>
+    <div class="math-block">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = \phi(B) - \phi(A) $$</div>
+    <div class="math-block">$$ (\text{if } \mathbf{F} = \nabla\phi) $$</div>
+    <div class="key">If the field is conservative, skip parametrising entirely — find \(\phi\) and subtract its values at the endpoints.</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Slide Practice Questions, Solved <span class="from-slide">from slides</span></h3>
+    <div class="example">
+      <span class="etitle">Q1 — \(\mathbf{F} = (y + 2x)\mathbf{i} + (x + 3y^2)\mathbf{j}\)</span>
+      <p>\(P_y = 1\), \(Q_x = 1\) → <strong>conservative</strong>. Potential: \(\phi = xy + x^2 + y^3 + C\).</p>
+    </div>
+    <div class="example">
+      <span class="etitle">Q2 — \(\mathbf{F} = (2xy + 1)\mathbf{i} + x^2\mathbf{j}\), from \(A(0,0)\) to \(B(1,2)\)</span>
+      <p>\(P_y = 2x = Q_x\) ✓. \(\phi = x^2y + x\).</p>
+      <div class="math-block">$$ \int_C \mathbf{F}\cdot d\mathbf{r} $$</div>
+      <div class="math-block">$$ = \phi(1,2) - \phi(0,0) = (2 + 1) - 0 = 3 $$</div>
+    </div>
+    <div class="example">
+      <span class="etitle">Q3 — \(\mathbf{F} = (6x^2y + 2y^2)\mathbf{i} + (2x^3 + 4xy + 5)\mathbf{j}\)</span>
+      <p>\(P_y = 6x^2 + 4y = Q_x\) ✓.</p>
+      <div class="math-block">$$ \phi = 2x^3y + 2xy^2 + g(y) $$</div>
+      <div class="math-block">$$ \phi_y = 2x^3 + 4xy + g'(y) $$</div>
+      <p>Matching \(Q\): \(g'(y) = 5\), so \(g = 5y\) and \(\phi = 2x^3y + 2xy^2 + 5y + C\).</p>
+    </div>
+    <div class="example">
+      <span class="etitle">Q4 — \(\mathbf{F} = (3x^2 - 6xy + 2)\mathbf{i} + (-3x^2 + 4y)\mathbf{j}\), from \(A(1,1)\) to \(B(2,3)\)</span>
+      <p><strong>1.</strong> \(P_y = -6x = Q_x\) → conservative.</p>
+      <p><strong>2.</strong> \(\phi = x^3 - 3x^2y + 2x + g(y)\); \(\phi_y = -3x^2 + g'(y) = -3x^2 + 4y\) → \(g = 2y^2\).</p>
+      <div class="math-block">$$ \phi = x^3 - 3x^2y + 2x + 2y^2 + C $$</div>
+      <p><strong>3.</strong></p>
+      <div class="math-block">$$ \phi(2,3) = 8 - 36 + 4 + 18 = -6 $$</div>
+      <div class="math-block">$$ \phi(1,1) = 1 - 3 + 2 + 2 = 2 $$</div>
+      <div class="math-block">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = -6 - 2 = -8 $$</div>
+    </div>
+  </div>
+
+  <!-- =============== PART 8 =============== -->
+  <h2 class="part" id="p8">Part 8 — Line Integrals <span class="badge">Unit 6</span></h2>
+
+  <div class="note-card">
+    <h3>Integrating Along a Curve <span class="from-slide">from slides</span></h3>
+    <p>
+      An ordinary integral accumulates \(f(x)\) along the \(x\)-axis. A <strong>line integral</strong> accumulates
+      a quantity along a <strong>curve</strong> \(C\), described by \(\mathbf{r}(t) = x(t)\mathbf{i} + y(t)\mathbf{j}\),
+      \(a \le t \le b\). There are two kinds:
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Scalar field</th><th>Vector field</th></tr></thead>
+        <tbody>
+          <tr><td>Notation</td><td>\(\displaystyle\int_C f\,ds\)</td><td>\(\displaystyle\int_C \mathbf{F}\cdot d\mathbf{r}\)</td></tr>
+          <tr><td>Uses</td><td>Arc length element \(ds\)</td><td>Displacement \(d\mathbf{r} = \mathbf{r}'(t)\,dt\)</td></tr>
+          <tr><td>Meaning</td><td>Mass of a wire, area of a "curtain"</td><td><strong>Work</strong> done by a force along a path</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Line Integral of a Scalar Field <span class="from-slide">from slides</span></h3>
+    <span class="label">Parametric curve \(x = x(t),\ y = y(t)\)</span>
+    <div class="math-block">$$ ds = \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2}\,dt $$</div>
+    <div class="math-block">$$ \int_C f(x,y)\,ds $$</div>
+    <div class="math-block">$$ = \int_a^b f\big(x(t), y(t)\big)\sqrt{x'(t)^2 + y'(t)^2}\;dt $$</div>
+    <span class="label">Explicit curve \(y = g(x),\ a \le x \le b\)</span>
+    <div class="math-block">$$ \int_C f(x,y)\,ds $$</div>
+    <div class="math-block">$$ = \int_a^b f\big(x, g(x)\big)\sqrt{1 + [g'(x)]^2}\;dx $$</div>
+    <div class="key">\(ds\) is the same arc-length element as Unit 2 — with \(f = 1\), \(\int_C ds\) is just the length of the curve.</div>
+
+    <div class="example">
+      <span class="etitle">Worked example <span class="from-slide">from slides</span></span>
+      <p>\(\int_C (x + y)\,ds\), \(C\) the segment from \((0,0)\) to \((1,1)\): \(x = t\), \(y = t\), so \(ds = \sqrt{1 + 1}\,dt = \sqrt2\,dt\).</p>
+      <div class="math-block">$$ \int_0^1 (2t)\sqrt2\,dt = 2\sqrt2\left[\frac{t^2}{2}\right]_0^1 = \sqrt2 $$</div>
+    </div>
+
+    <span class="label">Slide practice list, solved <span class="from-slide">from slides</span></span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Integral &amp; curve</th><th>\(ds\)</th><th>Answer</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>\(\int_C (x + y)\,ds\), &nbsp;\(y = x,\ 0 \le x \le 2\)</td><td>\(\sqrt2\,dx\)</td><td>\(\int_0^2 2x\sqrt2\,dx = 4\sqrt2\)</td></tr>
+          <tr><td>2</td><td>\(\int_C (x + y)\,ds\), &nbsp;\(x = y,\ 0 \le y \le 2\)</td><td>\(\sqrt2\,dy\)</td><td>\(4\sqrt2\) (same segment)</td></tr>
+          <tr><td>3</td><td>\(\int_C x\,ds\), &nbsp;\(x = t,\ y = t,\ 0 \le t \le 1\)</td><td>\(\sqrt2\,dt\)</td><td>\(\int_0^1 t\sqrt2\,dt = \tfrac{\sqrt2}{2}\)</td></tr>
+          <tr><td>4</td><td>\(\int_C (x + y)\,ds\), &nbsp;\(x = 2t,\ y = t,\ 0 \le t \le 1\)</td><td>\(\sqrt5\,dt\)</td><td>\(\int_0^1 3t\sqrt5\,dt = \tfrac{3\sqrt5}{2}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>Line Integral of a Vector Field <span class="from-slide">from slides</span></h3>
+    <span class="label">Two equivalent forms</span>
+    <div class="math-block">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = \int_a^b \mathbf{F}\big(\mathbf{r}(t)\big)\cdot\mathbf{r}'(t)\,dt $$</div>
+    <div class="math-block">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = \int_C P\,dx + Q\,dy \;(+\,R\,dz) $$</div>
+
+    <span class="label">The method</span>
+    <ol class="steps">
+      <li><strong>Check first:</strong> is \(\mathbf{F}\) conservative? If so, use \(\phi(B) - \phi(A)\) and stop</li>
+      <li>Parametrise \(C\). A straight line from \(A\) to \(B\): \(\mathbf{r}(t) = A + t(B - A)\), \(0 \le t \le 1\)</li>
+      <li>Substitute \(x(t), y(t), z(t)\) into \(\mathbf{F}\) and compute \(\mathbf{r}'(t)\)</li>
+      <li>Dot them, then integrate from \(t = a\) to \(t = b\)</li>
+    </ol>
+
+    <div class="example">
+      <span class="etitle">Example 1 — along a parabola <span class="from-slide">from slides</span></span>
+      <p>\(\mathbf{F} = y\,\mathbf{i} + x\,\mathbf{j}\), \(C: y = x^2,\ 0 \le x \le 1\). Here \(P = y\), \(Q = x\), and \(dy = 2x\,dx\).</p>
+      <div class="math-block">$$ \int_C y\,dx + x\,dy $$</div>
+      <div class="math-block">$$ = \int_0^1 \left[x^2 + x(2x)\right]dx $$</div>
+      <div class="math-block">$$ = \int_0^1 3x^2\,dx = 1 $$</div>
+    </div>
+    <div class="example">
+      <span class="etitle">Example 2 — parametric form <span class="from-slide">from slides</span></span>
+      <p>\(\mathbf{F} = y\,\mathbf{i} + x\,\mathbf{j}\), \(x = 2t,\ y = t,\ 0 \le t \le 1\). So \(\mathbf{F}(\mathbf{r}(t)) = t\,\mathbf{i} + 2t\,\mathbf{j}\) and \(\mathbf{r}'(t) = 2\mathbf{i} + \mathbf{j}\).</p>
+      <div class="math-block">$$ \mathbf{F}\cdot\mathbf{r}' = 2t + 2t = 4t $$</div>
+      <div class="math-block">$$ \int_0^1 4t\,dt = 2 $$</div>
+    </div>
+    <div class="key">Both examples use \(\mathbf{F} = y\mathbf{i} + x\mathbf{j} = \nabla(xy)\) — conservative. Shortcut: \(\phi = xy\), so Example 1 is \(\phi(1,1) - \phi(0,0) = 1\) and Example 2 is \(\phi(2,1) - \phi(0,0) = 2\). Same answers, no integration.</div>
+  </div>
+
+  <!-- =============== PART 9 =============== -->
+  <h2 class="part" id="p9">Part 9 — Green's Theorem <span class="badge book">Textbook · CT4 Q15–16</span></h2>
+
+  <div class="note-card">
+    <h3>Turning a Loop Integral into an Area Integral <span class="from-slide book">textbook</span></h3>
+    <p>
+      For a <strong>closed</strong> curve \(C\) traversed <strong>counterclockwise</strong> (positive orientation) around a
+      region \(R\):
+    </p>
+    <div class="math-block">$$ \oint_C P\,dx + Q\,dy = \iint_R \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dA $$</div>
+    <ol class="steps">
+      <li>Identify \(P\) (the \(dx\) coefficient) and \(Q\) (the \(dy\) coefficient)</li>
+      <li>Compute \(Q_x - P_y\) — often a constant or a simple expression</li>
+      <li>Set up the double integral over the enclosed region and evaluate (Unit 3 skills)</li>
+    </ol>
+    <div class="key">If \(Q_x - P_y\) is a constant \(k\), the answer is just \(k \times\) (area of \(R\)).</div>
+    <div class="warn">⚠ Order matters: it's \(Q_x - P_y\), not \(P_y - Q_x\). And the curve must be counterclockwise — clockwise flips the sign.</div>
+    <p>
+      Notice the link to Part 7: if \(\mathbf{F}\) is conservative then \(Q_x = P_y\), the integrand is zero, and
+      \(\oint_C \mathbf{F}\cdot d\mathbf{r} = 0\) — exactly the closed-loop property.
+    </p>
+    <div class="example">
+      <span class="etitle">Quick example</span>
+      <p>\(\oint_C x\,dy\) around the unit circle: \(P = 0\), \(Q = x\), so \(Q_x - P_y = 1\).</p>
+      <p>The integral equals the area enclosed: \(\pi\). (Green's theorem gives area formulas for free.)</p>
+    </div>
+  </div>
+
+  <!-- =============== PART 10 =============== -->
+  <h2 class="part" id="p10">Part 10 — Exam Strategy &amp; Common Mistakes</h2>
+
+  <div class="note-card" style="border-top-color:#f37021;">
+    <h3 style="color:#d35400;">Reading the question — what to reach for</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>The question asks…</th><th>Reach for</th></tr></thead>
+        <tbody>
+          <tr><td>"value of the field at a point"</td><td>Substitute — no calculus</td></tr>
+          <tr><td>"direction of greatest increase" / "gradient"</td><td>\(\nabla f\)</td></tr>
+          <tr><td>"maximum rate of change"</td><td>\(|\nabla f|\)</td></tr>
+          <tr><td>"rate of change in the direction of…" / "from P toward Q"</td><td>\(D_{\mathbf{u}}f = \nabla f\cdot\mathbf{u}\), unit \(\mathbf{u}\)</td></tr>
+          <tr><td>"normal to the surface" / "tangent plane"</td><td>\(\nabla F\) at the point</td></tr>
+          <tr><td>"max / min subject to…"</td><td>Lagrange: \(\nabla f = \lambda\nabla g\)</td></tr>
+          <tr><td>"divergence" / "compressible?"</td><td>\(\nabla\cdot\mathbf{F}\)</td></tr>
+          <tr><td>"curl" / "irrotational?"</td><td>\(\nabla\times\mathbf{F}\)</td></tr>
+          <tr><td>"is it conservative?" / "potential function"</td><td>Cross-derivative test, then integrate</td></tr>
+          <tr><td>"work done" / \(\int_C \mathbf{F}\cdot d\mathbf{r}\)</td><td>Conservative? → \(\phi(B)-\phi(A)\). Otherwise parametrise</td></tr>
+          <tr><td>\(\oint_C P\,dx + Q\,dy\) around a closed boundary</td><td>Green's theorem</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-card" style="border-top-color:#e74c3c;">
+    <h3 style="color:#c0392b;">The mistakes that actually cost marks</h3>
+    <ol>
+      <li><strong>Not normalising the direction</strong> in a directional derivative.</li>
+      <li><strong>Substituting the point before differentiating.</strong></li>
+      <li><strong>Mixing up div and curl outputs</strong> — divergence is a number, curl is a vector.</li>
+      <li><strong>Wrong pairing in the conservative test</strong> — compare \(P_y\) with \(Q_x\).</li>
+      <li><strong>Double-counting terms in \(\phi\)</strong> — always go through \(g(y)\).</li>
+      <li><strong>Forgetting \(+C\)</strong> when asked for a potential function "including the arbitrary constant".</li>
+      <li><strong>Forgetting \(ds\) or \(\mathbf{r}'(t)\)</strong> — substituting the curve into \(f\) or \(\mathbf{F}\) is only half the job.</li>
+      <li><strong>Green's sign and orientation</strong> — \(Q_x - P_y\), counterclockwise.</li>
+    </ol>
+  </div>
+
+  <div class="note-card" style="border-top-color:#27ae60;">
+    <h3 style="color:#1e8449;">Ten-second checks</h3>
+    <ul>
+      <li>Found \(\phi\)? Differentiate it — you should get back \(P\), \(Q\), \(R\) exactly.</li>
+      <li>A directional derivative can never exceed \(|\nabla f|\) in size.</li>
+      <li>\(\nabla f\) at a point should be perpendicular to the contour there.</li>
+      <li>For a conservative field, a straight-line parametrisation and \(\phi(B) - \phi(A)\) must agree.</li>
+      <li>Green's with constant integrand: answer = constant × area of the region.</li>
+    </ul>
+  </div>
+
+  <div class="btn-row" style="margin-top:2rem;">
+    <a href="new-notes-index.html" class="back-btn">← Back to Notes Index</a>
+    <a href="final-vector-fields-practice.html" class="back-btn accent">CT4 Worksheet Solutions →</a>
+    <a href="final-formula-sheet.html" class="back-btn orange">Finals Formula Sheet →</a>
+  </div>
+
+</body>
+</html>
