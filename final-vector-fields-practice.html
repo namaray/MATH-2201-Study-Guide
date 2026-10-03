@@ -46,6 +46,18 @@
     .toc a { color: #1e8449; text-decoration: none; }
     .toc a:hover { text-decoration: underline; }
 
+    .howto {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.1rem 1.6rem 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #16a085;
+    }
+    .howto h2 { font-size: 1.15rem; margin: 0 0 0.6rem; color: #117864; }
+    .legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.6rem; }
+    .legend div { padding: 0.45rem 0.75rem; border-radius: 5px; font-size: 0.92rem; }
+
     .section-title {
       margin: 2.5rem 0 1rem;
       padding: 0.7rem 1.2rem;
@@ -53,6 +65,14 @@
       color: #fff;
       border-radius: 8px;
       font-size: 1.3rem;
+    }
+    .section-intro {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 0.8rem 1.2rem;
+      margin: -0.3rem 0 1.5rem;
+      font-size: 0.97rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     .problem {
@@ -95,12 +115,43 @@
       border-left: 4px solid #3498db;
       padding: 0.75rem 1rem;
       border-radius: 5px;
-      margin: 0.75rem 0 1.25rem;
+      margin: 0.75rem 0 1.1rem;
     }
+
+    /* The four teaching boxes */
+    .formula, .idea, .meaning {
+      padding: 0.65rem 1rem 0.75rem;
+      border-radius: 5px;
+      margin: 0.9rem 0;
+    }
+    .formula { background: #f5eef8; border-left: 4px solid #8e44ad; }
+    .idea    { background: #fef9e7; border-left: 4px solid #f1c40f; }
+    .meaning { background: #eaf2f8; border-left: 4px solid #2471a3; }
+    .box-title {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.2rem;
+    }
+    .formula .box-title { color: #6c3483; }
+    .idea .box-title    { color: #9a7d0a; }
+    .meaning .box-title { color: #1b4f72; }
+    .formula .math-block { margin: 0.5rem 0; }
+
+    .step {
+      display: block;
+      font-weight: bold;
+      margin: 1.1rem 0 0.15rem;
+      color: #1e8449;
+    }
+    .why { color: #555; }
+
     .label { display: block; font-weight: bold; margin: 1rem 0 0.25rem; color: #34495e; }
     .math-block {
       text-align: center;
-      margin: 1rem 0;
+      margin: 0.8rem 0;
       font-size: 1.1rem;
       overflow-x: auto;
       padding: 6px 0;
@@ -142,7 +193,7 @@
     .back-btn.orange:hover { background-color: #d35400; }
 
     /* Long inline formulas scroll inside their box rather than widening the page */
-    .answer, .note, .prompt, td { overflow-x: auto; }
+    .answer, .note, .prompt, .formula, .idea, .meaning, td { overflow-x: auto; }
 
     /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
     mjx-container { position: relative; }
@@ -154,6 +205,7 @@
       .toc ol { columns: 1; }
       .problem { padding: 1rem 1.1rem 1.2rem; }
       .math-block { font-size: 0.86rem; }
+      .formula, .idea, .meaning { padding: 0.55rem 0.75rem 0.65rem; }
     }
   </style>
 </head>
@@ -166,7 +218,21 @@
   </div>
 
   <h1>CT4 Practice Worksheet — Solutions</h1>
-  <p class="subtitle">MATH-2201 &nbsp;·&nbsp; Unit 6 &nbsp;·&nbsp; all 16 questions, fully worked and numerically checked</p>
+  <p class="subtitle">MATH-2201 &nbsp;·&nbsp; Unit 6 &nbsp;·&nbsp; all 16 questions, explained from the ground up and numerically checked</p>
+
+  <div class="howto">
+    <h2>How each solution is laid out</h2>
+    <div class="legend">
+      <div class="formula" style="margin:0"><strong>Formula you need</strong> — the tool, before you start</div>
+      <div class="idea" style="margin:0"><strong>The idea</strong> — what's really being asked, in plain words</div>
+      <div style="background:#f4fbf6;border-left:4px solid #27ae60"><strong>Steps</strong> — each move, and <em>why</em> it's the right move</div>
+      <div class="meaning" style="margin:0"><strong>What it means</strong> — how to read the answer</div>
+    </div>
+    <p style="margin:0.8rem 0 0; font-size:0.93rem; color:#555;">
+      Try covering everything below the formula box and solving it yourself first. If you get stuck, read
+      just the idea box and try again before looking at the steps.
+    </p>
+  </div>
 
   <div class="toc">
     <h2>Questions</h2>
@@ -190,9 +256,15 @@
     </ol>
   </div>
 
-  <!-- ============ FIELDS ============ -->
+  <!-- ===================================================== -->
   <h2 class="section-title">Scalar &amp; Vector Fields (Q1–Q4)</h2>
+  <div class="section-intro">
+    A <strong>field</strong> is a rule that attaches something to every point in space. If it attaches a
+    <strong>number</strong>, it's a scalar field. If it attaches an <strong>arrow</strong> (a vector), it's a
+    vector field. These four questions just ask you to recognise which is which and read off values.
+  </div>
 
+  <!-- Q1 -->
   <div class="problem" id="q1">
     <h2>Q1. Temperature in a Metal Block <span class="tag">Scalar Field</span></h2>
     <div class="prompt">
@@ -200,17 +272,42 @@
       <strong>(a)</strong> Explain why \(T\) represents a scalar field.
       <strong>(b)</strong> Find the temperature at \((1, -2, 3)\).
     </div>
-    <span class="label">(a)</span>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      A scalar field is a function \(f:\mathbb{R}^3 \to \mathbb{R}\) — three inputs, <strong>one number out</strong>.
+      To find its value at a point, substitute the coordinates.
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      Imagine pushing a thermometer into the block at any spot. You read off <em>one number</em>. A
+      thermometer doesn't point anywhere — temperature has no direction. Compare that with wind: to describe
+      wind you need a speed <em>and</em> a direction, so wind is a vector field. Temperature isn't.
+    </div>
+
+    <span class="step">(a) Why it's a scalar field</span>
     <p>
-      \(T\) assigns a <strong>single real number</strong> — a temperature — to every point \((x,y,z)\) of the block.
-      It has magnitude but no direction, so \(T: \mathbb{R}^3 \to \mathbb{R}\) is a scalar field.
+      For every point \((x,y,z)\) in the block, the formula \(4x^2 + y^2 + 3z\) produces exactly one real
+      number — the temperature there. There's magnitude but no direction, so \(T\) is a scalar field.
     </p>
-    <span class="label">(b)</span>
+
+    <span class="step">(b) Substitute the point</span>
+    <p class="why">Put \(x = 1\), \(y = -2\), \(z = 3\) into the formula. Watch the sign: \((-2)^2\) is \(+4\), because squaring removes the minus.</p>
     <div class="math-block">$$ T(1,-2,3) = 4(1)^2 + (-2)^2 + 3(3) $$</div>
     <div class="math-block">$$ = 4 + 4 + 9 = 17 $$</div>
-    <div class="answer">\(T(1,-2,3) = 17\) (temperature units)</div>
+
+    <div class="answer">(a) It assigns one number (no direction) to each point &nbsp;·&nbsp; (b) \(T(1,-2,3) = 17\)</div>
+
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      The thermometer at \((1,-2,3)\) reads 17. Notice the \(4x^2\) term: moving in the \(x\)-direction
+      changes the temperature four times faster than the same move in \(y\) — that's the kind of thing the
+      gradient (Q5–Q6) will measure precisely.
+    </div>
   </div>
 
+  <!-- Q2 -->
   <div class="problem" id="q2">
     <h2>Q2. Chemical Concentration <span class="tag">Scalar Field</span></h2>
     <div class="prompt">
@@ -218,18 +315,43 @@
       <strong>(a)</strong> Find \(C(2,1,-1)\).
       <strong>(b)</strong> Describe what information \(C\) provides at each point in space.
     </div>
-    <span class="label">(a)</span>
-    <div class="math-block">$$ C(2,1,-1) = 4 + 2 + 1 - 8 = -1 $$</div>
-    <div class="answer">\(C(2,1,-1) = -1\)</div>
-    <div class="note">A real concentration can't be negative, so read this as the model's output (for example, relative to a reference level). Mathematically, the answer is \(-1\).</div>
-    <span class="label">(b)</span>
-    <p>
-      At each point, \(C\) gives <strong>one number</strong>: how much chemical is present there. It tells you
-      <em>how much</em>, not <em>which way</em>. Points with equal \(C\) form level surfaces, and \(\nabla C\) at a
-      point would show the direction in which the concentration increases fastest.
-    </p>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      Evaluate by substitution. For part (b): points where \(C\) has the same value form a
+      <strong>level surface</strong> \(C(x,y,z) = k\).
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      Like Q1, but now the number is "how much chemical is here". It tells you <em>how much</em>, never
+      <em>which way</em>.
+    </div>
+
+    <span class="step">(a) Substitute</span>
+    <div class="math-block">$$ C(2,1,-1) = (2)^2 + 2(1)^2 + (-1)^2 - 4(2) $$</div>
+    <div class="math-block">$$ = 4 + 2 + 1 - 8 = -1 $$</div>
+    <div class="answer">(a) \(C(2,1,-1) = -1\)</div>
+    <div class="note">A real concentration can't be negative, so treat \(-1\) as the model's output (for example, measured relative to some reference level). Mathematically, the answer is \(-1\).</div>
+
+    <span class="step">(b) What \(C\) tells you — understanding the shape</span>
+    <p class="why">To see the structure of \(C\), complete the square in \(x\) (the same trick as conic sections):</p>
+    <div class="math-block">$$ x^2 - 4x = (x - 2)^2 - 4 $$</div>
+    <div class="math-block">$$ C = (x-2)^2 + 2y^2 + z^2 - 4 $$</div>
+    <p>Now everything is clear:</p>
+    <ul>
+      <li>At each point, \(C\) gives <strong>one number</strong> — the concentration there.</li>
+      <li>The squared terms are never negative, so \(C\) is <strong>smallest at \((2,0,0)\)</strong>, where it equals \(-4\).</li>
+      <li>Moving away from \((2,0,0)\) in any direction increases \(C\). Surfaces of equal concentration, \(C = k\), are <strong>ellipsoids</strong> centred at \((2,0,0)\).</li>
+    </ul>
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      \(C\) is a map of "how much chemical, where". It doesn't say which way the chemical flows — but its
+      gradient \(\nabla C\) would point away from \((2,0,0)\), the direction concentration increases fastest.
+    </div>
   </div>
 
+  <!-- Q3 -->
   <div class="problem" id="q3">
     <h2>Q3. Fluid Velocity Field <span class="tag">Vector Field</span></h2>
     <div class="prompt">
@@ -237,13 +359,41 @@
       <strong>(a)</strong> Find the velocity at \(P(1,2,-1)\).
       <strong>(b)</strong> Find its magnitude.
     </div>
-    <div class="math-block">$$ \mathbf{V}(1,2,-1) = (2 - 1)\mathbf{i} + (1 + 1)\mathbf{j} + (1 + 2)\mathbf{k} $$</div>
-    <div class="math-block">$$ = \mathbf{i} + 2\mathbf{j} + 3\mathbf{k} $$</div>
-    <div class="math-block">$$ |\mathbf{V}| = \sqrt{1 + 4 + 9} = \sqrt{14} $$</div>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      Evaluate each component at the point. Then
+      <div class="math-block">$$ |\mathbf{V}| = \sqrt{V_1^2 + V_2^2 + V_3^2} $$</div>
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      Picture a tiny cork floating in the water at \(P\). The vector field tells you the cork's velocity —
+      which way it's carried and how fast. The magnitude of that arrow is the <strong>speed</strong>.
+    </div>
+
+    <span class="step">Step 1 — Evaluate each component separately</span>
+    <p class="why">Each component is its own little formula. Do them one at a time with \(x = 1\), \(y = 2\), \(z = -1\):</p>
+    <div class="math-block">$$ y + z = 2 + (-1) = 1 $$</div>
+    <div class="math-block">$$ x - z = 1 - (-1) = 2 $$</div>
+    <div class="math-block">$$ x + y = 1 + 2 = 3 $$</div>
+    <div class="math-block">$$ \mathbf{V}(1,2,-1) = \mathbf{i} + 2\mathbf{j} + 3\mathbf{k} $$</div>
+
+    <span class="step">Step 2 — Magnitude</span>
+    <p class="why">Length of a 3D arrow is Pythagoras in three dimensions:</p>
+    <div class="math-block">$$ |\mathbf{V}| = \sqrt{1^2 + 2^2 + 3^2} = \sqrt{14} $$</div>
+
     <div class="answer">(a) \(\mathbf{V} = \mathbf{i} + 2\mathbf{j} + 3\mathbf{k}\) &nbsp;·&nbsp; (b) \(|\mathbf{V}| = \sqrt{14} \approx 3.742\)</div>
-    <div class="note">Watch the \(\mathbf{j}\)-component: \(x - z = 1 - (-1) = 2\).</div>
+
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      At \(P\), the fluid moves at speed \(\approx 3.74\), mostly upward (the \(\mathbf{k}\)-part is largest).
+      Its direction of travel is the unit vector \(\tfrac{1}{\sqrt{14}}\langle 1,2,3\rangle \approx \langle 0.27, 0.53, 0.80\rangle\).
+    </div>
+    <div class="note">The classic slip is \(x - z = 1 - 1 = 0\). Subtracting a negative adds: \(1 - (-1) = 2\).</div>
   </div>
 
+  <!-- Q4 -->
   <div class="problem" id="q4">
     <h2>Q4. Force Field <span class="tag">Vector Field</span></h2>
     <div class="prompt">
@@ -251,23 +401,57 @@
       <strong>(a)</strong> Find \(\mathbf{F}(2,-1)\).
       <strong>(b)</strong> Find the magnitude and direction of the force there.
     </div>
-    <span class="label">(a)</span>
-    <div class="math-block">$$ \mathbf{F}(2,-1) = (12 + 2)\mathbf{i} + (-4 + 2)\mathbf{j} = 14\mathbf{i} - 2\mathbf{j} $$</div>
-    <span class="label">(b) Magnitude</span>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      For \(\mathbf{F} = P\mathbf{i} + Q\mathbf{j}\):
+      <div class="math-block">$$ |\mathbf{F}| = \sqrt{P^2 + Q^2} $$</div>
+      <div class="math-block">$$ \hat{\mathbf{F}} = \frac{\mathbf{F}}{|\mathbf{F}|} $$</div>
+      <div class="math-block">$$ \tan\theta = \frac{Q}{P} $$</div>
+      (Choose the quadrant of \(\theta\) from the signs of \(P\) and \(Q\).)
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      A force is a push. "Magnitude" = how hard it pushes. "Direction" = which way it pushes. You can give
+      direction either as a unit vector or as an angle from the positive \(x\)-axis — giving both is safest.
+    </div>
+
+    <span class="step">(a) Evaluate at (2, −1)</span>
+    <div class="math-block">$$ P = 3(2)^2 - 2(-1) = 12 + 2 = 14 $$</div>
+    <div class="math-block">$$ Q = 4(-1) + 2 = -2 $$</div>
+    <div class="math-block">$$ \mathbf{F}(2,-1) = 14\mathbf{i} - 2\mathbf{j} $$</div>
+
+    <span class="step">(b) Magnitude</span>
     <div class="math-block">$$ |\mathbf{F}| = \sqrt{14^2 + (-2)^2} $$</div>
     <div class="math-block">$$ = \sqrt{200} = 10\sqrt2 \approx 14.14 $$</div>
-    <span class="label">(b) Direction</span>
-    <div class="math-block">$$ \hat{\mathbf{F}} = \frac{14\mathbf{i} - 2\mathbf{j}}{10\sqrt2} = \frac{7\mathbf{i} - \mathbf{j}}{5\sqrt2} \approx 0.990\,\mathbf{i} - 0.141\,\mathbf{j} $$</div>
-    <div class="math-block">$$ \theta = \tan^{-1}\!\left(\frac{-2}{14}\right) \approx -8.13^\circ $$</div>
-    <div class="answer">
-      (a) \(14\mathbf{i} - 2\mathbf{j}\) &nbsp;·&nbsp; (b) \(|\mathbf{F}| = 10\sqrt2 \approx 14.14\),
-      pointing \(8.13^\circ\) below the positive \(x\)-axis
+
+    <span class="step">(b) Direction</span>
+    <p class="why">Unit vector: divide the force by its length, so the result has length 1 and only carries direction.</p>
+    <div class="math-block">$$ \hat{\mathbf{F}} = \frac{14\mathbf{i} - 2\mathbf{j}}{10\sqrt2} = \frac{7\mathbf{i} - \mathbf{j}}{5\sqrt2} $$</div>
+    <div class="math-block">$$ \hat{\mathbf{F}} \approx 0.990\,\mathbf{i} - 0.141\,\mathbf{j} $$</div>
+    <p class="why">Angle: \(P &gt; 0\) and \(Q &lt; 0\), so the arrow is in <strong>Quadrant IV</strong> — just below the positive \(x\)-axis.</p>
+    <div class="math-block">$$ \theta = \tan^{-1}\!\left(\frac{-2}{14}\right) \approx -8.13^\circ \;\;(\text{or } 351.87^\circ) $$</div>
+
+    <div class="answer">(a) \(14\mathbf{i} - 2\mathbf{j}\) &nbsp;·&nbsp; (b) \(|\mathbf{F}| = 10\sqrt2 \approx 14.14\), pointing \(8.13^\circ\) below the positive \(x\)-axis</div>
+
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      At \((2,-1)\) the force pushes almost straight in the \(+x\) direction (14 units right, only 2 down),
+      with strength about 14.14.
     </div>
   </div>
 
-  <!-- ============ GRADIENT ============ -->
+  <!-- ===================================================== -->
   <h2 class="section-title">Gradient &amp; Directional Derivatives (Q5–Q8)</h2>
+  <div class="section-intro">
+    The <strong>gradient</strong> turns a scalar field into a vector field: at each point it points the way
+    the function increases fastest, and its length is that fastest rate. The <strong>directional
+    derivative</strong> asks a narrower question: how fast does the function change if I move in <em>this
+    particular</em> direction?
+  </div>
 
+  <!-- Q5 -->
   <div class="problem" id="q5">
     <h2>Q5. Gradient <span class="tag">Gradient</span></h2>
     <div class="prompt">
@@ -275,14 +459,46 @@
       <strong>(a)</strong> Find \(\nabla\phi\).
       <strong>(b)</strong> Evaluate it at \((1, 2, -1)\).
     </div>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ \nabla\phi = \frac{\partial\phi}{\partial x}\mathbf{i} + \frac{\partial\phi}{\partial y}\mathbf{j} + \frac{\partial\phi}{\partial z}\mathbf{k} $$</div>
+      A partial derivative \(\partial/\partial x\) means: differentiate with respect to \(x\), treating \(y\) and \(z\) as <strong>constants</strong>.
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      Each partial derivative measures the slope of \(\phi\) along one axis. The gradient bundles the three
+      slopes into one arrow. That arrow turns out to point in the direction of steepest increase.
+    </div>
+
+    <span class="step">Step 1 — \(\partial\phi/\partial x\) (treat \(y, z\) as constants)</span>
+    <p class="why">\(x^2y\): \(y\) is a constant multiplier, so this gives \(2xy\). &nbsp; \(2yz^2\): no \(x\) at all, so it's a constant — derivative 0. &nbsp; \(3x\) gives 3.</p>
     <div class="math-block">$$ \phi_x = 2xy + 3 $$</div>
+
+    <span class="step">Step 2 — \(\partial\phi/\partial y\) (treat \(x, z\) as constants)</span>
+    <p class="why">\(x^2y \to x^2\). &nbsp; \(2yz^2 \to 2z^2\). &nbsp; \(3x\) has no \(y\), so 0.</p>
     <div class="math-block">$$ \phi_y = x^2 + 2z^2 $$</div>
+
+    <span class="step">Step 3 — \(\partial\phi/\partial z\) (treat \(x, y\) as constants)</span>
+    <p class="why">Only \(2yz^2\) contains \(z\): it gives \(2y \cdot 2z = 4yz\).</p>
     <div class="math-block">$$ \phi_z = 4yz $$</div>
+
+    <span class="step">Step 4 — Assemble, then substitute the point</span>
+    <p class="why">Always find the general gradient <em>first</em>, then plug in. If you plug in first, you're differentiating a number and get zero.</p>
     <div class="math-block">$$ \nabla\phi = (2xy + 3)\mathbf{i} + (x^2 + 2z^2)\mathbf{j} + 4yz\,\mathbf{k} $$</div>
     <div class="math-block">$$ \nabla\phi(1,2,-1) = (4 + 3)\mathbf{i} + (1 + 2)\mathbf{j} + (-8)\mathbf{k} $$</div>
-    <div class="answer">(a) \(\nabla\phi = (2xy + 3)\mathbf{i} + (x^2 + 2z^2)\mathbf{j} + 4yz\,\mathbf{k}\) &nbsp;·&nbsp; (b) \(7\mathbf{i} + 3\mathbf{j} - 8\mathbf{k}\)</div>
+
+    <div class="answer">(a) \((2xy + 3)\mathbf{i} + (x^2 + 2z^2)\mathbf{j} + 4yz\,\mathbf{k}\) &nbsp;·&nbsp; (b) \(7\mathbf{i} + 3\mathbf{j} - 8\mathbf{k}\)</div>
+
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      Standing at \((1,2,-1)\), \(\phi\) increases fastest if you head in the direction \(\langle 7, 3, -8\rangle\),
+      and the rate in that direction is \(|\nabla\phi| = \sqrt{49 + 9 + 64} = \sqrt{122} \approx 11.05\).
+    </div>
   </div>
 
+  <!-- Q6 -->
   <div class="problem" id="q6">
     <h2>Q6. Gradient of an Elevation <span class="tag">Gradient</span></h2>
     <div class="prompt">
@@ -291,106 +507,280 @@
       <strong>(b)</strong> Find the gradient at \((2,1)\).
       <strong>(c)</strong> What does its direction indicate geometrically?
     </div>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ \nabla h = \langle h_x,\ h_y\rangle $$</div>
+      <div class="math-block">$$ \text{steepest slope} = |\nabla h| $$</div>
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      \(h\) is the height of a hill above the point \((x,y)\) on a map. The gradient is a compass needle
+      printed on the map: it points the way to walk if you want to climb as steeply as possible.
+    </div>
+
+    <span class="step">(a) Partial derivatives</span>
+    <p class="why">For \(h_x\), \(4y^2\) is constant (gives 0), and \(-2xy\) gives \(-2y\). For \(h_y\), \(x^2\) is constant, \(4y^2\) gives \(8y\), and \(-2xy\) gives \(-2x\).</p>
     <div class="math-block">$$ \nabla h = (2x - 2y)\mathbf{i} + (8y - 2x)\mathbf{j} $$</div>
+
+    <span class="step">(b) At (2, 1)</span>
     <div class="math-block">$$ \nabla h(2,1) = (4 - 2)\mathbf{i} + (8 - 4)\mathbf{j} = 2\mathbf{i} + 4\mathbf{j} $$</div>
+
     <div class="answer">(a) \((2x - 2y)\mathbf{i} + (8y - 2x)\mathbf{j}\) &nbsp;·&nbsp; (b) \(2\mathbf{i} + 4\mathbf{j}\)</div>
-    <span class="label">(c)</span>
+
+    <span class="step">(c) What the direction means — and why</span>
     <ul>
-      <li>It points in the direction of <strong>steepest ascent</strong> — the way straight uphill on the surface from \((2,1)\).</li>
-      <li>It is <strong>perpendicular to the contour</strong> (level curve) of \(h\) through \((2,1)\).</li>
-      <li>Its length, \(|\nabla h| = \sqrt{20} = 2\sqrt5 \approx 4.47\), is the steepest slope available there.</li>
+      <li><strong>Steepest ascent.</strong> \(2\mathbf{i} + 4\mathbf{j}\) is the direction of straight uphill from \((2,1)\) — about \(63.4^\circ\) from the \(x\)-axis.</li>
+      <li><strong>Perpendicular to the contour.</strong> Walking <em>along</em> a contour line keeps the height constant, so the rate of change in that direction is zero. Since the rate in direction \(\mathbf{u}\) is \(\nabla h\cdot\mathbf{u}\), zero rate means \(\mathbf{u} \perp \nabla h\). So the gradient is always at right angles to the contour.</li>
+      <li><strong>Its length is the steepness.</strong> \(|\nabla h| = \sqrt{4 + 16} = 2\sqrt5 \approx 4.47\): height rises about 4.47 units per unit of horizontal distance in that direction.</li>
     </ul>
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      On a hiking map, the gradient arrow at any point crosses the contour lines at right angles, pointing
+      uphill. Water would flow the opposite way, along \(-\nabla h\).
+    </div>
   </div>
 
+  <!-- Q7 -->
   <div class="problem" id="q7">
     <h2>Q7. Directional Derivative <span class="tag">Directional Derivative</span></h2>
     <div class="prompt">
       \(f(x,y) = x^2y + 3y^2\). Find the directional derivative at \(P(1,2)\) in the direction of \(\mathbf{v} = 3\mathbf{i} + 4\mathbf{j}\).
     </div>
-    <span class="label">Step 1 — gradient at P</span>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ D_{\mathbf{u}}f = \nabla f\cdot\mathbf{u} $$</div>
+      <div class="math-block">$$ \mathbf{u} = \frac{\mathbf{v}}{|\mathbf{v}|} $$</div>
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      The gradient holds the complete slope information at a point. Dotting it with a direction picks out
+      "how much of that slope you feel walking this way". The direction must be a <strong>unit</strong>
+      vector because we only care about <em>which way</em> you walk, not how long the arrow \(\mathbf{v}\) happens
+      to be. Without dividing by \(|\mathbf{v}|\), doubling \(\mathbf{v}\) would double the answer — which makes no sense.
+    </div>
+
+    <span class="step">Step 1 — Gradient, then evaluate at P</span>
     <div class="math-block">$$ \nabla f = \langle 2xy,\ x^2 + 6y\rangle $$</div>
     <div class="math-block">$$ \nabla f(1,2) = \langle 4,\ 13\rangle $$</div>
-    <span class="label">Step 2 — unit direction</span>
-    <div class="math-block">$$ |\mathbf{v}| = 5 $$</div>
+
+    <span class="step">Step 2 — Make the direction a unit vector</span>
+    <div class="math-block">$$ |\mathbf{v}| = \sqrt{9 + 16} = 5 $$</div>
     <div class="math-block">$$ \mathbf{u} = \left\langle \tfrac35,\ \tfrac45\right\rangle $$</div>
-    <span class="label">Step 3 — dot product</span>
+
+    <span class="step">Step 3 — Dot product</span>
     <div class="math-block">$$ D_{\mathbf{u}}f = 4\cdot\tfrac35 + 13\cdot\tfrac45 = \frac{12 + 52}{5} = \frac{64}{5} $$</div>
+
     <div class="answer">\(D_{\mathbf{u}}f(1,2) = \dfrac{64}{5} = 12.8\)</div>
-    <div class="note">Check: \(|\nabla f| = \sqrt{16 + 169} \approx 13.6\), and \(12.8 &lt; 13.6\) as it must be. Forgetting to divide by 5 would give 64, which is impossible.</div>
+
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      Moving from \((1,2)\) in the direction \(\langle 3,4\rangle\), \(f\) increases by about 12.8 per unit
+      of distance travelled. Sanity check: the <em>maximum</em> possible rate is \(|\nabla f| = \sqrt{185} \approx 13.6\).
+      Our 12.8 is just below that, because \(\langle 3,4\rangle\) is only about \(20^\circ\) away from the gradient direction.
+      A directional derivative can never be bigger than \(|\nabla f|\) — if you'd forgotten to divide by 5 you'd
+      get 64, which is impossible.
+    </div>
   </div>
 
+  <!-- Q8 -->
   <div class="problem" id="q8">
     <h2>Q8. Rate of Change Toward a Point <span class="tag">Directional Derivative</span></h2>
     <div class="prompt">
       \(T(x,y,z) = x^2 + 2y^2 + 3z^2\). Find the rate of change at \(P(1,-1,2)\) in the direction from \(P\) toward \(Q(3,2,3)\).
     </div>
-    <span class="label">Step 1 — gradient at P</span>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ D_{\mathbf{u}}T = \nabla T\cdot\mathbf{u} $$</div>
+      <div class="math-block">$$ \mathbf{u} = \frac{\overrightarrow{PQ}}{|\overrightarrow{PQ}|} $$</div>
+      <div class="math-block">$$ \overrightarrow{PQ} = Q - P $$</div>
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      Same as Q7 in 3D. The only new part is building the direction: "from \(P\) toward \(Q\)" means the arrow
+      \(\overrightarrow{PQ}\) — head minus tail, exactly as in the midterm.
+    </div>
+
+    <span class="step">Step 1 — Gradient at P</span>
     <div class="math-block">$$ \nabla T = \langle 2x,\ 4y,\ 6z\rangle $$</div>
     <div class="math-block">$$ \nabla T(1,-1,2) = \langle 2,\ -4,\ 12\rangle $$</div>
-    <span class="label">Step 2 — unit direction from P to Q</span>
-    <div class="math-block">$$ \overrightarrow{PQ} = Q - P = \langle 2,\ 3,\ 1\rangle $$</div>
-    <div class="math-block">$$ |\overrightarrow{PQ}| = \sqrt{14} $$</div>
-    <span class="label">Step 3 — dot product</span>
+
+    <span class="step">Step 2 — Direction from P to Q, made unit</span>
+    <div class="math-block">$$ \overrightarrow{PQ} = \langle 3-1,\ 2-(-1),\ 3-2\rangle = \langle 2,\ 3,\ 1\rangle $$</div>
+    <div class="math-block">$$ |\overrightarrow{PQ}| = \sqrt{4 + 9 + 1} = \sqrt{14} $$</div>
+
+    <span class="step">Step 3 — Dot product</span>
     <div class="math-block">$$ D_{\mathbf{u}}T = \frac{2(2) + (-4)(3) + 12(1)}{\sqrt{14}} = \frac{4}{\sqrt{14}} $$</div>
+
     <div class="answer">\(D_{\mathbf{u}}T = \dfrac{4}{\sqrt{14}} = \dfrac{2\sqrt{14}}{7} \approx 1.069\)</div>
+
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      Heading toward \(Q\), the temperature rises slowly — about 1.07 per unit distance. Compare with the
+      fastest possible rate here, \(|\nabla T| = \sqrt{164} \approx 12.8\). The direction toward \(Q\) is about
+      \(85^\circ\) away from the gradient, so it's almost "sideways" across the temperature contours — very
+      little of the steepness is felt. That's exactly what \(D_{\mathbf{u}}T = |\nabla T|\cos\theta\) predicts.
+    </div>
   </div>
 
-  <!-- ============ CONSERVATIVE ============ -->
+  <!-- ===================================================== -->
   <h2 class="section-title">Potential Functions &amp; Conservative Fields (Q9–Q12)</h2>
+  <div class="section-intro">
+    A vector field \(\mathbf{F}\) is <strong>conservative</strong> if it is the gradient of some scalar
+    function \(\phi\) (the <strong>potential</strong>): \(\mathbf{F} = \nabla\phi\). These questions run the gradient
+    <em>backwards</em>: given the arrows, can you find the "height function" they're the slopes of? First you
+    test whether such a \(\phi\) can exist; then you build it.
+  </div>
 
+  <!-- Q9 -->
   <div class="problem" id="q9">
     <h2>Q9. Does a Potential Exist? <span class="tag">Conservative Field</span></h2>
     <div class="prompt">
       \(\mathbf{F} = (2xy + 3)\mathbf{i} + x^2\mathbf{j} + 4z\mathbf{k}\). Determine whether a potential \(\phi\) exists; if so, find \(\phi\) with \(\nabla\phi = \mathbf{F}\).
     </div>
-    <span class="label">Test: is the curl zero?</span>
-    <p>\(P = 2xy + 3\), \(Q = x^2\), \(R = 4z\).</p>
-    <div class="math-block">$$ R_y - Q_z = 0 - 0 = 0 $$</div>
-    <div class="math-block">$$ P_z - R_x = 0 - 0 = 0 $$</div>
-    <div class="math-block">$$ Q_x - P_y = 2x - 2x = 0 $$</div>
-    <p>\(\nabla \times \mathbf{F} = \mathbf{0}\), so a potential exists.</p>
-    <span class="label">Find \(\phi\)</span>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      \(\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}\) has a potential (on all of \(\mathbb{R}^3\)) exactly when \(\nabla\times\mathbf{F} = \mathbf{0}\):
+      <div class="math-block">$$ R_y = Q_z $$</div>
+      <div class="math-block">$$ P_z = R_x $$</div>
+      <div class="math-block">$$ Q_x = P_y $$</div>
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea — why this test works</span>
+      If \(\mathbf{F} = \nabla\phi\), then \(P = \phi_x\) and \(Q = \phi_y\). So \(P_y = \phi_{xy}\) and
+      \(Q_x = \phi_{yx}\). For any smooth function, the order of mixed partial derivatives doesn't matter
+      (\(\phi_{xy} = \phi_{yx}\)), so <strong>a gradient field must have \(P_y = Q_x\)</strong> — and similarly for the
+      other pairs. That's all "curl = 0" is saying. If any pair fails, no \(\phi\) can exist.
+    </div>
+
+    <span class="step">Step 1 — Identify P, Q, R</span>
+    <div class="math-block">$$ P = 2xy + 3 $$</div>
+    <div class="math-block">$$ Q = x^2 $$</div>
+    <div class="math-block">$$ R = 4z $$</div>
+
+    <span class="step">Step 2 — Check the three cross-derivative pairs</span>
+    <div class="math-block">$$ R_y = 0 = Q_z $$</div>
+    <div class="math-block">$$ P_z = 0 = R_x $$</div>
+    <div class="math-block">$$ Q_x = 2x = P_y $$</div>
+    <p>All three match, so \(\nabla\times\mathbf{F} = \mathbf{0}\): a potential exists.</p>
+
+    <span class="step">Step 3 — Build φ from P</span>
+    <p class="why">We need \(\phi_x = P\), so integrate \(P\) with respect to \(x\). The "constant of integration" can be <em>any function of \(y\) and \(z\)</em>, because differentiating with respect to \(x\) would wipe it out anyway.</p>
     <div class="math-block">$$ \phi = \int (2xy + 3)\,dx = x^2y + 3x + g(y,z) $$</div>
+
+    <span class="step">Step 4 — Use Q to pin down g</span>
+    <p class="why">Differentiate our \(\phi\) with respect to \(y\) and demand it equals \(Q = x^2\):</p>
     <div class="math-block">$$ \phi_y = x^2 + g_y = x^2 $$</div>
     <div class="math-block">$$ \Longrightarrow\; g_y = 0 $$</div>
     <div class="math-block">$$ \Longrightarrow\; g = h(z) $$</div>
+    <p class="why">So \(g\) doesn't depend on \(y\) at all — only possibly on \(z\).</p>
+
+    <span class="step">Step 5 — Use R to pin down h</span>
     <div class="math-block">$$ \phi_z = h'(z) = 4z $$</div>
-    <div class="math-block">$$ \Longrightarrow\; h = 2z^2 $$</div>
+    <div class="math-block">$$ \Longrightarrow\; h = 2z^2 + C $$</div>
+
     <div class="answer">Yes, \(\mathbf{F}\) is conservative: \(\phi = x^2y + 3x + 2z^2 + C\)</div>
+
+    <div class="meaning">
+      <span class="box-title">What it means — and how to check</span>
+      \(\mathbf{F}\) is the "slope field" of the function \(x^2y + 3x + 2z^2\). Check by differentiating:
+      \(\phi_x = 2xy + 3\) ✓, \(\phi_y = x^2\) ✓, \(\phi_z = 4z\) ✓. Always do this check — it takes ten seconds.
+    </div>
   </div>
 
+  <!-- Q10 -->
   <div class="problem" id="q10">
     <h2>Q10. Recover \(\phi\) From Its Gradient <span class="tag">Potential Function</span></h2>
     <div class="prompt">
       \(\nabla\phi = (2x + yz)\mathbf{i} + (xz + 2y)\mathbf{j} + xy\,\mathbf{k}\). Find \(\phi(x,y,z)\), including the arbitrary constant.
     </div>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ \phi_x = P, \quad \phi_y = Q, \quad \phi_z = R $$</div>
+      Integrate one, then use the others to find the "constant" functions.
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      This is antidifferentiation in three variables. Here you're <em>told</em> it's a gradient, so a
+      potential definitely exists — you just have to build it. Why "+C"? Because adding any constant to
+      \(\phi\) doesn't change its gradient (the derivative of a constant is zero), just like \(\int 2x\,dx = x^2 + C\).
+    </div>
+
+    <span class="step">Step 1 — Integrate P with respect to x</span>
     <div class="math-block">$$ \phi = \int (2x + yz)\,dx = x^2 + xyz + g(y,z) $$</div>
+
+    <span class="step">Step 2 — Match with Q</span>
     <div class="math-block">$$ \phi_y = xz + g_y = xz + 2y $$</div>
     <div class="math-block">$$ \Longrightarrow\; g_y = 2y $$</div>
     <div class="math-block">$$ \Longrightarrow\; g = y^2 + h(z) $$</div>
+
+    <span class="step">Step 3 — Match with R</span>
     <div class="math-block">$$ \phi_z = xy + h'(z) = xy $$</div>
     <div class="math-block">$$ \Longrightarrow\; h'(z) = 0 $$</div>
     <div class="math-block">$$ \Longrightarrow\; h = C $$</div>
+
     <div class="answer">\(\phi(x,y,z) = x^2 + y^2 + xyz + C\)</div>
-    <div class="note">Check: \(\nabla(x^2 + y^2 + xyz) = \langle 2x + yz,\ 2y + xz,\ xy\rangle\). ✓ The question says "including the arbitrary constant", so the \(+C\) is worth marks.</div>
+
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      Check: \(\nabla(x^2 + y^2 + xyz) = \langle 2x + yz,\ 2y + xz,\ xy\rangle\) ✓. Notice why we didn't just
+      integrate each component and add: \(\int P\,dx\) and \(\int Q\,dy\) <em>both</em> contain \(xyz\), so adding
+      them would count it twice. Going through \(g(y,z)\) and \(h(z)\) only adds what's genuinely new.
+    </div>
   </div>
 
+  <!-- Q11 -->
   <div class="problem" id="q11">
     <h2>Q11. Conservative on \(\mathbb{R}^2\)? <span class="tag">Conservative Field</span></h2>
     <div class="prompt">
       \(\mathbf{F} = (y\cos x + 2x)\mathbf{i} + (\sin x + 2y)\mathbf{j}\). Is it conservative on \(\mathbb{R}^2\)? If so, find its potential.
     </div>
-    <span class="label">Test</span>
-    <div class="math-block">$$ \frac{\partial P}{\partial y} = \cos x $$</div>
-    <div class="math-block">$$ \frac{\partial Q}{\partial x} = \cos x $$</div>
-    <p>Equal, and \(\mathbb{R}^2\) is simply connected → <strong>conservative</strong>.</p>
-    <span class="label">Potential</span>
-    <div class="math-block">$$ \phi = \int (y\cos x + 2x)\,dx = y\sin x + x^2 + g(y) $$</div>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      In 2D, \(\mathbf{F} = P\mathbf{i} + Q\mathbf{j}\) is conservative on a region with no holes when
+      <div class="math-block">$$ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} $$</div>
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      Same mixed-partials reason as Q9, with only one pair to check. "On \(\mathbb{R}^2\)" matters: the whole
+      plane has no holes (it's <em>simply connected</em>), and on such a region the test is enough to guarantee
+      a potential exists.
+    </div>
+
+    <span class="step">Step 1 — The test</span>
+    <p class="why">\(P = y\cos x + 2x\): differentiate in \(y\) (treat \(x\) as constant) → \(\cos x\). &nbsp; \(Q = \sin x + 2y\): differentiate in \(x\) → \(\cos x\).</p>
+    <div class="math-block">$$ P_y = \cos x = Q_x $$</div>
+    <p>Equal everywhere on \(\mathbb{R}^2\) → <strong>conservative</strong>.</p>
+
+    <span class="step">Step 2 — Integrate P with respect to x</span>
+    <p class="why">\(\int y\cos x\,dx = y\sin x\) (with \(y\) a constant), and \(\int 2x\,dx = x^2\).</p>
+    <div class="math-block">$$ \phi = y\sin x + x^2 + g(y) $$</div>
+
+    <span class="step">Step 3 — Match with Q</span>
     <div class="math-block">$$ \phi_y = \sin x + g'(y) = \sin x + 2y $$</div>
+    <div class="math-block">$$ \Longrightarrow\; g'(y) = 2y $$</div>
     <div class="math-block">$$ \Longrightarrow\; g = y^2 $$</div>
+
     <div class="answer">Conservative: \(\phi = y\sin x + x^2 + y^2 + C\)</div>
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      Any line integral of this \(\mathbf{F}\) between two points equals the change in \(y\sin x + x^2 + y^2\)
+      between them, whatever path you take.
+    </div>
   </div>
 
+  <!-- Q12 -->
   <div class="problem" id="q12">
     <h2>Q12. Conservative in 3D? <span class="tag">Conservative Field</span></h2>
     <div class="prompt">
@@ -398,112 +788,264 @@
       <strong>(a)</strong> Is \(\mathbf{F}\) conservative?
       <strong>(b)</strong> If so, find \(\phi\).
     </div>
-    <span class="label">(a) Curl test</span>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ \nabla\times\mathbf{F} = (R_y - Q_z)\,\mathbf{i} $$</div>
+      <div class="math-block">$$ + (P_z - R_x)\,\mathbf{j} + (Q_x - P_y)\,\mathbf{k} $$</div>
+      Conservative \(\iff\) all three components are zero.
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      Exactly Q9's method. Bonus insight: this field is Q10's field with an extra \(2z\,\mathbf{k}\), so expect
+      the same potential plus one extra term.
+    </div>
+
+    <span class="step">(a) Curl test</span>
     <div class="math-block">$$ R_y - Q_z = x - x = 0 $$</div>
     <div class="math-block">$$ P_z - R_x = y - y = 0 $$</div>
     <div class="math-block">$$ Q_x - P_y = z - z = 0 $$</div>
-    <p>\(\nabla \times \mathbf{F} = \mathbf{0}\) → <strong>conservative</strong>.</p>
-    <span class="label">(b) Potential</span>
-    <div class="math-block">$$ \phi = x^2 + xyz + g(y,z) $$</div>
+    <p>\(\nabla\times\mathbf{F} = \mathbf{0}\) → <strong>conservative</strong>.</p>
+
+    <span class="step">(b) Build φ</span>
+    <div class="math-block">$$ \phi = \int (2x + yz)\,dx = x^2 + xyz + g(y,z) $$</div>
     <div class="math-block">$$ \phi_y = xz + g_y = xz + 2y $$</div>
     <div class="math-block">$$ \Rightarrow\; g = y^2 + h(z) $$</div>
     <div class="math-block">$$ \phi_z = xy + h'(z) = xy + 2z $$</div>
     <div class="math-block">$$ \Rightarrow\; h = z^2 $$</div>
+
     <div class="answer">(a) Yes &nbsp;·&nbsp; (b) \(\phi = x^2 + y^2 + z^2 + xyz + C\)</div>
-    <div class="note">This is Q10's field plus \(2z\,\mathbf{k}\) — so \(\phi\) is Q10's answer plus \(z^2\).</div>
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      As predicted: Q10's potential \(x^2 + y^2 + xyz\) plus \(z^2\), which is what the extra \(2z\,\mathbf{k}\)
+      contributes (\(\partial(z^2)/\partial z = 2z\)).
+    </div>
   </div>
 
-  <!-- ============ LINE INTEGRALS ============ -->
+  <!-- ===================================================== -->
   <h2 class="section-title">Line Integrals (Q13–Q14)</h2>
+  <div class="section-intro">
+    \(\int_C \mathbf{F}\cdot d\mathbf{r}\) adds up "how much the field pushes along the path" over every tiny
+    step \(d\mathbf{r}\) of a curve \(C\). If \(\mathbf{F}\) is a force, that total is the <strong>work</strong> done.
+    The first thing to ask is always: <em>is the field conservative?</em> If it is, the answer only depends on
+    the endpoints.
+  </div>
 
+  <!-- Q13 -->
   <div class="problem" id="q13">
     <h2>Q13. Line Integral Along a Straight Path <span class="tag">Line Integral</span></h2>
     <div class="prompt">
       Evaluate \(\int_C \mathbf{F}\cdot d\mathbf{r}\) where \(\mathbf{F} = (y + 2x)\mathbf{i} + (x + z)\mathbf{j} + y\,\mathbf{k}\) and \(C\) is the straight line from \(A(1,0,0)\) to \(B(2,1,2)\).
     </div>
 
-    <h3>Method 1 — the shortcut (check conservative first)</h3>
+    <div class="formula">
+      <span class="box-title">Formulas you need</span>
+      <div class="math-block">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = \int_a^b \mathbf{F}\big(\mathbf{r}(t)\big)\cdot\mathbf{r}'(t)\,dt $$</div>
+      <div class="math-block">$$ \text{Straight line: } \mathbf{r}(t) = A + t(B - A) $$</div>
+      <div class="math-block">$$ 0 \le t \le 1 $$</div>
+      <div class="math-block">$$ \text{If } \mathbf{F} = \nabla\phi:\quad \int_C \mathbf{F}\cdot d\mathbf{r} = \phi(B) - \phi(A) $$</div>
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      At each moment, \(\mathbf{F}\cdot\mathbf{r}'(t)\,dt\) is "the part of the force along your direction of
+      motion × the tiny distance moved". Adding these up gives the total work. If the field is conservative,
+      it's like lifting something in gravity: the work depends only on <em>where you start and finish</em>, not
+      the route — so you can skip the integral and use \(\phi(B) - \phi(A)\). We'll do both and see them agree.
+    </div>
+
+    <h3>Method 1 — Shortcut via the potential</h3>
+    <span class="step">Step 1 — Is it conservative?</span>
+    <div class="math-block">$$ P = y + 2x,\quad Q = x + z,\quad R = y $$</div>
     <div class="math-block">$$ R_y - Q_z = 1 - 1 = 0 $$</div>
     <div class="math-block">$$ P_z - R_x = 0 - 0 = 0 $$</div>
     <div class="math-block">$$ Q_x - P_y = 1 - 1 = 0 $$</div>
-    <p>Conservative. Potential:</p>
-    <div class="math-block">$$ \phi = xy + x^2 + g(y,z), \quad \phi_y = x + g_y = x + z $$</div>
-    <div class="math-block">$$ \Rightarrow\; g = yz + h(z), \quad h' = 0 $$</div>
+    <p>Yes — so the path doesn't matter.</p>
+    <span class="step">Step 2 — Find φ</span>
+    <div class="math-block">$$ \phi = \int (y + 2x)\,dx = xy + x^2 + g(y,z) $$</div>
+    <div class="math-block">$$ \phi_y = x + g_y = x + z $$</div>
+    <div class="math-block">$$ \Rightarrow\; g = yz + h(z) $$</div>
+    <div class="math-block">$$ \phi_z = y + h'(z) = y $$</div>
+    <div class="math-block">$$ \Rightarrow\; h = \text{const} $$</div>
     <div class="math-block">$$ \phi = x^2 + xy + yz $$</div>
-    <div class="math-block">$$ \phi(B) - \phi(A) $$</div>
-    <div class="math-block">$$ = (4 + 2 + 2) - (1 + 0 + 0) = 7 $$</div>
+    <span class="step">Step 3 — Subtract endpoint values</span>
+    <div class="math-block">$$ \phi(B) = 4 + 2 + 2 = 8 $$</div>
+    <div class="math-block">$$ \phi(A) = 1 + 0 + 0 = 1 $$</div>
+    <div class="math-block">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = 8 - 1 = 7 $$</div>
 
-    <h3>Method 2 — parametrise (works for any field)</h3>
-    <div class="math-block">$$ \mathbf{r}(t) = A + t(B - A) = \langle 1 + t,\ t,\ 2t\rangle $$</div>
+    <h3>Method 2 — Parametrise the line (works for any field)</h3>
+    <span class="step">Step 1 — Describe the path</span>
+    <p class="why">Start at \(A\) and add a fraction \(t\) of the journey \(B - A = \langle 1, 1, 2\rangle\). At \(t = 0\) you're at \(A\); at \(t = 1\), at \(B\).</p>
+    <div class="math-block">$$ \mathbf{r}(t) = \langle 1 + t,\ t,\ 2t\rangle $$</div>
     <div class="math-block">$$ \mathbf{r}'(t) = \langle 1, 1, 2\rangle $$</div>
+    <span class="step">Step 2 — Field along the path</span>
+    <p class="why">Substitute \(x = 1 + t\), \(y = t\), \(z = 2t\) into each component of \(\mathbf{F}\):</p>
     <div class="math-block">$$ \mathbf{F}(\mathbf{r}(t)) = \langle 3t + 2,\ 3t + 1,\ t\rangle $$</div>
+    <span class="step">Step 3 — Dot with the velocity, then integrate</span>
     <div class="math-block">$$ \mathbf{F}\cdot\mathbf{r}' = (3t + 2) + (3t + 1) + 2t = 8t + 3 $$</div>
-    <div class="math-block">$$ \int_0^1 (8t + 3)\,dt = 4 + 3 = 7 $$</div>
+    <div class="math-block">$$ \int_0^1 (8t + 3)\,dt = \Big[4t^2 + 3t\Big]_0^1 = 7 $$</div>
+
     <div class="answer">\(\displaystyle\int_C \mathbf{F}\cdot d\mathbf{r} = 7\)</div>
-    <div class="note">Both methods agree. In the exam, the shortcut is faster — but the question says "straight-line path", which suggests they expect Method 2. Showing both is the safest answer.</div>
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      The field does 7 units of work moving a particle from \(A\) to \(B\). Because \(\mathbf{F}\) is conservative,
+      it would also be 7 along <em>any</em> other path from \(A\) to \(B\). The question names a "straight-line path",
+      so writing out Method 2 is safest in the exam — and Method 1 is a perfect check.
+    </div>
   </div>
 
+  <!-- Q14 -->
   <div class="problem" id="q14">
     <h2>Q14. Work Along a Parabola <span class="tag">Line Integral</span></h2>
     <div class="prompt">
       Find the work done by \(\mathbf{F} = (x^2 - y)\mathbf{i} + (2xy + 1)\mathbf{j}\) on a particle moving along \(y = x^2\) from \((0,0)\) to \((1,1)\), using \(W = \int_C \mathbf{F}\cdot d\mathbf{r}\).
     </div>
-    <p><strong>Not conservative:</strong> \(P_y = -1\) but \(Q_x = 2y\). So we must use the actual path.</p>
-    <span class="label">Parametrise</span>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ W = \int_C \mathbf{F}\cdot d\mathbf{r} = \int_C P\,dx + Q\,dy $$</div>
+      With \(x = x(t)\), \(y = y(t)\): replace \(dx = x'(t)\,dt\) and \(dy = y'(t)\,dt\).
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      First ask: is there a shortcut? Only if the field is conservative. Here it isn't — so the work genuinely
+      depends on the route, and we must follow the parabola step by step.
+    </div>
+
+    <span class="step">Step 1 — Check for a shortcut</span>
+    <div class="math-block">$$ P_y = -1 $$</div>
+    <div class="math-block">$$ Q_x = 2y $$</div>
+    <p>Not equal → <strong>not conservative</strong>. No potential exists; we have to integrate along \(y = x^2\).</p>
+
+    <span class="step">Step 2 — Parametrise the curve</span>
+    <p class="why">The simplest choice is to let \(x\) itself be the parameter: \(x = t\). Then the curve forces \(y = t^2\). As \(t\) goes from 0 to 1 we travel from \((0,0)\) to \((1,1)\).</p>
     <div class="math-block">$$ x = t,\quad y = t^2,\quad 0 \le t \le 1 $$</div>
-    <div class="math-block">$$ \Longrightarrow\quad dx = dt,\quad dy = 2t\,dt $$</div>
-    <span class="label">Substitute into \(P\,dx + Q\,dy\)</span>
+    <p class="why">The small steps: \(dx = dt\), and since \(y = t^2\) changes at rate \(2t\), \(dy = 2t\,dt\).</p>
+    <div class="math-block">$$ dx = dt $$</div>
+    <div class="math-block">$$ dy = 2t\,dt $$</div>
+
+    <span class="step">Step 3 — Put the field on the curve</span>
     <div class="math-block">$$ P = t^2 - t^2 = 0 $$</div>
-    <div class="math-block">$$ Q = 2t\cdot t^2 + 1 = 2t^3 + 1 $$</div>
-    <div class="math-block">$$ W = \int_0^1 \left[0 + (2t^3 + 1)(2t)\right] dt $$</div>
-    <div class="math-block">$$ = \int_0^1 (4t^4 + 2t)\,dt $$</div>
-    <div class="math-block">$$ = \left[\frac{4t^5}{5} + t^2\right]_0^1 = \frac45 + 1 = \frac95 $$</div>
+    <div class="math-block">$$ Q = 2(t)(t^2) + 1 = 2t^3 + 1 $$</div>
+    <p class="why">\(P\) vanishes because on this curve \(x^2\) and \(y\) are equal — the force has no horizontal push along the parabola. Not a mistake, just a nice simplification.</p>
+
+    <span class="step">Step 4 — Assemble and integrate</span>
+    <div class="math-block">$$ W = \int_0^1 \Big[0\cdot dt + (2t^3 + 1)(2t\,dt)\Big] $$</div>
+    <div class="math-block">$$ = \int_0^1 (4t^4 + 2t)\,dt = \left[\frac{4t^5}{5} + t^2\right]_0^1 $$</div>
+    <div class="math-block">$$ = \frac45 + 1 = \frac95 $$</div>
+
     <div class="answer">\(W = \dfrac{9}{5} = 1.8\) units of work</div>
-    <div class="note">The \(\mathbf{i}\)-component vanishes along this curve because \(x^2 - y = 0\) when \(y = x^2\) — a nice simplification, not a mistake.</div>
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      The force does 1.8 units of work on the particle along this parabola. Because the field isn't
+      conservative, a different path between the same two points (say a straight line) would generally give
+      a <em>different</em> answer — that's exactly what "path dependent" means.
+    </div>
   </div>
 
-  <!-- ============ GREEN ============ -->
+  <!-- ===================================================== -->
   <h2 class="section-title">Green's Theorem (Q15–Q16)</h2>
-
-  <div class="note" style="margin-bottom:1.5rem;">
+  <div class="section-intro">
     Green's theorem isn't on the Unit 6 slides — see <a href="final-vector-fields.html#p9">Part 9 of the notes</a>.
-    For a counterclockwise closed curve \(C\) bounding \(R\):
-    \(\displaystyle\oint_C P\,dx + Q\,dy = \iint_R \left(Q_x - P_y\right) dA\).
+    It converts a line integral around a <strong>closed</strong> loop into a double integral over the region inside.
   </div>
 
+  <!-- Q15 -->
   <div class="problem" id="q15">
     <h2>Q15. Green's Theorem — Rectangle <span class="tag book">Green's Theorem</span></h2>
     <div class="prompt">
       Evaluate \(\displaystyle\oint_C (3x^2 - 2y)\,dx + (4x + y^2)\,dy\), where \(C\) is the positively oriented boundary of \(0 \le x \le 2\), \(0 \le y \le 1\).
     </div>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      For a closed curve \(C\) traversed counterclockwise around region \(R\):
+      <div class="math-block">$$ \oint_C P\,dx + Q\,dy = \iint_R \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dA $$</div>
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea — why Green's theorem is true</span>
+      \(Q_x - P_y\) is the \(\mathbf{k}\)-component of the curl: it measures how much the field <em>spins</em> around
+      each tiny point. Chop the region into tiny squares and add up the circulation around each one. Where two
+      squares share an edge, you travel that edge once in each direction, so those contributions
+      <strong>cancel</strong>. The only edges that survive are on the outer boundary. So:
+      <em>total spin inside = circulation around the edge.</em> That's the whole theorem.
+    </div>
+
+    <span class="step">Step 1 — Identify P and Q</span>
+    <p class="why">\(P\) is whatever multiplies \(dx\); \(Q\) is whatever multiplies \(dy\).</p>
     <div class="math-block">$$ P = 3x^2 - 2y $$</div>
     <div class="math-block">$$ Q = 4x + y^2 $$</div>
+
+    <span class="step">Step 2 — The integrand</span>
     <div class="math-block">$$ \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 4 - (-2) = 6 $$</div>
-    <div class="math-block">$$ \oint_C = \iint_R 6\,dA $$</div>
-    <div class="math-block">$$ = 6 \times \text{area}(R) = 6 \times (2 \times 1) = 12 $$</div>
+    <p class="why">Constant! The field spins by the same amount at every point.</p>
+
+    <span class="step">Step 3 — Integrate over the rectangle</span>
+    <p class="why">A constant integrand means "constant × area" — no real integration needed. The rectangle is 2 wide and 1 tall.</p>
+    <div class="math-block">$$ \oint_C = \iint_R 6\,dA = 6 \times (2 \times 1) = 12 $$</div>
+
     <div class="answer">\(12\)</div>
-    <div class="note">Checked by integrating directly around all four sides of the rectangle — also 12.</div>
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      Going once counterclockwise around the rectangle, the field's total circulation is 12. Without Green's
+      theorem you'd have to compute four separate line integrals (one per side) and add them — I did exactly
+      that to check, and it also gives 12.
+    </div>
   </div>
 
+  <!-- Q16 -->
   <div class="problem" id="q16">
     <h2>Q16. Green's Theorem — Triangle <span class="tag book">Green's Theorem</span></h2>
     <div class="prompt">
       Evaluate \(\displaystyle\oint_C (y^2 + 2x)\,dx + (x^2 + 3y)\,dy\), where \(C\) is the positively oriented boundary of the triangle with vertices \((0,0)\), \((2,0)\), \((2,1)\).
     </div>
-    <span class="label">Integrand</span>
+
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ \oint_C P\,dx + Q\,dy = \iint_R \left(Q_x - P_y\right) dA $$</div>
+      plus a double integral over a non-rectangular region (Unit 3): inner limits may depend on the outer variable.
+    </div>
+
+    <div class="idea">
+      <span class="box-title">The idea</span>
+      Same theorem, but now the integrand isn't constant, so we must actually integrate — and the region is
+      a triangle, so the hard part is <strong>describing the region with limits</strong>. Sketch it first.
+    </div>
+
+    <span class="step">Step 1 — The integrand</span>
     <div class="math-block">$$ P = y^2 + 2x, \quad Q = x^2 + 3y $$</div>
     <div class="math-block">$$ \Longrightarrow\quad Q_x - P_y = 2x - 2y $$</div>
-    <span class="label">Describe the region</span>
-    <p>The triangle sits above \(y = 0\), left of \(x = 2\), and below the line through \((0,0)\) and \((2,1)\), which is \(y = \tfrac{x}{2}\). So</p>
+
+    <span class="step">Step 2 — Describe the triangle</span>
+    <p class="why">
+      The three sides are: the bottom \(y = 0\) (from \((0,0)\) to \((2,0)\)); the right side \(x = 2\) (up to
+      \((2,1)\)); and the slanted side from \((2,1)\) back to \((0,0)\). That slanted line passes through the origin
+      with slope \(\tfrac{1}{2}\), so it's \(y = \tfrac{x}{2}\).
+    </p>
+    <p class="why">
+      Slice the triangle into vertical strips. For each \(x\) between 0 and 2, a strip runs from the bottom
+      \(y = 0\) up to the slanted side \(y = x/2\):
+    </p>
     <div class="math-block">$$ 0 \le x \le 2 $$</div>
     <div class="math-block">$$ 0 \le y \le \frac{x}{2} $$</div>
-    <span class="label">Evaluate</span>
-    <div class="math-block">$$ \int_0^2\!\!\int_0^{x/2} (2x - 2y)\,dy\,dx $$</div>
-    <div class="math-block">$$ = \int_0^2 \Big[2xy - y^2\Big]_0^{x/2} dx $$</div>
-    <div class="math-block">$$ = \int_0^2 \left(x^2 - \frac{x^2}{4}\right) dx $$</div>
-    <div class="math-block">$$ = \int_0^2 \frac34 x^2\,dx = \frac34\cdot\frac83 = 2 $$</div>
+
+    <span class="step">Step 3 — Inner integral (in y, with x held constant)</span>
+    <div class="math-block">$$ \int_0^{x/2} (2x - 2y)\,dy = \Big[2xy - y^2\Big]_0^{x/2} $$</div>
+    <div class="math-block">$$ = x^2 - \frac{x^2}{4} = \frac34 x^2 $$</div>
+
+    <span class="step">Step 4 — Outer integral (in x)</span>
+    <div class="math-block">$$ \int_0^2 \frac34 x^2\,dx = \frac34 \cdot \left[\frac{x^3}{3}\right]_0^2 = \frac34 \cdot \frac83 = 2 $$</div>
+
     <div class="answer">\(2\)</div>
-    <div class="note">Checked by integrating directly along the three edges counterclockwise — also 2. The trickiest part is the hypotenuse \(y = x/2\); sketch the triangle before writing limits.</div>
+    <div class="meaning">
+      <span class="box-title">What it means</span>
+      The circulation counterclockwise around the triangle is 2. Checked independently by computing the three
+      edge line integrals directly — they also total 2. The most common error here is the slanted side: if
+      you write \(y = 2x\) instead of \(y = x/2\), you've described a different triangle.
+    </div>
   </div>
 
   <div class="btn-row">
