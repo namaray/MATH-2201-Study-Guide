@@ -148,6 +148,30 @@
     }
     .why { color: #555; }
 
+    .recipe {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1rem 1.5rem 1.1rem;
+      margin: 0 0 1.75rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-top: 4px solid #8e44ad;
+    }
+    .recipe .box-title { color: #6c3483; font-size: 0.85rem; }
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li { counter-increment: step; position: relative; padding-left: 2.1rem; margin-bottom: 0.45rem; }
+    .steps li::before {
+      content: counter(step); position: absolute; left: 0; top: 2px;
+      background: #8e44ad; color: #fff; width: 1.5rem; height: 1.5rem; line-height: 1.5rem;
+      text-align: center; border-radius: 50%; font-size: 0.8rem; font-weight: bold;
+    }
+    .table-wrap { overflow-x: auto; }
+    table.check { border-collapse: collapse; width: 100%; margin: 0.4rem 0; font-size: 0.95rem; }
+    table.check th, table.check td { border: 1px solid #dfe6e9; padding: 0.4rem 0.6rem; text-align: center; vertical-align: middle; }
+    table.check th { background: #2c3e50; color: #fff; font-size: 0.85rem; }
+    table.check td:first-child { text-align: left; }
+    table.check td { overflow: visible; }
+    table.check td:last-child { color: #1e8449; font-weight: bold; }
+
     .label { display: block; font-weight: bold; margin: 1rem 0 0.25rem; color: #34495e; }
     .math-block {
       text-align: center;
@@ -631,10 +655,31 @@
   <!-- ===================================================== -->
   <h2 class="section-title">Potential Functions &amp; Conservative Fields (Q9–Q12)</h2>
   <div class="section-intro">
-    A vector field \(\mathbf{F}\) is <strong>conservative</strong> if it is the gradient of some scalar
-    function \(\phi\) (the <strong>potential</strong>): \(\mathbf{F} = \nabla\phi\). These questions run the gradient
-    <em>backwards</em>: given the arrows, can you find the "height function" they're the slopes of? First you
-    test whether such a \(\phi\) can exist; then you build it.
+    A vector field \(\mathbf{F}\) is <strong>conservative</strong> if it is the gradient of some function \(\phi\)
+    (the <strong>potential function</strong>): \(\mathbf{F} = \nabla\phi\). Every question in this section uses the
+    <strong>same recipe from the slides</strong> — learn it once and apply it every time.
+  </div>
+
+  <div class="recipe">
+    <span class="box-title">The slide method — 2D field \(\mathbf{F} = P\mathbf{i} + Q\mathbf{j}\)</span>
+    <ol class="steps">
+      <li><strong>Write down</strong> \(P\) (the \(\mathbf{i}\) part) and \(Q\) (the \(\mathbf{j}\) part).</li>
+      <li><strong>Check:</strong> find \(\dfrac{\partial P}{\partial y}\) and \(\dfrac{\partial Q}{\partial x}\). If they are equal, the field is conservative.</li>
+      <li><strong>Start φ:</strong> \(\dfrac{\partial\phi}{\partial x} = P\), so integrate \(P\) with respect to \(x\) and add \(g(y)\) instead of \(+C\).</li>
+      <li><strong>Differentiate</strong> that \(\phi\) with respect to \(y\).</li>
+      <li><strong>Compare</strong> with \(Q\). Everything cancels except \(g'(y)\) — solve for it and integrate to get \(g(y)\).</li>
+      <li><strong>Write the answer:</strong> \(\phi = \ldots + C\).</li>
+    </ol>
+    <span class="box-title" style="margin-top:0.8rem">3D field \(\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}\) — same recipe, two small changes</span>
+    <ul>
+      <li>Step 2 checks <strong>three pairs</strong>: \(\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}\), &nbsp;\(\dfrac{\partial P}{\partial z} = \dfrac{\partial R}{\partial x}\), &nbsp;\(\dfrac{\partial Q}{\partial z} = \dfrac{\partial R}{\partial y}\).</li>
+      <li>Step 3 adds \(g(y,z)\) instead of \(g(y)\). After comparing with \(Q\), whatever is left over that depends on \(z\) is called \(h(z)\) — and you find it by comparing \(\dfrac{\partial\phi}{\partial z}\) with \(R\).</li>
+    </ul>
+    <p style="margin:0.6rem 0 0; font-size:0.93rem;">
+      <strong>Why \(g(y)\) instead of \(+C\)?</strong> When you differentiate with respect to \(x\), anything containing
+      only \(y\) disappears — just like a constant does. So when you integrate back with respect to \(x\), you
+      can't know what that \(y\)-only part was yet. \(g(y)\) is a placeholder for it; Step 5 finds it.
+    </p>
   </div>
 
   <!-- Q9 -->
@@ -646,52 +691,62 @@
 
     <div class="formula">
       <span class="box-title">Formula you need</span>
-      \(\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}\) has a potential (on all of \(\mathbb{R}^3\)) exactly when \(\nabla\times\mathbf{F} = \mathbf{0}\):
-      <div class="math-block">$$ R_y = Q_z $$</div>
-      <div class="math-block">$$ P_z = R_x $$</div>
-      <div class="math-block">$$ Q_x = P_y $$</div>
+      Conservative (a potential exists) if all three pairs match:
+      <div class="math-block">$$ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}, \qquad \frac{\partial P}{\partial z} = \frac{\partial R}{\partial x} $$</div>
+      <div class="math-block">$$ \frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y} $$</div>
     </div>
 
     <div class="idea">
-      <span class="box-title">The idea — why this test works</span>
-      If \(\mathbf{F} = \nabla\phi\), then \(P = \phi_x\) and \(Q = \phi_y\). So \(P_y = \phi_{xy}\) and
-      \(Q_x = \phi_{yx}\). For any smooth function, the order of mixed partial derivatives doesn't matter
-      (\(\phi_{xy} = \phi_{yx}\)), so <strong>a gradient field must have \(P_y = Q_x\)</strong> — and similarly for the
-      other pairs. That's all "curl = 0" is saying. If any pair fails, no \(\phi\) can exist.
+      <span class="box-title">The idea — why the check works</span>
+      If \(\mathbf{F} = \nabla\phi\), then \(P = \dfrac{\partial\phi}{\partial x}\) and \(Q = \dfrac{\partial\phi}{\partial y}\).
+      So \(\dfrac{\partial P}{\partial y}\) and \(\dfrac{\partial Q}{\partial x}\) are <em>both</em> just "\(\phi\) differentiated once by \(x\)
+      and once by \(y\)" — the same thing in a different order, which always gives the same result. So for a real
+      gradient, each pair <strong>must</strong> match. If any pair doesn't, no \(\phi\) exists.
     </div>
 
-    <span class="step">Step 1 — Identify P, Q, R</span>
-    <div class="math-block">$$ P = 2xy + 3 $$</div>
-    <div class="math-block">$$ Q = x^2 $$</div>
-    <div class="math-block">$$ R = 4z $$</div>
+    <span class="step">Step 1 — Write down P, Q, R</span>
+    <div class="math-block">$$ P = 2xy + 3, \qquad Q = x^2, \qquad R = 4z $$</div>
 
-    <span class="step">Step 2 — Check the three cross-derivative pairs</span>
-    <div class="math-block">$$ R_y = 0 = Q_z $$</div>
-    <div class="math-block">$$ P_z = 0 = R_x $$</div>
-    <div class="math-block">$$ Q_x = 2x = P_y $$</div>
-    <p>All three match, so \(\nabla\times\mathbf{F} = \mathbf{0}\): a potential exists.</p>
+    <span class="step">Step 2 — Check the three pairs</span>
+    <div class="table-wrap">
+      <table class="check">
+        <thead><tr><th>Pair</th><th>Left side</th><th>Right side</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>\(\dfrac{\partial P}{\partial y}\) vs \(\dfrac{\partial Q}{\partial x}\)</td><td>\(2x\)</td><td>\(2x\)</td><td>✓</td></tr>
+          <tr><td>\(\dfrac{\partial P}{\partial z}\) vs \(\dfrac{\partial R}{\partial x}\)</td><td>\(0\)</td><td>\(0\)</td><td>✓</td></tr>
+          <tr><td>\(\dfrac{\partial Q}{\partial z}\) vs \(\dfrac{\partial R}{\partial y}\)</td><td>\(0\)</td><td>\(0\)</td><td>✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>All three match → <strong>conservative</strong>, so a potential exists.</p>
 
-    <span class="step">Step 3 — Build φ from P</span>
-    <p class="why">We need \(\phi_x = P\), so integrate \(P\) with respect to \(x\). The "constant of integration" can be <em>any function of \(y\) and \(z\)</em>, because differentiating with respect to \(x\) would wipe it out anyway.</p>
-    <div class="math-block">$$ \phi = \int (2xy + 3)\,dx = x^2y + 3x + g(y,z) $$</div>
+    <span class="step">Step 3 — Integrate P with respect to x</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial x} = 2xy + 3 $$</div>
+    <div class="math-block">$$ \phi = x^2y + 3x + g(y,z) $$</div>
 
-    <span class="step">Step 4 — Use Q to pin down g</span>
-    <p class="why">Differentiate our \(\phi\) with respect to \(y\) and demand it equals \(Q = x^2\):</p>
-    <div class="math-block">$$ \phi_y = x^2 + g_y = x^2 $$</div>
-    <div class="math-block">$$ \Longrightarrow\; g_y = 0 $$</div>
-    <div class="math-block">$$ \Longrightarrow\; g = h(z) $$</div>
-    <p class="why">So \(g\) doesn't depend on \(y\) at all — only possibly on \(z\).</p>
+    <span class="step">Step 4 — Differentiate with respect to y</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial y} = x^2 + \frac{\partial g}{\partial y} $$</div>
 
-    <span class="step">Step 5 — Use R to pin down h</span>
-    <div class="math-block">$$ \phi_z = h'(z) = 4z $$</div>
-    <div class="math-block">$$ \Longrightarrow\; h = 2z^2 + C $$</div>
+    <span class="step">Step 5 — Compare with Q</span>
+    <p class="why">We need \(\dfrac{\partial\phi}{\partial y} = Q = x^2\). The \(x^2\) is already there, so the extra bit must be zero:</p>
+    <div class="math-block">$$ \frac{\partial g}{\partial y} = 0 $$</div>
+    <p class="why">So \(g\) has no \(y\) in it — it can only depend on \(z\). Call it \(h(z)\):</p>
+    <div class="math-block">$$ \phi = x^2y + 3x + h(z) $$</div>
+
+    <span class="step">Step 6 — Differentiate with respect to z and compare with R</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial z} = h'(z) $$</div>
+    <div class="math-block">$$ h'(z) = 4z \quad(\text{this must equal } R) $$</div>
+    <div class="math-block">$$ h(z) = 2z^2 $$</div>
+
+    <span class="step">Step 7 — Write φ</span>
+    <div class="math-block">$$ \phi = x^2y + 3x + 2z^2 + C $$</div>
 
     <div class="answer">Yes, \(\mathbf{F}\) is conservative: \(\phi = x^2y + 3x + 2z^2 + C\)</div>
 
     <div class="meaning">
-      <span class="box-title">What it means — and how to check</span>
-      \(\mathbf{F}\) is the "slope field" of the function \(x^2y + 3x + 2z^2\). Check by differentiating:
-      \(\phi_x = 2xy + 3\) ✓, \(\phi_y = x^2\) ✓, \(\phi_z = 4z\) ✓. Always do this check — it takes ten seconds.
+      <span class="box-title">Check your answer</span>
+      Differentiate \(\phi\) and you should get back \(\mathbf{F}\):
+      \(\dfrac{\partial\phi}{\partial x} = 2xy + 3\) ✓, &nbsp;\(\dfrac{\partial\phi}{\partial y} = x^2\) ✓, &nbsp;\(\dfrac{\partial\phi}{\partial z} = 4z\) ✓.
     </div>
   </div>
 
@@ -704,37 +759,47 @@
 
     <div class="formula">
       <span class="box-title">Formula you need</span>
-      <div class="math-block">$$ \phi_x = P, \quad \phi_y = Q, \quad \phi_z = R $$</div>
-      Integrate one, then use the others to find the "constant" functions.
+      <div class="math-block">$$ \frac{\partial\phi}{\partial x} = P, \qquad \frac{\partial\phi}{\partial y} = Q, \qquad \frac{\partial\phi}{\partial z} = R $$</div>
     </div>
 
     <div class="idea">
       <span class="box-title">The idea</span>
-      This is antidifferentiation in three variables. Here you're <em>told</em> it's a gradient, so a
-      potential definitely exists — you just have to build it. Why "+C"? Because adding any constant to
-      \(\phi\) doesn't change its gradient (the derivative of a constant is zero), just like \(\int 2x\,dx = x^2 + C\).
+      You're <em>told</em> this is a gradient, so the check isn't needed — go straight to Steps 3–7 of the recipe.
+      The "\(+C\)" matters because adding a constant to \(\phi\) doesn't change its gradient, just like
+      \(\int 2x\,dx = x^2 + C\).
     </div>
 
-    <span class="step">Step 1 — Integrate P with respect to x</span>
-    <div class="math-block">$$ \phi = \int (2x + yz)\,dx = x^2 + xyz + g(y,z) $$</div>
+    <span class="step">Step 1 — Write down P, Q, R</span>
+    <div class="math-block">$$ P = 2x + yz, \qquad Q = xz + 2y, \qquad R = xy $$</div>
 
-    <span class="step">Step 2 — Match with Q</span>
-    <div class="math-block">$$ \phi_y = xz + g_y = xz + 2y $$</div>
-    <div class="math-block">$$ \Longrightarrow\; g_y = 2y $$</div>
-    <div class="math-block">$$ \Longrightarrow\; g = y^2 + h(z) $$</div>
+    <span class="step">Step 2 — Integrate P with respect to x</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial x} = 2x + yz $$</div>
+    <div class="math-block">$$ \phi = x^2 + xyz + g(y,z) $$</div>
 
-    <span class="step">Step 3 — Match with R</span>
-    <div class="math-block">$$ \phi_z = xy + h'(z) = xy $$</div>
-    <div class="math-block">$$ \Longrightarrow\; h'(z) = 0 $$</div>
-    <div class="math-block">$$ \Longrightarrow\; h = C $$</div>
+    <span class="step">Step 3 — Differentiate with respect to y</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial y} = xz + \frac{\partial g}{\partial y} $$</div>
+
+    <span class="step">Step 4 — Compare with Q</span>
+    <p class="why">\(Q = xz + 2y\). The \(xz\) is already there, so the extra bit must be \(2y\):</p>
+    <div class="math-block">$$ \frac{\partial g}{\partial y} = 2y $$</div>
+    <div class="math-block">$$ g = y^2 + h(z) $$</div>
+    <div class="math-block">$$ \phi = x^2 + xyz + y^2 + h(z) $$</div>
+
+    <span class="step">Step 5 — Differentiate with respect to z and compare with R</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial z} = xy + h'(z) $$</div>
+    <p class="why">\(R = xy\), and \(xy\) is already there, so:</p>
+    <div class="math-block">$$ h'(z) = 0 \qquad\Rightarrow\qquad h(z) = C $$</div>
+
+    <span class="step">Step 6 — Write φ</span>
+    <div class="math-block">$$ \phi = x^2 + y^2 + xyz + C $$</div>
 
     <div class="answer">\(\phi(x,y,z) = x^2 + y^2 + xyz + C\)</div>
 
     <div class="meaning">
-      <span class="box-title">What it means</span>
-      Check: \(\nabla(x^2 + y^2 + xyz) = \langle 2x + yz,\ 2y + xz,\ xy\rangle\) ✓. Notice why we didn't just
-      integrate each component and add: \(\int P\,dx\) and \(\int Q\,dy\) <em>both</em> contain \(xyz\), so adding
-      them would count it twice. Going through \(g(y,z)\) and \(h(z)\) only adds what's genuinely new.
+      <span class="box-title">Check your answer</span>
+      \(\dfrac{\partial\phi}{\partial x} = 2x + yz\) ✓, &nbsp;\(\dfrac{\partial\phi}{\partial y} = 2y + xz\) ✓, &nbsp;\(\dfrac{\partial\phi}{\partial z} = xy\) ✓.
+      Notice \(xyz\) appears only <strong>once</strong> in \(\phi\), even though it shows up when you integrate \(P\), \(Q\) and \(R\) —
+      the recipe makes sure you never count it twice.
     </div>
   </div>
 
@@ -746,37 +811,45 @@
     </div>
 
     <div class="formula">
-      <span class="box-title">Formula you need</span>
-      In 2D, \(\mathbf{F} = P\mathbf{i} + Q\mathbf{j}\) is conservative on a region with no holes when
-      <div class="math-block">$$ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} $$</div>
+      <span class="box-title">Formula you need (from the slides)</span>
+      <div class="math-block">$$ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} \;\;\Rightarrow\;\; \text{conservative} $$</div>
     </div>
 
     <div class="idea">
       <span class="box-title">The idea</span>
-      Same mixed-partials reason as Q9, with only one pair to check. "On \(\mathbb{R}^2\)" matters: the whole
-      plane has no holes (it's <em>simply connected</em>), and on such a region the test is enough to guarantee
-      a potential exists.
+      This is a 2D field, so it's <strong>exactly</strong> the slide method — one pair to check, then integrate and
+      compare. (\(\mathbb{R}^2\) is the whole plane, which has no holes, so the check is all you need.)
     </div>
 
-    <span class="step">Step 1 — The test</span>
-    <p class="why">\(P = y\cos x + 2x\): differentiate in \(y\) (treat \(x\) as constant) → \(\cos x\). &nbsp; \(Q = \sin x + 2y\): differentiate in \(x\) → \(\cos x\).</p>
-    <div class="math-block">$$ P_y = \cos x = Q_x $$</div>
-    <p>Equal everywhere on \(\mathbb{R}^2\) → <strong>conservative</strong>.</p>
+    <span class="step">Step 1 — Write down P and Q</span>
+    <div class="math-block">$$ P = y\cos x + 2x, \qquad Q = \sin x + 2y $$</div>
 
-    <span class="step">Step 2 — Integrate P with respect to x</span>
-    <p class="why">\(\int y\cos x\,dx = y\sin x\) (with \(y\) a constant), and \(\int 2x\,dx = x^2\).</p>
+    <span class="step">Step 2 — Check</span>
+    <p class="why">For \(\dfrac{\partial P}{\partial y}\), treat \(x\) as a constant: \(y\cos x \to \cos x\), and \(2x \to 0\). For \(\dfrac{\partial Q}{\partial x}\), treat \(y\) as a constant: \(\sin x \to \cos x\), and \(2y \to 0\).</p>
+    <div class="math-block">$$ \frac{\partial P}{\partial y} = \cos x, \qquad \frac{\partial Q}{\partial x} = \cos x $$</div>
+    <div class="math-block">$$ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} $$</div>
+    <p>Therefore the field is <strong>conservative</strong>.</p>
+
+    <span class="step">Step 3 — Now to find φ: integrate P with respect to x</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial x} = y\cos x + 2x $$</div>
     <div class="math-block">$$ \phi = y\sin x + x^2 + g(y) $$</div>
 
-    <span class="step">Step 3 — Match with Q</span>
-    <div class="math-block">$$ \phi_y = \sin x + g'(y) = \sin x + 2y $$</div>
-    <div class="math-block">$$ \Longrightarrow\; g'(y) = 2y $$</div>
-    <div class="math-block">$$ \Longrightarrow\; g = y^2 $$</div>
+    <span class="step">Step 4 — Differentiate with respect to y</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial y} = \sin x + g'(y) $$</div>
+
+    <span class="step">Step 5 — Compare with Q</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial y} = \sin x + 2y $$</div>
+    <div class="math-block">$$ g'(y) = 2y $$</div>
+    <div class="math-block">$$ g(y) = y^2 $$</div>
+
+    <span class="step">Step 6 — Write φ</span>
+    <div class="math-block">$$ \phi = y\sin x + x^2 + y^2 + C $$</div>
 
     <div class="answer">Conservative: \(\phi = y\sin x + x^2 + y^2 + C\)</div>
     <div class="meaning">
-      <span class="box-title">What it means</span>
-      Any line integral of this \(\mathbf{F}\) between two points equals the change in \(y\sin x + x^2 + y^2\)
-      between them, whatever path you take.
+      <span class="box-title">Check your answer</span>
+      \(\dfrac{\partial\phi}{\partial x} = y\cos x + 2x\) ✓, &nbsp;\(\dfrac{\partial\phi}{\partial y} = \sin x + 2y\) ✓.
+      This is laid out line-for-line like the slide example \(\mathbf{F} = (2x + 3y)\mathbf{i} + (3x + 4y)\mathbf{j}\).
     </div>
   </div>
 
@@ -791,35 +864,54 @@
 
     <div class="formula">
       <span class="box-title">Formula you need</span>
-      <div class="math-block">$$ \nabla\times\mathbf{F} = (R_y - Q_z)\,\mathbf{i} $$</div>
-      <div class="math-block">$$ + (P_z - R_x)\,\mathbf{j} + (Q_x - P_y)\,\mathbf{k} $$</div>
-      Conservative \(\iff\) all three components are zero.
+      Check all three pairs:
+      <div class="math-block">$$ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}, \qquad \frac{\partial P}{\partial z} = \frac{\partial R}{\partial x} $$</div>
+      <div class="math-block">$$ \frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y} $$</div>
     </div>
 
     <div class="idea">
       <span class="box-title">The idea</span>
-      Exactly Q9's method. Bonus insight: this field is Q10's field with an extra \(2z\,\mathbf{k}\), so expect
-      the same potential plus one extra term.
+      Same recipe as Q9. Bonus: this is Q10's field with an extra \(2z\,\mathbf{k}\), so expect Q10's answer plus one
+      extra term.
     </div>
 
-    <span class="step">(a) Curl test</span>
-    <div class="math-block">$$ R_y - Q_z = x - x = 0 $$</div>
-    <div class="math-block">$$ P_z - R_x = y - y = 0 $$</div>
-    <div class="math-block">$$ Q_x - P_y = z - z = 0 $$</div>
-    <p>\(\nabla\times\mathbf{F} = \mathbf{0}\) → <strong>conservative</strong>.</p>
+    <span class="step">Step 1 — Write down P, Q, R</span>
+    <div class="math-block">$$ P = 2x + yz, \qquad Q = xz + 2y $$</div>
+    <div class="math-block">$$ R = xy + 2z $$</div>
 
-    <span class="step">(b) Build φ</span>
-    <div class="math-block">$$ \phi = \int (2x + yz)\,dx = x^2 + xyz + g(y,z) $$</div>
-    <div class="math-block">$$ \phi_y = xz + g_y = xz + 2y $$</div>
-    <div class="math-block">$$ \Rightarrow\; g = y^2 + h(z) $$</div>
-    <div class="math-block">$$ \phi_z = xy + h'(z) = xy + 2z $$</div>
-    <div class="math-block">$$ \Rightarrow\; h = z^2 $$</div>
+    <span class="step">(a) Step 2 — Check the three pairs</span>
+    <div class="table-wrap">
+      <table class="check">
+        <thead><tr><th>Pair</th><th>Left side</th><th>Right side</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>\(\dfrac{\partial P}{\partial y}\) vs \(\dfrac{\partial Q}{\partial x}\)</td><td>\(z\)</td><td>\(z\)</td><td>✓</td></tr>
+          <tr><td>\(\dfrac{\partial P}{\partial z}\) vs \(\dfrac{\partial R}{\partial x}\)</td><td>\(y\)</td><td>\(y\)</td><td>✓</td></tr>
+          <tr><td>\(\dfrac{\partial Q}{\partial z}\) vs \(\dfrac{\partial R}{\partial y}\)</td><td>\(x\)</td><td>\(x\)</td><td>✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>All three match → <strong>conservative</strong>.</p>
+
+    <span class="step">(b) Step 3 — Integrate P with respect to x</span>
+    <div class="math-block">$$ \phi = x^2 + xyz + g(y,z) $$</div>
+
+    <span class="step">Step 4 — Differentiate with respect to y, compare with Q</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial y} = xz + \frac{\partial g}{\partial y} $$</div>
+    <p class="why">\(Q = xz + 2y\), so the extra bit is \(2y\):</p>
+    <div class="math-block">$$ \frac{\partial g}{\partial y} = 2y \qquad\Rightarrow\qquad g = y^2 + h(z) $$</div>
+
+    <span class="step">Step 5 — Differentiate with respect to z, compare with R</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial z} = xy + h'(z) $$</div>
+    <p class="why">\(R = xy + 2z\), so the extra bit is \(2z\):</p>
+    <div class="math-block">$$ h'(z) = 2z \qquad\Rightarrow\qquad h(z) = z^2 $$</div>
+
+    <span class="step">Step 6 — Write φ</span>
+    <div class="math-block">$$ \phi = x^2 + y^2 + z^2 + xyz + C $$</div>
 
     <div class="answer">(a) Yes &nbsp;·&nbsp; (b) \(\phi = x^2 + y^2 + z^2 + xyz + C\)</div>
     <div class="meaning">
-      <span class="box-title">What it means</span>
-      As predicted: Q10's potential \(x^2 + y^2 + xyz\) plus \(z^2\), which is what the extra \(2z\,\mathbf{k}\)
-      contributes (\(\partial(z^2)/\partial z = 2z\)).
+      <span class="box-title">Check your answer</span>
+      As predicted, it's Q10's answer plus \(z^2\) — the extra term that produces the extra \(2z\,\mathbf{k}\).
     </div>
   </div>
 
@@ -856,22 +948,31 @@
     </div>
 
     <h3>Method 1 — Shortcut via the potential</h3>
-    <span class="step">Step 1 — Is it conservative?</span>
-    <div class="math-block">$$ P = y + 2x,\quad Q = x + z,\quad R = y $$</div>
-    <div class="math-block">$$ R_y - Q_z = 1 - 1 = 0 $$</div>
-    <div class="math-block">$$ P_z - R_x = 0 - 0 = 0 $$</div>
-    <div class="math-block">$$ Q_x - P_y = 1 - 1 = 0 $$</div>
-    <p>Yes — so the path doesn't matter.</p>
-    <span class="step">Step 2 — Find φ</span>
-    <div class="math-block">$$ \phi = \int (y + 2x)\,dx = xy + x^2 + g(y,z) $$</div>
-    <div class="math-block">$$ \phi_y = x + g_y = x + z $$</div>
-    <div class="math-block">$$ \Rightarrow\; g = yz + h(z) $$</div>
-    <div class="math-block">$$ \phi_z = y + h'(z) = y $$</div>
-    <div class="math-block">$$ \Rightarrow\; h = \text{const} $$</div>
+    <span class="step">Step 1 — Write down P, Q, R</span>
+    <div class="math-block">$$ P = y + 2x, \qquad Q = x + z, \qquad R = y $$</div>
+    <span class="step">Step 2 — Check the three pairs</span>
+    <div class="table-wrap">
+      <table class="check">
+        <thead><tr><th>Pair</th><th>Left side</th><th>Right side</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>\(\dfrac{\partial P}{\partial y}\) vs \(\dfrac{\partial Q}{\partial x}\)</td><td>\(1\)</td><td>\(1\)</td><td>✓</td></tr>
+          <tr><td>\(\dfrac{\partial P}{\partial z}\) vs \(\dfrac{\partial R}{\partial x}\)</td><td>\(0\)</td><td>\(0\)</td><td>✓</td></tr>
+          <tr><td>\(\dfrac{\partial Q}{\partial z}\) vs \(\dfrac{\partial R}{\partial y}\)</td><td>\(1\)</td><td>\(1\)</td><td>✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Conservative — so the path doesn't matter, only the endpoints.</p>
+    <span class="step">Step 3 — Find φ (same recipe as Q9–Q12)</span>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial x} = y + 2x $$</div>
+    <div class="math-block">$$ \Rightarrow\quad \phi = xy + x^2 + g(y,z) $$</div>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial y} = x + \frac{\partial g}{\partial y} = x + z $$</div>
+    <div class="math-block">$$ \Rightarrow\quad g = yz + h(z) $$</div>
+    <div class="math-block">$$ \frac{\partial\phi}{\partial z} = y + h'(z) = y $$</div>
+    <div class="math-block">$$ \Rightarrow\quad h(z) = \text{constant} $$</div>
     <div class="math-block">$$ \phi = x^2 + xy + yz $$</div>
-    <span class="step">Step 3 — Subtract endpoint values</span>
-    <div class="math-block">$$ \phi(B) = 4 + 2 + 2 = 8 $$</div>
-    <div class="math-block">$$ \phi(A) = 1 + 0 + 0 = 1 $$</div>
+    <span class="step">Step 4 — Subtract: φ(end) − φ(start)</span>
+    <div class="math-block">$$ \phi(B) = \phi(2,1,2) = 4 + 2 + 2 = 8 $$</div>
+    <div class="math-block">$$ \phi(A) = \phi(1,0,0) = 1 + 0 + 0 = 1 $$</div>
     <div class="math-block">$$ \int_C \mathbf{F}\cdot d\mathbf{r} = 8 - 1 = 7 $$</div>
 
     <h3>Method 2 — Parametrise the line (works for any field)</h3>
@@ -914,10 +1015,10 @@
       depends on the route, and we must follow the parabola step by step.
     </div>
 
-    <span class="step">Step 1 — Check for a shortcut</span>
-    <div class="math-block">$$ P_y = -1 $$</div>
-    <div class="math-block">$$ Q_x = 2y $$</div>
-    <p>Not equal → <strong>not conservative</strong>. No potential exists; we have to integrate along \(y = x^2\).</p>
+    <span class="step">Step 1 — Check for a shortcut (the slide test)</span>
+    <div class="math-block">$$ P = x^2 - y, \qquad Q = 2xy + 1 $$</div>
+    <div class="math-block">$$ \frac{\partial P}{\partial y} = -1, \qquad \frac{\partial Q}{\partial x} = 2y $$</div>
+    <p>\(-1 \ne 2y\) → <strong>not conservative</strong>. No potential exists, so we have to integrate along \(y = x^2\).</p>
 
     <span class="step">Step 2 — Parametrise the curve</span>
     <p class="why">The simplest choice is to let \(x\) itself be the parameter: \(x = t\). Then the curve forces \(y = t^2\). As \(t\) goes from 0 to 1 we travel from \((0,0)\) to \((1,1)\).</p>
