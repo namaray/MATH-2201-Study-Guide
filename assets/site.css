@@ -1,0 +1,242 @@
+/* =====================================================================
+   MATH 2201 — shared design layer
+   Loaded after each page's own <style>, so these rules win ties.
+   body.page   reading pages (notes, solutions)      — one narrow column
+   body.rail   reading pages with diagrams           — column + diagram rail
+   body.legacy older plain pages (no cards)           — white sheet look
+   body.sheet  formula / cheat sheets                 — wide grid, kept
+   ===================================================================== */
+
+:root {
+  --ink: #23303d;
+  --muted: #687786;
+  --bg: #f3f5f8;
+  --card: #ffffff;
+  --line: #e2e7ed;
+  --navy: #2c3e50;
+  --orange: #f37021;
+  --green: #1e8449;
+  --green-soft: #27ae60;
+  --blue: #2471a3;
+
+  --read: 46rem;                                 /* reading column (card outer width) */
+  --wide: 80rem;                                 /* column + diagram rail */
+  --pad-x: 1.9rem;                               /* card side padding */
+  --col: calc(var(--read) - 2 * var(--pad-x));   /* text width inside a card */
+}
+
+html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+
+body.page, body.sheet, body.home {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- page frame ---------- */
+body.page {
+  max-width: var(--read);
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  background: transparent;
+  border: 0;
+}
+body.page > * { box-sizing: border-box; }
+body.page.rail { max-width: var(--wide); }
+body.page.rail > *:not(.fig-card):not(.topbar):not(.pager) { max-width: var(--read); }
+
+body.legacy {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  margin: 1.5rem auto 2rem;
+  padding: 0 2.25rem 2rem;
+  box-shadow: 0 1px 2px rgba(20, 40, 60, 0.04), 0 8px 24px rgba(20, 40, 60, 0.05);
+}
+
+body.sheet { background: transparent; }
+
+/* ---------- typography ---------- */
+body.page h1, body.sheet h1 {
+  font-size: 2.15rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 750;
+  color: var(--navy);
+  margin: 1.6rem 0 0.4rem;
+  padding-bottom: 0.6rem;
+}
+body.page h2, body.page h3 { letter-spacing: -0.01em; }
+body.page .subtitle { color: var(--muted); font-size: 0.97rem; margin: 0.3rem 0 1.8rem; }
+body.page p { margin: 0.7rem 0; }
+body.page li { margin-bottom: 0.4rem; }
+body.page a { color: var(--blue); }
+body.page strong { font-weight: 650; }
+
+body.legacy h1 { font-size: 2rem; border-bottom: 0; }
+body.legacy h2 { font-size: 1.45rem; margin-top: 2.2rem; }
+body.legacy h3 { font-size: 1.15rem; }
+
+/* ---------- cards ---------- */
+body.page .note-card,
+body.page .problem,
+body.page .toc,
+body.page .howto,
+body.page .recipe {
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  border-top-width: 4px;
+  box-shadow: 0 1px 2px rgba(20, 40, 60, 0.04), 0 6px 20px rgba(20, 40, 60, 0.04);
+}
+body.page .note-card,
+body.page .problem {
+  padding: 1.5rem var(--pad-x) 1.7rem;
+  margin-bottom: 1.6rem;
+}
+body.page .note-card h3,
+body.page .problem h2 { font-size: 1.28rem; line-height: 1.35; }
+body.page .problem h3 { font-size: 1.06rem; margin-top: 1.6rem; }
+
+body.page .part {
+  border-radius: 12px;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  padding: 0.85rem 1.3rem;
+  margin-top: 2.8rem;
+}
+body.page .section-title { border-radius: 12px; }
+
+/* inline teaching boxes */
+body.page .formula, body.page .idea, body.page .meaning,
+body.page .answer, body.page .note, body.page .prompt,
+body.page .key, body.page .warn, body.page .example,
+body.page .takeaway, body.page .formula-box, body.page .flag {
+  border-radius: 9px;
+}
+body.page .prompt { line-height: 1.75; }
+body.page .answer { font-weight: 600; }
+body.page .why { color: #4f5d6b; }
+
+/* maths */
+body.page .math-block { font-size: 1.05rem; margin: 0.85rem 0; padding: 4px 0; }
+body.page mjx-container[display="true"] { margin: 0.6em 0 !important; }
+
+/* diagrams */
+body.page figure.diagram { margin: 1.2rem auto 0.8rem; }
+body.page figure.diagram svg {
+  border-radius: 12px;
+  border-color: var(--line);
+  background: #fbfcfd;
+}
+body.page figure.diagram figcaption { font-size: 0.86rem; line-height: 1.5; color: var(--muted); }
+body.page svg text { font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; }
+body.page details figure.diagram svg { max-width: 420px; }
+
+/* ---------- diagram rail: maths on the left, picture on the right ---------- */
+@media (min-width: 1100px) {
+  body.rail > .fig-card { max-width: none; }
+  body.rail .fig-card > *:not(.fig-row) { max-width: var(--col); }
+
+  body.rail .fig-row {
+    display: grid;
+    grid-template-columns: minmax(0, var(--col)) minmax(16rem, 1fr);
+    column-gap: 2.6rem;
+    align-items: start;
+  }
+  body.rail .fig-row > .fig-text { grid-column: 1; grid-row: 1; min-width: 0; }
+  body.rail .fig-row > figure.diagram {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 1.25rem;
+    margin: 0.4rem 0 0.6rem;
+  }
+  body.rail .fig-row > figure.diagram svg { max-width: 100%; }
+  body.rail .fig-row > figure.diagram figcaption { text-align: left; }
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1.2rem;
+  padding: 0.9rem 0 0.85rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.tb-path { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; color: var(--muted); }
+.tb-path a { color: var(--muted) !important; text-decoration: none; font-weight: 500; }
+.tb-path a:hover { color: var(--ink) !important; }
+.tb-path a.tb-home {
+  color: #fff !important;
+  background: var(--navy);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.tb-path .sep { color: #b4bfca; }
+.tb-path .here { color: var(--ink); font-weight: 600; }
+.tb-links { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tb-links a, .tb-links button {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 550;
+  color: var(--ink) !important;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tb-links a:hover, .tb-links button:hover { border-color: #b9c4cf; }
+.tb-links a.on { background: var(--navy); border-color: var(--navy); color: #fff !important; }
+.tb-links a.star { border-color: #f6c59f; background: #fff6ef; }
+
+/* ---------- prev / next pager ---------- */
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2.5rem 0 0.5rem;
+}
+.pager a {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--ink) !important;
+  line-height: 1.35;
+}
+.pager a:hover { border-color: #b9c4cf; }
+.pager small { display: block; color: var(--muted); font-size: 0.78rem; margin-bottom: 0.15rem; }
+.pager span { font-weight: 600; font-size: 0.95rem; }
+.pager .next { text-align: right; grid-column: 2; }
+
+/* ---------- phones ---------- */
+@media (max-width: 640px) {
+  body.page { padding: 0 0.85rem 2rem; }
+  body.legacy { margin: 0; border-radius: 0; border: 0; padding: 0 1rem 1.5rem; }
+  body.page h1, body.sheet h1 { font-size: 1.65rem; }
+  body.page .note-card, body.page .problem { padding: 1.1rem 1.1rem 1.25rem; }
+  body.page .part { font-size: 1.15rem; }
+  body.page .math-block { font-size: 0.88rem; }
+  .tb-links { width: 100%; }
+  .pager { grid-template-columns: 1fr; }
+  .pager .next { grid-column: 1; }
+}
+
+@media print {
+  .topbar, .pager { display: none !important; }
+  html { background: #fff; }
+}
