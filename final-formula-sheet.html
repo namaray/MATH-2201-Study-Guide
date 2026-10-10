@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finals Formula Sheet | MATH 2201</title>
+  <title>Final Syllabus Cheat Sheet | MATH 2201</title>
 
   <script>
     window.MathJax = {
-      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+      tex: {
+        inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']],
+        macros: { oiint: '\\mathop{\\vcenter{\\Large\\unicode{x222F}}}\\nolimits' }
+      }
     };
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -69,6 +72,7 @@
       text-transform: uppercase;
       letter-spacing: 0.03em;
     }
+    .box h2 mjx-container, .f .cap mjx-container { text-transform: none; }
     .box.blue { border-top-color: #2980b9; }
     .box.blue h2 { color: #21618c; }
     .box.orange { border-top-color: #f37021; }
@@ -77,6 +81,8 @@
     .box.purple h2 { color: #6c3483; }
     .box.red { border-top-color: #e74c3c; }
     .box.red h2 { color: #c0392b; }
+    .box.teal { border-top-color: #16a085; }
+    .box.teal h2 { color: #117864; }
     .box.later {
       border: 2px dashed #bdc3c7;
       border-top: 2px dashed #bdc3c7;
@@ -160,6 +166,8 @@
     .back-btn:hover { background-color: #1a252f; }
     .back-btn.accent { background-color: #27ae60; }
     .back-btn.accent:hover { background-color: #1e8449; }
+    .back-btn.orange { background-color: #f37021; }
+    .back-btn.orange:hover { background-color: #d35400; }
 
     /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
     mjx-container { position: relative; }
@@ -221,11 +229,13 @@
     <a href="final-conic-sections.html" class="back-btn accent">Conics Notes</a>
     <a href="final-coordinate-systems.html" class="back-btn accent">Coordinates Notes</a>
     <a href="final-vector-fields.html" class="back-btn accent">Unit 6 Notes</a>
+    <a href="final-integral-theorems.html" class="back-btn accent">Unit 7 Notes</a>
+    <a href="final-exam-review.html" class="back-btn orange">⭐ Final Exam Review</a>
     <button class="back-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
   </div>
 
-  <h1>MATH 2201 — Finals Formula Sheet</h1>
-  <p class="subtitle">Unit 4 conic sections &nbsp;·&nbsp; Unit 5 polar, cylindrical &amp; spherical coordinates &nbsp;·&nbsp; Unit 6 gradient, divergence &amp; curl &nbsp;·&nbsp; more units added as they're covered</p>
+  <h1>MATH 2201 — Final Syllabus Formula &amp; Cheat Sheet</h1>
+  <p class="subtitle">The whole final syllabus on one page: Unit 4 conic sections &nbsp;·&nbsp; Unit 5 polar, cylindrical &amp; spherical coordinates &nbsp;·&nbsp; Unit 6 gradient, divergence &amp; curl &nbsp;·&nbsp; Unit 7 flux, surface integrals, and the divergence &amp; Stokes' theorems</p>
 
   <div class="grid">
 
@@ -259,7 +269,7 @@
       </table>
       <div class="f">Vertex \((0,0)\) · latus rectum \(= 4a\) · \(e = 1\)</div>
       <hr class="sep">
-      <div class="f"><span class="cap">Shifted to vertex (h, k)</span></div>
+      <div class="f"><span class="cap">Shifted to vertex \((h, k)\)</span></div>
       <div class="f center">$$ (x-h)^2 = 4a(y-k) $$</div>
       <div class="f center">Focus \((h, k+a)\), directrix \(y = k - a\)</div>
       <div class="trap">Match the number to \(4a\): \(y^2 = 12x \Rightarrow a = 3\).</div>
@@ -302,7 +312,7 @@
 
     <div class="box">
       <h2>Translated Conics &amp; Identifying</h2>
-      <div class="f"><span class="cap">Centre (h, k) — shift every point</span></div>
+      <div class="f"><span class="cap">Centre \((h, k)\) — shift every point</span></div>
       <div class="f center">$$ \frac{(x-h)^2}{a^2} \pm \frac{(y-k)^2}{b^2} = 1 $$</div>
       <div class="f">Vertices \((h \pm a, k)\), foci \((h \pm c, k)\), asymptotes \(y - k = \pm\frac{b}{a}(x - h)\)</div>
       <hr class="sep">
@@ -336,6 +346,7 @@
       <div class="f center">$$ E' = -D\sin\theta + E\cos\theta $$</div>
       <div class="f center">$$ \cos\theta = \sqrt{\tfrac{1 + \cos 2\theta}{2}}, \quad \sin\theta = \sqrt{\tfrac{1 - \cos 2\theta}{2}} $$</div>
       <div class="tip">Check: \(A' + C' = A + C\), and \(B^2 - 4AC\) is unchanged.</div>
+      <div class="trap">Discriminant \(= 0\) but no \(Y\) term after rotating (e.g. \((X-1)^2 = 1\)) → <strong>degenerate</strong>: a pair of parallel lines, no vertex.</div>
     </div>
 
     <!-- ===================== UNIT 5 ===================== -->
@@ -474,13 +485,13 @@
 
     <div class="box purple">
       <h2>Normals, Tangent Planes, Lagrange</h2>
-      <div class="f"><span class="cap">Surface F(x,y,z) = C</span></div>
+      <div class="f"><span class="cap">Surface \(F(x,y,z) = C\)</span></div>
       <div class="f center">$$ \mathbf{n} = \nabla F(x_0, y_0, z_0) $$</div>
       <div class="f center">$$ F_x(x - x_0) + F_y(y - y_0) + F_z(z - z_0) = 0 $$</div>
-      <div class="f"><span class="cap">Surface z = f(x,y)</span></div>
+      <div class="f"><span class="cap">Surface \(z = f(x,y)\)</span></div>
       <div class="f center">$$ z - z_0 = f_x(x - x_0) + f_y(y - y_0) $$</div>
       <hr class="sep">
-      <div class="f"><span class="cap">Lagrange: optimise f subject to g = k</span></div>
+      <div class="f"><span class="cap">Lagrange: optimise \(f\) subject to \(g = k\)</span></div>
       <div class="f center">$$ \nabla f = \lambda\,\nabla g, \qquad g(x,y) = k $$</div>
     </div>
 
@@ -538,6 +549,93 @@
       <div class="trap">It's \(Q_x - P_y\) (not the reverse). Clockwise flips the sign.</div>
     </div>
 
+    <!-- ===================== UNIT 7 ===================== -->
+    <div class="group-title">Unit 7 — Flux, Surface Integrals &amp; the Big Theorems <span class="sub">Ch 15.4–15.8</span></div>
+
+    <div class="box teal">
+      <h2>The Big Three</h2>
+      <div class="f"><span class="cap">Green's — flat region R, edge C (counterclockwise)</span></div>
+      <div class="f center">$$ \oint_C P\,dx + Q\,dy = \iint_R (Q_x - P_y)\,dA $$</div>
+      <div class="f"><span class="cap">Stokes' — curved surface σ, edge C</span></div>
+      <div class="f center">$$ \oint_C \mathbf{F}\cdot d\mathbf{r} = \iint_\sigma (\nabla\times\mathbf{F})\cdot\mathbf{n}\,dS $$</div>
+      <div class="f"><span class="cap">Divergence (Gauss) — closed surface S around solid G</span></div>
+      <div class="f center">$$ \oiint_S \mathbf{F}\cdot\mathbf{n}\,dS = \iiint_G \nabla\cdot\mathbf{F}\,dV $$</div>
+      <div class="tip">Same idea each time: <strong>add up a derivative inside = look only at the edge.</strong> Curl ↔ circulation (around); divergence ↔ flux (out through).</div>
+    </div>
+
+    <div class="box teal">
+      <h2>Surface Integrals · \(z = g(x,y)\)</h2>
+      <div class="f center">$$ dS = \sqrt{g_x^2 + g_y^2 + 1}\;dA $$</div>
+      <div class="f center">$$ \iint_\sigma f\,dS = $$</div>
+      <div class="f center">$$ \iint_R f\big(x, y, g(x,y)\big)\sqrt{g_x^2 + g_y^2 + 1}\,dA $$</div>
+      <div class="f center">$$ \text{Surface area} = \iint_R \sqrt{g_x^2 + g_y^2 + 1}\;dA $$</div>
+      <div class="f"><span class="cap">Plane \(ax + by + cz = d\)</span></div>
+      <div class="f center">$$ dS = \frac{\sqrt{a^2 + b^2 + c^2}}{|c|}\,dA \quad(\text{a constant}) $$</div>
+      <div class="f">\(R\) = the <strong>shadow</strong> on the \(xy\)-plane (set \(z = 0\) for a plane in the first octant → triangle).</div>
+      <div class="trap">Substitute \(z = g(x,y)\) into \(f\) before integrating.</div>
+    </div>
+
+    <div class="box teal">
+      <h2>Flux Through a Surface</h2>
+      <div class="f center">$$ \text{Flux} = \iint_\sigma \mathbf{F}\cdot\mathbf{n}\,dS $$</div>
+      <div class="f"><span class="cap">\(z = g(x,y)\), oriented up · \(\mathbf{F} = \langle P, Q, R\rangle\)</span></div>
+      <div class="f center">$$ \iint_R \big(-P\,g_x - Q\,g_y + R\big)\,dA $$</div>
+      <div class="f">Oriented <strong>down</strong>: flip the sign. Disc-shaped shadow → polar.</div>
+      <table>
+        <tbody>
+          <tr><td>Flux \(&gt; 0\)</td><td>Net flow out / along \(\mathbf{n}\)</td></tr>
+          <tr><td>Flux \(&lt; 0\)</td><td>Net flow in / against \(\mathbf{n}\)</td></tr>
+        </tbody>
+      </table>
+      <div class="tip">For \(\mathbf{F} = x\mathbf{i} - y\mathbf{j} + z\mathbf{k}\) on \(z = k - x^2 - y^2\): integrand \(x^2 - 3y^2 + k\), flux \(= \tfrac{\pi k^2}{2}\).</div>
+    </div>
+
+    <div class="box teal">
+      <h2>Divergence Theorem — How To</h2>
+      <ul>
+        <li>Surface must be <strong>closed</strong> (dome + base, cylinder + top + bottom, box)</li>
+        <li>Compute \(\nabla\cdot\mathbf{F} = P_x + Q_y + R_z\)</li>
+        <li>Pick coordinates for the <strong>solid</strong>; include the Jacobian</li>
+      </ul>
+      <table>
+        <thead><tr><th>Solid</th><th>Limits</th></tr></thead>
+        <tbody>
+          <tr><td>Upper half-ball, radius \(a\)</td><td>\(\rho\!:0\to a,\ \phi\!:0\to\tfrac{\pi}{2},\ \theta\!:0\to 2\pi\)</td></tr>
+          <tr><td>Under \(z = k - r^2\), above \(z = 0\)</td><td>\(z\!:0\to k - r^2,\ r\!:0\to\sqrt{k}\)</td></tr>
+          <tr><td>Cylinder \(r \le a\), \(z_1 \le z \le z_2\)</td><td>\(z\!:z_1\to z_2,\ r\!:0\to a\)</td></tr>
+          <tr><td>Ice-cream cone \(z \ge r\), \(\rho \le a\)</td><td>\(\phi\!:0\to\tfrac{\pi}{4},\ \rho\!:0\to a\)</td></tr>
+        </tbody>
+      </table>
+      <div class="tip">Constant divergence \(k\) → flux \(= k \times \text{volume}\). \(x^2+y^2+z^2 = \rho^2\).</div>
+    </div>
+
+    <div class="box teal">
+      <h2>Stokes' Theorem — How To</h2>
+      <ul>
+        <li>Compute \(\nabla\times\mathbf{F}\)</li>
+        <li>Any surface with the same edge \(C\) works — pick the <strong>flattest</strong> (often a disc, \(\mathbf{n} = \mathbf{k}\))</li>
+        <li>Then \((\nabla\times\mathbf{F})\cdot\mathbf{k}\) = the \(\mathbf{k}\)-component of the curl</li>
+      </ul>
+      <div class="f center">$$ \text{Flat in the } xy\text{-plane:} $$</div>
+      <div class="f center">$$ \oint_C \mathbf{F}\cdot d\mathbf{r} = \iint_R (Q_x - P_y)\,dA $$</div>
+      <div class="tip">That's just Green's theorem — Stokes' is Green's for curved surfaces.</div>
+      <div class="trap">Orientation: counterclockwise edge seen from above ↔ upward \(\mathbf{n}\) (right-hand rule).</div>
+    </div>
+
+    <div class="box teal">
+      <h2>Shortcuts &amp; Quick Values</h2>
+      <div class="f center">$$ \int_0^{2\pi}\!\cos\theta\,d\theta = \int_0^{2\pi}\!\sin\theta\,d\theta = 0 $$</div>
+      <div class="f center">$$ \int_0^{2\pi}\!\cos^2\theta\,d\theta = \int_0^{2\pi}\!\sin^2\theta\,d\theta = \pi $$</div>
+      <div class="f center">$$ \int_0^{\pi/2}\!\sin\phi\,d\phi = 1 $$</div>
+      <div class="f center">$$ \int_0^{\pi/4}\!\sin\phi\,d\phi = 1 - \tfrac{\sqrt2}{2} $$</div>
+      <ul>
+        <li>Integrand odd in \(x\) (or \(y\)) over a centred disc → <strong>0</strong></li>
+        <li>Green's with constant \(Q_x - P_y = k\) → \(k \times\) area</li>
+        <li>Constant limits → integral splits into a product</li>
+        <li>Hemisphere radius \(a\): volume \(\tfrac23\pi a^3\); \(\iiint\rho^2\,dV = \tfrac{2\pi a^5}{5}\)</li>
+      </ul>
+    </div>
+
     <!-- ===================== STRATEGY ===================== -->
     <div class="group-title">Exam Strategy</div>
 
@@ -562,6 +660,11 @@
           <tr><td>Potential / conservative?</td><td>\(P_y = Q_x\) or curl \(=\mathbf{0}\)</td></tr>
           <tr><td>Work, \(\int_C\mathbf{F}\cdot d\mathbf{r}\)</td><td>\(\phi(B)-\phi(A)\), else parametrise</td></tr>
           <tr><td>\(\oint_C P\,dx + Q\,dy\)</td><td>Green's theorem</td></tr>
+          <tr><td>Path not closed, \(\int_C P\,dx + Q\,dy\)</td><td>Parametrise each piece (or close it, then Green)</td></tr>
+          <tr><td>\(\iint_\sigma f\,dS\), surface area</td><td>\(\sqrt{g_x^2 + g_y^2 + 1}\,dA\) over the shadow</td></tr>
+          <tr><td>Flux through an <strong>open</strong> surface</td><td>\(\iint_R(-Pg_x - Qg_y + R)\,dA\)</td></tr>
+          <tr><td>Outward flux, <strong>closed</strong> surface</td><td>Divergence theorem</td></tr>
+          <tr><td>Circulation round a surface's edge</td><td>Stokes' theorem</td></tr>
         </tbody>
       </table>
     </div>
@@ -582,16 +685,11 @@
         <li>Divergence is a scalar; curl is a vector</li>
         <li>Find \(\phi\) via \(g(y)\) — don't just add integrals; include \(+C\)</li>
         <li>Green's: \(Q_x - P_y\), counterclockwise</li>
+        <li>Surface integrals: substitute \(z = g\), include \(\sqrt{g_x^2 + g_y^2 + 1}\)</li>
+        <li>Divergence theorem only on a <strong>closed</strong> surface</li>
+        <li>Shadow region: set \(z = 0\) to find where the surface meets the plane</li>
+        <li>Look for symmetry zeros (\(\int_0^{2\pi}\cos\theta = 0\)) before grinding</li>
       </ul>
-    </div>
-
-    <div class="box later no-print">
-      <h2>Coming later</h2>
-      <ul>
-        <li>Surface integrals &amp; flux</li>
-        <li>Divergence Theorem &amp; Stokes' Theorem</li>
-      </ul>
-      <p style="margin:0.4rem 0 0; font-size:0.85rem; color:#7f8c8d;">These sections will be added to this sheet as each unit is covered.</p>
     </div>
 
   </div>
@@ -601,6 +699,8 @@
     <a href="final-conic-sections.html" class="back-btn accent">Conics Notes</a>
     <a href="final-coordinate-systems.html" class="back-btn accent">Coordinates Notes</a>
     <a href="final-vector-fields.html" class="back-btn accent">Unit 6 Notes</a>
+    <a href="final-integral-theorems.html" class="back-btn accent">Unit 7 Notes</a>
+    <a href="final-exam-review.html" class="back-btn orange">⭐ Final Exam Review</a>
     <button class="back-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
   </div>
 
