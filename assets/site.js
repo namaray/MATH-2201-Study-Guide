@@ -124,7 +124,7 @@
   }
 
   // On wide screens, pair each diagram with the section of text around it, so the
-  // picture sits in a right-hand column beside the maths (see site.css).
+  // picture sits in a left-hand column beside the maths (see site.css).
   // On narrow screens the original reading order is restored.
   var rows = [];
 

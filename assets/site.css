@@ -2,7 +2,7 @@
    MATH 2201 — shared design layer
    Loaded after each page's own <style>, so these rules win ties.
    body.page   reading pages (notes, solutions)      — one narrow column
-   body.rail   reading pages with diagrams           — column + diagram rail
+   body.rail   reading pages with diagrams           — diagram rail + column
    body.legacy older plain pages (no cards)           — white sheet look
    body.sheet  formula / cheat sheets                 — wide grid, kept
    ===================================================================== */
@@ -44,8 +44,6 @@ body.page {
   border: 0;
 }
 body.page > * { box-sizing: border-box; }
-body.page.rail { max-width: var(--wide); }
-body.page.rail > *:not(.fig-card):not(.topbar):not(.pager) { max-width: var(--read); }
 
 body.legacy {
   background: var(--card);
@@ -140,20 +138,22 @@ body.page svg text { font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; font-
 body.page svg .lbl-sm { font-size: 11.5px; }
 body.page details figure.diagram svg { max-width: 420px; }
 
-/* ---------- diagram rail: maths on the left, picture on the right ---------- */
+/* ---------- diagram rail: pictures on the left, maths on the right ---------- */
 @media (min-width: 1100px) {
+  body.page.rail { max-width: var(--wide); }
+  body.page.rail > *:not(.fig-card):not(.topbar):not(.pager) { max-width: var(--read); margin-left: auto; margin-right: 0; }
   body.rail > .fig-card { max-width: none; }
-  body.rail .fig-card > *:not(.fig-row) { max-width: var(--col); }
+  body.rail .fig-card > *:not(.fig-row) { max-width: var(--col); margin-left: auto; }
 
   body.rail .fig-row {
     display: grid;
-    grid-template-columns: minmax(0, var(--col)) minmax(16rem, 1fr);
+    grid-template-columns: minmax(16rem, 1fr) minmax(0, var(--col));
     column-gap: 2.6rem;
     align-items: start;
   }
-  body.rail .fig-row > .fig-text { grid-column: 1; grid-row: 1; min-width: 0; }
+  body.rail .fig-row > .fig-text { grid-column: 2; grid-row: 1; min-width: 0; }
   body.rail .fig-row > figure.diagram {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     position: sticky;
     top: 1.25rem;
