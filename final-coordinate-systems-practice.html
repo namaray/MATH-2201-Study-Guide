@@ -173,7 +173,15 @@
   <link rel="stylesheet" href="assets/site.css">
   <script src="assets/site.js" defer></script>
 </head>
-<body class="page">
+<body class="page rail">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2471a3"/></marker>
+  <marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker>
+  <marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e8449"/></marker>
+  <marker id="ar-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8e44ad"/></marker>
+  <marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#95a5a6"/></marker>
+  <marker id="ar-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d35400"/></marker>
+</defs></svg>
 
 
   <h1>Polar, Cylindrical &amp; Spherical — Worksheet Solutions</h1>
@@ -211,6 +219,21 @@
   <div class="problem" id="q1">
     <h2>Q1. Cartesian → Polar <span class="tag">Point</span></h2>
     <div class="prompt">Convert the Cartesian point \((3, 4)\) to polar coordinates.</div>
+    <figure class="diagram">
+<svg viewBox="0 0 360 360" role="img" aria-label="The point (3, 4) in the first quadrant: distance r = 5 from the origin at angle about 53.1 degrees.">
+<line x1="18.0" y1="265.0" x2="344.0" y2="265.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="340.0" y="281.0" text-anchor="end" class="lbl-sm">x</text>
+<line x1="95.0" y1="342.0" x2="95.0" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="103.0" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M162.7,265.0 L162.7,263.5 L162.6,261.9 L162.6,260.3 L162.4,258.8 L162.3,257.2 L162.1,255.7 L161.8,254.1 L161.6,252.5 L161.2,251.0 L160.9,249.5 L160.5,248.0 L160.1,246.4 L159.7,244.9 L159.2,243.4 L158.7,242.0 L158.1,240.5 L157.5,239.0 L156.9,237.6 L156.2,236.2 L155.6,234.7 L154.8,233.3 L154.1,232.0 L153.3,230.6 L152.5,229.3 L151.7,227.9 L150.8,226.6 L149.9,225.3 L148.9,224.1 L148.0,222.8 L147.0,221.6 L146.0,220.4 L144.9,219.3 L143.8,218.1 L142.7,217.0 L141.6,215.9 L140.5,214.8 L139.3,213.8 L138.1,212.8 L136.9,211.8 L135.6,210.8" fill="none" stroke="#d35400" stroke-width="2" marker-end="url(#ar-orange)"/>
+<text x="171.6" y="240.8" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ ≈ 53.1°</text>
+<line x1="95.0" y1="265.0" x2="232.9" y2="81.2" stroke="#2471a3" stroke-width="2.6"/>
+<text x="162.8" y="159.9" text-anchor="end" class="lbl-sm" style="fill:#2471a3;font-weight:bold">r = 5</text>
+<circle cx="232.9" cy="81.2" r="4" fill="#2c3e50"/>
+<text x="239.9" y="73.2" text-anchor="start" class="lbl-sm">(3, 4)</text>
+</svg>
+      <figcaption>First quadrant, so the calculator angle \(\tan^{-1}(4/3)\) is already correct.</figcaption>
+    </figure>
     <div class="math-block">$$ r = \sqrt{3^2 + 4^2} = \sqrt{25} = 5 $$</div>
     <p>\(x &gt; 0\), \(y &gt; 0\) → Quadrant I, so \(\tan^{-1}\) gives the angle directly:</p>
     <div class="math-block">$$ \theta = \tan^{-1}\frac43 \approx 0.927 \text{ rad} \approx 53.13^\circ $$</div>
@@ -220,6 +243,23 @@
   <div class="problem" id="q2">
     <h2>Q2. Cartesian → Polar <span class="tag">Point</span><span class="tag assign">Assignment</span></h2>
     <div class="prompt">Convert the Cartesian point \((-5, 12)\) to polar coordinates.</div>
+    <figure class="diagram">
+<svg viewBox="0 0 360 439" role="img" aria-label="The point (−5, 12) in the second quadrant. The angle θ is measured from the positive x-axis; the reference angle α is measured from the negative x-axis, so θ = π − α.">
+<line x1="18.0" y1="345.4" x2="344.0" y2="345.4" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="340.0" y="361.4" text-anchor="end" class="lbl-sm">x</text>
+<line x1="219.9" y1="421.9" x2="219.9" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="227.9" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M287.7,345.4 L287.6,342.1 L287.4,338.8 L287.0,335.5 L286.4,332.2 L285.7,328.9 L284.8,325.7 L283.7,322.6 L282.5,319.5 L281.2,316.4 L279.7,313.4 L278.0,310.5 L276.2,307.7 L274.3,305.0 L272.3,302.4 L270.1,299.9 L267.8,297.5 L265.4,295.2 L262.9,293.0 L260.2,290.9 L257.5,289.0 L254.7,287.2 L251.8,285.6 L248.8,284.1 L245.8,282.8 L242.7,281.6 L239.5,280.5 L236.3,279.7 L233.0,278.9 L229.8,278.4 L226.5,278.0 L223.1,277.7 L219.8,277.6 L216.5,277.7 L213.2,278.0 L209.9,278.4 L206.6,279.0 L203.3,279.7 L200.1,280.6 L197.0,281.7 L193.9,282.9" fill="none" stroke="#d35400" stroke-width="2" marker-end="url(#ar-orange)"/>
+<text x="268.8" y="272.1" text-anchor="middle" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ = π − α</text>
+<path d="M182.7,345.4 L182.7,343.2 L182.9,341.0 L183.2,338.9 L183.7,336.7 L184.3,334.6 L185.0,332.5 L185.8,330.5 L186.7,328.5 L187.8,326.6 L188.9,324.7 L190.2,322.9 L191.6,321.2 L193.0,319.6 L194.6,318.1 L196.2,316.6 L198.0,315.3 L199.8,314.1 L201.7,312.9 L203.6,311.9 L205.6,311.0" fill="none" stroke="#1e8449" stroke-width="1.8"/>
+<text x="158.9" y="328.5" text-anchor="middle" class="lbl-sm" style="fill:#1e8449;font-weight:bold">α</text>
+<line x1="219.9" y1="345.4" x2="105.9" y2="71.6" stroke="#2471a3" stroke-width="2.6"/>
+<text x="165.2" y="190.8" text-anchor="start" class="lbl-sm" style="fill:#2471a3;font-weight:bold">r</text>
+<circle cx="105.9" cy="71.6" r="4" fill="#2c3e50"/>
+<text x="98.9" y="63.6" text-anchor="end" class="lbl-sm">(−5, 12)</text>
+</svg>
+      <figcaption>Second quadrant: find the reference angle \(\alpha\) first, then \(\theta = \pi - \alpha\).</figcaption>
+    </figure>
     <details class="reveal">
       <summary>Show solution</summary>
       <div class="body">
@@ -236,6 +276,25 @@
   <div class="problem" id="q3">
     <h2>Q3. Polar → Cartesian <span class="tag">Point</span><span class="tag assign">Assignment</span></h2>
     <div class="prompt">Convert the polar point \(\left(5, \tfrac{\pi}{6}\right)\) to Cartesian coordinates.</div>
+    <figure class="diagram">
+<svg viewBox="0 0 360 263" role="img" aria-label="The polar point with r = 5 and θ = π/6, with dashed lines dropping to the axes to show x = r cos θ and y = r sin θ.">
+<line x1="18.0" y1="180.0" x2="344.0" y2="180.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="340.0" y="196.0" text-anchor="end" class="lbl-sm">x</text>
+<line x1="83.8" y1="245.8" x2="83.8" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="91.8" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M130.3,180.0 L130.3,179.4 L130.3,178.8 L130.3,178.2 L130.3,177.6 L130.2,177.0 L130.2,176.3 L130.1,175.7 L130.1,175.1 L130.0,174.5 L129.9,173.9 L129.9,173.3 L129.8,172.7 L129.7,172.1 L129.6,171.5 L129.4,170.9 L129.3,170.3 L129.2,169.7 L129.0,169.1 L128.9,168.5 L128.7,167.9 L128.6,167.4 L128.4,166.8 L128.2,166.2 L128.1,165.6 L127.9,165.0 L127.7,164.4 L127.5,163.9 L127.2,163.3 L127.0,162.7 L126.8,162.2 L126.6,161.6 L126.3,161.1 L126.1,160.5 L125.8,159.9 L125.5,159.4 L125.3,158.9 L125.0,158.3 L124.7,157.8 L124.4,157.2 L124.1,156.7" fill="none" stroke="#d35400" stroke-width="2" marker-end="url(#ar-orange)"/>
+<text x="140.2" y="172.9" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ = π/6</text>
+<line x1="83.8" y1="180.0" x2="250.5" y2="83.8" stroke="#2471a3" stroke-width="2.6"/>
+<line x1="250.5" y1="83.8" x2="250.5" y2="180.0" stroke="#1e8449" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="250.5" y1="83.8" x2="83.8" y2="83.8" stroke="#1e8449" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="167.1" y="75.8" text-anchor="middle" class="lbl-sm" style="fill:#1e8449;font-weight:bold">x = r cos θ</text>
+<text x="256.5" y="131.9" text-anchor="start" class="lbl-sm" style="fill:#1e8449;font-weight:bold">y = r sin θ</text>
+<text x="167.4" y="123.1" text-anchor="end" class="lbl-sm" style="fill:#2471a3;font-weight:bold">r = 5</text>
+<circle cx="250.5" cy="83.8" r="4" fill="#2c3e50"/>
+<text x="257.5" y="75.8" text-anchor="start" class="lbl-sm">P</text>
+</svg>
+      <figcaption>Drop perpendiculars from \(P\) to the axes: the horizontal leg is \(x\), the vertical leg is \(y\).</figcaption>
+    </figure>
     <details class="reveal">
       <summary>Show solution</summary>
       <div class="body">
@@ -249,6 +308,25 @@
   <div class="problem" id="q4">
     <h2>Q4. Polar → Cartesian <span class="tag">Point</span></h2>
     <div class="prompt">Convert \(\left(6, \tfrac{4\pi}{3}\right)\) from polar to Cartesian coordinates.</div>
+    <figure class="diagram">
+<svg viewBox="0 0 360 360" role="img" aria-label="The polar point with r = 6 and θ = 4π/3 = 240 degrees, in the third quadrant, with dashed lines to the axes showing x = r cos θ and y = r sin θ, both negative.">
+<line x1="18.0" y1="123.3" x2="344.0" y2="123.3" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="340.0" y="139.3" text-anchor="end" class="lbl-sm">x</text>
+<line x1="220.5" y1="342.0" x2="220.5" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="228.5" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M288.3,123.3 L287.9,116.2 L286.8,109.2 L285.0,102.3 L282.4,95.7 L279.2,89.4 L275.3,83.4 L270.9,77.9 L265.9,72.9 L260.4,68.4 L254.4,64.6 L248.1,61.4 L241.5,58.8 L234.6,57.0 L227.6,55.9 L220.5,55.5 L213.4,55.9 L206.4,57.0 L199.6,58.8 L193.0,61.4 L186.6,64.6 L180.7,68.4 L175.2,72.9 L170.2,77.9 L165.7,83.4 L161.8,89.4 L158.6,95.7 L156.1,102.3 L154.2,109.2 L153.1,116.2 L152.8,123.3 L153.1,130.3 L154.2,137.4 L156.1,144.2 L158.6,150.8 L161.8,157.1 L165.7,163.1 L170.2,168.6 L175.2,173.6 L180.7,178.1 L186.6,181.9" fill="none" stroke="#d35400" stroke-width="2" marker-end="url(#ar-orange)"/>
+<text x="176.5" y="47.0" text-anchor="middle" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ = 4π/3</text>
+<line x1="220.5" y1="123.3" x2="123.3" y2="291.7" stroke="#2471a3" stroke-width="2.6"/>
+<line x1="123.3" y1="291.7" x2="123.3" y2="123.3" stroke="#1e8449" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="123.3" y1="291.7" x2="220.5" y2="291.7" stroke="#1e8449" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="171.9" y="307.7" text-anchor="middle" class="lbl-sm" style="fill:#1e8449;font-weight:bold">x = r cos θ</text>
+<text x="117.3" y="207.5" text-anchor="end" class="lbl-sm" style="fill:#1e8449;font-weight:bold">y = r sin θ</text>
+<text x="175.0" y="211.9" text-anchor="start" class="lbl-sm" style="fill:#2471a3;font-weight:bold">r = 6</text>
+<circle cx="123.3" cy="291.7" r="4" fill="#2c3e50"/>
+<text x="116.3" y="283.7" text-anchor="end" class="lbl-sm">P</text>
+</svg>
+      <figcaption>\(240^\circ\) lands in the third quadrant, so both \(x\) and \(y\) come out negative.</figcaption>
+    </figure>
     <p>\(\tfrac{4\pi}{3} = 240^\circ\), in Quadrant III — expect both coordinates negative.</p>
     <div class="math-block">$$ x = 6\cos\frac{4\pi}{3} = 6\left(-\frac12\right) = -3 $$</div>
     <div class="math-block">$$ y = 6\sin\frac{4\pi}{3} = 6\left(-\frac{\sqrt3}{2}\right) = -3\sqrt3 $$</div>
@@ -258,6 +336,26 @@
   <div class="problem" id="q5">
     <h2>Q5. Cartesian Equation → Polar <span class="tag">Equation</span></h2>
     <div class="prompt">Convert \(x^2 + y^2 = 6x\) to a polar equation.</div>
+    <figure class="diagram">
+<svg viewBox="0 0 360 332" role="img" aria-label="The circle x² + y² = 6x, centre (3, 0), radius 3, through the origin. A ray at angle θ meets it at distance r = 6 cos θ.">
+<line x1="18.0" y1="166.0" x2="344.0" y2="166.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="340.0" y="182.0" text-anchor="end" class="lbl-sm">x</text>
+<line x1="68.0" y1="314.0" x2="68.0" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="76.0" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M278.0,166.0 L277.9,160.5 L277.4,155.0 L276.7,149.6 L275.7,144.2 L274.4,138.8 L272.9,133.6 L271.0,128.4 L268.9,123.3 L266.6,118.3 L263.9,113.5 L261.1,108.8 L257.9,104.3 L254.6,99.9 L251.0,95.7 L247.2,91.8 L243.3,88.0 L239.1,84.4 L234.7,81.1 L230.2,77.9 L225.5,75.1 L220.7,72.4 L215.7,70.1 L210.6,68.0 L205.4,66.1 L200.2,64.6 L194.8,63.3 L189.4,62.3 L184.0,61.6 L178.5,61.1 L173.0,61.0 L167.5,61.1 L162.0,61.6 L156.6,62.3 L151.2,63.3 L145.8,64.6 L140.6,66.1 L135.4,68.0 L130.3,70.1 L125.3,72.4 L120.5,75.1 L115.8,77.9 L111.3,81.1 L106.9,84.4 L102.7,88.0 L98.8,91.8 L95.0,95.7 L91.4,99.9 L88.1,104.3 L84.9,108.8 L82.1,113.5 L79.4,118.3 L77.1,123.3 L75.0,128.4 L73.1,133.6 L71.6,138.8 L70.3,144.2 L69.3,149.6 L68.6,155.0 L68.1,160.5 L68.0,166.0 L68.1,171.5 L68.6,177.0 L69.3,182.4 L70.3,187.8 L71.6,193.2 L73.1,198.4 L75.0,203.6 L77.1,208.7 L79.4,213.7 L82.1,218.5 L84.9,223.2 L88.1,227.7 L91.4,232.1 L95.0,236.3 L98.8,240.2 L102.7,244.0 L106.9,247.6 L111.3,250.9 L115.8,254.1 L120.5,256.9 L125.3,259.6 L130.3,261.9 L135.4,264.0 L140.6,265.9 L145.8,267.4 L151.2,268.7 L156.6,269.7 L162.0,270.4 L167.5,270.9 L173.0,271.0 L178.5,270.9 L184.0,270.4 L189.4,269.7 L194.8,268.7 L200.2,267.4 L205.4,265.9 L210.6,264.0 L215.7,261.9 L220.7,259.6 L225.5,256.9 L230.2,254.1 L234.7,250.9 L239.1,247.6 L243.3,244.0 L247.2,240.2 L251.0,236.3 L254.6,232.1 L257.9,227.7 L261.1,223.2 L263.9,218.5 L266.6,213.7 L268.9,208.7 L271.0,203.6 L272.9,198.4 L274.4,193.2 L275.7,187.8 L276.7,182.4 L277.4,177.0 L277.9,171.5 L278.0,166.0" fill="none" stroke="#2471a3" stroke-width="2.6"/>
+<line x1="68.0" y1="166.0" x2="208.9" y2="67.3" stroke="#c0392b" stroke-width="2.4"/>
+<circle cx="208.9" cy="67.3" r="4" fill="#2c3e50"/>
+<text x="215.9" y="61.3" text-anchor="start" class="lbl-sm" style="fill:#c0392b;font-weight:bold">r = 6cos θ</text>
+<path d="M120.5,166.0 L120.5,164.4 L120.4,162.8 L120.3,161.2 L120.1,159.6 L119.9,158.0 L119.6,156.4 L119.3,154.9 L118.9,153.3 L118.5,151.7 L118.1,150.2 L117.6,148.7 L117.0,147.2 L116.4,145.7 L115.8,144.2 L115.1,142.8 L114.4,141.4 L113.6,139.9 L112.8,138.6 L111.9,137.2 L111.0,135.9" fill="none" stroke="#d35400" stroke-width="1.8"/>
+<text x="130.1" y="146.4" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ</text>
+<circle cx="173.0" cy="166.0" r="4" fill="#2c3e50"/>
+<text x="173.0" y="182.0" text-anchor="middle" class="lbl-sm">centre (3, 0)</text>
+<circle cx="278.0" cy="166.0" r="4" fill="#2c3e50"/>
+<text x="284.0" y="182.0" text-anchor="start" class="lbl-sm">(6, 0)</text>
+<text x="173.0" y="290.3" text-anchor="middle" class="lbl-sm" style="fill:#2471a3;font-weight:bold">x² + y² = 6x</text>
+</svg>
+      <figcaption>A circle through the origin with its centre on the \(x\)-axis always has a polar equation of the form \(r = 2a\cos\theta\).</figcaption>
+    </figure>
     <p>Substitute \(x^2 + y^2 = r^2\) and \(x = r\cos\theta\):</p>
     <div class="math-block">$$ r^2 = 6r\cos\theta \;\Longrightarrow\; r = 6\cos\theta $$</div>
     <div class="answer">\(r = 6\cos\theta\)</div>
@@ -271,6 +369,26 @@
   <div class="problem" id="q6">
     <h2>Q6. Area in Polar <span class="tag">Double Integral</span><span class="tag assign">Assignment</span></h2>
     <div class="prompt">Find the area inside the circle \(r = 4\cos\theta\).</div>
+    <figure class="diagram">
+<svg viewBox="0 0 360 323" role="img" aria-label="The circle r = 4 cos θ: centre (2, 0), radius 2, passing through the origin. A ray at angle θ reaches the circle at r = 4 cos θ, and θ sweeps from −π/2 to π/2 to trace the whole circle once.">
+<line x1="18.0" y1="161.9" x2="344.0" y2="161.9" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="340.0" y="177.9" text-anchor="end" class="lbl-sm">x</text>
+<line x1="80.4" y1="305.8" x2="80.4" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="88.4" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M261.5,161.9 L261.4,157.1 L261.0,152.4 L260.4,147.7 L259.5,143.0 L258.4,138.4 L257.1,133.9 L255.5,129.4 L253.7,125.0 L251.7,120.8 L249.4,116.6 L246.9,112.5 L244.2,108.6 L241.3,104.9 L238.3,101.3 L235.0,97.8 L231.6,94.6 L228.0,91.5 L224.2,88.6 L220.3,85.9 L216.2,83.4 L212.1,81.2 L207.8,79.1 L203.4,77.3 L198.9,75.7 L194.4,74.4 L189.8,73.3 L185.1,72.4 L180.4,71.8 L175.7,71.4 L170.9,71.3 L166.2,71.4 L161.5,71.8 L156.8,72.4 L152.1,73.3 L147.5,74.4 L142.9,75.7 L138.5,77.3 L134.1,79.1 L129.8,81.2 L125.6,83.4 L121.6,85.9 L117.7,88.6 L113.9,91.5 L110.3,94.6 L106.9,97.8 L103.6,101.3 L100.5,104.9 L97.7,108.6 L95.0,112.5 L92.5,116.6 L90.2,120.8 L88.2,125.0 L86.4,129.4 L84.8,133.9 L83.4,138.4 L82.3,143.0 L81.5,147.7 L80.8,152.4 L80.5,157.1 L80.4,161.9 L80.5,166.6 L80.8,171.4 L81.5,176.1 L82.3,180.7 L83.4,185.3 L84.8,189.9 L86.4,194.3 L88.2,198.7 L90.2,203.0 L92.5,207.2 L95.0,211.2 L97.7,215.1 L100.5,218.9 L103.6,222.5 L106.9,225.9 L110.3,229.2 L113.9,232.3 L117.7,235.2 L121.6,237.9 L125.6,240.3 L129.8,242.6 L134.1,244.6 L138.5,246.5 L142.9,248.0 L147.5,249.4 L152.1,250.5 L156.8,251.4 L161.5,252.0 L166.2,252.3 L170.9,252.5 L175.7,252.3 L180.4,252.0 L185.1,251.4 L189.8,250.5 L194.4,249.4 L198.9,248.0 L203.4,246.5 L207.8,244.6 L212.1,242.6 L216.2,240.3 L220.3,237.9 L224.2,235.2 L228.0,232.3 L231.6,229.2 L235.0,225.9 L238.3,222.5 L241.3,218.9 L244.2,215.1 L246.9,211.2 L249.4,207.2 L251.7,203.0 L253.7,198.7 L255.5,194.3 L257.1,189.9 L258.4,185.3 L259.5,180.7 L260.4,176.1 L261.0,171.4 L261.4,166.6 L261.5,161.9" fill="#eaf2f8" stroke="#2471a3" stroke-width="2.6"/>
+<line x1="80.4" y1="161.9" x2="201.9" y2="76.8" stroke="#c0392b" stroke-width="2.4"/>
+<circle cx="201.9" cy="76.8" r="4" fill="#2c3e50"/>
+<text x="208.9" y="70.8" text-anchor="start" class="lbl-sm" style="fill:#c0392b;font-weight:bold">r = 4cos θ</text>
+<path d="M125.6,161.9 L125.6,160.5 L125.6,159.1 L125.5,157.7 L125.3,156.4 L125.1,155.0 L124.9,153.6 L124.6,152.3 L124.3,150.9 L123.9,149.6 L123.6,148.3 L123.1,146.9 L122.6,145.7 L122.1,144.4 L121.6,143.1 L121.0,141.8 L120.3,140.6 L119.7,139.4 L119.0,138.2 L118.2,137.0 L117.5,135.9" fill="none" stroke="#d35400" stroke-width="1.8"/>
+<text x="133.9" y="145.0" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ</text>
+<circle cx="170.9" cy="161.9" r="4" fill="#2c3e50"/>
+<text x="170.9" y="177.9" text-anchor="middle" class="lbl-sm">centre (2, 0)</text>
+<circle cx="261.5" cy="161.9" r="4" fill="#2c3e50"/>
+<text x="267.5" y="177.9" text-anchor="start" class="lbl-sm">(4, 0)</text>
+<text x="170.9" y="277.4" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold">θ runs from −π/2 to π/2</text>
+</svg>
+      <figcaption>Each ray from the origin enters the circle at \(r = 0\) and leaves at \(r = 4\cos\theta\); \(\theta\) only needs \(-\tfrac{\pi}{2}\) to \(\tfrac{\pi}{2}\).</figcaption>
+    </figure>
     <details class="reveal">
       <summary>Show solution</summary>
       <div class="body">
@@ -291,6 +409,28 @@
   <div class="problem" id="q7">
     <h2>Q7. Cartesian → Cylindrical <span class="tag">Point</span><span class="tag assign">Assignment</span></h2>
     <div class="prompt">Convert the Cartesian point \((3, 4, 5)\) to cylindrical coordinates.</div>
+    <figure class="diagram">
+<svg viewBox="40.7 2.6 380.9 315.4" role="img" aria-label="The point P(3, 4, 5) in 3-D. Its shadow (3, 4, 0) on the xy-plane is at distance r from the origin and angle θ from the x-axis; z is the height straight up from the shadow to P.">
+<line x1="150.0" y1="215.0" x2="80.7" y2="292.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="70.7" y="304.0" text-anchor="middle" class="lbl-sm">x</text>
+<line x1="150.0" y1="215.0" x2="351.6" y2="215.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="359.6" y="219.0" text-anchor="middle" class="lbl-sm">y</text>
+<line x1="150.0" y1="215.0" x2="150.0" y2="24.6" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="158.0" y="20.6" text-anchor="middle" class="lbl-sm">z</text>
+<path d="M150.0,215.0 L112.2,257.0 L224.2,257.0 L262.0,215.0" fill="none" stroke="#95a5a6" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="150.0" y1="215.0" x2="224.2" y2="257.0" stroke="#2471a3" stroke-width="2.4"/>
+<line x1="224.2" y1="257.0" x2="224.2" y2="117.0" stroke="#1e8449" stroke-width="2.4"/>
+<path d="M132.4,234.6 L134.2,234.6 L136.1,234.5 L138.0,234.4 L139.9,234.3 L141.8,234.1 L143.8,233.8 L145.8,233.6 L147.8,233.3 L149.8,232.9 L151.8,232.5 L153.7,232.1 L155.7,231.6 L157.7,231.1 L159.6,230.6 L161.6,230.0 L163.5,229.4 L165.4,228.8 L167.2,228.2 L169.0,227.5 L170.8,226.8" fill="none" stroke="#d35400" stroke-width="2"/>
+<circle cx="224.2" cy="117.0" r="4.5" fill="#2c3e50"/>
+<circle cx="224.2" cy="257.0" r="3.5" fill="#95a5a6"/>
+<text x="232.2" y="113.0" text-anchor="start" class="lbl-sm" style="font-weight:bold">P(3, 4, 5)</text>
+<text x="232.2" y="269.0" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d">(3, 4, 0)</text>
+<text x="183.1" y="250.0" text-anchor="end" class="lbl-sm" style="fill:#2471a3;font-weight:bold">r</text>
+<text x="231.2" y="187.0" text-anchor="start" class="lbl-sm" style="fill:#1e8449;font-weight:bold">z</text>
+<text x="150.6" y="249.4" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ</text>
+</svg>
+      <figcaption>Cylindrical coordinates = polar coordinates of the shadow \((x, y)\), plus the height \(z\).</figcaption>
+    </figure>
     <details class="reveal">
       <summary>Show solution</summary>
       <div class="body">
@@ -328,6 +468,25 @@
   <div class="problem" id="q10">
     <h2>Q10. Volume of a Cylinder <span class="tag">Triple Integral</span></h2>
     <div class="prompt">Find the volume inside the cylinder \(x^2 + y^2 \le 4\), between \(z = 0\) and \(z = 5\).</div>
+    <figure class="diagram">
+<svg viewBox="94.2 -7.0 310.8 321.0" role="img" aria-label="A cylinder of radius 2 standing on the xy-plane from z = 0 up to z = 5.">
+<line x1="200.0" y1="225.0" x2="143.3" y2="288.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="133.3" y="300.0" text-anchor="middle" class="lbl-sm">x</text>
+<line x1="200.0" y1="225.0" x2="335.0" y2="225.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="343.0" y="229.0" text-anchor="middle" class="lbl-sm">y</text>
+<line x1="200.0" y1="225.0" x2="200.0" y2="15.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="208.0" y="11.0" text-anchor="middle" class="lbl-sm">z</text>
+<path d="M173.0,255.0 L177.8,254.9 L182.7,254.6 L187.8,254.2 L192.9,253.5 L198.0,252.7 L203.2,251.7 L208.3,250.6 L213.4,249.3 L218.4,247.8 L223.3,246.2 L228.1,244.5 L232.7,242.6 L237.1,240.7 L241.2,238.6 L245.1,236.5 L248.7,234.3 L252.0,232.0 L255.0,229.7 L257.7,227.4 L260.0,225.0 L261.9,222.6 L263.5,220.3 L264.6,218.0 L265.4,215.7 L265.8,213.5 L265.7,211.4 L265.3,209.3 L264.4,207.4 L263.2,205.5 L261.5,203.8 L259.5,202.2 L257.1,200.7 L254.4,199.4 L251.3,198.3 L247.9,197.3 L244.2,196.5 L240.3,195.8 L236.1,195.4 L231.6,195.1 L227.0,195.0 L222.2,195.1 L217.3,195.4 L212.2,195.8 L207.1,196.5 L202.0,197.3 L196.8,198.3 L191.7,199.4 L186.6,200.7 L181.6,202.2 L176.7,203.8 L171.9,205.5 L167.3,207.4 L162.9,209.3 L158.8,211.4 L154.9,213.5 L151.3,215.7 L148.0,218.0 L145.0,220.3 L142.3,222.6 L140.0,225.0 L138.1,227.4 L136.5,229.7 L135.4,232.0 L134.6,234.3 L134.2,236.5 L134.3,238.6 L134.7,240.7 L135.6,242.6 L136.8,244.5 L138.5,246.2 L140.5,247.8 L142.9,249.3 L145.6,250.6 L148.7,251.7 L152.1,252.7 L155.8,253.5 L159.7,254.2 L163.9,254.6 L168.4,254.9 L173.0,255.0" fill="none" stroke="#2471a3" stroke-width="2.2"/>
+<path d="M173.0,105.0 L177.8,104.9 L182.7,104.6 L187.8,104.2 L192.9,103.5 L198.0,102.7 L203.2,101.7 L208.3,100.6 L213.4,99.3 L218.4,97.8 L223.3,96.2 L228.1,94.5 L232.7,92.6 L237.1,90.7 L241.2,88.6 L245.1,86.5 L248.7,84.3 L252.0,82.0 L255.0,79.7 L257.7,77.4 L260.0,75.0 L261.9,72.6 L263.5,70.3 L264.6,68.0 L265.4,65.7 L265.8,63.5 L265.7,61.4 L265.3,59.3 L264.4,57.4 L263.2,55.5 L261.5,53.8 L259.5,52.2 L257.1,50.7 L254.4,49.4 L251.3,48.3 L247.9,47.3 L244.2,46.5 L240.3,45.8 L236.1,45.4 L231.6,45.1 L227.0,45.0 L222.2,45.1 L217.3,45.4 L212.2,45.8 L207.1,46.5 L202.0,47.3 L196.8,48.3 L191.7,49.4 L186.6,50.7 L181.6,52.2 L176.7,53.8 L171.9,55.5 L167.3,57.4 L162.9,59.3 L158.8,61.4 L154.9,63.5 L151.3,65.7 L148.0,68.0 L145.0,70.3 L142.3,72.6 L140.0,75.0 L138.1,77.4 L136.5,79.7 L135.4,82.0 L134.6,84.3 L134.2,86.5 L134.3,88.6 L134.7,90.7 L135.6,92.6 L136.8,94.5 L138.5,96.2 L140.5,97.8 L142.9,99.3 L145.6,100.6 L148.7,101.7 L152.1,102.7 L155.8,103.5 L159.7,104.2 L163.9,104.6 L168.4,104.9 L173.0,105.0" fill="#eaf2f8" stroke="#2471a3" stroke-width="2.2"/>
+<line x1="134.2" y1="236.5" x2="134.2" y2="86.5" stroke="#2471a3" stroke-width="2.2"/>
+<line x1="265.8" y1="213.5" x2="265.8" y2="63.5" stroke="#2471a3" stroke-width="2.2"/>
+<line x1="200.0" y1="225.0" x2="260.0" y2="225.0" stroke="#c0392b" stroke-width="2"/>
+<text x="230.0" y="240.0" text-anchor="middle" class="lbl-sm" style="fill:#c0392b;font-weight:bold">r = 2</text>
+<line x1="287.0" y1="225.0" x2="287.0" y2="75.0" stroke="#1e8449" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="293.0" y="150.0" text-anchor="start" class="lbl-sm" style="fill:#1e8449;font-weight:bold">z: 0 → 5</text>
+</svg>
+      <figcaption>The solid is a stack of discs of radius 2 from \(z = 0\) to \(z = 5\).</figcaption>
+    </figure>
     <p>Limits: \(0 \le r \le 2\), \(0 \le \theta \le 2\pi\), \(0 \le z \le 5\). Don't forget the Jacobian \(r\).</p>
     <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^2\!\!\int_0^5 r\,dz\,dr\,d\theta $$</div>
     <div class="math-block">$$ = \int_0^{2\pi}\!\!\int_0^2 5r\,dr\,d\theta = \int_0^{2\pi}\left[\frac{5r^2}{2}\right]_0^2 d\theta $$</div>
@@ -342,6 +501,27 @@
   <div class="problem" id="q11">
     <h2>Q11. Cartesian → Spherical <span class="tag">Point</span></h2>
     <div class="prompt">Convert the Cartesian point \((1, 1, 1)\) to spherical coordinates.</div>
+    <figure class="diagram">
+<svg viewBox="84.5 88.6 274.3 213.0" role="img" aria-label="The point (1, 1, 1): ρ = √3 is its distance from the origin, θ = π/4 is the angle of its shadow from the x-axis, and φ ≈ 54.7 degrees is the angle down from the positive z-axis.">
+<line x1="170.0" y1="225.0" x2="124.5" y2="275.6" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="114.5" y="287.6" text-anchor="middle" class="lbl-sm">x</text>
+<line x1="170.0" y1="225.0" x2="288.8" y2="225.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="296.8" y="229.0" text-anchor="middle" class="lbl-sm">y</text>
+<line x1="170.0" y1="225.0" x2="170.0" y2="110.6" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="178.0" y="106.6" text-anchor="middle" class="lbl-sm">z</text>
+<line x1="170.0" y1="225.0" x2="192.0" y2="245.0" stroke="#95a5a6" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="192.0" y1="245.0" x2="192.0" y2="205.0" stroke="#95a5a6" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="170.0" y1="225.0" x2="192.0" y2="205.0" stroke="#2471a3" stroke-width="2.6"/>
+<path d="M152.2,244.8 L153.7,244.8 L155.3,244.7 L157.0,244.7 L158.6,244.6 L160.2,244.4 L161.9,244.3 L163.6,244.1 L165.3,243.8 L167.0,243.6 L168.7,243.3 L170.4,243.0 L172.1,242.6 L173.8,242.3 L175.5,241.9 L177.2,241.5 L178.9,241.0 L180.5,240.5 L182.2,240.1 L183.8,239.5 L185.4,239.0" fill="none" stroke="#d35400" stroke-width="2"/>
+<path d="M170.0,188.0 L170.7,188.7 L171.4,189.5 L172.1,190.3 L172.7,191.2 L173.4,192.2 L174.1,193.2 L174.7,194.4 L175.4,195.6 L176.0,196.8 L176.6,198.2 L177.2,199.6 L177.8,201.0 L178.4,202.5 L178.9,204.1 L179.4,205.7 L179.9,207.4 L180.4,209.1 L180.9,210.8 L181.3,212.5 L181.7,214.3" fill="none" stroke="#8e44ad" stroke-width="2"/>
+<circle cx="192.0" cy="205.0" r="4.5" fill="#2c3e50"/>
+<text x="200.0" y="201.0" text-anchor="start" class="lbl-sm" style="font-weight:bold">P(1, 1, 1)</text>
+<text x="175.0" y="213.0" text-anchor="end" class="lbl-sm" style="fill:#2471a3;font-weight:bold">ρ = √3</text>
+<text x="172.5" y="259.3" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ = π/4</text>
+<text x="177.0" y="170.4" text-anchor="start" class="lbl-sm" style="fill:#8e44ad;font-weight:bold">φ ≈ 54.7°</text>
+</svg>
+      <figcaption>\(\rho\) = distance from the origin, \(\theta\) = angle of the shadow (as in polar), \(\phi\) = angle down from the \(+z\)-axis.</figcaption>
+    </figure>
     <div class="math-block">$$ \rho = \sqrt{1^2 + 1^2 + 1^2} = \sqrt3 $$</div>
     <div class="math-block">$$ \theta = \tan^{-1}\frac{1}{1} = \frac{\pi}{4} \quad (\text{Quadrant I}) $$</div>
     <div class="math-block">$$ \phi = \cos^{-1}\frac{z}{\rho} = \cos^{-1}\frac{1}{\sqrt3} $$</div>
@@ -353,6 +533,27 @@
   <div class="problem" id="q12">
     <h2>Q12. Spherical → Cartesian <span class="tag">Point</span></h2>
     <div class="prompt">Convert \(\left(4, \tfrac{\pi}{3}, \tfrac{\pi}{4}\right)\) into Cartesian coordinates.</div>
+    <figure class="diagram">
+<svg viewBox="43.1 -15.4 423.7 363.0" role="img" aria-label="The spherical point ρ = 4, θ = π/3, φ = π/4: 4 units from the origin, tilted 45 degrees down from the z-axis, with its shadow at 60 degrees from the x-axis.">
+<line x1="170.0" y1="225.0" x2="83.1" y2="321.6" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="73.1" y="333.6" text-anchor="middle" class="lbl-sm">x</text>
+<line x1="170.0" y1="225.0" x2="396.8" y2="225.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="404.8" y="229.0" text-anchor="middle" class="lbl-sm">y</text>
+<line x1="170.0" y1="225.0" x2="170.0" y2="6.6" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="178.0" y="2.6" text-anchor="middle" class="lbl-sm">z</text>
+<line x1="170.0" y1="225.0" x2="233.5" y2="249.7" stroke="#95a5a6" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="233.5" y1="249.7" x2="233.5" y2="150.8" stroke="#95a5a6" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="170.0" y1="225.0" x2="233.5" y2="150.8" stroke="#2471a3" stroke-width="2.6"/>
+<path d="M136.0,262.8 L140.0,262.7 L144.1,262.6 L148.2,262.3 L152.4,262.0 L156.7,261.5 L161.0,260.9 L165.3,260.3 L169.7,259.5 L174.0,258.7 L178.3,257.7 L182.6,256.7 L186.9,255.6 L191.1,254.4 L195.3,253.1 L199.4,251.7 L203.4,250.3 L207.3,248.8 L211.2,247.2 L214.9,245.6 L218.5,243.9" fill="none" stroke="#d35400" stroke-width="2"/>
+<path d="M170.0,154.4 L171.8,155.2 L173.5,156.0 L175.3,157.0 L177.1,158.1 L178.8,159.2 L180.6,160.5 L182.3,161.9 L184.0,163.3 L185.7,164.9 L187.3,166.6 L188.9,168.3 L190.5,170.1 L192.1,172.1 L193.6,174.1 L195.1,176.1 L196.6,178.3 L198.0,180.5 L199.4,182.8 L200.7,185.2 L202.0,187.6" fill="none" stroke="#8e44ad" stroke-width="2"/>
+<circle cx="233.5" cy="150.8" r="4.5" fill="#2c3e50"/>
+<text x="241.5" y="146.8" text-anchor="start" class="lbl-sm" style="font-weight:bold">P</text>
+<text x="195.7" y="185.9" text-anchor="end" class="lbl-sm" style="fill:#2471a3;font-weight:bold">ρ = 4</text>
+<text x="183.3" y="275.4" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold">θ = π/3</text>
+<text x="177.0" y="120.8" text-anchor="start" class="lbl-sm" style="fill:#8e44ad;font-weight:bold">φ = π/4</text>
+</svg>
+      <figcaption>Go out \(\rho = 4\) at \(45^\circ\) from the \(z\)-axis, in the vertical half-plane at \(60^\circ\) from the \(x\)-axis.</figcaption>
+    </figure>
     <div class="note" style="margin-top:0">
       <strong>The prompt on the sheet is garbled</strong> — it contains two overlapping versions of the point,
       one of which is broken. This solution uses the cleanly typeset one, \(\left(4, \tfrac{\pi}{3}, \tfrac{\pi}{4}\right)\),
@@ -373,6 +574,22 @@
   <div class="problem" id="q13">
     <h2>Q13. Volume of a Ball <span class="tag">Triple Integral</span><span class="tag assign">Assignment</span></h2>
     <div class="prompt">Find the volume of the sphere \(x^2 + y^2 + z^2 \le 9\) using spherical coordinates.</div>
+    <figure class="diagram">
+<svg viewBox="51.4 -20.0 364.6 276.0" role="img" aria-label="A solid ball of radius 3 centred at the origin; in spherical coordinates ρ runs from 0 to 3, φ from 0 to π and θ from 0 to 2π.">
+<line x1="190.0" y1="140.0" x2="127.9" y2="209.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="117.9" y="221.0" text-anchor="middle" class="lbl-sm">x</text>
+<line x1="190.0" y1="140.0" x2="346.0" y2="140.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="354.0" y="144.0" text-anchor="middle" class="lbl-sm">y</text>
+<line x1="190.0" y1="140.0" x2="190.0" y2="2.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="198.0" y="-2.0" text-anchor="middle" class="lbl-sm">z</text>
+<circle cx="190.0" cy="140.0" r="90.0" fill="#eaf2f8" fill-opacity="0.55" stroke="#2471a3" stroke-width="2.4"/>
+<path d="M149.5,185.0 L156.7,184.9 L164.1,184.4 L171.6,183.8 L179.3,182.8 L187.0,181.6 L194.8,180.1 L202.5,178.4 L210.1,176.4 L217.7,174.2 L225.0,171.8 L232.1,169.2 L239.0,166.5 L245.6,163.5 L251.8,160.4 L257.7,157.2 L263.1,153.9 L268.1,150.5 L272.6,147.0 L276.5,143.5 L280.0,140.0 L282.9,136.5 L285.2,133.0 L287.0,129.5 L288.1,126.1 L288.6,122.8 L288.6,119.6 L287.9,116.5 L286.6,113.5 L284.7,110.8 L282.3,108.2 L279.2,105.8 L275.7,103.6 L271.6,101.6 L266.9,99.9 L261.9,98.4 L256.3,97.2 L250.4,96.2 L244.1,95.6 L237.4,95.1 L230.5,95.0 L223.3,95.1 L215.9,95.6 L208.4,96.2 L200.7,97.2 L193.0,98.4 L185.2,99.9 L177.5,101.6 L169.9,103.6 L162.3,105.8 L155.0,108.2 L147.9,110.8 L141.0,113.5 L134.4,116.5 L128.2,119.6 L122.3,122.8 L116.9,126.1 L111.9,129.5 L107.4,133.0 L103.5,136.5 L100.0,140.0 L97.1,143.5 L94.8,147.0 L93.0,150.5 L91.9,153.9 L91.4,157.2 L91.4,160.4 L92.1,163.5 L93.4,166.5 L95.3,169.2 L97.7,171.8 L100.8,174.2 L104.3,176.4 L108.4,178.4 L113.1,180.1 L118.1,181.6 L123.7,182.8 L129.6,183.8 L135.9,184.4 L142.6,184.9 L149.5,185.0" fill="none" stroke="#2471a3" stroke-width="1.3" stroke-dasharray="5 4"/>
+<line x1="190.0" y1="140.0" x2="253.6" y2="76.4" stroke="#c0392b" stroke-width="2.2"/>
+<text x="227.8" y="108.2" text-anchor="start" class="lbl-sm" style="fill:#c0392b;font-weight:bold">ρ = 3</text>
+<text x="190.0" y="254.0" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold">ρ: 0 → 3,  φ: 0 → π,  θ: 0 → 2π</text>
+</svg>
+      <figcaption>The whole ball: every direction (\(\phi\) from 0 to \(\pi\), \(\theta\) all the way round) out to radius 3.</figcaption>
+    </figure>
     <details class="reveal">
       <summary>Show solution</summary>
       <div class="body">
@@ -392,6 +609,19 @@
   <div class="problem" id="q14">
     <h2>Q14. Volume of a Hemisphere <span class="tag">Triple Integral</span></h2>
     <div class="prompt">Find the volume inside the sphere \(\rho \le 4\) and above the \(xy\)-plane.</div>
+    <figure class="diagram">
+<svg viewBox="0 0 420 285" role="img" aria-label="Side view of the upper half of a ball of radius 4: a dome over a flat base on the xy-plane.">
+<line x1="15.0" y1="225.0" x2="405.0" y2="225.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<line x1="210.0" y1="235.0" x2="210.0" y2="20.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="401.0" y="241.0" text-anchor="end" class="lbl-sm">x</text>
+<text x="218.0" y="30.0" text-anchor="start" class="lbl-sm">z</text>
+<path d="M40,225 A170,170 0 0 1 380,225 Z" fill="#eaf2f8" stroke="#2471a3" stroke-width="2.6"/>
+<line x1="210.0" y1="225.0" x2="300.1" y2="80.8" stroke="#1e8449" stroke-width="1.8" stroke-dasharray="5 4"/>
+<text x="267.5" y="145.7" text-anchor="start" class="lbl-sm" style="fill:#1e8449;font-weight:bold">ρ = 4</text>
+<text x="210.0" y="275.0" text-anchor="middle" class="lbl-sm">ρ: 0 → 4,  φ: 0 → π/2,  θ: 0 → 2π</text>
+</svg>
+      <figcaption>Above the \(xy\)-plane means \(\phi\) stops at \(\tfrac{\pi}{2}\) (the equator).</figcaption>
+    </figure>
     <p>"Above the \(xy\)-plane" means \(z \ge 0\), which in spherical coordinates is \(0 \le \phi \le \tfrac{\pi}{2}\). \(\theta\) still goes all the way round.</p>
     <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^{\pi/2}\!\!\int_0^{4} \rho^2\sin\phi\;d\rho\,d\phi\,d\theta $$</div>
     <div class="math-block">$$ \int_0^4 \rho^2\,d\rho = \frac{64}{3} $$</div>

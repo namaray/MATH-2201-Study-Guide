@@ -238,7 +238,15 @@
   <link rel="stylesheet" href="assets/site.css">
   <script src="assets/site.js" defer></script>
 </head>
-<body class="page">
+<body class="page rail">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2471a3"/></marker>
+  <marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker>
+  <marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e8449"/></marker>
+  <marker id="ar-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8e44ad"/></marker>
+  <marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#95a5a6"/></marker>
+  <marker id="ar-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d35400"/></marker>
+</defs></svg>
 
 
   <h1>CT4 Practice Worksheet — Solutions</h1>
@@ -543,6 +551,24 @@
       \(h\) is the height of a hill above the point \((x,y)\) on a map. The gradient is a compass needle
       printed on the map: it points the way to walk if you want to climb as steeply as possible.
     </div>
+    <figure class="diagram">
+<svg viewBox="0 0 400 249" role="img" aria-label="Contour lines of the elevation h = x² + 4y² − 2xy are tilted ellipses. At P(2, 1), on the contour h = 4, the gradient (2, 4) points straight uphill, perpendicular to the contour.">
+<line x1="18.0" y1="128.8" x2="384.0" y2="128.8" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="380.0" y="144.8" text-anchor="end" class="lbl-sm">x</text>
+<line x1="192.1" y1="231.7" x2="192.1" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="200.1" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M237.4,115.1 L237.6,116.1 L237.7,117.1 L237.7,118.1 L237.6,119.2 L237.3,120.3 L236.9,121.4 L236.4,122.5 L235.7,123.7 L235.0,124.9 L234.1,126.1 L233.1,127.2 L232.0,128.4 L230.8,129.6 L229.5,130.8 L228.0,132.0 L226.5,133.2 L224.9,134.4 L223.2,135.5 L221.4,136.6 L219.5,137.8 L217.6,138.8 L215.6,139.9 L213.5,140.9 L211.4,141.9 L209.2,142.9 L206.9,143.8 L204.6,144.7 L202.3,145.5 L200.0,146.3 L197.6,147.1 L195.2,147.8 L192.8,148.4 L190.5,149.0 L188.1,149.5 L185.7,150.0 L183.3,150.4 L181.0,150.8 L178.7,151.1 L176.4,151.3 L174.2,151.5 L172.0,151.6 L169.9,151.6 L167.9,151.6 L165.9,151.6 L163.9,151.4 L162.1,151.2 L160.3,151.0 L158.7,150.6 L157.1,150.3 L155.6,149.8 L154.2,149.3 L152.9,148.8 L151.8,148.2 L150.7,147.5 L149.7,146.8 L148.9,146.0 L148.2,145.2 L147.6,144.4 L147.1,143.5 L146.8,142.5 L146.5,141.6 L146.4,140.6 L146.5,139.5 L146.6,138.4 L146.9,137.4 L147.3,136.2 L147.8,135.1 L148.4,133.9 L149.2,132.8 L150.1,131.6 L151.1,130.4 L152.2,129.2 L153.4,128.0 L154.7,126.8 L156.1,125.6 L157.7,124.4 L159.3,123.3 L161.0,122.1 L162.8,121.0 L164.6,119.9 L166.6,118.8 L168.6,117.7 L170.7,116.7 L172.8,115.7 L175.0,114.7 L177.3,113.8 L179.5,112.9 L181.9,112.1 L184.2,111.3 L186.6,110.6 L188.9,109.9 L191.3,109.2 L193.7,108.6 L196.1,108.1 L198.5,107.6 L200.8,107.2 L203.2,106.9 L205.5,106.6 L207.7,106.3 L210.0,106.2 L212.1,106.0 L214.3,106.0 L216.3,106.0 L218.3,106.1 L220.2,106.2 L222.1,106.4 L223.8,106.7 L225.5,107.0 L227.1,107.4 L228.6,107.8 L230.0,108.3 L231.3,108.9 L232.4,109.5 L233.5,110.1 L234.4,110.8 L235.3,111.6 L236.0,112.4 L236.6,113.3 L237.1,114.2 L237.4,115.1" fill="none" stroke="#a9c6de" stroke-width="1.6"/>
+<path d="M282.7,101.4 L283.2,103.3 L283.4,105.3 L283.4,107.4 L283.1,109.6 L282.5,111.8 L281.7,114.0 L280.7,116.3 L279.4,118.6 L277.9,120.9 L276.1,123.3 L274.1,125.7 L271.9,128.1 L269.5,130.5 L266.9,132.8 L264.0,135.2 L261.0,137.6 L257.7,139.9 L254.3,142.2 L250.7,144.5 L247.0,146.7 L243.1,148.9 L239.1,151.0 L234.9,153.1 L230.6,155.0 L226.2,157.0 L221.7,158.8 L217.2,160.6 L212.6,162.2 L207.9,163.8 L203.1,165.3 L198.4,166.7 L193.6,168.0 L188.8,169.2 L184.1,170.2 L179.3,171.2 L174.6,172.0 L169.9,172.7 L165.3,173.3 L160.8,173.8 L156.3,174.1 L152.0,174.4 L147.7,174.5 L143.6,174.5 L139.6,174.3 L135.8,174.0 L132.1,173.6 L128.6,173.1 L125.2,172.5 L122.1,171.7 L119.1,170.8 L116.3,169.8 L113.8,168.7 L111.4,167.5 L109.3,166.2 L107.4,164.8 L105.7,163.3 L104.3,161.6 L103.1,159.9 L102.1,158.1 L101.4,156.3 L101.0,154.3 L100.8,152.3 L100.8,150.2 L101.1,148.1 L101.7,145.9 L102.5,143.6 L103.5,141.4 L104.8,139.1 L106.3,136.7 L108.1,134.3 L110.0,132.0 L112.3,129.6 L114.7,127.2 L117.3,124.8 L120.2,122.4 L123.2,120.1 L126.5,117.7 L129.9,115.4 L133.4,113.2 L137.2,110.9 L141.1,108.8 L145.1,106.6 L149.3,104.6 L153.6,102.6 L158.0,100.7 L162.4,98.8 L167.0,97.1 L171.6,95.4 L176.3,93.8 L181.0,92.3 L185.8,90.9 L190.6,89.7 L195.4,88.5 L200.1,87.4 L204.9,86.5 L209.6,85.6 L214.3,84.9 L218.9,84.3 L223.4,83.8 L227.8,83.5 L232.2,83.3 L236.4,83.2 L240.6,83.2 L244.5,83.3 L248.4,83.6 L252.1,84.0 L255.6,84.5 L258.9,85.2 L262.1,85.9 L265.1,86.8 L267.8,87.8 L270.4,88.9 L272.8,90.1 L274.9,91.4 L276.8,92.9 L278.5,94.4 L279.9,96.0 L281.1,97.7 L282.0,99.5 L282.7,101.4" fill="none" stroke="#c0392b" stroke-width="2.6"/>
+<path d="M328.1,87.6 L328.8,90.6 L329.1,93.6 L329.0,96.7 L328.5,99.9 L327.7,103.2 L326.5,106.6 L325.0,110.0 L323.1,113.5 L320.8,117.0 L318.1,120.5 L315.2,124.1 L311.8,127.7 L308.2,131.3 L304.2,134.8 L300.0,138.4 L295.4,141.9 L290.5,145.4 L285.4,148.9 L280.1,152.3 L274.4,155.6 L268.6,158.9 L262.5,162.1 L256.3,165.2 L249.9,168.2 L243.3,171.0 L236.6,173.8 L229.7,176.4 L222.8,179.0 L215.8,181.3 L208.7,183.6 L201.5,185.6 L194.4,187.6 L187.2,189.3 L180.0,190.9 L172.9,192.3 L165.8,193.6 L158.8,194.7 L151.9,195.6 L145.1,196.3 L138.5,196.8 L131.9,197.2 L125.6,197.3 L119.4,197.3 L113.4,197.0 L107.7,196.6 L102.1,196.0 L96.8,195.3 L91.8,194.3 L87.1,193.2 L82.6,191.8 L78.5,190.4 L74.6,188.7 L71.1,186.9 L67.9,184.9 L65.0,182.8 L62.5,180.5 L60.4,178.0 L58.6,175.5 L57.2,172.8 L56.1,170.0 L55.4,167.1 L55.1,164.0 L55.2,160.9 L55.6,157.7 L56.5,154.4 L57.6,151.1 L59.2,147.6 L61.1,144.2 L63.4,140.7 L66.0,137.1 L69.0,133.5 L72.3,130.0 L76.0,126.4 L79.9,122.8 L84.2,119.2 L88.8,115.7 L93.6,112.2 L98.8,108.7 L104.1,105.3 L109.7,102.0 L115.6,98.7 L121.6,95.6 L127.9,92.5 L134.3,89.5 L140.9,86.6 L147.6,83.8 L154.4,81.2 L161.4,78.7 L168.4,76.3 L175.5,74.1 L182.7,72.0 L189.8,70.1 L197.0,68.3 L204.2,66.7 L211.3,65.3 L218.3,64.0 L225.4,63.0 L232.3,62.1 L239.1,61.4 L245.7,60.8 L252.3,60.5 L258.6,60.3 L264.8,60.4 L270.8,60.6 L276.5,61.0 L282.1,61.6 L287.3,62.4 L292.4,63.3 L297.1,64.5 L301.6,65.8 L305.7,67.3 L309.6,68.9 L313.1,70.8 L316.3,72.7 L319.2,74.9 L321.7,77.2 L323.8,79.6 L325.6,82.1 L327.0,84.8 L328.1,87.6" fill="none" stroke="#a9c6de" stroke-width="1.6"/>
+<line x1="271.2" y1="89.3" x2="292.9" y2="45.8" stroke="#1e8449" stroke-width="2.8" marker-end="url(#ar-green)"/>
+<circle cx="271.2" cy="89.3" r="4" fill="#2c3e50"/>
+<text x="263.2" y="103.3" text-anchor="end" class="lbl-sm">P(2, 1)</text>
+<text x="296.9" y="49.8" text-anchor="start" class="lbl-sm" style="fill:#1e8449;font-weight:bold">∇h = (2, 4)</text>
+<text x="37.9" y="39.8" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d">contours h = 1, 4, 9</text>
+<text x="168.4" y="194.1" text-anchor="middle" class="lbl-sm" style="fill:#c0392b;font-weight:bold">h = 4 through P</text>
+</svg>
+      <figcaption>Contours are lines of equal height. The gradient at \(P\) points straight uphill, at right angles to the contour through \(P\).</figcaption>
+    </figure>
 
     <span class="step">(a) Partial derivatives</span>
     <p class="why">For \(h_x\), \(4y^2\) is constant (gives 0), and \(-2xy\) gives \(-2y\). For \(h_y\), \(x^2\) is constant, \(4y^2\) gives \(8y\), and \(-2xy\) gives \(-2x\).</p>
@@ -586,6 +612,21 @@
       vector because we only care about <em>which way</em> you walk, not how long the arrow \(\mathbf{v}\) happens
       to be. Without dividing by \(|\mathbf{v}|\), doubling \(\mathbf{v}\) would double the answer — which makes no sense.
     </div>
+    <figure class="diagram">
+<svg viewBox="0 0 360 364" role="img" aria-label="At P(1, 2) the gradient (4, 13) points steeply up. The unit direction u = (3/5, 4/5) points elsewhere; the directional derivative 12.8 is the length of the gradient's shadow on u.">
+<line x1="52.4" y1="316.4" x2="128.9" y2="67.7" stroke="#1e8449" stroke-width="2.8" marker-end="url(#ar-green)"/>
+<line x1="128.9" y1="67.7" x2="199.3" y2="120.5" stroke="#95a5a6" stroke-width="1.3" stroke-dasharray="4 3"/>
+<line x1="52.4" y1="316.4" x2="199.3" y2="120.5" stroke="#d35400" stroke-width="5"/>
+<line x1="52.4" y1="316.4" x2="102.6" y2="249.5" stroke="#2471a3" stroke-width="2.8" marker-end="url(#ar-blue)"/>
+<circle cx="52.4" cy="316.4" r="4" fill="#2c3e50"/>
+<text x="46.4" y="332.4" text-anchor="end" class="lbl-sm">P(1, 2)</text>
+<text x="134.9" y="71.7" text-anchor="start" class="lbl-sm" style="fill:#1e8449;font-weight:bold">∇f = (4, 13)</text>
+<text x="110.6" y="259.5" text-anchor="start" class="lbl-sm" style="fill:#2471a3;font-weight:bold">u = (3/5, 4/5)</text>
+<text x="207.3" y="130.5" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold">Dᵤf = ∇f · u = 12.8</text>
+<text x="61.2" y="43.6" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d">shadow of ∇f on u</text>
+</svg>
+      <figcaption>The directional derivative is how much of \(\nabla f\) points along \(\mathbf{u}\): the length of its shadow on \(\mathbf{u}\).</figcaption>
+    </figure>
 
     <span class="step">Step 1 — Gradient, then evaluate at P</span>
     <div class="math-block">$$ \nabla f = \langle 2xy,\ x^2 + 6y\rangle $$</div>
@@ -1014,6 +1055,26 @@
       First ask: is there a shortcut? Only if the field is conservative. Here it isn't — so the work genuinely
       depends on the route, and we must follow the parabola step by step.
     </div>
+    <figure class="diagram">
+<svg viewBox="0 0 380 337" role="img" aria-label="The path y = x² from (0, 0) to (1, 1), with arrows showing the force F at points along it. Work adds up the part of F pointing along the direction of motion.">
+<line x1="18.0" y1="261.5" x2="364.0" y2="261.5" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="360.0" y="277.5" text-anchor="end" class="lbl-sm">x</text>
+<line x1="84.9" y1="319.9" x2="84.9" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="92.9" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<line x1="126.9" y1="251.0" x2="126.9" y2="214.0" stroke="#c0392b" stroke-width="2" marker-end="url(#ar-red)"/>
+<line x1="169.0" y1="219.4" x2="169.0" y2="182.4" stroke="#c0392b" stroke-width="2" marker-end="url(#ar-red)"/>
+<line x1="211.0" y1="166.9" x2="211.0" y2="129.9" stroke="#c0392b" stroke-width="2" marker-end="url(#ar-red)"/>
+<path d="M84.9,261.5 L86.3,261.5 L87.7,261.4 L89.1,261.4 L90.5,261.3 L91.9,261.2 L93.3,261.1 L94.7,260.9 L96.1,260.7 L97.5,260.5 L98.9,260.3 L100.3,260.1 L101.7,259.8 L103.1,259.5 L104.5,259.2 L105.9,258.9 L107.3,258.5 L108.7,258.1 L110.1,257.7 L111.5,257.3 L112.9,256.8 L114.3,256.3 L115.7,255.8 L117.1,255.3 L118.5,254.8 L119.9,254.2 L121.3,253.6 L122.7,253.0 L124.1,252.3 L125.5,251.7 L126.9,251.0 L128.3,250.3 L129.7,249.5 L131.1,248.8 L132.5,248.0 L133.9,247.2 L135.3,246.3 L136.7,245.5 L138.1,244.6 L139.5,243.7 L140.9,242.8 L142.3,241.9 L143.7,240.9 L145.1,239.9 L146.5,238.9 L147.9,237.8 L149.4,236.8 L150.8,235.7 L152.2,234.6 L153.6,233.4 L155.0,232.3 L156.4,231.1 L157.8,229.9 L159.2,228.7 L160.6,227.4 L162.0,226.2 L163.4,224.9 L164.8,223.5 L166.2,222.2 L167.6,220.8 L169.0,219.4 L170.4,218.0 L171.8,216.6 L173.2,215.1 L174.6,213.6 L176.0,212.1 L177.4,210.6 L178.8,209.1 L180.2,207.5 L181.6,205.9 L183.0,204.3 L184.4,202.6 L185.8,200.9 L187.2,199.2 L188.6,197.5 L190.0,195.8 L191.4,194.0 L192.8,192.2 L194.2,190.4 L195.6,188.6 L197.0,186.7 L198.4,184.8 L199.8,182.9 L201.2,181.0 L202.6,179.1 L204.0,177.1 L205.4,175.1 L206.8,173.1 L208.2,171.0 L209.6,169.0 L211.0,166.9 L212.4,164.8 L213.8,162.6 L215.2,160.5 L216.6,158.3 L218.0,156.1 L219.4,153.8 L220.8,151.6 L222.2,149.3 L223.6,147.0 L225.0,144.7 L226.4,142.3 L227.8,140.0 L229.2,137.6 L230.6,135.1 L232.1,132.7 L233.5,130.2 L234.9,127.8 L236.3,125.2 L237.7,122.7 L239.1,120.1 L240.5,117.6 L241.9,115.0 L243.3,112.3 L244.7,109.7 L246.1,107.0 L247.5,104.3 L248.9,101.6 L250.3,98.8 L251.7,96.1 L253.1,93.3" fill="none" stroke="#2471a3" stroke-width="2.8"/>
+<path d="M229.5,137.1 L231.2,134.2 L232.9,131.2 L234.6,128.3 L236.3,125.2" fill="none" stroke="#2471a3" stroke-width="2.8" marker-end="url(#ar-blue)"/>
+<circle cx="84.9" cy="261.5" r="4" fill="#2c3e50"/>
+<text x="90.9" y="277.5" text-anchor="start" class="lbl-sm">(0, 0)</text>
+<circle cx="253.1" cy="93.3" r="4" fill="#2c3e50"/>
+<text x="261.1" y="97.3" text-anchor="start" class="lbl-sm">(1, 1)</text>
+<text x="256.4" y="169.0" text-anchor="start" class="lbl-sm" style="fill:#2471a3;font-weight:bold">C: y = x²</text>
+<text x="93.3" y="46.2" text-anchor="start" class="lbl-sm" style="fill:#c0392b;font-weight:bold">red arrows: F along the path</text>
+</svg>
+      <figcaption>Work adds up the part of the force that points along the path, all the way from \((0,0)\) to \((1,1)\).</figcaption>
+    </figure>
 
     <span class="step">Step 1 — Check for a shortcut (the slide test)</span>
     <div class="math-block">$$ P = x^2 - y, \qquad Q = 2xy + 1 $$</div>
@@ -1074,6 +1135,26 @@
       <strong>cancel</strong>. The only edges that survive are on the outer boundary. So:
       <em>total spin inside = circulation around the edge.</em> That's the whole theorem.
     </div>
+    <figure class="diagram">
+<svg viewBox="0 0 380 249" role="img" aria-label="The rectangle 0 ≤ x ≤ 2, 0 ≤ y ≤ 1 with its boundary traversed counterclockwise. The Green's integrand is the constant 6, so the answer is 6 times the area 2.">
+<line x1="18.0" y1="180.4" x2="364.0" y2="180.4" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="360.0" y="196.4" text-anchor="end" class="lbl-sm">x</text>
+<line x1="74.2" y1="231.8" x2="74.2" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="82.2" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M74.2,180.4 L267.2,180.4 L267.2,83.9 L74.2,83.9 Z" fill="#eaf2f8" stroke="#2471a3" stroke-width="2.4"/>
+<line x1="132.1" y1="180.4" x2="209.3" y2="180.4" stroke="#8e44ad" stroke-width="2.6" marker-end="url(#ar-purple)"/>
+<line x1="267.2" y1="156.2" x2="267.2" y2="108.0" stroke="#8e44ad" stroke-width="2.6" marker-end="url(#ar-purple)"/>
+<line x1="209.3" y1="83.9" x2="132.1" y2="83.9" stroke="#8e44ad" stroke-width="2.6" marker-end="url(#ar-purple)"/>
+<line x1="74.2" y1="108.0" x2="74.2" y2="156.2" stroke="#8e44ad" stroke-width="2.6" marker-end="url(#ar-purple)"/>
+<circle cx="267.2" cy="83.9" r="4" fill="#2c3e50"/>
+<text x="273.2" y="77.9" text-anchor="start" class="lbl-sm">(2, 1)</text>
+<text x="170.7" y="120.5" text-anchor="middle" class="lbl-sm" style="fill:#2471a3;font-weight:bold">∂Q/∂x − ∂P/∂y = 6</text>
+<text x="170.7" y="145.6" text-anchor="middle" class="lbl-sm" style="fill:#2471a3">area = 2</text>
+<text x="278.8" y="132.1" text-anchor="start" class="lbl-sm" style="fill:#8e44ad;font-weight:bold">counter-</text>
+<text x="278.8" y="146.1" text-anchor="start" class="lbl-sm" style="fill:#8e44ad;font-weight:bold">clockwise</text>
+</svg>
+      <figcaption>Green's theorem swaps the walk around the edge for an integral over the inside. Here the integrand is the constant 6.</figcaption>
+    </figure>
 
     <span class="step">Step 1 — Identify P and Q</span>
     <p class="why">\(P\) is whatever multiplies \(dx\); \(Q\) is whatever multiplies \(dy\).</p>
@@ -1115,6 +1196,26 @@
       Same theorem, but now the integrand isn't constant, so we must actually integrate — and the region is
       a triangle, so the hard part is <strong>describing the region with limits</strong>. Sketch it first.
     </div>
+    <figure class="diagram">
+<svg viewBox="0 0 380 240" role="img" aria-label="The triangle with vertices (0, 0), (2, 0), (2, 1), traversed counterclockwise. For each x from 0 to 2, y runs from 0 up to the slanted edge y = x/2.">
+<line x1="18.0" y1="170.7" x2="364.0" y2="170.7" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="360.0" y="186.7" text-anchor="end" class="lbl-sm">x</text>
+<line x1="74.2" y1="222.1" x2="74.2" y2="16.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
+<text x="82.2" y="24.0" text-anchor="start" class="lbl-sm">y</text>
+<path d="M74.2,170.7 L267.2,170.7 L267.2,74.2 Z" fill="#eaf2f8" stroke="#2471a3" stroke-width="2.4"/>
+<line x1="132.1" y1="170.7" x2="209.3" y2="170.7" stroke="#8e44ad" stroke-width="2.6" marker-end="url(#ar-purple)"/>
+<line x1="267.2" y1="141.8" x2="267.2" y2="103.2" stroke="#8e44ad" stroke-width="2.6" marker-end="url(#ar-purple)"/>
+<line x1="209.3" y1="103.2" x2="132.1" y2="141.8" stroke="#8e44ad" stroke-width="2.6" marker-end="url(#ar-purple)"/>
+<circle cx="267.2" cy="74.2" r="4" fill="#2c3e50"/>
+<text x="273.2" y="68.2" text-anchor="start" class="lbl-sm">(2, 1)</text>
+<circle cx="267.2" cy="170.7" r="4" fill="#2c3e50"/>
+<text x="273.2" y="186.7" text-anchor="start" class="lbl-sm">(2, 0)</text>
+<text x="103.2" y="98.4" text-anchor="end" class="lbl-sm" style="fill:#2471a3;font-weight:bold">y = x/2</text>
+<text x="214.1" y="143.7" text-anchor="middle" class="lbl-sm" style="fill:#2471a3">0 ≤ y ≤ x/2</text>
+<text x="170.7" y="43.4" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold">∂Q/∂x − ∂P/∂y = 2x − 2y</text>
+</svg>
+      <figcaption>Slice the triangle vertically: for each \(x\), \(y\) runs from the bottom edge \(y = 0\) up to the slanted edge \(y = x/2\).</figcaption>
+    </figure>
 
     <span class="step">Step 1 — The integrand</span>
     <div class="math-block">$$ P = y^2 + 2x, \quad Q = x^2 + 3y $$</div>

@@ -179,7 +179,33 @@
     else if (mq.addListener) mq.addListener(apply);
   }
 
-  function init() { layoutFigures(); buildNav(); }
+  // Wide tables scroll sideways inside their own box instead of widening the page.
+  function wrapTables() {
+    Array.prototype.forEach.call(document.querySelectorAll('body.page table'), function (t) {
+      if (t.closest('.table-wrap')) return;
+      var w = el('div', { 'class': 'table-wrap' });
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    });
+  }
+
+  // Inline formulas too long for a phone line scroll on their own rather than
+  // stretching the page (runs once MathJax has finished typesetting).
+  function fixWideInline(tries) {
+    var mj = window.MathJax;
+    if (!mj || !mj.startup || !mj.startup.promise) {
+      if (tries < 40) setTimeout(function () { fixWideInline(tries + 1); }, 250);
+      return;
+    }
+    mj.startup.promise.then(function () {
+      Array.prototype.forEach.call(document.querySelectorAll('mjx-container:not([display="true"])'), function (m) {
+        var p = m.parentElement;
+        if (p && m.getBoundingClientRect().width > p.clientWidth + 1) m.classList.add('wide-inline');
+      });
+    });
+  }
+
+  function init() { wrapTables(); layoutFigures(); buildNav(); fixWideInline(0); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
