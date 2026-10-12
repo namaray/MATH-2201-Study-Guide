@@ -138,6 +138,10 @@ body.page svg text { font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; font-
 body.page svg .lbl-sm { font-size: 11.5px; }
 body.page details figure.diagram svg { max-width: 420px; }
 body.page figure.diagram.wide svg { max-width: 100%; }
+/* three-panel solid diagrams: the solid on top, two flat views below */
+.conv3 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; align-items: start; }
+body.page figure.diagram.wide .conv3 svg.solid { grid-column: 1 / -1; justify-self: center; max-width: 380px; }
+@media (max-width: 640px) { .conv3 { grid-template-columns: minmax(0, 1fr); } }
 /* two-panel conversion diagrams: side by side, stacked on phones */
 .conv { display: flex; align-items: center; gap: 0.4rem; }
 .conv svg { flex: 1 1 0; min-width: 0; }
