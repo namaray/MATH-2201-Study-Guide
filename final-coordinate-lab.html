@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinate Lab: Interactive Polar, Cylindrical &amp; Spherical | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body.page.lab { max-width: 78rem; }
+    body.lab > .intro { max-width: 46rem; }
+
+    .toc { background: #fff; padding: 1.1rem 1.6rem 1.2rem; margin-bottom: 2rem; border-top-color: #f37021 !important; }
+    .toc h2 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+    .toc ol { margin: 0; padding-left: 1.3rem; columns: 2; column-gap: 2rem; }
+    .toc li { break-inside: avoid; }
+    .toc a { color: #1e8449; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .sub { color: #7f8c8d; font-size: 0.88rem; }
+
+    .sim {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: 4px solid #27ae60;
+      border-radius: 14px;
+      padding: 1.4rem 1.7rem 1.6rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 2px rgba(20, 40, 60, 0.04), 0 6px 20px rgba(20, 40, 60, 0.04);
+      scroll-margin-top: 1rem;
+    }
+    .sim > h2 { margin: 0 0 0.2rem; font-size: 1.35rem; color: #1e8449; letter-spacing: -0.01em; }
+    .sim > .lead { margin: 0 0 1.1rem; color: var(--muted); }
+
+    .sim-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 1.8rem; align-items: start; }
+    .sim.wide .sim-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+    .stage { position: sticky; top: 1rem; }
+    .stage canvas {
+      display: block; width: 100%;
+      background: #fbfcfd; border: 1px solid var(--line); border-radius: 12px;
+      touch-action: none;
+    }
+    .stage .hint { font-size: 0.82rem; color: var(--muted); margin: 0.4rem 0 0; text-align: center; }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .pair figcaption { text-align: center; font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-top: 0.3rem; }
+    .pair figure { margin: 0; }
+
+    .controls { display: grid; gap: 0.55rem; margin-bottom: 1rem; }
+    .ctl { display: grid; grid-template-columns: 6.6rem minmax(0, 1fr) 4.4rem; align-items: center; gap: 0.6rem; font-size: 0.93rem; }
+    .ctl label { font-weight: 600; }
+    .ctl output { font-variant-numeric: tabular-nums; text-align: right; color: #2c3e50; font-weight: 600; }
+    .ctl input[type=range] { width: 100%; accent-color: #1e8449; }
+    .row { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+    .seg button, .btn {
+      font: inherit; font-size: 0.86rem; font-weight: 600;
+      border: 1px solid var(--line); background: #fff; color: var(--ink);
+      padding: 0.3rem 0.8rem; border-radius: 999px; cursor: pointer;
+    }
+    .seg button.on { background: #2c3e50; border-color: #2c3e50; color: #fff; }
+    .btn.play { background: #1e8449; border-color: #1e8449; color: #fff; }
+    .check { font-size: 0.92rem; display: flex; gap: 0.45rem; align-items: center; }
+
+    table.read { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 0.4rem 0 0.9rem; }
+    table.read td { padding: 0.32rem 0.55rem; border-bottom: 1px solid #eef1f4; }
+    table.read td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+    table.read tr.hl td { background: #fff6ef; }
+    table.read tr.good td:last-child { color: #1e8449; }
+    table.read tr.bad td:last-child { color: #c0392b; }
+
+    .idea { background: #fef9e7; border-left: 4px solid #f1c40f; padding: 0.7rem 1rem 0.8rem; border-radius: 9px; margin: 0.8rem 0; }
+    .idea .box-title, .try .box-title {
+      display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      color: #9a7d0a; margin-bottom: 0.2rem;
+    }
+    .try { background: #eaf2f8; border-left: 4px solid #2471a3; padding: 0.7rem 1rem 0.8rem; border-radius: 9px; margin: 0.8rem 0; }
+    .try .box-title { color: #1b4f72; }
+    .try ul, .idea ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
+    .math-block { text-align: center; overflow-x: auto; margin: 0.6rem 0; }
+
+    @media (max-width: 900px) {
+      .sim-grid, .sim.wide .sim-grid { grid-template-columns: minmax(0, 1fr); }
+      .stage { position: static; }
+      .toc ol { columns: 1; }
+    }
+    @media (max-width: 640px) {
+      .sim { padding: 1rem 0.95rem 1.2rem; }
+      .ctl { grid-template-columns: 5.4rem minmax(0, 1fr) 3.8rem; font-size: 0.88rem; }
+      .pair { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body class="page lab">
+
+  <div class="intro">
+    <h1>Coordinate Lab</h1>
+    <p class="subtitle">Unit 5 · interactive simulations · drag the sliders and watch the shapes change. Each one shows where a formula from the notes comes from.</p>
+  </div>
+
+  <div class="toc intro">
+    <h2>Simulations</h2>
+    <ol>
+      <li><a href="#s1">The polar patch</a> <span class="sub">— why \(dA = r\,dr\,d\theta\)</span></li>
+      <li><a href="#s2">The Jacobian as stretching</a> <span class="sub">— what \(|J|\) measures</span></li>
+      <li><a href="#s3">Sweeping a polar region</a> <span class="sub">— finding the limits</span></li>
+      <li><a href="#s4">3-D point explorer</a> <span class="sub">— cylindrical &amp; spherical</span></li>
+      <li><a href="#s5">3-D volume element</a> <span class="sub">— \(r\,dr\,d\theta\,dz\) and \(\rho^2\sin\phi\)</span></li>
+    </ol>
+  </div>
+
+  <!-- ================================================================ 1 -->
+  <section class="sim" id="s1">
+    <h2>1. The polar patch — why \(dA = r\,dr\,d\theta\)</h2>
+    <p class="lead">A small step \(\Delta r\) outwards and a small turn \(\Delta\theta\) cut out a curved patch. Watch how its size depends on \(r\).</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c1"></canvas>
+        <p class="hint">Orange patch: \(r\) to \(r + \Delta r\), \(\theta\) to \(\theta + \Delta\theta\)</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="ctl"><label for="s1r">\(r\)</label><input id="s1r" type="range" min="0.2" max="4.2" step="0.05" value="2"><output id="s1r-o"></output></div>
+          <div class="ctl"><label for="s1t">\(\theta\)</label><input id="s1t" type="range" min="0" max="360" step="1" value="20"><output id="s1t-o"></output></div>
+          <div class="ctl"><label for="s1dr">\(\Delta r\)</label><input id="s1dr" type="range" min="0.05" max="1" step="0.05" value="0.6"><output id="s1dr-o"></output></div>
+          <div class="ctl"><label for="s1dt">\(\Delta\theta\)</label><input id="s1dt" type="range" min="2" max="60" step="1" value="25"><output id="s1dt-o"></output></div>
+          <label class="check"><input type="checkbox" id="s1ring"> Show identical \(\Delta r\), \(\Delta\theta\) patches further in and out</label>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>Radial side (straight)</td><td id="s1-a"></td></tr>
+            <tr><td>Arc side \(= r\,\Delta\theta\) (θ in radians)</td><td id="s1-b"></td></tr>
+            <tr class="hl"><td>True area of the patch</td><td id="s1-c"></td></tr>
+            <tr class="good"><td>\(r\,\Delta r\,\Delta\theta\) (with the Jacobian)</td><td id="s1-d"></td></tr>
+            <tr class="bad"><td>\(\Delta r\,\Delta\theta\) (forgetting it)</td><td id="s1-e"></td></tr>
+            <tr><td>Stretch factor: true area ÷ \((\Delta r\,\Delta\theta)\)</td><td id="s1-f"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          The patch is almost a rectangle: one side is \(\Delta r\) long, the other is an arc of length
+          \(r\,\Delta\theta\) (arc = radius × angle). So its area is about
+          $$ \Delta r \times r\,\Delta\theta = r\,\Delta r\,\Delta\theta. $$
+          The extra \(r\) is the Jacobian: the same turn \(\Delta\theta\) sweeps a <em>longer</em> arc further out.
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>Tick the box: same \(\Delta r\) and \(\Delta\theta\), yet the outer patches are much bigger.</li>
+            <li>Drag \(r\) from 1 to 4: the stretch factor follows \(r\).</li>
+            <li>Make \(\Delta r\) and \(\Delta\theta\) tiny: \(r\,\Delta r\,\Delta\theta\) becomes exact.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 2 -->
+  <section class="sim wide" id="s2">
+    <h2>2. The Jacobian as stretching</h2>
+    <p class="lead">A change of variables bends a grid of identical little squares in the \((u, v)\)-plane into a grid of curved patches in the \((x, y)\)-plane. \(|J|\) is how much each square's area gets multiplied.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <div class="pair">
+          <figure><canvas id="c2a"></canvas><figcaption>Before: \((u, v)\)-plane</figcaption></figure>
+          <figure><canvas id="c2b"></canvas><figcaption>After: \((x, y)\)-plane</figcaption></figure>
+        </div>
+        <p class="hint">Tap or hover a square on the left to find where it lands.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s2map">
+            <button data-m="polar" class="on">Polar</button>
+            <button data-m="lin">Linear</button>
+            <button data-m="uv">\(x = uv,\ y = u/v\)</button>
+          </div>
+          <label class="check"><input type="checkbox" id="s2heat" checked> Shade the image patches by how much they were stretched</label>
+        </div>
+        <div class="math-block" id="s2formula"></div>
+        <table class="read">
+          <tbody>
+            <tr><td>Chosen square</td><td id="s2-a"></td></tr>
+            <tr><td>Its area \(\Delta u\,\Delta v\)</td><td id="s2-b"></td></tr>
+            <tr class="hl"><td>Area of its image</td><td id="s2-c"></td></tr>
+            <tr><td>Stretch: image ÷ square</td><td id="s2-d"></td></tr>
+            <tr class="good"><td>\(|J|\) at the square's centre</td><td id="s2-e"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          <span id="s2idea"></span>
+          That's why \(dx\,dy = |J|\,du\,dv\): every tiny square of area \(du\,dv\) turns into a patch of area \(|J|\,du\,dv\).
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li><strong>Polar:</strong> squares in the same row (same \(r\)) all stretch by the same amount; outer rows stretch more.</li>
+            <li><strong>Linear:</strong> every square stretches by the <em>same</em> amount — a constant Jacobian.</li>
+            <li><strong>\(uv\) example</strong> (from the slides): the stretch changes from square to square, and still matches \(2u/v\).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 3 -->
+  <section class="sim" id="s3">
+    <h2>3. Sweeping a polar region — finding the limits</h2>
+    <p class="lead">A polar integral sweeps a ray around the origin. For each angle \(\theta\), \(r\) runs from where the ray <em>enters</em> the region to where it <em>leaves</em>.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c3"></canvas>
+        <p class="hint">Red: the ray at the current \(\theta\), inside the region. Green: area swept so far.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s3reg">
+            <button data-r="disc" class="on">Disc</button>
+            <button data-r="ann">Annulus</button>
+            <button data-r="cos">\(r = 4\cos\theta\)</button>
+            <button data-r="card">Cardioid</button>
+            <button data-r="quarter">Quarter disc</button>
+          </div>
+          <div class="ctl"><label for="s3t">sweep</label><input id="s3t" type="range" min="0" max="1000" step="1" value="350"><output id="s3t-o"></output></div>
+          <div class="row"><button class="btn play" id="s3play">▶ Play sweep</button></div>
+        </div>
+        <div class="math-block" id="s3formula"></div>
+        <table class="read">
+          <tbody>
+            <tr><td>Current angle \(\theta\)</td><td id="s3-a"></td></tr>
+            <tr><td>Ray enters at \(r =\)</td><td id="s3-b"></td></tr>
+            <tr><td>Ray leaves at \(r =\)</td><td id="s3-c"></td></tr>
+            <tr class="hl"><td>Area swept so far</td><td id="s3-d"></td></tr>
+            <tr><td>Total area</td><td id="s3-e"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          <ul>
+            <li><strong>\(\theta\) limits:</strong> the first and last angles where the ray touches the region.</li>
+            <li><strong>\(r\) limits:</strong> inner edge → outer edge, written as functions of \(\theta\).</li>
+            <li>The circle \(r = 4\cos\theta\) is traced once for \(-\tfrac{\pi}{2} \le \theta \le \tfrac{\pi}{2}\). Going to \(2\pi\) would cover it twice.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 4 -->
+  <section class="sim" id="s4">
+    <h2>4. 3-D point explorer — cylindrical &amp; spherical</h2>
+    <p class="lead">Move a point with either set of coordinates and watch the other two descriptions update. Drag the picture to rotate it.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c4"></canvas>
+        <p class="hint">Drag to rotate.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s4mode">
+            <button data-m="cyl" class="on">Cylindrical \((r, \theta, z)\)</button>
+            <button data-m="sph">Spherical \((\rho, \theta, \phi)\)</button>
+          </div>
+          <div id="s4cyl">
+            <div class="ctl"><label for="s4r">\(r\)</label><input id="s4r" type="range" min="0" max="4" step="0.05" value="3"><output id="s4r-o"></output></div>
+            <div class="ctl"><label for="s4t">\(\theta\)</label><input id="s4t" type="range" min="0" max="360" step="1" value="60"><output id="s4t-o"></output></div>
+            <div class="ctl"><label for="s4z">\(z\)</label><input id="s4z" type="range" min="-3" max="4" step="0.05" value="2.5"><output id="s4z-o"></output></div>
+          </div>
+          <div id="s4sph" hidden>
+            <div class="ctl"><label for="s4p">\(\rho\)</label><input id="s4p" type="range" min="0" max="4.5" step="0.05" value="4"><output id="s4p-o"></output></div>
+            <div class="ctl"><label for="s4t2">\(\theta\)</label><input id="s4t2" type="range" min="0" max="360" step="1" value="60"><output id="s4t2-o"></output></div>
+            <div class="ctl"><label for="s4f">\(\phi\)</label><input id="s4f" type="range" min="0" max="180" step="1" value="50"><output id="s4f-o"></output></div>
+          </div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>Cartesian \((x, y, z)\)</td><td id="s4-a"></td></tr>
+            <tr><td>Cylindrical \((r, \theta, z)\)</td><td id="s4-b"></td></tr>
+            <tr><td>Spherical \((\rho, \theta, \phi)\)</td><td id="s4-c"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          <ul>
+            <li>Both systems share the same \(\theta\): the angle of the point's <strong>shadow</strong> on the \(xy\)-plane.</li>
+            <li>\(r\) = distance from the \(z\)-axis; \(\rho\) = distance from the origin. They form a right triangle with \(z\):
+              \(r = \rho\sin\phi\), \(z = \rho\cos\phi\).</li>
+            <li>\(\phi\) is measured <strong>down from the \(+z\)-axis</strong>: \(0\) at the top, \(\tfrac{\pi}{2}\) on the \(xy\)-plane, \(\pi\) at the bottom.</li>
+          </ul>
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>Cylindrical: keep \(r\) fixed and move \(\theta\) and \(z\) — the point slides around a <strong>cylinder</strong>.</li>
+            <li>Spherical: keep \(\rho\) fixed — it moves on a <strong>sphere</strong>. Keep \(\phi\) fixed — it moves on a <strong>cone</strong>.</li>
+            <li>Set \(\phi = 90^\circ\): the point drops onto the \(xy\)-plane, and \(\rho = r\).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 5 -->
+  <section class="sim" id="s5">
+    <h2>5. 3-D volume element — where \(r\) and \(\rho^2\sin\phi\) come from</h2>
+    <p class="lead">Small steps in each coordinate cut out a curved box. Its three edges give its volume — and the Jacobian.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c5"></canvas>
+        <p class="hint">Drag to rotate. The three labelled edges are the box's dimensions.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s5mode">
+            <button data-m="cyl" class="on">Cylindrical</button>
+            <button data-m="sph">Spherical</button>
+          </div>
+          <div id="s5cyl">
+            <div class="ctl"><label for="s5r">\(r\)</label><input id="s5r" type="range" min="0.3" max="3.5" step="0.05" value="2.5"><output id="s5r-o"></output></div>
+            <div class="ctl"><label for="s5dr">\(\Delta r\)</label><input id="s5dr" type="range" min="0.1" max="1.2" step="0.05" value="0.8"><output id="s5dr-o"></output></div>
+            <div class="ctl"><label for="s5dt">\(\Delta\theta\)</label><input id="s5dt" type="range" min="5" max="70" step="1" value="35"><output id="s5dt-o"></output></div>
+            <div class="ctl"><label for="s5dz">\(\Delta z\)</label><input id="s5dz" type="range" min="0.1" max="2" step="0.05" value="1.2"><output id="s5dz-o"></output></div>
+          </div>
+          <div id="s5sph" hidden>
+            <div class="ctl"><label for="s5p">\(\rho\)</label><input id="s5p" type="range" min="0.8" max="4" step="0.05" value="3"><output id="s5p-o"></output></div>
+            <div class="ctl"><label for="s5f">\(\phi\)</label><input id="s5f" type="range" min="5" max="150" step="1" value="50"><output id="s5f-o"></output></div>
+            <div class="ctl"><label for="s5dp">\(\Delta\rho\)</label><input id="s5dp" type="range" min="0.1" max="1.2" step="0.05" value="0.8"><output id="s5dp-o"></output></div>
+            <div class="ctl"><label for="s5dt2">\(\Delta\theta\)</label><input id="s5dt2" type="range" min="5" max="70" step="1" value="35"><output id="s5dt2-o"></output></div>
+            <div class="ctl"><label for="s5df">\(\Delta\phi\)</label><input id="s5df" type="range" min="5" max="40" step="1" value="25"><output id="s5df-o"></output></div>
+          </div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td id="s5-l1"></td><td id="s5-a"></td></tr>
+            <tr><td id="s5-l2"></td><td id="s5-b"></td></tr>
+            <tr><td id="s5-l3"></td><td id="s5-c"></td></tr>
+            <tr class="hl"><td>True volume of the box</td><td id="s5-d"></td></tr>
+            <tr class="good"><td id="s5-l5"></td><td id="s5-e"></td></tr>
+            <tr class="bad"><td id="s5-l6"></td><td id="s5-f"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea" id="s5idea-cyl">
+          <span class="box-title">The idea</span>
+          The box's edges are \(\Delta r\) (out), \(r\,\Delta\theta\) (around) and \(\Delta z\) (up). Multiply them:
+          $$ dV = r\,dr\,d\theta\,dz. $$
+          It's the polar patch from simulation 1, stacked \(\Delta z\) high.
+        </div>
+        <div class="idea" id="s5idea-sph" hidden>
+          <span class="box-title">The idea</span>
+          The box's edges are \(\Delta\rho\) (out), \(\rho\,\Delta\phi\) (down an arc of radius \(\rho\)) and
+          \(\rho\sin\phi\,\Delta\theta\) (around a circle of radius \(r = \rho\sin\phi\)). Multiply them:
+          $$ dV = \rho^2\sin\phi\;d\rho\,d\phi\,d\theta. $$
+          Near the poles (\(\phi\) close to 0) the box gets squashed thin — that's the \(\sin\phi\).
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>Spherical: move \(\phi\) towards \(5^\circ\) and watch the "around" edge shrink.</li>
+            <li>Shrink every \(\Delta\): the Jacobian formula and the true volume agree.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+(function () {
+  'use strict';
+  var C = { blue: '#2471a3', orange: '#e67e22', red: '#c0392b', green: '#1e8449', purple: '#8e44ad',
+            grid: '#e3e8ee', axis: '#9aa7b4', ink: '#2c3e50', fill: 'rgba(230,126,34,0.28)' };
+  var FONT = "600 13px Inter, 'Segoe UI', sans-serif";
+  var D2R = Math.PI / 180;
+  function $(id) { return document.getElementById(id); }
+  function fmt(v, d) { return (Math.abs(v) < 5e-4 ? 0 : v).toFixed(d === undefined ? 2 : d); }
+  function deg(v) { return Math.round(v) + '°'; }
+
+  // Size a canvas to its box (sharp on high-DPI screens) and return its 2-D context.
+  function fit(cv, ratio) {
+    var dpr = window.devicePixelRatio || 1;
+    var w = cv.parentElement.clientWidth || 300;
+    var h = Math.round(w * ratio);
+    cv.style.height = h + 'px';
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    var ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    return { ctx: ctx, w: w, h: h };
+  }
+  function label(ctx, s, x, y, col, align, size) {
+    ctx.font = (size ? '600 ' + size + 'px Inter, sans-serif' : FONT);
+    ctx.textAlign = align || 'left'; ctx.textBaseline = 'middle';
+    ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(251,252,253,0.9)'; ctx.strokeText(s, x, y);
+    ctx.fillStyle = col || C.ink; ctx.fillText(s, x, y);
+  }
+  function arrow(ctx, x1, y1, x2, y2, col, w) {
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = w || 1.5;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    var a = Math.atan2(y2 - y1, x2 - x1), k = 8;
+    ctx.beginPath(); ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - k * Math.cos(a - 0.4), y2 - k * Math.sin(a - 0.4));
+    ctx.lineTo(x2 - k * Math.cos(a + 0.4), y2 - k * Math.sin(a + 0.4)); ctx.closePath(); ctx.fill();
+  }
+  function poly(ctx, pts, stroke, fill, w, dash) {
+    ctx.beginPath(); pts.forEach(function (p, i) { if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); });
+    if (fill) { ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); }
+    if (stroke) { ctx.setLineDash(dash || []); ctx.strokeStyle = stroke; ctx.lineWidth = w || 1.5; ctx.stroke(); ctx.setLineDash([]); }
+  }
+  function range(id, show, cb) {
+    var el = $(id), out = $(id + '-o');
+    var f = function () { if (out) out.textContent = show(+el.value); cb(); };
+    el.addEventListener('input', f);
+    if (out) out.textContent = show(+el.value);
+    return el;
+  }
+  function segmented(id, cb) {
+    var box = $(id);
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      box.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      cb(b);
+    });
+  }
+  function typeset(el) { if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([el]); }
+  function shoelace(pts) { var a = 0; for (var i = 0; i < pts.length; i++) { var p = pts[i], q = pts[(i + 1) % pts.length]; a += p[0] * q[1] - q[0] * p[1]; } return Math.abs(a) / 2; }
+
+  // ===================================================================== 1
+  var s1 = (function () {
+    var cv = $('c1'), R = 5;
+    var r = range('s1r', function (v) { return fmt(v); }, draw),
+        t = range('s1t', deg, draw),
+        dr = range('s1dr', function (v) { return fmt(v); }, draw),
+        dt = range('s1dt', deg, draw),
+        ring = $('s1ring');
+    ring.addEventListener('change', draw);
+
+    function draw() {
+      var g = fit(cv, 1), ctx = g.ctx, w = g.w, cx = w / 2, cy = w / 2, s = (w / 2 - 14) / R;
+      var P = function (rr, th) { return [cx + s * rr * Math.cos(th), cy - s * rr * Math.sin(th)]; };
+      // polar grid
+      ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+      for (var k = 1; k <= R; k++) { ctx.beginPath(); ctx.arc(cx, cy, k * s, 0, 2 * Math.PI); ctx.stroke(); }
+      for (var a = 0; a < 360; a += 30) { var e = P(R, a * D2R); ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(e[0], e[1]); ctx.stroke(); }
+      arrow(ctx, 8, cy, w - 8, cy, C.axis, 1.2); arrow(ctx, cx, w - 8, cx, 8, C.axis, 1.2);
+      label(ctx, 'x', w - 14, cy + 14, C.axis); label(ctx, 'y', cx + 12, 14, C.axis);
+
+      var rv = +r.value, th = +t.value * D2R, d = +dr.value, dth = +dt.value * D2R;
+      function patch(r0, fill, stroke, wid) {
+        ctx.beginPath();
+        var a0 = P(r0, th);
+        ctx.moveTo(a0[0], a0[1]);
+        ctx.arc(cx, cy, (r0 + d) * s, -th, -(th + dth), true);
+        ctx.arc(cx, cy, r0 * s, -(th + dth), -th, false);
+        ctx.closePath();
+        ctx.fillStyle = fill; ctx.fill();
+        ctx.strokeStyle = stroke; ctx.lineWidth = wid; ctx.stroke();
+      }
+      if (ring.checked) {
+        for (var q = 0.5; q + d <= R + 0.01; q += 1) {
+          if (Math.abs(q - rv) < 0.3) continue;
+          patch(q, 'rgba(36,113,163,0.16)', 'rgba(36,113,163,0.7)', 1.2);
+          var m = P(q + d / 2, th + dth / 2);
+          label(ctx, fmt(0.5 * ((q + d) * (q + d) - q * q) * dth), m[0], m[1], C.blue, 'center', 11);
+        }
+      }
+      // r and Δθ indicators
+      var a1 = P(rv, th);
+      ctx.setLineDash([5, 4]); ctx.strokeStyle = C.blue; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(a1[0], a1[1]); ctx.stroke(); ctx.setLineDash([]);
+      var lr = P(rv / 2, th - 0.12);
+      label(ctx, 'r = ' + fmt(rv), lr[0], lr[1], C.blue, 'center');
+      ctx.strokeStyle = C.purple; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.arc(cx, cy, Math.min(26, rv * s * 0.5), -th, -(th + dth), true); ctx.stroke();
+      ctx.beginPath(); var b1 = P(R, th + dth); ctx.setLineDash([3, 4]); ctx.moveTo(cx, cy); ctx.lineTo(b1[0], b1[1]); ctx.strokeStyle = 'rgba(142,68,173,0.5)'; ctx.stroke(); ctx.setLineDash([]);
+
+      patch(rv, C.fill, C.orange, 2.2);
+      // edge labels
+      var ra = P(rv + d / 2, th), off = 14;
+      label(ctx, 'Δr', ra[0] + off * Math.sin(th), ra[1] + off * Math.cos(th), C.red, 'center');
+      var mid = th + dth / 2, ia = P(rv, mid);
+      label(ctx, 'rΔθ', ia[0] - 16 * Math.cos(mid), ia[1] + 16 * Math.sin(mid), C.green, 'center');
+      var tr = Math.min(26, rv * s * 0.5) + 12;
+      if (rv * s > 80) label(ctx, 'Δθ', cx + tr * Math.cos(mid), cy - tr * Math.sin(mid), C.purple, 'center', 12);
+
+      var exact = 0.5 * ((rv + d) * (rv + d) - rv * rv) * dth;
+      $('s1-a').textContent = 'Δr = ' + fmt(d);
+      $('s1-b').textContent = fmt(rv) + ' × ' + fmt(dth, 3) + ' = ' + fmt(rv * dth, 3);
+      $('s1-c').textContent = fmt(exact, 3);
+      $('s1-d').textContent = fmt(rv * d * dth, 3);
+      $('s1-e').textContent = fmt(d * dth, 3);
+      $('s1-f').textContent = fmt(exact / (d * dth)) + '  (≈ r = ' + fmt(rv) + ')';
+    }
+    return draw;
+  })();
+
+  // ===================================================================== 2
+  var s2 = (function () {
+    var ca = $('c2a'), cb = $('c2b');
+    var MAPS = {
+      polar: { u: [0, 3], v: [0, 2 * Math.PI], nu: 6, nv: 12, lu: 'r', lv: 'θ',
+        f: function (u, v) { return [u * Math.cos(v), u * Math.sin(v)]; },
+        J: function (u, v) { return u; },
+        tex: '$$ x = r\\cos\\theta,\\quad y = r\\sin\\theta,\\qquad |J| = r $$',
+        idea: 'In polar, the stretch is \\(r\\): squares further out get bent into bigger patches.' },
+      lin: { u: [0, 2], v: [0, 2], nu: 4, nv: 4, lu: 'u', lv: 'v',
+        f: function (u, v) { return [2 * u + v, u + 2 * v]; },
+        J: function () { return 3; },
+        tex: '$$ x = 2u + v,\\quad y = u + 2v,\\qquad |J| = \\begin{vmatrix} 2 & 1 \\\\ 1 & 2 \\end{vmatrix} = 3 $$',
+        idea: 'A linear map stretches every square by the same factor: \\(|J| = 3\\) everywhere.' },
+      uv: { u: [1, 3], v: [0.5, 2], nu: 4, nv: 6, lu: 'u', lv: 'v',
+        f: function (u, v) { return [u * v, u / v]; },
+        J: function (u, v) { return 2 * u / v; },
+        tex: '$$ x = uv,\\quad y = \\frac{u}{v},\\qquad |J| = \\frac{2u}{v} $$',
+        idea: 'Here the stretch \\(2u/v\\) changes from square to square — big \\(u\\) and small \\(v\\) stretch the most.' }
+    };
+    var m = MAPS.polar, sel = [4, 1];
+    var heat = $('s2heat');
+    heat.addEventListener('change', draw);
+    segmented('s2map', function (b) {
+      m = MAPS[b.dataset.m]; sel = [Math.min(m.nu - 1, 2), Math.min(m.nv - 1, 1)];
+      $('s2formula').innerHTML = m.tex; $('s2idea').innerHTML = m.idea + ' ';
+      typeset($('s2formula')); typeset($('s2idea')); draw();
+    });
+    $('s2formula').innerHTML = m.tex; $('s2idea').innerHTML = m.idea + ' ';
+
+    function cellPts(i, j, n) {
+      var du = (m.u[1] - m.u[0]) / m.nu, dv = (m.v[1] - m.v[0]) / m.nv;
+      var u0 = m.u[0] + i * du, v0 = m.v[0] + j * dv, pts = [], k;
+      for (k = 0; k < n; k++) pts.push([u0 + du * k / n, v0]);
+      for (k = 0; k < n; k++) pts.push([u0 + du, v0 + dv * k / n]);
+      for (k = 0; k < n; k++) pts.push([u0 + du - du * k / n, v0 + dv]);
+      for (k = 0; k < n; k++) pts.push([u0, v0 + dv - dv * k / n]);
+      return pts;
+    }
+    var geomA = null, geomB = null;
+    function draw() {
+      var A = fit(ca, 1), B = fit(cb, 1), pad = 26;
+      // left: (u, v) grid
+      var sau = (A.w - 2 * pad) / (m.u[1] - m.u[0]), sav = (A.h - 2 * pad) / (m.v[1] - m.v[0]);
+      var ox = pad, oy = A.h - pad;
+      var PA = function (u, v) { return [ox + sau * (u - m.u[0]), oy - sav * (v - m.v[0])]; };
+      geomA = { sau: sau, sav: sav, ox: ox, oy: oy };
+      // right: image bounds
+      var all = [], i, j;
+      for (i = 0; i < m.nu; i++) for (j = 0; j < m.nv; j++) cellPts(i, j, 6).forEach(function (p) { all.push(m.f(p[0], p[1])); });
+      var xs = all.map(function (p) { return p[0]; }), ys = all.map(function (p) { return p[1]; });
+      var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+      var sb = Math.min((B.w - 2 * pad) / (x1 - x0), (B.h - 2 * pad) / (y1 - y0));
+      var bx = (B.w - sb * (x1 - x0)) / 2, by = (B.h + sb * (y1 - y0)) / 2;
+      var PB = function (x, y) { return [bx + sb * (x - x0), by - sb * (y - y0)]; };
+      // axes on the right
+      var o = PB(0, 0);
+      if (o[1] > 4 && o[1] < B.h - 4) arrow(B.ctx, 6, o[1], B.w - 6, o[1], C.axis, 1);
+      if (o[0] > 4 && o[0] < B.w - 4) arrow(B.ctx, o[0], B.h - 6, o[0], 6, C.axis, 1);
+      label(B.ctx, 'x', B.w - 12, Math.min(Math.max(o[1], 10), B.h - 10) + 12, C.axis);
+      label(A.ctx, m.lu, A.w - 12, oy + 14, C.axis); label(A.ctx, m.lv, ox - 14, pad - 6, C.axis);
+
+      var maxJ = 0;
+      for (i = 0; i < m.nu; i++) for (j = 0; j < m.nv; j++) maxJ = Math.max(maxJ, m.J(m.u[0] + (i + 0.5) * (m.u[1] - m.u[0]) / m.nu, m.v[0] + (j + 0.5) * (m.v[1] - m.v[0]) / m.nv));
+      for (i = 0; i < m.nu; i++) for (j = 0; j < m.nv; j++) {
+        var pts = cellPts(i, j, 12), on = (i === sel[0] && j === sel[1]);
+        var uc = m.u[0] + (i + 0.5) * (m.u[1] - m.u[0]) / m.nu, vc = m.v[0] + (j + 0.5) * (m.v[1] - m.v[0]) / m.nv;
+        var shade = heat.checked ? 'rgba(36,113,163,' + (0.08 + 0.42 * m.J(uc, vc) / maxJ).toFixed(3) + ')' : null;
+        poly(A.ctx, pts.map(function (p) { return PA(p[0], p[1]); }), on ? C.orange : '#9fb3c8', on ? C.fill : 'rgba(36,113,163,0.08)', on ? 2.4 : 1);
+        poly(B.ctx, pts.map(function (p) { var q = m.f(p[0], p[1]); return PB(q[0], q[1]); }), on ? C.orange : '#9fb3c8', on ? C.fill : shade, on ? 2.4 : 1);
+      }
+      // readout
+      var du = (m.u[1] - m.u[0]) / m.nu, dv = (m.v[1] - m.v[0]) / m.nv;
+      var u0 = m.u[0] + sel[0] * du, v0 = m.v[0] + sel[1] * dv;
+      var img = shoelace(cellPts(sel[0], sel[1], 60).map(function (p) { return m.f(p[0], p[1]); }));
+      $('s2-a').textContent = m.lu + ': ' + fmt(u0) + '–' + fmt(u0 + du) + ',  ' + m.lv + ': ' + fmt(v0) + '–' + fmt(v0 + dv);
+      $('s2-b').textContent = fmt(du) + ' × ' + fmt(dv) + ' = ' + fmt(du * dv, 3);
+      $('s2-c').textContent = fmt(img, 3);
+      $('s2-d').textContent = '× ' + fmt(img / (du * dv));
+      $('s2-e').textContent = fmt(m.J(u0 + du / 2, v0 + dv / 2));
+    }
+    function pick(e) {
+      if (!geomA) return;
+      var rc = ca.getBoundingClientRect(), x = e.clientX - rc.left, y = e.clientY - rc.top;
+      var u = m.u[0] + (x - geomA.ox) / geomA.sau, v = m.v[0] + (geomA.oy - y) / geomA.sav;
+      var i = Math.floor((u - m.u[0]) / ((m.u[1] - m.u[0]) / m.nu)), j = Math.floor((v - m.v[0]) / ((m.v[1] - m.v[0]) / m.nv));
+      if (i >= 0 && i < m.nu && j >= 0 && j < m.nv && (i !== sel[0] || j !== sel[1])) { sel = [i, j]; draw(); }
+    }
+    ca.addEventListener('pointermove', pick);
+    ca.addEventListener('pointerdown', pick);
+    return draw;
+  })();
+
+  // ===================================================================== 3
+  var s3 = (function () {
+    var cv = $('c3'), playing = false, raf = 0;
+    var REG = {
+      disc: { a: 0, b: 2 * Math.PI, rin: function () { return 0; }, rout: function () { return 2; },
+        tex: '$$ \\int_0^{2\\pi}\\!\\!\\int_0^{2} r\\,dr\\,d\\theta $$', tl: '0 → 2π', rl: ['0', '2'] },
+      ann: { a: 0, b: 2 * Math.PI, rin: function () { return 1; }, rout: function () { return 3; },
+        tex: '$$ \\int_0^{2\\pi}\\!\\!\\int_1^{3} r\\,dr\\,d\\theta $$', tl: '0 → 2π', rl: ['1', '3'] },
+      cos: { a: -Math.PI / 2, b: Math.PI / 2, rin: function () { return 0; }, rout: function (t) { return Math.max(0, 4 * Math.cos(t)); },
+        tex: '$$ \\int_{-\\pi/2}^{\\pi/2}\\!\\int_0^{4\\cos\\theta} r\\,dr\\,d\\theta $$', tl: '−π/2 → π/2', rl: ['0', '4cos θ'] },
+      card: { a: 0, b: 2 * Math.PI, rin: function () { return 0; }, rout: function (t) { return 2 * (1 + Math.cos(t)); },
+        tex: '$$ \\int_0^{2\\pi}\\!\\!\\int_0^{2(1+\\cos\\theta)} r\\,dr\\,d\\theta $$', tl: '0 → 2π', rl: ['0', '2(1 + cos θ)'] },
+      quarter: { a: 0, b: Math.PI / 2, rin: function () { return 0; }, rout: function () { return 3; },
+        tex: '$$ \\int_0^{\\pi/2}\\!\\!\\int_0^{3} r\\,dr\\,d\\theta $$', tl: '0 → π/2', rl: ['0', '3'] }
+    };
+    var g = REG.disc;
+    var t = range('s3t', function (v) { return Math.round(v / 10) + '%'; }, draw);
+    segmented('s3reg', function (b) { g = REG[b.dataset.r]; $('s3formula').innerHTML = g.tex; typeset($('s3formula')); draw(); });
+    $('s3formula').innerHTML = g.tex;
+    function areaTo(th) {
+      var n = 400, a = 0, h = (th - g.a) / n;
+      for (var i = 0; i < n; i++) { var x = g.a + (i + 0.5) * h, ro = g.rout(x), ri = g.rin(x); a += 0.5 * (ro * ro - ri * ri) * h; }
+      return a;
+    }
+    function draw() {
+      var G = fit(cv, 1), ctx = G.ctx, w = G.w, R = 4.4;
+      var cx = g === REG.cos ? w * 0.18 : w / 2, cy = w / 2, s = (g === REG.cos ? w * 0.78 : w / 2 - 14) / R;
+      if (g === REG.card) { cx = w * 0.32; s = (w * 0.64) / 4.6; }
+      if (g === REG.quarter) { cx = w * 0.14; cy = w * 0.86; s = (w * 0.78) / 3.3; }
+      var P = function (rr, th) { return [cx + s * rr * Math.cos(th), cy - s * rr * Math.sin(th)]; };
+      ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+      for (var k = 1; k <= 5; k++) { ctx.beginPath(); ctx.arc(cx, cy, k * s, 0, 2 * Math.PI); ctx.stroke(); }
+      arrow(ctx, 6, cy, w - 6, cy, C.axis, 1.2); arrow(ctx, cx, w - 6, cx, 6, C.axis, 1.2);
+      var N = 240, th, i, outer = [], inner = [];
+      for (i = 0; i <= N; i++) { th = g.a + (g.b - g.a) * i / N; outer.push(P(g.rout(th), th)); inner.push(P(g.rin(th), th)); }
+      poly(ctx, outer.concat(inner.slice().reverse()), C.blue, 'rgba(36,113,163,0.07)', 1.6, [6, 4]);
+      var cur = g.a + (g.b - g.a) * (+t.value / 1000);
+      var so = [], si = [];
+      for (i = 0; i <= N; i++) { th = g.a + (cur - g.a) * i / N; so.push(P(g.rout(th), th)); si.push(P(g.rin(th), th)); }
+      if (cur > g.a) poly(ctx, so.concat(si.reverse()), C.green, 'rgba(30,132,73,0.22)', 1.6);
+      var pi = P(g.rin(cur), cur), po = P(g.rout(cur), cur), pf = P(R * 1.15, cur);
+      ctx.setLineDash([4, 4]); ctx.strokeStyle = C.axis; ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(pf[0], pf[1]); ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = C.red; ctx.lineWidth = 3.4; ctx.beginPath(); ctx.moveTo(pi[0], pi[1]); ctx.lineTo(po[0], po[1]); ctx.stroke();
+      ctx.fillStyle = C.red; [pi, po].forEach(function (p) { ctx.beginPath(); ctx.arc(p[0], p[1], 4, 0, 2 * Math.PI); ctx.fill(); });
+      // θ is measured from the positive x-axis (clockwise when negative)
+      ctx.strokeStyle = C.orange; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(cx, cy, 22, 0, -cur, cur > 0); ctx.stroke();
+      label(ctx, 'θ', cx + 30 * Math.cos(cur / 2), cy - 30 * Math.sin(cur / 2), C.orange, 'center');
+      var tot = areaTo(g.b);
+      $('s3-a').textContent = fmt(cur, 2) + ' rad  (' + Math.round(cur / D2R) + '°)';
+      $('s3-b').textContent = g.rl[0] + '  = ' + fmt(g.rin(cur));
+      $('s3-c').textContent = g.rl[1] + '  = ' + fmt(g.rout(cur));
+      $('s3-d').textContent = fmt(areaTo(cur), 3);
+      $('s3-e').textContent = fmt(tot, 3) + '  (θ: ' + g.tl + ')';
+    }
+    $('s3play').addEventListener('click', function () {
+      playing = !playing; this.textContent = playing ? '❚❚ Pause' : '▶ Play sweep';
+      if (playing) {
+        if (+t.value >= 1000) t.value = 0;
+        var step = function () {
+          if (!playing) return;
+          t.value = Math.min(1000, +t.value + 4); $('s3t-o').textContent = Math.round(t.value / 10) + '%'; draw();
+          if (+t.value >= 1000) { playing = false; $('s3play').textContent = '▶ Play sweep'; return; }
+          raf = requestAnimationFrame(step);
+        };
+        raf = requestAnimationFrame(step);
+      } else cancelAnimationFrame(raf);
+    });
+    return draw;
+  })();
+
+  // ================================================================ 3-D helpers
+  function View3D(cv, ratio, scaleFor) {
+    var v = { yaw: 0.55, pitch: 0.42, cv: cv, ratio: ratio };
+    v.begin = function () {
+      var g = fit(cv, ratio); v.ctx = g.ctx; v.w = g.w; v.h = g.h;
+      v.s = scaleFor(g.w); v.cx = g.w * 0.5; v.cy = g.h * 0.56;
+      return v.ctx;
+    };
+    v.P = function (x, y, z) {
+      var sx = -x * Math.sin(v.yaw) + y * Math.cos(v.yaw);
+      var d = x * Math.cos(v.yaw) + y * Math.sin(v.yaw);
+      return [v.cx + v.s * sx, v.cy - v.s * (z * Math.cos(v.pitch) - d * Math.sin(v.pitch))];
+    };
+    v.line = function (a, b, col, w, dash) {
+      var p = v.P(a[0], a[1], a[2]), q = v.P(b[0], b[1], b[2]);
+      v.ctx.setLineDash(dash || []); v.ctx.strokeStyle = col; v.ctx.lineWidth = w || 1.5;
+      v.ctx.beginPath(); v.ctx.moveTo(p[0], p[1]); v.ctx.lineTo(q[0], q[1]); v.ctx.stroke(); v.ctx.setLineDash([]);
+    };
+    v.curve = function (f, t0, t1, col, w, dash, n) {
+      var pts = []; n = n || 48;
+      for (var i = 0; i <= n; i++) { var p = f(t0 + (t1 - t0) * i / n); pts.push(v.P(p[0], p[1], p[2])); }
+      poly(v.ctx, pts, col, null, w, dash);
+      return pts;
+    };
+    v.text = function (s, p3, col, dx, dy, align) { var p = v.P(p3[0], p3[1], p3[2]); label(v.ctx, s, p[0] + (dx || 0), p[1] + (dy || 0), col, align || 'left'); };
+    v.dot = function (p3, col, r) { var p = v.P(p3[0], p3[1], p3[2]); v.ctx.fillStyle = col; v.ctx.beginPath(); v.ctx.arc(p[0], p[1], r || 4.5, 0, 2 * Math.PI); v.ctx.fill(); };
+    v.axes = function (L) {
+      [[[L, 0, 0], 'x'], [[0, L, 0], 'y'], [[0, 0, L], 'z']].forEach(function (a) {
+        var o = v.P(0, 0, 0), e = v.P(a[0][0], a[0][1], a[0][2]);
+        arrow(v.ctx, o[0], o[1], e[0], e[1], C.axis, 1.2);
+        label(v.ctx, a[1], e[0] + (e[0] < o[0] ? -10 : 10), e[1] + (a[1] === 'z' ? -6 : 8), C.axis, 'center');
+      });
+    };
+    var drag = null, redraw = function () {};
+    v.onDraw = function (f) { redraw = f; };
+    cv.addEventListener('pointerdown', function (e) { drag = [e.clientX, e.clientY]; cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      v.yaw -= (e.clientX - drag[0]) * 0.01;
+      v.pitch = Math.max(-0.15, Math.min(1.45, v.pitch + (e.clientY - drag[1]) * 0.01));
+      drag = [e.clientX, e.clientY]; redraw();
+    });
+    ['pointerup', 'pointercancel'].forEach(function (n) { cv.addEventListener(n, function () { drag = null; }); });
+    cv.style.cursor = 'grab';
+    return v;
+  }
+
+  // ===================================================================== 4
+  var s4 = (function () {
+    var v = View3D($('c4'), 0.92, function (w) { return w / 11.5; }), mode = 'cyl';
+    v.yaw = 0.3;
+    var r = range('s4r', function (x) { return fmt(x); }, draw), t = range('s4t', deg, draw), z = range('s4z', function (x) { return fmt(x); }, draw),
+        p = range('s4p', function (x) { return fmt(x); }, draw), t2 = range('s4t2', deg, draw), f = range('s4f', deg, draw);
+    segmented('s4mode', function (b) {
+      // carry the current point across so switching systems doesn't move it
+      var P = point();
+      mode = b.dataset.m;
+      $('s4cyl').hidden = mode !== 'cyl'; $('s4sph').hidden = mode !== 'sph';
+      var rr = Math.hypot(P[0], P[1]), rho = Math.hypot(rr, P[2]);
+      var th = ((Math.atan2(P[1], P[0]) / D2R) + 360) % 360;
+      if (mode === 'cyl') { r.value = Math.min(4, rr); t.value = th; z.value = Math.max(-3, Math.min(4, P[2])); }
+      else { p.value = Math.min(4.5, rho); t2.value = th; f.value = rho ? Math.acos(P[2] / rho) / D2R : 0; }
+      [r, t, z, p, t2, f].forEach(function (el) { $(el.id + '-o').textContent = (el === t || el === t2 || el === f) ? deg(+el.value) : fmt(+el.value); });
+      draw();
+    });
+    function point() {
+      if (mode === 'cyl') { var th = +t.value * D2R; return [+r.value * Math.cos(th), +r.value * Math.sin(th), +z.value]; }
+      var th2 = +t2.value * D2R, ph = +f.value * D2R, rho = +p.value;
+      return [rho * Math.sin(ph) * Math.cos(th2), rho * Math.sin(ph) * Math.sin(th2), rho * Math.cos(ph)];
+    }
+    function draw() {
+      var ctx = v.begin(), P = point(), x = P[0], y = P[1], zz = P[2];
+      var rr = Math.hypot(x, y), rho = Math.hypot(rr, zz), th = Math.atan2(y, x), ph = rho ? Math.acos(zz / rho) : 0;
+      if (th < 0) th += 2 * Math.PI;
+      // floor grid
+      for (var k = -4; k <= 4; k += 2) { v.line([k, -4, 0], [k, 4, 0], C.grid, 1); v.line([-4, k, 0], [4, k, 0], C.grid, 1); }
+      // reference surfaces
+      if (mode === 'cyl' && rr > 0.05) {
+        var zl = Math.min(0, zz) - 0.3, zh = Math.max(0, zz) + 0.3;
+        [zl, 0, zh].forEach(function (h) { v.curve(function (a) { return [rr * Math.cos(a), rr * Math.sin(a), h]; }, 0, 2 * Math.PI, 'rgba(36,113,163,0.35)', 1.2, null, 64); });
+        for (var a = 0; a < 360; a += 30) v.line([rr * Math.cos(a * D2R), rr * Math.sin(a * D2R), zl], [rr * Math.cos(a * D2R), rr * Math.sin(a * D2R), zh], 'rgba(36,113,163,0.22)', 1);
+        v.text('cylinder r = ' + fmt(rr), [rr * Math.cos(th + 2.4), rr * Math.sin(th + 2.4), zh], C.blue, 0, -10, 'center');
+      }
+      if (mode === 'sph' && rho > 0.05) {
+        for (var la = 30; la < 180; la += 30) { var q = la * D2R; v.curve(function (a) { return [rho * Math.sin(q) * Math.cos(a), rho * Math.sin(q) * Math.sin(a), rho * Math.cos(q)]; }, 0, 2 * Math.PI, 'rgba(36,113,163,0.16)', 1, null, 64); }
+        for (var lo = 0; lo < 180; lo += 30) { var o = lo * D2R; v.curve(function (a) { return [rho * Math.sin(a) * Math.cos(o), rho * Math.sin(a) * Math.sin(o), rho * Math.cos(a)]; }, 0, 2 * Math.PI, 'rgba(36,113,163,0.13)', 1, null, 64); }
+        if (ph > 0.02 && ph < Math.PI - 0.02) for (var c = 0; c < 360; c += 30) { var cc = c * D2R, L = 4.6; v.line([0, 0, 0], [L * Math.sin(ph) * Math.cos(cc), L * Math.sin(ph) * Math.sin(cc), L * Math.cos(ph)], 'rgba(142,68,173,0.28)', 1); }
+        v.text('sphere ρ = ' + fmt(rho), [0, 0, rho], C.blue, 8, -10);
+      }
+      v.axes(5);
+      // shadow, r, z
+      v.line([0, 0, 0], [x, y, 0], C.blue, 2.6);
+      v.line([x, y, 0], [x, y, zz], C.green, 2.6, [6, 4]);
+      v.dot([x, y, 0], '#95a5a6', 3.5);
+      if (rr > 0.3) v.text('r', [x / 2, y / 2, 0], C.blue, 8, 12);
+      if (Math.abs(zz) > 0.3) v.text('z', [x, y, zz / 2], C.green, 10, 0);
+      v.curve(function (a) { return [0.9 * Math.cos(a), 0.9 * Math.sin(a), 0]; }, 0, th, C.orange, 2.2);
+      v.text('θ', [1.2 * Math.cos(th / 2), 1.2 * Math.sin(th / 2), 0], C.orange, 0, 0, 'center');
+      if (mode === 'sph') {
+        v.line([0, 0, 0], [x, y, zz], C.red, 2.6);
+        v.text('ρ', [x * 0.55, y * 0.55, zz * 0.55], C.red, -12, -6);
+        if (rho > 0.3) {
+          var k2 = Math.min(1.3, rho * 0.45);
+          v.curve(function (a) { return [k2 * Math.sin(a) * Math.cos(th), k2 * Math.sin(a) * Math.sin(th), k2 * Math.cos(a)]; }, 0, ph, C.purple, 2.2);
+          v.text('φ', [1.4 * k2 * Math.sin(ph / 2) * Math.cos(th), 1.4 * k2 * Math.sin(ph / 2) * Math.sin(th), 1.4 * k2 * Math.cos(ph / 2)], C.purple, 0, 0, 'center');
+        }
+      }
+      v.dot([x, y, zz], C.ink, 5.5);
+      v.text('P', [x, y, zz], C.ink, 9, -8);
+      $('s4-a').textContent = '(' + fmt(x) + ', ' + fmt(y) + ', ' + fmt(zz) + ')';
+      $('s4-b').textContent = '(' + fmt(rr) + ', ' + Math.round(th / D2R) + '°, ' + fmt(zz) + ')';
+      $('s4-c').textContent = '(' + fmt(rho) + ', ' + Math.round(th / D2R) + '°, ' + Math.round(ph / D2R) + '°)';
+    }
+    v.onDraw(draw);
+    return draw;
+  })();
+
+  // ===================================================================== 5
+  var s5 = (function () {
+    var v = View3D($('c5'), 0.92, function (w) { return w / 7.5; }), mode = 'cyl';
+    v.yaw = 0.3; v.pitch = 0.45;
+    var ids = ['s5r', 's5dr', 's5dt', 's5dz', 's5p', 's5f', 's5dp', 's5dt2', 's5df'], el = {};
+    ids.forEach(function (id) { el[id] = range(id, /dt|f$|df/.test(id) && id !== 's5dr' ? deg : function (x) { return fmt(x); }, draw); });
+    segmented('s5mode', function (b) {
+      mode = b.dataset.m;
+      $('s5cyl').hidden = mode !== 'cyl'; $('s5sph').hidden = mode !== 'sph';
+      $('s5idea-cyl').hidden = mode !== 'cyl'; $('s5idea-sph').hidden = mode !== 'sph';
+      draw();
+    });
+    function box(map, A, B, Cc, fill) {
+      // 12 edges of a curved box: vary one parameter, hold the other two at an end
+      var ctx = v.ctx, n = 24, faces = [
+        [0, A, B], [1, A, B], [0, A, Cc], [1, A, Cc], [0, B, Cc], [1, B, Cc]];
+      // faces (translucent) for depth cues
+      var F = function (fixed, which, U, V) {
+        var pts = [], k, u, w;
+        var g = function (a, b) { return which === 'c' ? map(a, b, fixed) : which === 'b' ? map(a, fixed, b) : map(fixed, a, b); };
+        for (k = 0; k <= n; k++) pts.push(g(U[0] + (U[1] - U[0]) * k / n, V[0]));
+        for (k = 0; k <= n; k++) pts.push(g(U[1], V[0] + (V[1] - V[0]) * k / n));
+        for (k = 0; k <= n; k++) pts.push(g(U[1] - (U[1] - U[0]) * k / n, V[1]));
+        for (k = 0; k <= n; k++) pts.push(g(U[0], V[1] - (V[1] - V[0]) * k / n));
+        poly(ctx, pts.map(function (p) { return v.P(p[0], p[1], p[2]); }), null, fill);
+      };
+      F(Cc[0], 'c', A, B); F(Cc[1], 'c', A, B); F(B[0], 'b', A, Cc); F(B[1], 'b', A, Cc); F(A[0], 'a', B, Cc); F(A[1], 'a', B, Cc);
+      var i, j;
+      for (i = 0; i < 2; i++) for (j = 0; j < 2; j++) {
+        v.curve(function (a) { return map(a, B[i], Cc[j]); }, A[0], A[1], C.orange, 1.6, null, 8);
+        v.curve(function (b) { return map(A[i], b, Cc[j]); }, B[0], B[1], C.orange, 1.6, null, 32);
+        v.curve(function (c) { return map(A[i], B[j], c); }, Cc[0], Cc[1], C.orange, 1.6, null, 32);
+      }
+    }
+    function centre(p3) {
+      var q = v.P(p3[0], p3[1], p3[2]);
+      v.cx += v.w * 0.5 - q[0]; v.cy += v.h * 0.55 - q[1];
+    }
+    function draw() {
+      var ctx = v.begin(), g = function (id) { return +el[id].value; };
+      if (mode === 'cyl') {
+        var rc = g('s5r') + g('s5dr') / 2, tc = 60 * D2R + g('s5dt') * D2R / 2;
+        centre([rc * Math.cos(tc) * 0.6, rc * Math.sin(tc) * 0.6, 0.4 + g('s5dz') / 2]);
+      } else {
+        var pc = (g('s5p') + g('s5dp') / 2) * 0.6, fc = (g('s5f') + g('s5df') / 2) * D2R, tc2 = 60 * D2R + g('s5dt2') * D2R / 2;
+        centre([pc * Math.sin(fc) * Math.cos(tc2), pc * Math.sin(fc) * Math.sin(tc2), pc * Math.cos(fc)]);
+      }
+      for (var k = -4; k <= 4; k += 2) { v.line([k, -4, 0], [k, 4, 0], C.grid, 1); v.line([-4, k, 0], [4, k, 0], C.grid, 1); }
+      v.axes(4.2);
+      if (mode === 'cyl') {
+        var r = g('s5r'), dr = g('s5dr'), dth = g('s5dt') * D2R, dz = g('s5dz'), th0 = 60 * D2R, z0 = 0.4;
+        var M = function (rr, th, zz) { return [rr * Math.cos(th), rr * Math.sin(th), zz]; };
+        v.line([0, 0, z0], M(r, th0, z0), 'rgba(36,113,163,0.5)', 1.2, [4, 4]);
+        v.line([0, 0, 0], [0, 0, z0], 'rgba(36,113,163,0.5)', 1.2, [4, 4]);
+        box(M, [r, r + dr], [th0, th0 + dth], [z0, z0 + dz], 'rgba(230,126,34,0.13)');
+        v.curve(function (a) { return M(a, th0, z0); }, r, r + dr, C.red, 3.4, null, 4);
+        v.curve(function (b) { return M(r, b, z0); }, th0, th0 + dth, C.green, 3.4, null, 24);
+        v.curve(function (c) { return M(r, th0, c); }, z0, z0 + dz, C.blue, 3.4, null, 4);
+        v.text('Δr', M(r + dr / 2, th0, z0), C.red, 4, 14, 'center');
+        v.text('rΔθ', M(r - 0.05, th0 + dth / 2, z0), C.green, -8, 12, 'right');
+        v.text('Δz', M(r, th0, z0 + dz / 2), C.blue, -10, 0, 'right');
+        var rm = r + dr / 2, exact = 0.5 * ((r + dr) * (r + dr) - r * r) * dth * dz;
+        $('s5-l1').textContent = 'Out: Δr'; $('s5-a').textContent = fmt(dr);
+        $('s5-l2').textContent = 'Around: rΔθ (middle radius)'; $('s5-b').textContent = fmt(rm * dth, 3);
+        $('s5-l3').textContent = 'Up: Δz'; $('s5-c').textContent = fmt(dz);
+        $('s5-d').textContent = fmt(exact, 3);
+        $('s5-l5').textContent = 'r Δr Δθ Δz (with the Jacobian r)'; $('s5-e').textContent = fmt(rm * dr * dth * dz, 3);
+        $('s5-l6').textContent = 'Δr Δθ Δz (forgetting it)'; $('s5-f').textContent = fmt(dr * dth * dz, 3);
+      } else {
+        var rho = g('s5p'), ph = g('s5f') * D2R, dp = g('s5dp'), dt = g('s5dt2') * D2R, df = g('s5df') * D2R, t0 = 60 * D2R;
+        var S = function (p, f, t) { return [p * Math.sin(f) * Math.cos(t), p * Math.sin(f) * Math.sin(t), p * Math.cos(f)]; };
+        v.line([0, 0, 0], S(rho, ph, t0 + dt), 'rgba(36,113,163,0.5)', 1.2, [4, 4]);
+        v.curve(function (f) { return S(rho, f, t0 + dt); }, 0, ph, 'rgba(142,68,173,0.45)', 1.2, [4, 4]);
+        box(S, [rho, rho + dp], [ph, ph + df], [t0, t0 + dt], 'rgba(230,126,34,0.13)');
+        var t1 = t0 + dt;  // highlight the three edges meeting at the near corner
+        v.curve(function (a) { return S(a, ph, t1); }, rho, rho + dp, C.red, 3.4, null, 4);
+        v.curve(function (f) { return S(rho, f, t1); }, ph, ph + df, C.purple, 3.4, null, 24);
+        v.curve(function (t) { return S(rho, ph, t); }, t0, t0 + dt, C.green, 3.4, null, 24);
+        v.text('Δρ', S(rho + dp / 2, ph, t1), C.red, 8, -10, 'left');
+        v.text('ρΔφ', S(rho, ph + df / 2, t1), C.purple, -8, 0, 'right');
+        v.text('ρ sinφ Δθ', S(rho, ph, t0 + dt / 2), C.green, 0, -14, 'center');
+        var pm = rho + dp / 2, fm = ph + df / 2;
+        var exactS = ((Math.pow(rho + dp, 3) - Math.pow(rho, 3)) / 3) * (Math.cos(ph) - Math.cos(ph + df)) * dt;
+        $('s5-l1').textContent = 'Out: Δρ'; $('s5-a').textContent = fmt(dp);
+        $('s5-l2').textContent = 'Down: ρΔφ'; $('s5-b').textContent = fmt(pm * df, 3);
+        $('s5-l3').textContent = 'Around: ρ sin φ Δθ'; $('s5-c').textContent = fmt(pm * Math.sin(fm) * dt, 3);
+        $('s5-d').textContent = fmt(exactS, 3);
+        $('s5-l5').textContent = 'ρ² sin φ Δρ Δφ Δθ (with the Jacobian)'; $('s5-e').textContent = fmt(pm * pm * Math.sin(fm) * dp * df * dt, 3);
+        $('s5-l6').textContent = 'Δρ Δφ Δθ (forgetting it)'; $('s5-f').textContent = fmt(dp * df * dt, 3);
+      }
+    }
+    v.onDraw(draw);
+    return draw;
+  })();
+
+  var all = [s1, s2, s3, s4, s5];
+  function drawAll() { all.forEach(function (f) { f(); }); }
+  drawAll();
+  var rt = 0;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(drawAll, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawAll);
+})();
+</script>
+
+</body>
+</html>

@@ -31,6 +31,7 @@
     { f: 'final-conic-sections.html', u: 'u4', label: 'Notes' },
     { f: 'final-conic-sections-practice.html', u: 'u4', label: 'Exercise Solutions' },
     { f: 'final-coordinate-systems.html', u: 'u5', label: 'Notes' },
+    { f: 'final-coordinate-lab.html', u: 'u5', label: 'Interactive Lab' },
     { f: 'final-coordinate-systems-practice.html', u: 'u5', label: 'Worksheet Solutions' },
     { f: 'final-vector-fields.html', u: 'u6', label: 'Notes' },
     { f: 'final-vector-fields-practice.html', u: 'u6', label: 'CT4 Solutions' },
