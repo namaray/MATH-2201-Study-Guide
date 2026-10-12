@@ -137,6 +137,18 @@ body.page figure.diagram figcaption { margin-top: 0.4rem; }
 body.page svg text { font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #2c3e50; }
 body.page svg .lbl-sm { font-size: 11.5px; }
 body.page details figure.diagram svg { max-width: 420px; }
+body.page figure.diagram.wide svg { max-width: 100%; }
+/* two-panel conversion diagrams: side by side, stacked on phones */
+.conv { display: flex; align-items: center; gap: 0.4rem; }
+.conv svg { flex: 1 1 0; min-width: 0; }
+.conv-arrow { flex: none; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; font-size: 0.78rem; color: var(--muted); text-align: center; line-height: 1.35; }
+.conv-arrow .ar { font-size: 1.5rem; line-height: 1; }
+@media (max-width: 640px) {
+  .conv { flex-direction: column; }
+  .conv svg { width: 100%; }
+  .conv-arrow { flex-direction: row; gap: 0.6rem; }
+  .conv-arrow .ar { transform: rotate(90deg); }
+}
 
 /* ---------- diagram rail: pictures on the left, maths on the right ---------- */
 @media (min-width: 1100px) {
