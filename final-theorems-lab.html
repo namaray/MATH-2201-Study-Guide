@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theorems Lab: Flux, Surface Integrals, Divergence &amp; Stokes | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']],
+        macros: { oiint: '\\mathop{\\vcenter{\\Large\\unicode{x222F}}}\\nolimits' }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/lab.css">
+  <script src="assets/site.js" defer></script>
+  <script src="assets/lab.js"></script>
+</head>
+<body class="page lab">
+
+  <div class="intro">
+    <h1>Theorems Lab</h1>
+    <p class="subtitle">Unit 7 · interactive simulations · drag to rotate any 3-D picture. Every number is computed live, both ways.</p>
+  </div>
+
+  <div class="toc intro">
+    <h2>Simulations</h2>
+    <ol>
+      <li><a href="#s1">Flux through a patch</a> <span class="sub">— why the \(\cos\theta\)</span></li>
+      <li><a href="#s2">The surface-area factor</a> <span class="sub">— \(dS = \sqrt{g_x^2 + g_y^2 + 1}\,dA\)</span></li>
+      <li><a href="#s3">The divergence theorem</a> <span class="sub">— outflow = total source inside</span></li>
+      <li><a href="#s4">Stokes' theorem</a> <span class="sub">— any surface with the same edge</span></li>
+    </ol>
+  </div>
+
+  <!-- ================================================================ 1 -->
+  <section class="sim" id="s1">
+    <h2>1. Flux through a patch — why the \(\cos\theta\)</h2>
+    <p class="lead">Rain falls straight up through a small window (just to keep the arrows pointing up). Tilt the window: less rain gets through, even though the window is the same size.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c1"></canvas>
+        <p class="hint">Drag to rotate. Green arrow: the window's normal \(\mathbf{n}\). Red: the field \(\mathbf{F}\).</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="ctl"><label for="s1t">tilt \(\theta\)</label><input id="s1t" type="range" min="0" max="180" step="1" value="35"><output id="s1t-o"></output></div>
+          <div class="ctl"><label for="s1m">\(|\mathbf{F}|\)</label><input id="s1m" type="range" min="0.5" max="3" step="0.1" value="2"><output id="s1m-o"></output></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>Window area \(A\)</td><td>1.00</td></tr>
+            <tr><td>\(\mathbf{F}\cdot\mathbf{n} = |\mathbf{F}|\cos\theta\)</td><td id="s1-a"></td></tr>
+            <tr class="hl"><td>Flux \(= \mathbf{F}\cdot\mathbf{n}\,A\)</td><td id="s1-b"></td></tr>
+            <tr><td>Meaning</td><td id="s1-c"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          Flux only counts the part of \(\mathbf{F}\) that goes <em>through</em> the surface — the part along \(\mathbf{n}\). Face-on: all of it.
+          Edge-on (\(90^\circ\)): none. Past \(90^\circ\) the flow goes through the "wrong" way, so the flux is negative.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 2 -->
+  <section class="sim" id="s2">
+    <h2>2. The surface-area factor — \(dS = \sqrt{g_x^2 + g_y^2 + 1}\,dA\)</h2>
+    <p class="lead">A small square \(dA\) on the floor (green) sits under a patch \(dS\) of the surface (orange). The steeper the surface, the bigger \(dS\) is compared with its shadow.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c2"></canvas>
+        <p class="hint">Drag to rotate.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s2g">
+            <button data-g="0" class="on">\(z = x^2 + y^2\)</button>
+            <button data-g="1">\(z = 2 - x - 2y\)</button>
+            <button data-g="2">\(z = 1.5\) (flat)</button>
+          </div>
+          <div class="ctl"><label for="s2x">\(x\)</label><input id="s2x" type="range" min="-1" max="1" step="0.05" value="0.6"><output id="s2x-o"></output></div>
+          <div class="ctl"><label for="s2y">\(y\)</label><input id="s2y" type="range" min="-1" max="1" step="0.05" value="0.3"><output id="s2y-o"></output></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>\(g_x,\ g_y\) here</td><td id="s2-a"></td></tr>
+            <tr class="hl"><td>\(\sqrt{g_x^2 + g_y^2 + 1}\)</td><td id="s2-b"></td></tr>
+            <tr><td>Area of \(dS\) ÷ area of \(dA\)</td><td id="s2-c"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          Flat surface: factor 1 (no stretch). A tilted plane: the same factor everywhere (it's a constant — plane questions are easy).
+          The bowl: flat at the bottom, steeper further out, so the factor \(\sqrt{4r^2 + 1}\) grows with \(r\).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 3 -->
+  <section class="sim" id="s3">
+    <h2>3. The divergence theorem — outflow = total source inside</h2>
+    <p class="lead">Colour on the closed surface shows \(\mathbf{F}\cdot\mathbf{n}\): red where the field leaves, blue where it enters. The total outflow always matches the sum of the divergence inside.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c3"></canvas>
+        <p class="hint">Drag to rotate.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s3s"><button data-s="0" class="on">Sphere</button><button data-s="1">Cube</button></div>
+          <div class="row seg" id="s3f">
+            <button data-f="0" class="on">\(x\,\mathbf{i} + y\,\mathbf{j} + z\,\mathbf{k}\)</button>
+            <button data-f="1">\(2x\,\mathbf{i} + 3y\,\mathbf{j} + 4z\,\mathbf{k}\)</button>
+            <button data-f="2">\(x^3\mathbf{i} + y^3\mathbf{j} + z^3\mathbf{k}\)</button>
+            <button data-f="3">\(-y\,\mathbf{i} + x\,\mathbf{j}\)</button>
+          </div>
+          <div class="ctl"><label for="s3r">size</label><input id="s3r" type="range" min="0.5" max="1.6" step="0.05" value="1"><output id="s3r-o"></output></div>
+          <div class="ctl"><label for="s3c">shift centre \(x\)</label><input id="s3c" type="range" min="-1" max="1" step="0.05" value="0"><output id="s3c-o"></output></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>\(\nabla\cdot\mathbf{F}\)</td><td id="s3-a"></td></tr>
+            <tr class="hl"><td>Outward flux \(\oiint \mathbf{F}\cdot\mathbf{n}\,dS\) (surface)</td><td id="s3-b"></td></tr>
+            <tr class="hl"><td>\(\iiint \nabla\cdot\mathbf{F}\,dV\) (inside)</td><td id="s3-c"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          Every bit of "source" inside (positive divergence) has to leave through the skin. So you can measure the outflow by
+          adding up the sources instead — one triple integral instead of a surface integral over every face.
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>\(x\,\mathbf{i} + y\,\mathbf{j} + z\,\mathbf{k}\): divergence 3, so flux = 3 × volume. Double the size: the flux goes up 8 times.</li>
+            <li>\(-y\,\mathbf{i} + x\,\mathbf{j}\) just swirls: red and blue cancel and the flux is 0.</li>
+            <li>Shift the centre: for constant divergence nothing changes; for \(x^3\mathbf{i} + \dots\) it does.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 4 -->
+  <section class="sim" id="s4">
+    <h2>4. Stokes' theorem — any surface with the same edge</h2>
+    <p class="lead">The edge \(C\) is the circle of radius 2. Inflate the surface from a flat disc into a dome: the flux of the curl through it never changes, because it always equals the circulation around \(C\).</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c4"></canvas>
+        <p class="hint">Drag to rotate. Green arrows: \(\nabla\times\mathbf{F}\). Purple: the edge \(C\), counterclockwise.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s4f">
+            <button data-f="0" class="on">\(-y\,\mathbf{i} + x\,\mathbf{j}\)</button>
+            <button data-f="1">\((z - y)\mathbf{i} + x\,\mathbf{j} + xy\,\mathbf{k}\)</button>
+          </div>
+          <div class="ctl"><label for="s4h">dome height</label><input id="s4h" type="range" min="0" max="3" step="0.05" value="1.5"><output id="s4h-o"></output></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>\(\nabla\times\mathbf{F}\)</td><td id="s4-a"></td></tr>
+            <tr class="hl"><td>\(\oint_C \mathbf{F}\cdot d\mathbf{r}\) (round the edge)</td><td id="s4-b"></td></tr>
+            <tr class="hl"><td>\(\iint_S (\nabla\times\mathbf{F})\cdot\mathbf{n}\,dS\) (through the dome)</td><td id="s4-c"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          The circulation only depends on the edge, so <em>any</em> surface with that edge gives the same flux of the curl. In exams, pick the easiest one —
+          usually the flat disc, where \(\mathbf{n} = \mathbf{k}\) and you only need the \(\mathbf{k}\)-part of the curl. For \(-y\,\mathbf{i} + x\,\mathbf{j}\)
+          that gives \(2 \times \pi(2)^2 = 8\pi \approx 25.13\).
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+(function () {
+  'use strict';
+  var L = window.Lab, C = L.C, $ = L.$, fmt = L.fmt, deg = L.deg, D2R = L.D2R;
+  function nrm(v) { var m = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / m, v[1] / m, v[2] / m]; }
+  function cross(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
+  function dot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+  function heat(v, vmax) {
+    var a = Math.min(1, Math.abs(v) / (vmax || 1));
+    var c = v >= 0 ? [192, 57, 43] : [36, 113, 163], w = [244, 247, 250];
+    return 'rgba(' + c.map(function (x, i) { return Math.round(w[i] + (x - w[i]) * (0.15 + 0.7 * a)); }).join(',') + ',0.92)';
+  }
+
+  // ===================================================================== 1
+  (function () {
+    var v = L.View3D($('c1'), 0.85, function (w) { return w / 4.6; });
+    v.yaw = 0.7; v.pitch = 0.3;
+    var t = L.range('s1t', deg, draw), m = L.range('s1m', function (x) { return x.toFixed(1); }, draw);
+    function draw() {
+      var ctx = v.begin(), th = +t.value * D2R, F = +m.value;
+      v.axes(2.4);
+      var n = [Math.sin(th), 0, Math.cos(th)], e1 = [Math.cos(th), 0, -Math.sin(th)], e2 = [0, 1, 0];
+      var corner = function (a, b) { return [0.5 * (a * e1[0] + b * e2[0]), 0.5 * (a * e1[1] + b * e2[1]), 0.5 * (a * e1[2] + b * e2[2])]; };
+      // arrows below the window
+      var k, j;
+      for (k = -1; k <= 1; k++) for (j = -1; j <= 1; j++) {
+        var x = 0.38 * k, y = 0.38 * j;
+        v.arrow([x, y, -1.6], [x, y, -1.6 + 0.35 * F], C.red, 2, 7);
+      }
+      var front = v.toward(n) >= 0;
+      v.quad([corner(-1, -1), corner(1, -1), corner(1, 1), corner(-1, 1)], C.blue, front ? 'rgba(36,113,163,0.28)' : 'rgba(36,113,163,0.15)', 2);
+      v.arrow([0, 0, 0], [0.9 * n[0], 0.9 * n[1], 0.9 * n[2]], C.green, 3, 10);
+      v.text('n', [n[0], n[1], n[2]], C.green, 8, 0);
+      // the projected 'shadow' the flow sees (its area is |cos θ|)
+      var c = Math.abs(Math.cos(th));
+      v.quad([[-0.5 * c, -0.5, -1.0], [0.5 * c, -0.5, -1.0], [0.5 * c, 0.5, -1.0], [-0.5 * c, 0.5, -1.0]], 'rgba(30,132,73,0.6)', 'rgba(30,132,73,0.12)', 1.2);
+      v.text('shadow: area |cos θ|', [0.5, 0.5, -1.0], C.green, 6, 12);
+      for (k = -1; k <= 1; k++) for (j = -1; j <= 1; j++) {
+        var x2 = 0.38 * k, y2 = 0.38 * j;
+        v.arrow([x2, y2, 0.6], [x2, y2, 0.6 + 0.35 * F], C.red, 2, 7);
+      }
+      var fn = F * Math.cos(th);
+      $('s1-a').textContent = fmt(fn);
+      $('s1-b').textContent = fmt(fn);
+      $('s1-c').textContent = Math.abs(fn) < 1e-3 ? 'edge-on: nothing gets through' : fn > 0 ? 'flow goes through along n' : 'flow goes through against n (negative)';
+    }
+    v.onDraw(draw); L.register(draw);
+  })();
+
+  // ===================================================================== 2
+  (function () {
+    var v = L.View3D($('c2'), 0.85, function (w) { return w / 5.2; });
+    v.yaw = 0.6; v.pitch = 0.38;
+    var G = [
+      { g: function (x, y) { return x * x + y * y; }, gx: function (x, y) { return 2 * x; }, gy: function (x, y) { return 2 * y; } },
+      { g: function (x, y) { return 2 - x - 2 * y; }, gx: function () { return -1; }, gy: function () { return -2; } },
+      { g: function () { return 1.5; }, gx: function () { return 0; }, gy: function () { return 0; } }
+    ];
+    var cur = G[0];
+    var X = L.range('s2x', function (x) { return x.toFixed(2); }, draw), Y = L.range('s2y', function (x) { return x.toFixed(2); }, draw);
+    L.segmented('s2g', function (b) { cur = G[+b.dataset.g]; draw(); });
+    function draw() {
+      var ctx = v.begin(), x0 = +X.value, y0 = +Y.value, h = 0.22;
+      v.cy = v.h * 0.74;   // the bowl rises high, so sit the floor lower
+      v.axes(1.7);
+      v.quad([[-1.2, -1.2, 0], [1.2, -1.2, 0], [1.2, 1.2, 0], [-1.2, 1.2, 0]], 'rgba(127,140,141,0.4)', 'rgba(127,140,141,0.06)', 1);
+      v.surface(function (a, b) { return [a, b, cur.g(a, b)]; }, -1.2, 1.2, -1.2, 1.2, 12, 12);
+      var sq = [[x0 - h, y0 - h], [x0 + h, y0 - h], [x0 + h, y0 + h], [x0 - h, y0 + h]];
+      v.quad(sq.map(function (p) { return [p[0], p[1], 0]; }), C.green, 'rgba(30,132,73,0.45)', 2);
+      sq.forEach(function (p) { v.line([p[0], p[1], 0], [p[0], p[1], cur.g(p[0], p[1])], '#7f8c8d', 1, [3, 3]); });
+      // the matching surface patch, finely sampled
+      var pts = [], n = 10, i;
+      for (i = 0; i < n; i++) pts.push([x0 - h + 2 * h * i / n, y0 - h]);
+      for (i = 0; i < n; i++) pts.push([x0 + h, y0 - h + 2 * h * i / n]);
+      for (i = 0; i < n; i++) pts.push([x0 + h - 2 * h * i / n, y0 + h]);
+      for (i = 0; i < n; i++) pts.push([x0 - h, y0 + h - 2 * h * i / n]);
+      v.quad(pts.map(function (p) { return [p[0], p[1], cur.g(p[0], p[1])]; }), C.orange, 'rgba(245,176,65,0.85)', 2);
+      v.text('dS', [x0 + h, y0 + h, cur.g(x0 + h, y0 + h)], C.orange, 8, -4);
+      v.text('dA', [x0 + h, y0 - h, 0], C.green, 8, 10);
+      var gx = cur.gx(x0, y0), gy = cur.gy(x0, y0), f = Math.sqrt(gx * gx + gy * gy + 1);
+      // numeric area of the patch
+      var m = 30, area = 0, d = 2 * h / m;
+      for (i = 0; i < m; i++) for (var j = 0; j < m; j++) {
+        var x = x0 - h + (i + 0.5) * d, y = y0 - h + (j + 0.5) * d;
+        area += Math.sqrt(Math.pow(cur.gx(x, y), 2) + Math.pow(cur.gy(x, y), 2) + 1) * d * d;
+      }
+      $('s2-a').textContent = fmt(gx) + ',  ' + fmt(gy);
+      $('s2-b').textContent = fmt(f, 3);
+      $('s2-c').textContent = fmt(area / (4 * h * h), 3);
+    }
+    v.onDraw(draw); L.register(draw);
+  })();
+
+  // ===================================================================== 3
+  (function () {
+    var v = L.View3D($('c3'), 0.85, function (w) { return w / 5.6; });
+    v.yaw = 0.55; v.pitch = 0.4;
+    var FS = [
+      { F: function (x, y, z) { return [x, y, z]; }, div: function () { return 3; }, txt: '3' },
+      { F: function (x, y, z) { return [2 * x, 3 * y, 4 * z]; }, div: function () { return 9; }, txt: '2 + 3 + 4 = 9' },
+      { F: function (x, y, z) { return [x * x * x, y * y * y, z * z * z]; }, div: function (x, y, z) { return 3 * (x * x + y * y + z * z); }, txt: '3x² + 3y² + 3z²' },
+      { F: function (x, y) { return [-y, x, 0]; }, div: function () { return 0; }, txt: '0' }
+    ];
+    var F = FS[0], shape = 0;
+    var R = L.range('s3r', function (x) { return x.toFixed(2); }, draw), Cx = L.range('s3c', function (x) { return x.toFixed(2); }, draw);
+    L.segmented('s3s', function (b) { shape = +b.dataset.s; draw(); });
+    L.segmented('s3f', function (b) { F = FS[+b.dataset.f]; draw(); });
+    function surfaceFlux(r, c) {
+      var s = 0, n = 60, i, j;
+      if (shape === 0) {
+        for (i = 0; i < n; i++) for (j = 0; j < 2 * n; j++) {
+          var ph = Math.PI * (i + 0.5) / n, th = 2 * Math.PI * (j + 0.5) / (2 * n);
+          var nn = [Math.sin(ph) * Math.cos(th), Math.sin(ph) * Math.sin(th), Math.cos(ph)];
+          var f = F.F(c + r * nn[0], r * nn[1], r * nn[2]);
+          s += dot(f, nn) * r * r * Math.sin(ph) * (Math.PI / n) * (Math.PI / n);
+        }
+      } else {
+        var hh = 2 * r / n;
+        for (var ax = 0; ax < 3; ax++) for (var sg = -1; sg <= 1; sg += 2) for (i = 0; i < n; i++) for (j = 0; j < n; j++) {
+          var u = -r + (i + 0.5) * hh, w = -r + (j + 0.5) * hh, p = [0, 0, 0], nv = [0, 0, 0];
+          p[ax] = sg * r; p[(ax + 1) % 3] = u; p[(ax + 2) % 3] = w; nv[ax] = sg;
+          s += dot(F.F(c + p[0], p[1], p[2]), nv) * hh * hh;
+        }
+      }
+      return s;
+    }
+    function volumeDiv(r, c) {
+      var s = 0, n = 40, i, j, k;
+      if (shape === 0) {
+        for (i = 0; i < n; i++) for (j = 0; j < n; j++) for (k = 0; k < n; k++) {
+          var rho = r * (i + 0.5) / n, ph = Math.PI * (j + 0.5) / n, th = 2 * Math.PI * (k + 0.5) / n;
+          var x = c + rho * Math.sin(ph) * Math.cos(th), y = rho * Math.sin(ph) * Math.sin(th), z = rho * Math.cos(ph);
+          s += F.div(x, y, z) * rho * rho * Math.sin(ph) * (r / n) * (Math.PI / n) * (2 * Math.PI / n);
+        }
+      } else {
+        n = 80;
+        var h = 2 * r / n;
+        for (i = 0; i < n; i++) for (j = 0; j < n; j++) for (k = 0; k < n; k++)
+          s += F.div(c - r + (i + 0.5) * h, -r + (j + 0.5) * h, -r + (k + 0.5) * h) * h * h * h;
+      }
+      return s;
+    }
+    function draw() {
+      var ctx = v.begin(), r = +R.value, c = +Cx.value;
+      v.axes(2.4);
+      var vmax = 0, samples = [];
+      var fnAt = function (p, n) { return dot(F.F(p[0], p[1], p[2]), n); };
+      if (shape === 0) {
+        var S = function (ph, th) { return [c + r * Math.sin(ph) * Math.cos(th), r * Math.sin(ph) * Math.sin(th), r * Math.cos(ph)]; };
+        for (var i = 0; i < 12; i++) for (var j = 0; j < 24; j++) { var ph = Math.PI * (i + 0.5) / 12, th = 2 * Math.PI * (j + 0.5) / 24, p = S(ph, th); vmax = Math.max(vmax, Math.abs(fnAt(p, nrm([p[0] - c, p[1], p[2]])))); }
+        v.surface(S, 0, Math.PI, 0, 2 * Math.PI, 12, 24, function (ph, th, q) {
+          var p = S(ph, th); return heat(fnAt(p, nrm([p[0] - c, p[1], p[2]])), vmax);
+        }, 'rgba(44,62,80,0.25)');
+        for (var a = 0; a < 6; a++) for (var b = 1; b < 4; b++) { var pp = S(Math.PI * b / 4, 2 * Math.PI * a / 6 + 0.3); samples.push(pp); }
+      } else {
+        var faces = [];
+        for (var ax = 0; ax < 3; ax++) for (var sg = -1; sg <= 1; sg += 2) faces.push([ax, sg]);
+        faces.forEach(function (f) { f.d = v.toward(f[0] === 0 ? [f[1], 0, 0] : f[0] === 1 ? [0, f[1], 0] : [0, 0, f[1]]); });
+        faces.sort(function (p, q) { return p.d - q.d; });
+        // estimate the colour scale
+        faces.forEach(function (f) { for (var u = -1; u <= 1; u += 0.5) for (var w = -1; w <= 1; w += 0.5) { var p = [0, 0, 0], n = [0, 0, 0]; p[f[0]] = f[1] * r; p[(f[0] + 1) % 3] = u * r; p[(f[0] + 2) % 3] = w * r; n[f[0]] = f[1]; p[0] += c; vmax = Math.max(vmax, Math.abs(fnAt(p, n))); } });
+        faces.forEach(function (f) {
+          var m = 6, hh = 2 * r / m;
+          for (var u = 0; u < m; u++) for (var w = 0; w < m; w++) {
+            var q = [[u, w], [u + 1, w], [u + 1, w + 1], [u, w + 1]].map(function (t) {
+              var p = [0, 0, 0]; p[f[0]] = f[1] * r; p[(f[0] + 1) % 3] = -r + t[0] * hh; p[(f[0] + 2) % 3] = -r + t[1] * hh; p[0] += c; return p;
+            });
+            var mid = [0, 0, 0], n = [0, 0, 0]; mid[f[0]] = f[1] * r; mid[(f[0] + 1) % 3] = -r + (u + 0.5) * hh; mid[(f[0] + 2) % 3] = -r + (w + 0.5) * hh; mid[0] += c; n[f[0]] = f[1];
+            v.quad(q, 'rgba(44,62,80,0.25)', heat(fnAt(mid, n), vmax), 0.8);
+          }
+          var cen = [0, 0, 0]; cen[f[0]] = f[1] * r; cen[0] += c; samples.push(cen);
+        });
+      }
+      samples.forEach(function (p) {
+        var f = F.F(p[0], p[1], p[2]), m = Math.hypot(f[0], f[1], f[2]); if (m < 1e-6) return;
+        var k = 0.45 / Math.max(1, m);
+        v.arrow(p, [p[0] + k * f[0], p[1] + k * f[1], p[2] + k * f[2]], '#2c3e50', 1.6, 6);
+      });
+      $('s3-a').textContent = F.txt;
+      $('s3-b').textContent = fmt(surfaceFlux(r, c), 2);
+      $('s3-c').textContent = fmt(volumeDiv(r, c), 2);
+    }
+    v.onDraw(draw); L.register(draw);
+  })();
+
+  // ===================================================================== 4
+  (function () {
+    var v = L.View3D($('c4'), 0.85, function (w) { return w / 7.4; });
+    v.yaw = 0.55; v.pitch = 0.45;
+    var FS = [
+      { F: function (x, y, z) { return [-y, x, 0]; }, curl: function () { return [0, 0, 2]; }, txt: '⟨0, 0, 2⟩' },
+      { F: function (x, y, z) { return [z - y, x, x * y]; }, curl: function (x, y) { return [x, 1 - y, 2]; }, txt: '⟨x, 1 − y, 2⟩' }
+    ];
+    var F = FS[0];
+    var H = L.range('s4h', function (x) { return x.toFixed(2); }, draw);
+    L.segmented('s4f', function (b) { F = FS[+b.dataset.f]; draw(); });
+    function S(r, t, h) { return [r * Math.cos(t), r * Math.sin(t), h * (1 - r * r / 4)]; }
+    function curlFlux(h) {
+      var n = 80, m = 120, s = 0, dr = 2 / n, dt = 2 * Math.PI / m;
+      for (var i = 0; i < n; i++) for (var j = 0; j < m; j++) {
+        var r = (i + 0.5) * dr, t = (j + 0.5) * dt;
+        var Sr = [Math.cos(t), Math.sin(t), -h * r / 2], St = [-r * Math.sin(t), r * Math.cos(t), 0];
+        var N = cross(Sr, St), p = S(r, t, h);
+        s += dot(F.curl(p[0], p[1], p[2]), N) * dr * dt;
+      }
+      return s;
+    }
+    function circ() {
+      var n = 2000, w = 0;
+      for (var i = 0; i < n; i++) {
+        var t = 2 * Math.PI * (i + 0.5) / n, p = [2 * Math.cos(t), 2 * Math.sin(t), 0], d = [-2 * Math.sin(t), 2 * Math.cos(t), 0];
+        w += dot(F.F(p[0], p[1], p[2]), d) * (2 * Math.PI / n);
+      }
+      return w;
+    }
+    function draw() {
+      var ctx = v.begin(), h = +H.value;
+      v.axes(3);
+      v.surface(function (r, t) { return S(r, t, h); }, 0, 2, 0, 2 * Math.PI, 8, 28, function (r, t) {
+        var Sr = [Math.cos(t), Math.sin(t), -h * r / 2], St = [-r * Math.sin(t), r * Math.cos(t), 0], N = nrm(cross(Sr, St)), p = S(r, t, h);
+        return heat(dot(F.curl(p[0], p[1], p[2]), N), 3);
+      }, 'rgba(44,62,80,0.2)');
+      [[0.0, 0], [1.0, 0.4], [1.0, 2.5], [1.0, 4.5], [1.6, 1.4], [1.6, 3.6], [1.6, 5.6]].forEach(function (q) {
+        var p = S(q[0], q[1], h), c = F.curl(p[0], p[1], p[2]), k = 0.35;
+        v.arrow(p, [p[0] + k * c[0], p[1] + k * c[1], p[2] + k * c[2]], C.green, 2.2, 8);
+      });
+      v.curve(function (t) { return [2 * Math.cos(t), 2 * Math.sin(t), 0]; }, 0, 2 * Math.PI, C.purple, 3, null, 120);
+      [0.4, 2.5, 4.6].forEach(function (t) { v.arrow([2 * Math.cos(t), 2 * Math.sin(t), 0], [2 * Math.cos(t + 0.3), 2 * Math.sin(t + 0.3), 0], C.purple, 3, 12); });
+      v.text('C', [2 * Math.cos(5.5), 2 * Math.sin(5.5), 0], C.purple, 10, 10);
+      $('s4-a').textContent = F.txt;
+      $('s4-b').textContent = fmt(circ(), 2);
+      $('s4-c').textContent = fmt(curlFlux(h), 2);
+    }
+    v.onDraw(draw); L.register(draw);
+  })();
+})();
+</script>
+
+</body>
+</html>

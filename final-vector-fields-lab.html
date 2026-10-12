@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vector Fields Lab: Gradient, Divergence, Curl &amp; Work | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/lab.css">
+  <script src="assets/site.js" defer></script>
+  <script src="assets/lab.js"></script>
+</head>
+<body class="page lab">
+
+  <div class="intro">
+    <h1>Vector Fields Lab</h1>
+    <p class="subtitle">Unit 6 · interactive simulations · drag points, pick fields, and watch gradient, divergence, curl and work happen.</p>
+  </div>
+
+  <div class="toc intro">
+    <h2>Simulations</h2>
+    <ol>
+      <li><a href="#s1">Gradient &amp; directional derivative</a> <span class="sub">— uphill and "how steep this way"</span></li>
+      <li><a href="#s2">Divergence &amp; curl</a> <span class="sub">— spreading and spinning, live</span></li>
+      <li><a href="#s3">Work along a path</a> <span class="sub">— when the path doesn't matter</span></li>
+      <li><a href="#s4">Green's theorem</a> <span class="sub">— edge circulation = total spin inside</span></li>
+    </ol>
+  </div>
+
+  <!-- ================================================================ 1 -->
+  <section class="sim" id="s1">
+    <h2>1. Gradient &amp; directional derivative</h2>
+    <p class="lead">The colours and lines are a map of \(f\) — like height on a hill. Drag the point \(P\). The green arrow \(\nabla f\) always points straight uphill, across the contour lines.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c1"></canvas>
+        <p class="hint">Drag anywhere to move \(P\). Red = high, blue = low.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s1f">
+            <button data-f="0" class="on">\(x^2 + y^2\)</button>
+            <button data-f="1">\(x^2 + 3xy\)</button>
+            <button data-f="2">\(x^2 + 4y^2 - 2xy\)</button>
+            <button data-f="3">\(x^2y + 3y^2\)</button>
+          </div>
+          <div class="ctl"><label for="s1u">direction \(\mathbf{u}\)</label><input id="s1u" type="range" min="0" max="360" step="0.01" value="53.13"><output id="s1u-o"></output></div>
+          <div class="row"><button class="btn" id="s1align">Point \(\mathbf{u}\) along \(\nabla f\)</button><button class="btn" id="s1perp">Point \(\mathbf{u}\) along the contour</button></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>\(P\)</td><td id="s1-a"></td></tr>
+            <tr><td>\(\nabla f(P)\)</td><td id="s1-b"></td></tr>
+            <tr><td>Steepest rate \(|\nabla f|\)</td><td id="s1-c"></td></tr>
+            <tr><td>Angle between \(\mathbf{u}\) and \(\nabla f\)</td><td id="s1-d"></td></tr>
+            <tr class="hl"><td>\(D_{\mathbf{u}}f = \nabla f \cdot \mathbf{u}\)</td><td id="s1-e"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          \(D_{\mathbf{u}}f = |\nabla f|\cos\alpha\): the "shadow" of \(\nabla f\) on your direction (orange). Facing uphill (\(\alpha = 0\)) gives the biggest rate, \(|\nabla f|\);
+          walking along a contour (\(\alpha = 90^\circ\)) gives 0; facing downhill gives \(-|\nabla f|\).
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>Pick \(x^2 + 3xy\), drag \(P\) to \((1, 2)\) and set \(\mathbf{u}\) to 53° (that's \(\langle 3, 4\rangle/5\)): you should get 7.2, the notes' Example 2.</li>
+            <li>Drag \(P\) across the map: \(\nabla f\) is always perpendicular to the contour through \(P\).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 2 -->
+  <section class="sim" id="s2">
+    <h2>2. Divergence &amp; curl — spreading and spinning</h2>
+    <p class="lead">Tiny particles drift with the field. Drag the probe (the circle) around: its arrows show flow in or out (divergence) and its paddle wheel turns with the local spin (curl).</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c2"></canvas>
+        <p class="hint">Drag to move the probe. Red edge arrows: flowing out. Blue: flowing in.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s2f">
+            <button data-f="0" class="on">Source</button><button data-f="1">Sink</button><button data-f="2">Rotation</button>
+            <button data-f="3">Shear</button><button data-f="4">Saddle</button><button data-f="5">Spiral</button><button data-f="6">\(x^2\mathbf{i} + 3xy\,\mathbf{j}\)</button>
+          </div>
+          <div class="row"><button class="btn" id="s2pause">❚❚ Pause particles</button></div>
+        </div>
+        <div class="math-block" id="s2formula"></div>
+        <table class="read">
+          <tbody>
+            <tr><td>Probe centre</td><td id="s2-a"></td></tr>
+            <tr class="hl"><td>\(\nabla\cdot\mathbf{F}\) at the probe</td><td id="s2-b"></td></tr>
+            <tr class="hl"><td>\((\nabla\times\mathbf{F})\cdot\mathbf{k}\) at the probe</td><td id="s2-c"></td></tr>
+            <tr><td>What it means</td><td id="s2-d"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          <ul>
+            <li><strong>Divergence</strong> = net outflow per unit area. Positive: more leaves the probe than enters (a source). Negative: a sink. Zero: what goes in comes out.</li>
+            <li><strong>Curl</strong> = how fast a tiny paddle wheel would spin. Positive: counterclockwise. Zero: no spin (irrotational).</li>
+          </ul>
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li><strong>Shear</strong>: every arrow points the same way, yet the wheel spins — curl isn't about curved arrows, it's about neighbouring arrows having different speeds.</li>
+            <li><strong>\(x^2\mathbf{i} + 3xy\,\mathbf{j}\)</strong> (the notes' Question 1, slice \(z = 0\)): move the probe left and right and watch the divergence \(5x\) change sign.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 3 -->
+  <section class="sim" id="s3">
+    <h2>3. Work along a path — when the path doesn't matter</h2>
+    <p class="lead">Work adds up the part of \(\mathbf{F}\) that points along the path. Try three different paths between the same two points and compare.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c3"></canvas>
+        <p class="hint">Green along the path: \(\mathbf{F}\) helps (positive work). Red: \(\mathbf{F}\) pushes back.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s3f">
+            <button data-f="0" class="on">\(y\,\mathbf{i} + x\,\mathbf{j}\)</button>
+            <button data-f="1">\((2xy + 1)\mathbf{i} + x^2\mathbf{j}\)</button>
+            <button data-f="2">\(-y\,\mathbf{i} + x\,\mathbf{j}\)</button>
+          </div>
+          <div class="row seg" id="s3p">
+            <button data-p="0" class="on">Straight</button><button data-p="1">Along the axes</button><button data-p="2">Curved</button>
+          </div>
+          <div class="ctl"><label for="s3t">travel</label><input id="s3t" type="range" min="0" max="1000" step="1" value="1000"><output id="s3t-o"></output></div>
+          <div class="row"><button class="btn play" id="s3play">▶ Walk the path</button></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>Work so far on this path</td><td id="s3-a"></td></tr>
+            <tr><td>Straight path (total)</td><td id="s3-b"></td></tr>
+            <tr><td>Along the axes (total)</td><td id="s3-c"></td></tr>
+            <tr><td>Curved path (total)</td><td id="s3-d"></td></tr>
+            <tr class="hl"><td>Conservative?</td><td id="s3-e"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          If \(\mathbf{F} = \nabla\phi\) (test: \(P_y = Q_x\)), the work is just \(\phi(B) - \phi(A)\) — every path gives the same number.
+          For \(-y\,\mathbf{i} + x\,\mathbf{j}\), \(P_y = -1 \ne 1 = Q_x\): the field swirls, and different paths collect different amounts.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 4 -->
+  <section class="sim" id="s4">
+    <h2>4. Green's theorem — edge circulation = total spin inside</h2>
+    <p class="lead">Colour shows the spin \(Q_x - P_y\) at each point. Adding it up over the region gives exactly the work done going once round the edge (counterclockwise).</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c4"></canvas>
+        <p class="hint">Little circles: the spin of each small cell. Neighbouring cells' edges cancel; only the outer edge is left.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s4r"><button data-r="0" class="on">Square</button><button data-r="1">Disc</button><button data-r="2">Triangle</button></div>
+          <div class="row seg" id="s4f">
+            <button data-f="0" class="on">\(-y\,\mathbf{i} + x\,\mathbf{j}\)</button>
+            <button data-f="1">\(y^2\mathbf{i} + x^2\mathbf{j}\)</button>
+            <button data-f="2">\((x^2 - y^2)\mathbf{i} + 2xy\,\mathbf{j}\)</button>
+            <button data-f="3">\((x^2 + y)\mathbf{i} + (x + y^2)\mathbf{j}\)</button>
+          </div>
+          <label class="check"><input type="checkbox" id="s4cells" checked> Show the little spinning cells</label>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>\(Q_x - P_y\)</td><td id="s4-a"></td></tr>
+            <tr class="hl"><td>\(\oint_C \mathbf{F}\cdot d\mathbf{r}\) (round the edge)</td><td id="s4-b"></td></tr>
+            <tr class="hl"><td>\(\iint_R (Q_x - P_y)\,dA\) (inside)</td><td id="s4-c"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          Each little cell's circulation is about (its spin) × (its area). Where two cells touch, they walk the shared edge in opposite
+          directions, so those parts cancel. Add up every cell and only the outer edge survives — that's Green's theorem.
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>\(y^2\mathbf{i} + x^2\mathbf{j}\) on the square centred at the origin: red and blue halves cancel → 0.</li>
+            <li>\((x^2 + y)\mathbf{i} + (x + y^2)\mathbf{j}\): no spin anywhere, so every region gives 0 (it's conservative).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+(function () {
+  'use strict';
+  var L = window.Lab, C = L.C, $ = L.$, fmt = L.fmt, deg = L.deg, D2R = L.D2R;
+
+  // ===================================================================== 1
+  (function () {
+    var cv = $('c1'), P = L.Plane(cv, 0.9, [-3.2, 3.2, -3.2, 3.2]);
+    var FS = [
+      { f: function (x, y) { return x * x + y * y; }, g: function (x, y) { return [2 * x, 2 * y]; } },
+      { f: function (x, y) { return x * x + 3 * x * y; }, g: function (x, y) { return [2 * x + 3 * y, 3 * x]; } },
+      { f: function (x, y) { return x * x + 4 * y * y - 2 * x * y; }, g: function (x, y) { return [2 * x - 2 * y, 8 * y - 2 * x]; } },
+      { f: function (x, y) { return x * x * y + 3 * y * y; }, g: function (x, y) { return [2 * x * y, x * x + 6 * y]; } }
+    ];
+    var F = FS[0], pt = [1, 2];
+    var u = L.range('s1u', deg, draw);
+    L.segmented('s1f', function (b) { F = FS[+b.dataset.f]; draw(); });
+    P.onDrag(function (p) { pt = [Math.max(-3, Math.min(3, p[0])), Math.max(-3, Math.min(3, p[1]))]; draw(); });
+    $('s1align').addEventListener('click', function () { var g = F.g(pt[0], pt[1]); L.setRange(u, ((Math.atan2(g[1], g[0]) / D2R) + 360) % 360, deg); draw(); });
+    $('s1perp').addEventListener('click', function () { var g = F.g(pt[0], pt[1]); L.setRange(u, ((Math.atan2(g[1], g[0]) / D2R) + 450) % 360, deg); draw(); });
+    function draw() {
+      var ctx = P.begin(), W = P.win, lo = Infinity, hi = -Infinity, i, j;
+      for (i = 0; i <= 30; i++) for (j = 0; j <= 30; j++) { var v = F.f(W[0] + (W[1] - W[0]) * i / 30, W[2] + (W[3] - W[2]) * j / 30); lo = Math.min(lo, v); hi = Math.max(hi, v); }
+      var mid = (lo + hi) / 2, half = (hi - lo) / 2 || 1;
+      P.heat(function (x, y) { return F.f(x, y) - mid; }, half, 6);
+      for (i = 1; i < 14; i++) P.contour(F.f, lo + (hi - lo) * i / 14, 'rgba(44,62,80,0.35)', 1.1, 110);
+      P.grid(1);
+      var g = F.g(pt[0], pt[1]), gm = Math.hypot(g[0], g[1]);
+      var k = gm > 0 ? Math.min(1, 2.2 / gm) : 1;   // draw long gradients shorter so they fit
+      var a = +u.value * D2R, ux = Math.cos(a), uy = Math.sin(a), D = g[0] * ux + g[1] * uy;
+      P.contour(F.f, F.f(pt[0], pt[1]), C.ink, 2.2, 140);
+      var tip = [pt[0] + k * g[0], pt[1] + k * g[1]], pr = [pt[0] + k * D * ux, pt[1] + k * D * uy];
+      P.line(tip, pr, '#7f8c8d', 1.3, [4, 3]);
+      P.line(pt, pr, 'rgba(230,126,34,0.85)', 7);
+      P.arrow(pt, tip, C.green, 3, 11);
+      P.arrow(pt, [pt[0] + 1.2 * ux, pt[1] + 1.2 * uy], C.blue, 2.6, 10);
+      P.dot(pt[0], pt[1], C.ink, 6);
+      P.text('∇f', tip[0], tip[1], C.green, 'left', 8, -6);
+      P.text('u', pt[0] + 1.2 * ux, pt[1] + 1.2 * uy, C.blue, 'left', 8, 6);
+      $('s1-a').textContent = '(' + fmt(pt[0]) + ', ' + fmt(pt[1]) + ')';
+      $('s1-b').textContent = '⟨' + fmt(g[0]) + ', ' + fmt(g[1]) + '⟩' + (k < 1 ? '  (drawn ×' + fmt(k, 2) + ')' : '');
+      $('s1-c').textContent = fmt(gm);
+      var cosA = gm > 0 ? D / gm : 0;
+      $('s1-d').textContent = gm > 0 ? deg(Math.acos(Math.max(-1, Math.min(1, cosA))) / D2R) : '—';
+      $('s1-e').textContent = fmt(D);
+    }
+    L.register(draw);
+  })();
+
+  // ===================================================================== 2
+  (function () {
+    var cv = $('c2'), P = L.Plane(cv, 0.9, [-3, 3, -3, 3]);
+    var FS = [
+      { F: function (x, y) { return [x, y]; }, tex: '\\mathbf{F} = x\\,\\mathbf{i} + y\\,\\mathbf{j}', s: 0.5 },
+      { F: function (x, y) { return [-x, -y]; }, tex: '\\mathbf{F} = -x\\,\\mathbf{i} - y\\,\\mathbf{j}', s: 0.5 },
+      { F: function (x, y) { return [-y, x]; }, tex: '\\mathbf{F} = -y\\,\\mathbf{i} + x\\,\\mathbf{j}', s: 0.5 },
+      { F: function (x, y) { return [y, 0]; }, tex: '\\mathbf{F} = y\\,\\mathbf{i}', s: 0.5 },
+      { F: function (x, y) { return [x, -y]; }, tex: '\\mathbf{F} = x\\,\\mathbf{i} - y\\,\\mathbf{j}', s: 0.5 },
+      { F: function (x, y) { return [x - y, x + y]; }, tex: '\\mathbf{F} = (x - y)\\,\\mathbf{i} + (x + y)\\,\\mathbf{j}', s: 0.35 },
+      { F: function (x, y) { return [x * x, 3 * x * y]; }, tex: '\\mathbf{F} = x^2\\,\\mathbf{i} + 3xy\\,\\mathbf{j}', s: 0.12 }
+    ];
+    var cur = FS[0], probe = [1.2, 0.8], R = 0.55, spin = 0, playing = true, parts = [], bg = null, raf = 0, visible = false, last = 0;
+    function divcurl(x, y) {
+      var h = 1e-3, F = cur.F;
+      var Px1 = F(x + h, y)[0], Px0 = F(x - h, y)[0], Qy1 = F(x, y + h)[1], Qy0 = F(x, y - h)[1];
+      var Qx1 = F(x + h, y)[1], Qx0 = F(x - h, y)[1], Py1 = F(x, y + h)[0], Py0 = F(x, y - h)[0];
+      return [(Px1 - Px0 + Qy1 - Qy0) / (2 * h), (Qx1 - Qx0 - (Py1 - Py0)) / (2 * h)];
+    }
+    function seed() {
+      parts = [];
+      for (var i = 0; i < 220; i++) parts.push(newPart());
+    }
+    function newPart() { var W = P.win; return { x: W[0] + Math.random() * (W[1] - W[0]), y: W[2] + Math.random() * (W[3] - W[2]), age: Math.random() * 120, tr: [] }; }
+    L.segmented('s2f', function (b) { cur = FS[+b.dataset.f]; $('s2formula').innerHTML = '$$ ' + cur.tex + ' $$'; L.typeset($('s2formula')); seed(); bg = null; draw(); });
+    $('s2formula').innerHTML = '$$ ' + cur.tex + ' $$';
+    $('s2pause').addEventListener('click', function () { playing = !playing; this.textContent = playing ? '❚❚ Pause particles' : '▶ Play particles'; if (playing) loop(); });
+    P.onDrag(function (p) { probe = [Math.max(-2.4, Math.min(2.4, p[0])), Math.max(-2.4, Math.min(2.4, p[1]))]; if (!playing || !visible) draw(); });
+    function drawStatic() {
+      var ctx = P.begin();
+      P.grid(1);
+      P.field(cur.F, 13, '#aab7c4');
+      bg = ctx.getImageData(0, 0, cv.width, cv.height);
+    }
+    function draw() {
+      if (!bg || cv.width !== bg.width) drawStatic();
+      var ctx = P.ctx;
+      ctx.putImageData(bg, 0, 0);
+      var dpr = window.devicePixelRatio || 1;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // particles
+      ctx.lineWidth = 1.6;
+      parts.forEach(function (q) {
+        if (q.tr.length < 2) return;
+        ctx.strokeStyle = 'rgba(36,113,163,0.55)'; ctx.beginPath();
+        q.tr.forEach(function (p, i) { var s = P.P(p[0], p[1]); if (i) ctx.lineTo(s[0], s[1]); else ctx.moveTo(s[0], s[1]); });
+        ctx.stroke();
+      });
+      // probe
+      var c = P.P(probe[0], probe[1]), rp = R * P.s, dc = divcurl(probe[0], probe[1]);
+      ctx.fillStyle = 'rgba(255,255,255,0.75)'; ctx.beginPath(); ctx.arc(c[0], c[1], rp, 0, 2 * Math.PI); ctx.fill();
+      ctx.strokeStyle = C.ink; ctx.lineWidth = 1.8; ctx.stroke();
+      var mags = [], i;
+      for (i = 0; i < 16; i++) { var a = 2 * Math.PI * i / 16, f = cur.F(probe[0] + R * Math.cos(a), probe[1] + R * Math.sin(a)); mags.push(f[0] * Math.cos(a) + f[1] * Math.sin(a)); }
+      var mm = Math.max.apply(null, mags.map(Math.abs)) || 1;
+      for (i = 0; i < 16; i++) {
+        var a2 = 2 * Math.PI * i / 16, fn = mags[i], len = 16 * fn / mm, bx = c[0] + rp * Math.cos(a2), by = c[1] - rp * Math.sin(a2);
+        if (Math.abs(len) > 2) L.arrow(ctx, bx, by, bx + len * Math.cos(a2), by - len * Math.sin(a2), fn > 0 ? C.red : C.blue, 2, 6);
+      }
+      // paddle wheel
+      ctx.save(); ctx.translate(c[0], c[1]); ctx.rotate(-spin);
+      ctx.strokeStyle = C.green; ctx.lineWidth = 3;
+      for (i = 0; i < 4; i++) { ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(rp * 0.62 * Math.cos(i * Math.PI / 2), rp * 0.62 * Math.sin(i * Math.PI / 2)); ctx.stroke(); }
+      ctx.fillStyle = C.green; ctx.beginPath(); ctx.arc(0, 0, 3.5, 0, 2 * Math.PI); ctx.fill();
+      ctx.restore();
+      $('s2-a').textContent = '(' + fmt(probe[0]) + ', ' + fmt(probe[1]) + ')';
+      $('s2-b').textContent = fmt(dc[0]);
+      $('s2-c').textContent = fmt(dc[1]);
+      var d = dc[0], k = dc[1], msg = [];
+      msg.push(Math.abs(d) < 1e-3 ? 'no net outflow' : d > 0 ? 'source (spreading out)' : 'sink (piling in)');
+      msg.push(Math.abs(k) < 1e-3 ? 'no spin' : k > 0 ? 'spins counterclockwise' : 'spins clockwise');
+      $('s2-d').textContent = msg.join(', ');
+    }
+    function step(dt) {
+      var W = P.win, s = cur.s;
+      parts.forEach(function (q, idx) {
+        var f1 = cur.F(q.x, q.y), mx = q.x + 0.5 * dt * s * f1[0], my = q.y + 0.5 * dt * s * f1[1], f2 = cur.F(mx, my);
+        q.x += dt * s * f2[0]; q.y += dt * s * f2[1]; q.age++;
+        q.tr.push([q.x, q.y]); if (q.tr.length > 10) q.tr.shift();
+        if (q.x < W[0] || q.x > W[1] || q.y < W[2] || q.y > W[3] || q.age > 160 || !isFinite(q.x)) parts[idx] = newPart();
+      });
+      spin += dt * s * divcurl(probe[0], probe[1])[1] * 0.5 * 3;
+    }
+    function loop(t) {
+      if (!playing || !visible) return;
+      var dt = Math.min(0.05, ((t || 0) - last) / 1000 || 0.016); last = t || 0;
+      step(dt); draw();
+      raf = requestAnimationFrame(loop);
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible && playing) { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); } }).observe(cv);
+    } else { visible = true; }
+    seed();
+    L.register(function () { bg = null; draw(); });
+  })();
+
+  // ===================================================================== 3
+  (function () {
+    var cv = $('c3'), P = L.Plane(cv, 0.9, [-0.6, 2.6, -0.6, 2.6]), A = [0, 0], B = [2, 2];
+    var FS = [
+      { F: function (x, y) { return [y, x]; }, cons: true, phi: 'φ = xy' },
+      { F: function (x, y) { return [2 * x * y + 1, x * x]; }, cons: true, phi: 'φ = x²y + x' },
+      { F: function (x, y) { return [-y, x]; }, cons: false, phi: '' }
+    ];
+    var PATHS = [
+      function (t) { return [2 * t, 2 * t]; },
+      function (t) { return t < 0.5 ? [4 * t, 0] : [2, 4 * (t - 0.5)]; },
+      function (t) { return [2 * t * t, 2 * Math.sin(Math.PI * t / 2)]; }
+    ];
+    var F = FS[0], path = 0, playing = false, raf = 0;
+    var tt = L.range('s3t', function (v) { return Math.round(v / 10) + '%'; }, draw);
+    L.segmented('s3f', function (b) { F = FS[+b.dataset.f]; draw(); });
+    L.segmented('s3p', function (b) { path = +b.dataset.p; draw(); });
+    function work(pf, t1) {
+      var n = 600, w = 0, i;
+      for (i = 0; i < n; i++) {
+        var a = t1 * i / n, b = t1 * (i + 1) / n, p = pf(a), q = pf(b), m = pf((a + b) / 2), f = F.F(m[0], m[1]);
+        w += f[0] * (q[0] - p[0]) + f[1] * (q[1] - p[1]);
+      }
+      return w;
+    }
+    function draw() {
+      var ctx = P.begin(), t1 = +tt.value / 1000, pf = PATHS[path];
+      P.grid(0.5);
+      P.field(F.F, 11, '#aab7c4');
+      PATHS.forEach(function (q, k) { if (k !== path) P.curve(q, 0, 1, 'rgba(127,140,141,0.5)', 2, 200, [5, 4]); });
+      // colour the chosen path by the tangential component
+      var n = 200, i;
+      for (i = 0; i < n; i++) {
+        var a = i / n, b = (i + 1) / n, p = pf(a), q = pf(b), m = pf((a + b) / 2), f = F.F(m[0], m[1]);
+        var dx = q[0] - p[0], dy = q[1] - p[1], dl = Math.hypot(dx, dy) || 1, ft = (f[0] * dx + f[1] * dy) / dl;
+        var s1 = P.P(p[0], p[1]), s2 = P.P(q[0], q[1]);
+        ctx.strokeStyle = ft >= 0 ? 'rgba(30,132,73,' + (0.35 + 0.65 * Math.min(1, ft / 3)) + ')' : 'rgba(192,57,43,' + (0.35 + 0.65 * Math.min(1, -ft / 3)) + ')';
+        ctx.lineWidth = b <= t1 + 1e-9 ? 6 : 2.5;
+        ctx.beginPath(); ctx.moveTo(s1[0], s1[1]); ctx.lineTo(s2[0], s2[1]); ctx.stroke();
+      }
+      var here = pf(t1), fh = F.F(here[0], here[1]);
+      P.arrow(here, [here[0] + 0.25 * fh[0], here[1] + 0.25 * fh[1]], C.red, 2.6, 9);
+      P.dot(A[0], A[1], C.ink, 5); P.text('A', A[0], A[1], C.ink, 'right', -8, 12);
+      P.dot(B[0], B[1], C.ink, 5); P.text('B', B[0], B[1], C.ink, 'left', 8, -8);
+      P.dot(here[0], here[1], C.orange, 6.5);
+      $('s3-a').textContent = fmt(work(pf, t1), 3);
+      $('s3-b').textContent = fmt(work(PATHS[0], 1), 3);
+      $('s3-c').textContent = fmt(work(PATHS[1], 1), 3);
+      $('s3-d').textContent = fmt(work(PATHS[2], 1), 3);
+      $('s3-e').textContent = F.cons ? 'yes (' + F.phi + '): same work on every path' : 'no: the paths disagree';
+    }
+    $('s3play').addEventListener('click', function () {
+      playing = !playing; this.textContent = playing ? '❚❚ Pause' : '▶ Walk the path';
+      if (!playing) { cancelAnimationFrame(raf); return; }
+      if (+tt.value >= 1000) tt.value = 0;
+      var step = function () {
+        if (!playing) return;
+        tt.value = Math.min(1000, +tt.value + 6); $('s3t-o').textContent = Math.round(tt.value / 10) + '%'; draw();
+        if (+tt.value >= 1000) { playing = false; $('s3play').textContent = '▶ Walk the path'; return; }
+        raf = requestAnimationFrame(step);
+      };
+      raf = requestAnimationFrame(step);
+    });
+    L.register(draw);
+  })();
+
+  // ===================================================================== 4
+  (function () {
+    var cv = $('c4'), P = L.Plane(cv, 0.9, [-2.2, 2.2, -2.2, 2.2]);
+    var REG = [
+      { inside: function (x, y) { return Math.abs(x) <= 1.5 && Math.abs(y) <= 1.5; }, edge: [[-1.5, -1.5], [1.5, -1.5], [1.5, 1.5], [-1.5, 1.5]], box: [-1.5, 1.5, -1.5, 1.5] },
+      { inside: function (x, y) { return x * x + y * y <= 2.25; }, circle: 1.5, box: [-1.5, 1.5, -1.5, 1.5] },
+      { inside: function (x, y) { return y >= -1.4 && x <= 1.6 && y <= -1.4 + (x + 1.6) * (3 / 3.2); }, edge: [[-1.6, -1.4], [1.6, -1.4], [1.6, 1.6]], box: [-1.6, 1.6, -1.4, 1.6] }
+    ];
+    var FS = [
+      { F: function (x, y) { return [-y, x]; }, curl: function () { return 2; }, txt: '2' },
+      { F: function (x, y) { return [y * y, x * x]; }, curl: function (x, y) { return 2 * x - 2 * y; }, txt: '2x − 2y' },
+      { F: function (x, y) { return [x * x - y * y, 2 * x * y]; }, curl: function (x, y) { return 4 * y; }, txt: '4y' },
+      { F: function (x, y) { return [x * x + y, x + y * y]; }, curl: function () { return 0; }, txt: '1 − 1 = 0' }
+    ];
+    var R = REG[0], F = FS[0];
+    L.segmented('s4r', function (b) { R = REG[+b.dataset.r]; draw(); });
+    L.segmented('s4f', function (b) { F = FS[+b.dataset.f]; draw(); });
+    $('s4cells').addEventListener('change', draw);
+    function boundary(t) {   // t in [0, 1), counterclockwise
+      if (R.circle) return [R.circle * Math.cos(2 * Math.PI * t), R.circle * Math.sin(2 * Math.PI * t)];
+      var e = R.edge, n = e.length, s = t * n, i = Math.floor(s) % n, f = s - Math.floor(s), a = e[i], b = e[(i + 1) % n];
+      return [a[0] + f * (b[0] - a[0]), a[1] + f * (b[1] - a[1])];
+    }
+    function circulation() {
+      var n = 2000, w = 0;
+      for (var i = 0; i < n; i++) {
+        var p = boundary(i / n), q = boundary((i + 1) / n), m = boundary((i + 0.5) / n), f = F.F(m[0], m[1]);
+        w += f[0] * (q[0] - p[0]) + f[1] * (q[1] - p[1]);
+      }
+      return w;
+    }
+    function areaSum() {
+      // midpoint rule; cells cut by the edge are sub-sampled so slanted edges stay accurate
+      var n = 240, b = R.box, hx = (b[1] - b[0]) / n, hy = (b[3] - b[2]) / n, s = 0, m = 6;
+      for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) {
+        var x0 = b[0] + i * hx, y0 = b[2] + j * hy;
+        var c = [R.inside(x0, y0), R.inside(x0 + hx, y0), R.inside(x0, y0 + hy), R.inside(x0 + hx, y0 + hy)];
+        if (c[0] && c[1] && c[2] && c[3]) { s += F.curl(x0 + hx / 2, y0 + hy / 2) * hx * hy; continue; }
+        if (!c[0] && !c[1] && !c[2] && !c[3] && !R.inside(x0 + hx / 2, y0 + hy / 2)) continue;
+        for (var a = 0; a < m; a++) for (var d = 0; d < m; d++) {
+          var x = x0 + (a + 0.5) * hx / m, y = y0 + (d + 0.5) * hy / m;
+          if (R.inside(x, y)) s += F.curl(x, y) * hx * hy / (m * m);
+        }
+      }
+      return s;
+    }
+    function draw() {
+      var ctx = P.begin();
+      P.heat(function (x, y) { return R.inside(x, y) ? F.curl(x, y) : NaN; }, 4, 5);
+      P.grid(0.5);
+      P.field(F.F, 11, '#7f8c8d');
+      if ($('s4cells').checked) {
+        for (var x = -1.5; x <= 1.5; x += 0.5) for (var y = -1.5; y <= 1.5; y += 0.5) {
+          var cx = x + 0.0, cy = y + 0.0;
+          if (!R.inside(cx, cy)) continue;
+          var k = F.curl(cx, cy); if (Math.abs(k) < 0.05) continue;
+          var c = P.P(cx, cy), r = 9, col = k > 0 ? C.red : C.blue;
+          ctx.strokeStyle = col; ctx.lineWidth = 1.6; ctx.beginPath();
+          var a0 = 0.3, a1 = 2 * Math.PI - 0.3;
+          ctx.arc(c[0], c[1], r, -a0, -a1, true); ctx.stroke();
+          var ea = k > 0 ? a1 : a0, dir = k > 0 ? 1 : -1;
+          var ex = c[0] + r * Math.cos(-ea), ey = c[1] + r * Math.sin(-ea);
+          L.arrow(ctx, ex - dir * 4 * Math.sin(ea), ey - dir * 4 * Math.cos(ea), ex, ey, col, 1.6, 5);
+        }
+      }
+      var pts = []; for (var i = 0; i <= 400; i++) { var b = boundary(i / 400); pts.push(P.P(b[0], b[1])); }
+      L.poly(ctx, pts, C.purple, null, 3);
+      [0.12, 0.45, 0.78].forEach(function (t) { var p = boundary(t), q = boundary(t + 0.02); P.arrow(p, q, C.purple, 3, 12); });
+      $('s4-a').textContent = F.txt;
+      $('s4-b').textContent = fmt(circulation(), 2);
+      $('s4-c').textContent = fmt(areaSum(), 2);
+    }
+    L.register(draw);
+  })();
+})();
+</script>
+
+</body>
+</html>

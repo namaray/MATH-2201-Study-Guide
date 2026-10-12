@@ -1,0 +1,80 @@
+/* Shared styles for the interactive lab pages */
+body.page.lab { max-width: 78rem; }
+body.lab > .intro { max-width: 46rem; }
+
+.toc { background: #fff; padding: 1.1rem 1.6rem 1.2rem; margin-bottom: 2rem; border-top-color: #f37021 !important; }
+.toc h2 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+.toc ol { margin: 0; padding-left: 1.3rem; columns: 2; column-gap: 2rem; }
+.toc li { break-inside: avoid; }
+.toc a { color: #1e8449; text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.toc .sub { color: #7f8c8d; font-size: 0.88rem; }
+
+.sim {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid #27ae60;
+  border-radius: 14px;
+  padding: 1.4rem 1.7rem 1.6rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 2px rgba(20, 40, 60, 0.04), 0 6px 20px rgba(20, 40, 60, 0.04);
+  scroll-margin-top: 1rem;
+}
+.sim > h2 { margin: 0 0 0.2rem; font-size: 1.35rem; color: #1e8449; letter-spacing: -0.01em; }
+.sim > .lead { margin: 0 0 1.1rem; color: var(--muted); }
+
+.sim-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 1.8rem; align-items: start; }
+.sim.wide .sim-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+.stage { position: sticky; top: 1rem; }
+.stage canvas {
+  display: block; width: 100%;
+  background: #fbfcfd; border: 1px solid var(--line); border-radius: 12px;
+  touch-action: none;
+}
+.stage .hint { font-size: 0.82rem; color: var(--muted); margin: 0.4rem 0 0; text-align: center; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.pair figcaption { text-align: center; font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-top: 0.3rem; }
+.pair figure { margin: 0; }
+
+.controls { display: grid; gap: 0.55rem; margin-bottom: 1rem; }
+.ctl { display: grid; grid-template-columns: 6.6rem minmax(0, 1fr) 4.4rem; align-items: center; gap: 0.6rem; font-size: 0.93rem; }
+.ctl label { font-weight: 600; }
+.ctl output { font-variant-numeric: tabular-nums; text-align: right; color: #2c3e50; font-weight: 600; }
+.ctl input[type=range] { width: 100%; accent-color: #1e8449; }
+.row { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+.seg button, .btn {
+  font: inherit; font-size: 0.86rem; font-weight: 600;
+  border: 1px solid var(--line); background: #fff; color: var(--ink);
+  padding: 0.3rem 0.8rem; border-radius: 999px; cursor: pointer;
+}
+.seg button.on { background: #2c3e50; border-color: #2c3e50; color: #fff; }
+.btn.play { background: #1e8449; border-color: #1e8449; color: #fff; }
+.check { font-size: 0.92rem; display: flex; gap: 0.45rem; align-items: center; }
+
+table.read { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 0.4rem 0 0.9rem; }
+table.read td { padding: 0.32rem 0.55rem; border-bottom: 1px solid #eef1f4; }
+table.read td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+table.read tr.hl td { background: #fff6ef; }
+table.read tr.good td:last-child { color: #1e8449; }
+table.read tr.bad td:last-child { color: #c0392b; }
+
+.idea { background: #fef9e7; border-left: 4px solid #f1c40f; padding: 0.7rem 1rem 0.8rem; border-radius: 9px; margin: 0.8rem 0; }
+.idea .box-title, .try .box-title {
+  display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: #9a7d0a; margin-bottom: 0.2rem;
+}
+.try { background: #eaf2f8; border-left: 4px solid #2471a3; padding: 0.7rem 1rem 0.8rem; border-radius: 9px; margin: 0.8rem 0; }
+.try .box-title { color: #1b4f72; }
+.try ul, .idea ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
+.math-block { text-align: center; overflow-x: auto; margin: 0.6rem 0; }
+
+@media (max-width: 900px) {
+  .sim-grid, .sim.wide .sim-grid { grid-template-columns: minmax(0, 1fr); }
+  .stage { position: static; }
+  .toc ol { columns: 1; }
+}
+@media (max-width: 640px) {
+  .sim { padding: 1rem 0.95rem 1.2rem; }
+  .ctl { grid-template-columns: 5.4rem minmax(0, 1fr) 3.8rem; font-size: 0.88rem; }
+  .pair { grid-template-columns: 1fr; }
+}

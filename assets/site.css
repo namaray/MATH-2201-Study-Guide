@@ -284,3 +284,7 @@ body.sheet .f { overflow-x: auto; }
   .topbar, .pager { display: none !important; }
   html { background: #fff; }
 }
+
+/* worked-example diagrams sit inside the example box */
+body.page .example figure.diagram.ex { margin: 0.9rem auto 0.5rem; }
+body.page .example figure.diagram.ex:not(.wide) svg { max-width: 440px; }

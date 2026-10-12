@@ -29,13 +29,16 @@
     { f: 'midterm-review-guide.html', u: 'mprep', label: 'Review Guide' },
     { f: 'midterm-formula-sheet.html', u: 'mprep', label: 'Formula Sheet' },
     { f: 'final-conic-sections.html', u: 'u4', label: 'Notes' },
+    { f: 'final-conics-lab.html', u: 'u4', label: 'Interactive Lab' },
     { f: 'final-conic-sections-practice.html', u: 'u4', label: 'Exercise Solutions' },
     { f: 'final-coordinate-systems.html', u: 'u5', label: 'Notes' },
     { f: 'final-coordinate-lab.html', u: 'u5', label: 'Interactive Lab' },
     { f: 'final-coordinate-systems-practice.html', u: 'u5', label: 'Worksheet Solutions' },
     { f: 'final-vector-fields.html', u: 'u6', label: 'Notes' },
+    { f: 'final-vector-fields-lab.html', u: 'u6', label: 'Interactive Lab' },
     { f: 'final-vector-fields-practice.html', u: 'u6', label: 'CT4 Solutions' },
     { f: 'final-integral-theorems.html', u: 'u7', label: 'Notes' },
+    { f: 'final-theorems-lab.html', u: 'u7', label: 'Interactive Lab' },
     { f: 'final-exam-review.html', u: 'fprep', label: 'Final Exam Review' },
     { f: 'final-formula-sheet.html', u: 'fprep', label: 'Cheat Sheet' }
   ];

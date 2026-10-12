@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conics Lab: Interactive Conic Sections | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/lab.css">
+  <script src="assets/site.js" defer></script>
+  <script src="assets/lab.js"></script>
+</head>
+<body class="page lab">
+
+  <div class="intro">
+    <h1>Conics Lab</h1>
+    <p class="subtitle">Unit 4 · interactive simulations · drag the sliders and watch where each conic formula comes from.</p>
+  </div>
+
+  <div class="toc intro">
+    <h2>Simulations</h2>
+    <ol>
+      <li><a href="#s1">One rule, three curves</a> <span class="sub">— focus, directrix &amp; eccentricity</span></li>
+      <li><a href="#s2">The string property</a> <span class="sub">— why \(c^2 = a^2 \mp b^2\)</span></li>
+      <li><a href="#s3">Shifting a conic</a> <span class="sub">— standard form ↔ general form</span></li>
+      <li><a href="#s4">Rotation of axes</a> <span class="sub">— killing the \(xy\)-term</span></li>
+    </ol>
+  </div>
+
+  <!-- ================================================================ 1 -->
+  <section class="sim" id="s1">
+    <h2>1. One rule, three curves — focus, directrix &amp; eccentricity</h2>
+    <p class="lead">Every conic is the set of points \(P\) with \(PF = e \cdot PD\): distance to a focus \(F\) is \(e\) times the distance to a directrix line. Change \(e\) and watch the shape change type.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c1"></canvas>
+        <p class="hint">Orange: \(PF\) (to the focus). Purple: \(PD\) (to the directrix).</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="ctl"><label for="s1e">\(e\)</label><input id="s1e" type="range" min="0.2" max="2" step="0.05" value="0.6"><output id="s1e-o"></output></div>
+          <div class="ctl"><label for="s1t">move \(P\)</label><input id="s1t" type="range" min="0" max="360" step="1" value="70"><output id="s1t-o"></output></div>
+          <div class="row seg" id="s1pre">
+            <button data-e="0.5">Ellipse</button><button data-e="1">Parabola</button><button data-e="1.6">Hyperbola</button>
+          </div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>Type</td><td id="s1-a"></td></tr>
+            <tr><td>\(PF\) (to the focus)</td><td id="s1-b"></td></tr>
+            <tr><td>\(PD\) (to the directrix)</td><td id="s1-c"></td></tr>
+            <tr class="hl"><td>\(PF \div PD\)</td><td id="s1-d"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          <ul>
+            <li>\(e &lt; 1\): \(P\) must stay closer to \(F\) than to the line → a closed curve, an <strong>ellipse</strong>.</li>
+            <li>\(e = 1\): equally far → a <strong>parabola</strong>.</li>
+            <li>\(e &gt; 1\): further from \(F\) than from the line is allowed → two branches, a <strong>hyperbola</strong>.</li>
+          </ul>
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>Move \(P\) around: the ratio stays exactly \(e\).</li>
+            <li>Slide \(e\) slowly through 1 and watch the ellipse open up into a parabola, then split into a hyperbola.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 2 -->
+  <section class="sim" id="s2">
+    <h2>2. The string property — ellipse sum, hyperbola difference</h2>
+    <p class="lead">An ellipse is where the two focal distances <em>add</em> to \(2a\); a hyperbola is where they <em>differ</em> by \(2a\). That is where \(c^2 = a^2 - b^2\) and \(c^2 = a^2 + b^2\) come from.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c2"></canvas>
+        <p class="hint">Orange: \(PF_1\). Green: \(PF_2\).</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s2type"><button data-t="ell" class="on">Ellipse</button><button data-t="hyp">Hyperbola</button></div>
+          <div class="ctl"><label for="s2a">\(a\)</label><input id="s2a" type="range" min="1" max="5" step="0.1" value="4"><output id="s2a-o"></output></div>
+          <div class="ctl"><label for="s2b">\(b\)</label><input id="s2b" type="range" min="0.5" max="4" step="0.1" value="2.5"><output id="s2b-o"></output></div>
+          <div class="ctl"><label for="s2t">move \(P\)</label><input id="s2t" type="range" min="0" max="1000" step="1" value="180"><output id="s2t-o"></output></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>Equation</td><td id="s2-a"></td></tr>
+            <tr><td>Focal distance \(c\)</td><td id="s2-b"></td></tr>
+            <tr><td>\(PF_1\), \(PF_2\)</td><td id="s2-c"></td></tr>
+            <tr class="hl"><td id="s2-l4">\(PF_1 + PF_2\)</td><td id="s2-d"></td></tr>
+            <tr><td>Eccentricity \(e = c/a\)</td><td id="s2-e"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea" id="s2idea"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 3 -->
+  <section class="sim" id="s3">
+    <h2>3. Shifting a conic — standard form ↔ general form</h2>
+    <p class="lead">Moving a conic so its centre (or vertex) is at \((h, k)\) replaces \(x\) with \(x - h\) and \(y\) with \(y - k\). Expanding gives the messy general form you see in exam questions — completing the square undoes it.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c3"></canvas>
+        <p class="hint">Grey dashed: the same conic at the origin. Green arrow: the shift \((h, k)\).</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="row seg" id="s3type"><button data-t="ell" class="on">Ellipse</button><button data-t="hyp">Hyperbola</button><button data-t="par">Parabola</button></div>
+          <div class="ctl"><label for="s3h">\(h\)</label><input id="s3h" type="range" min="-4" max="4" step="1" value="2"><output id="s3h-o"></output></div>
+          <div class="ctl"><label for="s3k">\(k\)</label><input id="s3k" type="range" min="-4" max="4" step="1" value="-1"><output id="s3k-o"></output></div>
+          <div class="ctl"><label for="s3a">\(a\)</label><input id="s3a" type="range" min="1" max="4" step="1" value="3"><output id="s3a-o"></output></div>
+          <div class="ctl" id="s3brow"><label for="s3b">\(b\)</label><input id="s3b" type="range" min="1" max="4" step="1" value="2"><output id="s3b-o"></output></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>Standard form</td><td id="s3-a"></td></tr>
+            <tr class="hl"><td>Expanded (general) form</td><td id="s3-b"></td></tr>
+            <tr><td>Centre / vertex</td><td id="s3-c"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          The default settings give \(4x^2 + 9y^2 - 16x + 18y - 11 = 0\) — the worked example in the notes. Read it backwards: group the \(x\)-terms and the \(y\)-terms,
+          complete each square, and the numbers inside the brackets tell you \(h\) and \(k\).
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>Set \(h = k = 0\): the \(x\) and \(y\) terms (the \(D\) and \(E\) coefficients) vanish.</li>
+            <li>Change only \(h\): only the \(x\)-term and the constant change.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ 4 -->
+  <section class="sim" id="s4">
+    <h2>4. Rotation of axes — killing the \(xy\)-term</h2>
+    <p class="lead">An \(xy\)-term means the conic is tilted. Rotating the axes by \(\theta\) with \(\cot 2\theta = \frac{A - C}{B}\) lines them up with the conic, and the \(xy\)-term disappears.</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="c4"></canvas>
+        <p class="hint">Purple dashed: the rotated \(x'\)- and \(y'\)-axes.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="ctl"><label for="s4A">\(A\)</label><input id="s4A" type="range" min="-15" max="15" step="0.5" value="13"><output id="s4A-o"></output></div>
+          <div class="ctl"><label for="s4B">\(B\)</label><input id="s4B" type="range" min="-15" max="15" step="0.5" value="10"><output id="s4B-o"></output></div>
+          <div class="ctl"><label for="s4C">\(C\)</label><input id="s4C" type="range" min="-15" max="15" step="0.5" value="13"><output id="s4C-o"></output></div>
+          <div class="ctl"><label for="s4K">right side</label><input id="s4K" type="range" min="1" max="80" step="1" value="72"><output id="s4K-o"></output></div>
+          <div class="row seg" id="s4pre">
+            <button data-p="13,10,13,72">13x² + 10xy + 13y² = 72</button>
+            <button data-p="0,1,0,1">xy = 1</button>
+            <button data-p="3,4,3,5">3x² + 4xy + 3y² = 5</button>
+          </div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>Equation</td><td id="s4-a"></td></tr>
+            <tr><td>\(B^2 - 4AC\) → type</td><td id="s4-b"></td></tr>
+            <tr><td>Rotation \(\theta\)</td><td id="s4-c"></td></tr>
+            <tr class="hl"><td>In \(x'y'\) (no \(xy\)-term)</td><td id="s4-d"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">The idea</span>
+          The curve itself never moves — only the axes turn. In the new axes the equation is \(A'x'^2 + C'y'^2 = \text{const}\),
+          and you can read off the conic as usual. Check: \(A' + C' = A + C\) always.
+        </div>
+        <div class="try">
+          <span class="box-title">Try this</span>
+          <ul>
+            <li>Make \(A = C\): the rotation is always \(45^\circ\).</li>
+            <li>Change \(B\) through the value where \(B^2 = 4AC\) and watch the ellipse stretch into a parabola-like strip, then a hyperbola.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+(function () {
+  'use strict';
+  var L = window.Lab, C = L.C, $ = L.$, fmt = L.fmt, deg = L.deg, D2R = L.D2R;
+  function num(v) { return (Math.round(v * 100) / 100).toString().replace('-', '−'); }
+  function term(c, s, first) {
+    if (Math.abs(c) < 1e-9) return '';
+    var sign = c < 0 ? (first ? '−' : ' − ') : (first ? '' : ' + ');
+    var m = Math.abs(c);
+    return sign + ((m === 1 && s) ? '' : num(m)) + s;
+  }
+  function expr(terms) {
+    var out = '', first = true;
+    terms.forEach(function (t) { var s = term(t[0], t[1], first); if (s) { out += s; first = false; } });
+    return out || '0';
+  }
+  function poly(terms) { return expr(terms) + ' = 0'; }
+
+  // ===================================================================== 1
+  (function () {
+    var cv = $('c1'), P = L.Plane(cv, 0.8, [-6.5, 6.5, -4.6, 4.6]), d = 2;
+    var e = L.range('s1e', function (v) { return v.toFixed(2); }, draw);
+    var t = L.range('s1t', deg, draw);
+    L.segmented('s1pre', function (b) {
+      var ee = +b.dataset.e;
+      L.setRange(e, ee, function (v) { return v.toFixed(2); });
+      L.setRange(t, ee < 1 ? 70 : ee === 1 ? 120 : 150, deg);   // keep P on screen
+      draw();
+    });
+    function rOf(th, ee) { var den = 1 - ee * Math.cos(th); return Math.abs(den) < 1e-3 ? NaN : ee * d / den; }
+    function draw() {
+      var ctx = P.begin(), ee = +e.value;
+      P.grid(1);
+      P.line([-d, -5], [-d, 5], C.purple, 2, [6, 4]);
+      P.text('directrix', -d, 4.2, C.purple, 'right', -6);
+      // the conic, drawn in pieces so we never join across an asymptote
+      var seg = [], N = 720, i;
+      for (i = 0; i <= N; i++) {
+        var th = 2 * Math.PI * i / N, r = rOf(th, ee);
+        if (!isFinite(r) || Math.abs(r) > 40) { if (seg.length > 1) L.poly(ctx, seg, C.blue, null, 2.6); seg = []; continue; }
+        var p = P.P(r * Math.cos(th), r * Math.sin(th));
+        if (seg.length && Math.hypot(p[0] - seg[seg.length - 1][0], p[1] - seg[seg.length - 1][1]) > 60) { L.poly(ctx, seg, C.blue, null, 2.6); seg = []; }
+        seg.push(p);
+      }
+      if (seg.length > 1) L.poly(ctx, seg, C.blue, null, 2.6);
+      P.dot(0, 0, C.orange, 5); P.text('F', 0, 0, C.orange, 'left', 8, 12);
+      var th0 = +t.value * D2R, r0 = rOf(th0, ee), out = $('s1-a');
+      out.textContent = ee < 0.999 ? 'ellipse (e < 1)' : ee > 1.001 ? 'hyperbola (e > 1)' : 'parabola (e = 1)';
+      if (isFinite(r0) && Math.abs(r0) < 30) {
+        var x = r0 * Math.cos(th0), y = r0 * Math.sin(th0);
+        P.line([0, 0], [x, y], C.orange, 2.6);
+        P.line([x, y], [-d, y], C.purple, 2.6, [5, 3]);
+        P.dot(x, y, C.ink, 5.5); P.text('P', x, y, C.ink, 'left', 9, -9);
+        if (Math.abs(x) > 6.4 || Math.abs(y) > 4.5) P.text('P is off the picture — move it', -6.2, -4.2, '#7f8c8d', 'left');
+        var PF = Math.abs(r0), PD = Math.abs(x + d);
+        $('s1-b').textContent = fmt(PF); $('s1-c').textContent = fmt(PD); $('s1-d').textContent = fmt(PF / PD) + '  (= e)';
+      } else { ['s1-b', 's1-c', 's1-d'].forEach(function (id) { $(id).textContent = 'P is off at infinity here'; }); }
+    }
+    L.register(draw);
+  })();
+
+  // ===================================================================== 2
+  (function () {
+    var cv = $('c2'), P = L.Plane(cv, 0.8, [-8.5, 8.5, -6.2, 6.2]), type = 'ell';
+    var show = function (v) { return v.toFixed(1); };
+    var a = L.range('s2a', show, draw), b = L.range('s2b', show, draw), t = L.range('s2t', function (v) { return ''; }, draw);
+    L.segmented('s2type', function (btn) { type = btn.dataset.t; draw(); });
+    function draw() {
+      var ctx = P.begin(), A = +a.value, B = +b.value, tt = +t.value / 1000;
+      P.grid(1);
+      var F1, F2, c, p, sum, idea;
+      if (type === 'ell') {
+        var horiz = A >= B, big = Math.max(A, B), small = Math.min(A, B);
+        c = Math.sqrt(big * big - small * small);
+        F1 = horiz ? [-c, 0] : [0, -c]; F2 = horiz ? [c, 0] : [0, c];
+        P.curve(function (s) { return [A * Math.cos(s), B * Math.sin(s)]; }, 0, 2 * Math.PI, C.blue, 2.6, 200, null, 'rgba(36,113,163,0.07)');
+        var s0 = 2 * Math.PI * tt; p = [A * Math.cos(s0), B * Math.sin(s0)];
+        var d1 = Math.hypot(p[0] - F1[0], p[1] - F1[1]), d2 = Math.hypot(p[0] - F2[0], p[1] - F2[1]);
+        sum = d1 + d2;
+        $('s2-a').textContent = 'x²/' + num(A * A) + ' + y²/' + num(B * B) + ' = 1';
+        $('s2-l4').innerHTML = 'PF₁ + PF₂'; $('s2-d').textContent = fmt(sum) + '  (= 2 × ' + fmt(big) + ')';
+        $('s2-e').textContent = fmt(c / big);
+        idea = '<span class="box-title">The idea</span>Put \\(P\\) at the top of the minor axis: both distances are equal, each \\(a\\) (half of \\(2a\\)). ' +
+               'That right triangle has legs \\(b\\) and \\(c\\) and hypotenuse \\(a\\), so \\(a^2 = b^2 + c^2\\), i.e. \\(c^2 = a^2 - b^2\\). ' +
+               '(Here \\(a\\) means the <em>larger</em> semi-axis — if \\(b\\) is bigger, the major axis is vertical.)';
+      } else {
+        c = Math.sqrt(A * A + B * B); F1 = [-c, 0]; F2 = [c, 0];
+        L.poly(ctx, [P.P(-A, -B), P.P(A, -B), P.P(A, B), P.P(-A, B)], '#95a5a6', null, 1.2, [4, 3], true);
+        P.line([-8, -8 * B / A], [8, 8 * B / A], C.purple, 1.4, [6, 4]); P.line([-8, 8 * B / A], [8, -8 * B / A], C.purple, 1.4, [6, 4]);
+        [1, -1].forEach(function (sg) { P.curve(function (s) { return [sg * A * Math.cosh(s), B * Math.sinh(s)]; }, -2.4, 2.4, C.blue, 2.6, 160); });
+        var s1 = -2 + 4 * tt; p = [A * Math.cosh(s1), B * Math.sinh(s1)];
+        var e1 = Math.hypot(p[0] - F1[0], p[1] - F1[1]), e2 = Math.hypot(p[0] - F2[0], p[1] - F2[1]);
+        sum = Math.abs(e1 - e2);
+        $('s2-a').textContent = 'x²/' + num(A * A) + ' − y²/' + num(B * B) + ' = 1';
+        $('s2-l4').innerHTML = '|PF₁ − PF₂|'; $('s2-d').textContent = fmt(sum) + '  (= 2 × ' + fmt(A) + ')';
+        $('s2-e').textContent = fmt(c / A);
+        idea = '<span class="box-title">The idea</span>The dashed box has corners \\((\\pm a, \\pm b)\\); its diagonals are the asymptotes. ' +
+               'The distance from the centre to a corner is \\(\\sqrt{a^2 + b^2}\\) — exactly \\(c\\), the distance to each focus. ' +
+               'So for a hyperbola \\(c^2 = a^2 + b^2\\), and \\(e = c/a &gt; 1\\).';
+      }
+      P.line(F1, p, C.orange, 2.4); P.line(F2, p, C.green, 2.4);
+      P.dot(F1[0], F1[1], C.orange, 5); P.dot(F2[0], F2[1], C.green, 5);
+      P.text('F₁', F1[0], F1[1], C.orange, 'center', 0, 14); P.text('F₂', F2[0], F2[1], C.green, 'center', 0, 14);
+      P.dot(p[0], p[1], C.ink, 5.5); P.text('P', p[0], p[1], C.ink, 'left', 9, -9);
+      $('s2-b').textContent = fmt(c);
+      $('s2-c').textContent = fmt(Math.hypot(p[0] - F1[0], p[1] - F1[1])) + ',  ' + fmt(Math.hypot(p[0] - F2[0], p[1] - F2[1]));
+      var box = $('s2idea'); if (box.dataset.t !== type) { box.innerHTML = idea; box.dataset.t = type; L.typeset(box); }
+    }
+    L.register(draw);
+  })();
+
+  // ===================================================================== 3
+  (function () {
+    var cv = $('c3'), P = L.Plane(cv, 0.8, [-8.5, 8.5, -6.4, 6.4]), type = 'ell';
+    var show = function (v) { return num(v); };
+    var h = L.range('s3h', show, draw), k = L.range('s3k', show, draw), a = L.range('s3a', show, draw), b = L.range('s3b', show, draw);
+    L.segmented('s3type', function (btn) { type = btn.dataset.t; $('s3brow').style.opacity = type === 'par' ? 0.35 : 1; draw(); });
+    function shape(H, K, A, B, col, w, dash, fill) {
+      if (type === 'ell') P.curve(function (s) { return [H + A * Math.cos(s), K + B * Math.sin(s)]; }, 0, 2 * Math.PI, col, w, 160, dash, fill);
+      else if (type === 'hyp') [1, -1].forEach(function (sg) { P.curve(function (s) { return [H + sg * A * Math.cosh(s), K + B * Math.sinh(s)]; }, -2, 2, col, w, 120, dash); });
+      else P.curve(function (s) { return [H + s * s / (4 * A), K + s]; }, -7, 7, col, w, 120, dash);
+    }
+    function draw() {
+      var ctx = P.begin(), H = +h.value, K = +k.value, A = +a.value, B = +b.value;
+      P.grid(1);
+      shape(0, 0, A, B, '#95a5a6', 1.6, [6, 4]);
+      shape(H, K, A, B, C.blue, 2.8, null, type === 'ell' ? 'rgba(36,113,163,0.08)' : null);
+      if (H || K) P.arrow([0, 0], [H, K], C.green, 2.6, 10);
+      P.dot(H, K, C.ink, 5); P.text('(' + num(H) + ', ' + num(K) + ')', H, K, C.ink, 'left', 8, 14);
+      var xs = function (v) { return v ? (v > 0 ? '(x − ' + num(v) + ')' : '(x + ' + num(-v) + ')') : 'x'; };
+      var ys = function (v) { return v ? (v > 0 ? '(y − ' + num(v) + ')' : '(y + ' + num(-v) + ')') : 'y'; };
+      var A2 = A * A, B2 = B * B;
+      if (type === 'ell') {
+        $('s3-a').textContent = xs(H) + '²/' + A2 + ' + ' + ys(K) + '²/' + B2 + ' = 1';
+        $('s3-b').textContent = poly([[B2, 'x²'], [A2, 'y²'], [-2 * B2 * H, 'x'], [-2 * A2 * K, 'y'], [B2 * H * H + A2 * K * K - A2 * B2, '']]);
+        $('s3-c').textContent = 'centre (' + num(H) + ', ' + num(K) + ')';
+      } else if (type === 'hyp') {
+        $('s3-a').textContent = xs(H) + '²/' + A2 + ' − ' + ys(K) + '²/' + B2 + ' = 1';
+        $('s3-b').textContent = poly([[B2, 'x²'], [-A2, 'y²'], [-2 * B2 * H, 'x'], [2 * A2 * K, 'y'], [B2 * H * H - A2 * K * K - A2 * B2, '']]);
+        $('s3-c').textContent = 'centre (' + num(H) + ', ' + num(K) + ')';
+      } else {
+        $('s3-a').textContent = ys(K) + '² = ' + 4 * A + xs(H);
+        $('s3-b').textContent = poly([[1, 'y²'], [-4 * A, 'x'], [-2 * K, 'y'], [K * K + 4 * A * H, '']]);
+        $('s3-c').textContent = 'vertex (' + num(H) + ', ' + num(K) + '), focus (' + num(H + A) + ', ' + num(K) + ')';
+      }
+    }
+    L.register(draw);
+  })();
+
+  // ===================================================================== 4
+  (function () {
+    var cv = $('c4'), P = L.Plane(cv, 0.8, [-6, 6, -4.5, 4.5]);
+    var show = function (v) { return num(v); };
+    var A = L.range('s4A', show, draw), B = L.range('s4B', show, draw), Cc = L.range('s4C', show, draw), K = L.range('s4K', show, draw);
+    L.segmented('s4pre', function (btn) {
+      var v = btn.dataset.p.split(',').map(Number);
+      L.setRange(A, v[0], show); L.setRange(B, v[1], show); L.setRange(Cc, v[2], show); L.setRange(K, v[3], show); draw();
+    });
+    function draw() {
+      var a = +A.value, b = +B.value, c = +Cc.value, kk = +K.value;
+      // choose a window that shows the curve well
+      var l1 = (a + c) / 2 + Math.hypot((a - c) / 2, b / 2), l2 = (a + c) / 2 - Math.hypot((a - c) / 2, b / 2);
+      var pos = [l1, l2].filter(function (l) { return l > 1e-6; }), R = 3;
+      if (pos.length) R = Math.max.apply(null, pos.map(function (l) { return Math.sqrt(kk / l); })) * (pos.length === 2 ? 1.35 : 2.6);
+      R = Math.max(1.5, Math.min(R, 30));
+      P.win = [-R * 4 / 3, R * 4 / 3, -R, R];
+      var ctx = P.begin();
+      var step = Math.pow(10, Math.floor(Math.log10(R))) * (R / Math.pow(10, Math.floor(Math.log10(R))) > 5 ? 2 : 1);
+      P.grid(step);
+      var th = Math.abs(b) < 1e-9 ? 0 : 0.5 * Math.atan2(b, a - c);
+      var cs = Math.cos(th), sn = Math.sin(th);
+      [[cs, sn, "x′"], [-sn, cs, "y′"]].forEach(function (u) {
+        P.line([-2 * R * u[0], -2 * R * u[1]], [2 * R * u[0], 2 * R * u[1]], C.purple, 1.6, [7, 5]);
+        P.text(u[2], 0.92 * R * u[0], 0.92 * R * u[1], C.purple, 'center', 0, -10);
+      });
+      P.contour(function (x, y) { return a * x * x + b * x * y + c * y * y; }, kk, C.blue, 2.8, 160);
+      var Ap = a * cs * cs + b * sn * cs + c * sn * sn, Cp = a * sn * sn - b * sn * cs + c * cs * cs;
+      var disc = b * b - 4 * a * c;
+      $('s4-a').textContent = expr([[a, 'x²'], [b, 'xy'], [c, 'y²']]) + ' = ' + num(kk);
+      $('s4-b').textContent = num(disc) + ' → ' + (disc < -1e-9 ? 'ellipse' : disc > 1e-9 ? 'hyperbola' : 'parabola type');
+      $('s4-c').textContent = (Math.abs(b) < 1e-9 ? '0° (no xy-term)' : num(th / D2R) + '°');
+      $('s4-d').textContent = expr([[Ap, 'x′²'], [Cp, 'y′²']]) + ' = ' + num(kk);
+    }
+    L.register(draw);
+  })();
+})();
+</script>
+
+</body>
+</html>
