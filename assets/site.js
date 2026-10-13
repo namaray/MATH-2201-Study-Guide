@@ -41,6 +41,7 @@
     { f: 'final-theorems-lab.html', u: 'u7', label: 'Interactive Lab' },
     { f: 'final-exam-review.html', u: 'fprep', label: 'Final Exam Review' },
     { f: 'final-q1-explained.html', u: 'fprep', label: 'Q1 Explained' },
+    { f: 'final-exam-spring-2026.html', u: 'fprep', label: 'Spring 2026 Final' },
     { f: 'final-formula-sheet.html', u: 'fprep', label: 'Cheat Sheet' }
   ];
 
