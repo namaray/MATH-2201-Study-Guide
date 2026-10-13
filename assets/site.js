@@ -134,12 +134,13 @@
   var rows = [];
 
   function wrapFigures() {
-    var figs = document.querySelectorAll('.note-card > figure.diagram, .problem > figure.diagram');
+    // two-panel (.wide) figures stay inline: they need the full text width
+    var figs = document.querySelectorAll('.note-card > figure.diagram:not(.wide), .problem > figure.diagram:not(.wide)');
     Array.prototype.forEach.call(figs, function (fig) {
       var card = fig.parentElement;
       var before = [];
       var p = fig.previousElementSibling;
-      while (p && !p.matches('figure.diagram, .fig-row')) {
+      while (p && !p.matches('figure.diagram:not(.wide), .fig-row')) {
         before.unshift(p);
         if (p.matches('h2, h3')) break;
         p = p.previousElementSibling;
@@ -148,7 +149,7 @@
       while (before.length && before[0].matches('h2, .prompt') && before.length > 1) before.shift();
       var after = [];
       var n = fig.nextElementSibling;
-      while (n && !n.matches('figure.diagram') &&
+      while (n && !n.matches('figure.diagram:not(.wide)') &&
              !(before.length + after.length >= 3 && n.matches('h2, h3'))) {
         after.push(n);
         n = n.nextElementSibling;
