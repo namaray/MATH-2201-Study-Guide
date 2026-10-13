@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q1 Explained: Rotating a Tilted Conic | MATH 2201 Finals</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.65;
+      color: #333;
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f7f6;
+    }
+    h1, h2, h3 { color: #2c3e50; line-height: 1.3; }
+    h1 {
+      font-size: 2.3rem;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 12px;
+      margin-bottom: 0.4rem;
+    }
+    .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 2rem; }
+    p { margin: 0.6rem 0; }
+
+    .part {
+      margin: 3rem 0 1.25rem;
+      padding: 0.9rem 1.4rem;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      scroll-margin-top: 1rem;
+    }
+    .part .badge {
+      display: inline-block;
+      background: #27ae60;
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 12px;
+      vertical-align: 4px;
+      margin-left: 10px;
+    }
+    .part .badge.book { background: #8e44ad; }
+
+    .note-card {
+      background: #ffffff;
+      padding: 1.3rem 1.7rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+      border-top: 4px solid #27ae60;
+    }
+    .note-card h3 {
+      font-size: 1.25rem;
+      margin: 0 0 0.6rem;
+      color: #1e8449;
+    }
+    .label { display: block; font-weight: bold; margin: 1rem 0 0.2rem; color: #34495e; }
+    .math-block {
+      text-align: center;
+      margin: 0.9rem 0;
+      font-size: 1.08rem;
+      overflow-x: auto;
+      padding: 5px 0;
+    }
+    ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+    li { margin-bottom: 0.35rem; }
+
+    .key {
+      background: #e8f8f0;
+      border-left: 4px solid #27ae60;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-weight: bold;
+    }
+    .warn {
+      background: #fdecea;
+      border-left: 4px solid #e74c3c;
+      padding: 0.55rem 1rem;
+      border-radius: 5px;
+      margin: 0.9rem 0 0.3rem;
+      font-size: 0.95rem;
+    }
+    .example {
+      background: #eef6fb;
+      border-left: 4px solid #3498db;
+      padding: 0.8rem 1.1rem 1rem;
+      border-radius: 5px;
+      margin: 1.1rem 0 0.4rem;
+    }
+    .example .etitle {
+      font-weight: bold;
+      color: #21618c;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .from-slide {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #16a085;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: 1px;
+    }
+    .from-slide.book { background: #8e44ad; }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.93rem;
+      margin: 0.5rem 0;
+    }
+    th, td {
+      border: 1px solid #dfe6e9;
+      padding: 0.5rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #2c3e50; color: #fff; font-weight: bold; }
+    tbody tr:nth-child(even) { background: #f8fafb; }
+
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      background: #27ae60;
+      color: #fff;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    figure.diagram {
+      margin: 1.1rem 0 0.6rem;
+      text-align: center;
+    }
+    figure.diagram svg {
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      background: #fbfcfc;
+      border: 1px solid #e5e8e8;
+      border-radius: 8px;
+    }
+    figure.diagram figcaption {
+      font-size: 0.88rem;
+      color: #7f8c8d;
+      margin-top: 0.4rem;
+    }
+    svg text { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #2c3e50; }
+    svg .lbl-sm { font-size: 11.5px; }
+    svg .lbl-red { fill: #c0392b; font-weight: bold; }
+    svg .lbl-green { fill: #1e8449; font-weight: bold; }
+    svg .lbl-purple { fill: #8e44ad; }
+
+    .toc {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.2rem 1.7rem 1.4rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border-top: 4px solid #f37021;
+    }
+    .toc h2 { font-size: 1.15rem; margin: 0 0 0.6rem; }
+    .toc ol { padding-left: 1.3rem; margin: 0; }
+    .toc a { color: #1e8449; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .sub { color: #7f8c8d; font-size: 0.88rem; }
+
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 24px; }
+    .back-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background-color: #1a252f; }
+    .back-btn.accent { background-color: #27ae60; }
+    .back-btn.accent:hover { background-color: #1e8449; }
+    .back-btn.orange { background-color: #f37021; }
+    .back-btn.orange:hover { background-color: #d35400; }
+
+    /* Long inline formulas scroll inside their box rather than widening the page */
+    .answer, .note, .prompt, .key, .warn, .example, td { overflow-x: auto; }
+
+    /* Keep MathJax's hidden screen-reader copy from stretching the page on phones */
+    mjx-container { position: relative; }
+    mjx-assistive-mml { max-width: 100%; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.85rem; }
+      h1 { font-size: 1.7rem; }
+      .part { font-size: 1.2rem; padding: 0.75rem 1rem; }
+      .note-card { padding: 1rem 1.1rem 1.2rem; }
+      .math-block { font-size: 0.86rem; }
+      .example { padding: 0.7rem 0.8rem 0.85rem; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+  <style>
+    .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.6rem 0 0.4rem; }
+    .chip { border-radius: 8px; padding: 0.3rem 0.65rem; font-weight: 700; font-size: 0.95rem; border: 1px solid transparent; }
+    .chip.a { background: #fdedec; color: #c0392b; border-color: #f5b7b1; }
+    .chip.b { background: #f4ecf7; color: #8e44ad; border-color: #d7bde2; }
+    .chip.c { background: #e8f8f0; color: #1e8449; border-color: #a9dfbf; }
+    .chip.d { background: #eaf2f8; color: #2471a3; border-color: #a9cce3; }
+    .chip.f { background: #f4f6f7; color: #5d6d7e; border-color: #d5dbdb; }
+    .ca { color: #c0392b; } .cb { color: #8e44ad; } .cc { color: #1e8449; } .cd { color: #2471a3; }
+    .qbox { background: #fff; border: 1px solid var(--line); border-left: 4px solid #3498db; border-radius: 9px; padding: 0.4rem; margin: 0 0 1.6rem; }
+    .qbox img { display: block; width: 100%; max-width: 640px; height: auto; margin: 0 auto; }
+    .plan { counter-reset: s; list-style: none; padding: 0; margin: 0.6rem 0; }
+    .plan li { counter-increment: s; position: relative; padding-left: 2.4rem; margin-bottom: 0.45rem; }
+    .plan li::before { content: counter(s, lower-alpha); position: absolute; left: 0; top: 0.05rem; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: #2c3e50; color: #fff; text-align: center; line-height: 1.6rem; font-weight: 700; font-size: 0.85rem; }
+    table.grind td, table.grind th { text-align: center; }
+    table.grind td:first-child { text-align: left; }
+    .sum td { font-weight: 700; background: #fef9e7; }
+    .zero { color: #1e8449; font-weight: 700; }
+    .faq dt { font-weight: 700; color: #2c3e50; margin-top: 0.9rem; }
+    .faq dd { margin: 0.25rem 0 0; }
+    figure.pair .conv svg { max-width: none; }
+    #sim .read td:last-child { font-variant-numeric: tabular-nums; }
+    #sim tr.bzero td { background: #e8f8f0; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/lab.css">
+  <script src="assets/site.js" defer></script>
+  <script src="assets/lab.js"></script>
+</head>
+<body class="page rail">
+
+  <h1>Q1 Explained — Rotating a Tilted Conic</h1>
+  <p class="subtitle">Final Exam Review, Question 1 · every step, slowly, with pictures · for the short version see the <a href="final-exam-review.html#q1">Final Exam Review</a></p>
+
+  <div class="qbox"><img src="images/final-review/q1.png" alt="Question 1: Given the conic 9x² + 24xy + 16y² − 30x − 40y = 0, (a) find the angle of rotation that eliminates the xy-term, (b) write the transformation equations between (x, y) and (X, Y), (c) transform the equation into the X, Y system, (d) translate the origin if necessary to get standard form, (e) identify the conic, (f) find its vertex or vertices and other geometric properties."></div>
+
+  <!-- ============================================================ big picture -->
+  <h2 class="part" id="p0">The Big Picture</h2>
+
+  <div class="note-card">
+    <h3>What is this question actually about?</h3>
+    <p>
+      You already know how to read a conic like \(\dfrac{x^2}{9} + \dfrac{y^2}{4} = 1\): it's an ellipse sitting straight, lined up with the \(x\)- and \(y\)-axes.
+    </p>
+    <p>
+      The problem in Q1 is the <strong>\(xy\)-term</strong> (the \(24xy\)). An \(xy\)-term means the curve is <strong>tilted</strong> — turned at an angle — so none of the standard forms fit.
+    </p>
+    <figure class="diagram wide pair">
+      <div class="conv">
+<svg viewBox="0 0 260 240" role="img" aria-label="An ellipse whose axes line up with x and y: its equation has no xy-term.">
+<text x="130.0" y="18.0" text-anchor="middle" class="lbl-sm" style="fill:#2c3e50;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">no xy-term: upright</text>
+<line x1="24.0" y1="128.4" x2="241.8" y2="128.4" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M246.0,128.4 L239.6,131.3 L239.6,125.5 Z" fill="#b2bec3"/>
+<text x="244.0" y="143.4" text-anchor="end" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x</text>
+<line x1="133.0" y1="216.8" x2="133.0" y2="40.2" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M133.0,36.0 L135.9,42.4 L130.1,42.4 Z" fill="#b2bec3"/>
+<text x="142.0" y="44.0" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">y</text>
+<path d="M215.4,128.4 L215.3,126.1 L214.9,123.7 L214.4,121.4 L213.6,119.1 L212.6,116.8 L211.4,114.6 L209.9,112.4 L208.3,110.2 L206.4,108.1 L204.4,106.1 L202.1,104.1 L199.7,102.2 L197.0,100.3 L194.2,98.5 L191.3,96.8 L188.1,95.2 L184.9,93.7 L181.4,92.3 L177.9,91.0 L174.2,89.7 L170.4,88.6 L166.5,87.6 L162.5,86.7 L158.5,86.0 L154.3,85.3 L150.1,84.7 L145.9,84.3 L141.6,84.0 L137.3,83.8 L133.0,83.8 L128.7,83.8 L124.4,84.0 L120.1,84.3 L115.9,84.7 L111.7,85.3 L107.5,86.0 L103.5,86.7 L99.5,87.6 L95.6,88.6 L91.8,89.7 L88.1,91.0 L84.6,92.3 L81.1,93.7 L77.9,95.2 L74.7,96.8 L71.8,98.5 L69.0,100.3 L66.3,102.2 L63.9,104.1 L61.6,106.1 L59.6,108.1 L57.7,110.2 L56.1,112.4 L54.6,114.6 L53.4,116.8 L52.4,119.1 L51.6,121.4 L51.1,123.7 L50.7,126.1 L50.6,128.4 L50.7,130.7 L51.1,133.1 L51.6,135.4 L52.4,137.7 L53.4,140.0 L54.6,142.2 L56.1,144.4 L57.7,146.6 L59.6,148.7 L61.6,150.7 L63.9,152.7 L66.3,154.6 L69.0,156.5 L71.8,158.3 L74.7,160.0 L77.9,161.6 L81.1,163.1 L84.6,164.5 L88.1,165.8 L91.8,167.1 L95.6,168.2 L99.5,169.2 L103.5,170.1 L107.5,170.8 L111.7,171.5 L115.9,172.1 L120.1,172.5 L124.4,172.8 L128.7,173.0 L133.0,173.0 L137.3,173.0 L141.6,172.8 L145.9,172.5 L150.1,172.1 L154.3,171.5 L158.5,170.8 L162.5,170.1 L166.5,169.2 L170.4,168.2 L174.2,167.1 L177.9,165.8 L181.4,164.5 L184.9,163.1 L188.1,161.6 L191.3,160.0 L194.2,158.3 L197.0,156.5 L199.7,154.6 L202.1,152.7 L204.4,150.7 L206.4,148.7 L208.3,146.6 L209.9,144.4 L211.4,142.2 L212.6,140.0 L213.6,137.7 L214.4,135.4 L214.9,133.1 L215.3,130.7 L215.4,128.4" fill="#eaf2f8" stroke="#2471a3" stroke-width="2.6" stroke-linejoin="round"/>
+<text x="133.0" y="200.5" text-anchor="middle" class="lbl-sm" style="fill:#2471a3;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x²/5.76 + y²/1.69 = 1</text>
+</svg>
+<svg viewBox="0 0 260 240" role="img" aria-label="The same ellipse turned 40 degrees: now its equation has an xy-term. Rotated axes X and Y (purple) line up with it again.">
+<text x="130.0" y="18.0" text-anchor="middle" class="lbl-sm" style="fill:#2c3e50;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">with an xy-term: tilted</text>
+<line x1="24.0" y1="128.4" x2="241.8" y2="128.4" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M246.0,128.4 L239.6,131.3 L239.6,125.5 Z" fill="#b2bec3"/>
+<text x="244.0" y="143.4" text-anchor="end" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x</text>
+<line x1="133.0" y1="216.8" x2="133.0" y2="40.2" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M133.0,36.0 L135.9,42.4 L130.1,42.4 Z" fill="#b2bec3"/>
+<text x="142.0" y="44.0" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">y</text>
+<path d="M196.1,75.4 L194.5,73.7 L192.8,72.2 L190.9,70.7 L188.8,69.5 L186.5,68.4 L184.2,67.5 L181.6,66.7 L179.0,66.1 L176.2,65.7 L173.3,65.4 L170.3,65.4 L167.2,65.5 L164.0,65.7 L160.7,66.2 L157.3,66.8 L153.9,67.6 L150.4,68.5 L146.9,69.6 L143.3,70.9 L139.7,72.3 L136.1,73.9 L132.5,75.6 L128.8,77.5 L125.2,79.5 L121.6,81.7 L118.1,83.9 L114.5,86.3 L111.1,88.9 L107.7,91.5 L104.3,94.2 L101.0,97.0 L97.9,99.9 L94.8,102.9 L91.8,106.0 L89.0,109.1 L86.2,112.2 L83.6,115.5 L81.1,118.7 L78.8,122.0 L76.6,125.3 L74.6,128.6 L72.7,131.9 L71.0,135.2 L69.4,138.4 L68.1,141.7 L66.9,144.9 L65.9,148.0 L65.1,151.2 L64.4,154.2 L64.0,157.2 L63.7,160.1 L63.7,162.9 L63.8,165.6 L64.1,168.2 L64.6,170.7 L65.3,173.1 L66.2,175.4 L67.2,177.5 L68.5,179.5 L69.9,181.4 L71.5,183.1 L73.2,184.6 L75.1,186.1 L77.2,187.3 L79.5,188.4 L81.8,189.3 L84.4,190.1 L87.0,190.7 L89.8,191.1 L92.7,191.4 L95.7,191.4 L98.8,191.3 L102.0,191.1 L105.3,190.6 L108.7,190.0 L112.1,189.2 L115.6,188.3 L119.1,187.2 L122.7,185.9 L126.3,184.5 L129.9,182.9 L133.5,181.2 L137.2,179.3 L140.8,177.3 L144.4,175.1 L147.9,172.9 L151.5,170.5 L154.9,167.9 L158.3,165.3 L161.7,162.6 L165.0,159.8 L168.1,156.9 L171.2,153.9 L174.2,150.8 L177.0,147.7 L179.8,144.6 L182.4,141.3 L184.9,138.1 L187.2,134.8 L189.4,131.5 L191.4,128.2 L193.3,124.9 L195.0,121.6 L196.6,118.4 L197.9,115.1 L199.1,111.9 L200.1,108.8 L200.9,105.6 L201.6,102.6 L202.0,99.6 L202.3,96.7 L202.3,93.9 L202.2,91.2 L201.9,88.6 L201.4,86.1 L200.7,83.7 L199.8,81.4 L198.8,79.3 L197.5,77.3 L196.1,75.4" fill="#fdedec" stroke="#c0392b" stroke-width="2.6" stroke-linejoin="round"/>
+<line x1="64.6" y1="185.8" x2="197.2" y2="74.5" stroke="#8e44ad" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="7 5"/><path d="M201.4,71.0 L197.4,79.1 L192.7,73.5 Z" fill="#8e44ad"/>
+<text x="209.0" y="62.6" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X</text>
+<line x1="190.4" y1="196.8" x2="79.1" y2="64.2" stroke="#8e44ad" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="7 5"/><path d="M75.6,60.0 L83.7,64.0 L78.1,68.7 Z" fill="#8e44ad"/>
+<text x="69.2" y="50.4" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">Y</text>
+<text x="133.0" y="200.5" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">turn the axes to match it</text>
+</svg>
+      </div>
+      <figcaption>Left: an upright ellipse has no \(xy\)-term. Right: the same ellipse turned — now its equation picks up an \(xy\)-term. The purple axes \(X\), \(Y\) are turned with it.</figcaption>
+    </figure>
+    <p>
+      Think of a photo hanging crooked on a wall. You could straighten the photo — or just <strong>tilt your head</strong>. Rotation of axes is tilting your head:
+      we draw a new pair of axes, \(X\) and \(Y\), turned by an angle \(\theta\) so they line up with the curve. Measured with those new axes the curve isn't tilted any more,
+      the \(xy\)-term disappears, and we can recognise it.
+    </p>
+    <div class="key">The curve never moves. Only the axes (the "rulers" we measure with) turn.</div>
+    <span class="label">The plan — exactly the six parts of the question</span>
+    <ol class="plan">
+      <li>Find the angle \(\theta\) to turn the axes by.</li>
+      <li>Write how old coordinates \((x, y)\) and new ones \((X, Y)\) are related.</li>
+      <li>Substitute, so the equation is written in \(X\) and \(Y\) (no \(xy\)-term left).</li>
+      <li>Tidy it into a standard form (complete the square).</li>
+      <li>Say which conic it is.</li>
+      <li>Describe it: vertex, focus, and so on.</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================ step 0 -->
+  <h2 class="part" id="p1">Step 0 — Read Off the Coefficients</h2>
+
+  <div class="note-card">
+    <h3>Match it to the general form</h3>
+    <p>Every conic can be written as</p>
+    <div class="math-block">$$ {\color{#c0392b}A}x^2 + {\color{#8e44ad}B}xy + {\color{#1e8449}C}y^2 + {\color{#2471a3}D}x + {\color{#2471a3}E}y + F = 0 $$</div>
+    <p>Line ours up with it, term by term:</p>
+    <div class="math-block">$$ {\color{#c0392b}9}x^2 + {\color{#8e44ad}24}xy + {\color{#1e8449}16}y^2 {\color{#2471a3}- 30}x {\color{#2471a3}- 40}y + 0 = 0 $$</div>
+    <div class="chips">
+      <span class="chip a">A = 9</span><span class="chip b">B = 24</span><span class="chip c">C = 16</span>
+      <span class="chip d">D = −30</span><span class="chip d">E = −40</span><span class="chip f">F = 0</span>
+    </div>
+    <div class="warn">⚠ \(B\) is the <strong>whole</strong> number in front of \(xy\) — here 24, not 12. And keep the minus signs on \(D\) and \(E\).</div>
+  </div>
+
+  <!-- ============================================================ (a) -->
+  <h2 class="part" id="pa">(a) Find the Angle \(\theta\)</h2>
+
+  <div class="note-card">
+    <h3>The formula, and what it gives</h3>
+    <p>The angle that kills the \(xy\)-term always satisfies</p>
+    <div class="math-block">$$ \cot 2\theta = \frac{{\color{#c0392b}A} - {\color{#1e8449}C}}{{\color{#8e44ad}B}} $$</div>
+    <p>(You'll see <em>why</em> it works in the slider below — at exactly this angle the \(xy\)-coefficient hits zero.) Plug in:</p>
+    <div class="math-block">$$ \cot 2\theta = \frac{{\color{#c0392b}9} - {\color{#1e8449}16}}{{\color{#8e44ad}24}} = -\frac{7}{24} $$</div>
+    <p>That's a value for \(\cot 2\theta\), but we want \(\cos\theta\) and \(\sin\theta\). Two small moves get us there.</p>
+  </div>
+
+  <div class="note-card">
+    <h3>Move 1 — turn \(\cot 2\theta\) into a triangle</h3>
+    <p>
+      \(\cot = \dfrac{\text{adjacent}}{\text{opposite}}\), so \(\cot 2\theta = \dfrac{-7}{24}\) means a right triangle with adjacent side \(-7\) and opposite side \(24\).
+      Its hypotenuse is \(\sqrt{7^2 + 24^2} = \sqrt{49 + 576} = \sqrt{625} = 25\) (a 7-24-25 triangle — like 3-4-5).
+    </p>
+    <figure class="diagram">
+<svg viewBox="0 0 400 430" role="img" aria-label="Blue triangle: the angle 2θ, drawn from the point (−7, 24): adjacent side −7, opposite 24, hypotenuse 25, so cos 2θ = −7/25 and 2θ is about 106.3 degrees. Purple: half of that angle, θ ≈ 53.13 degrees, is the angle of a 3-4-5 triangle, so cos θ = 3/5 and sin θ = 4/5.">
+
+<line x1="30.0" y1="363.6" x2="376.0" y2="363.6" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="165.9" y1="394.5" x2="165.9" y2="36.2" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M165.9,363.6 L79.4,363.6 L79.4,67.1 Z" fill="#eaf2f8" fill-opacity="0.7" stroke="#2471a3" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="165.9" y1="363.6" x2="79.4" y2="67.1" stroke="#c0392b" stroke-width="2.8" stroke-linecap="round"/>
+<text x="122.7" y="379.6" text-anchor="middle" class="lbl-sm" style="fill:#2471a3;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">−7</text>
+<text x="71.4" y="215.4" text-anchor="end" class="lbl-sm" style="fill:#2471a3;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">24</text>
+<text x="130.7" y="215.4" text-anchor="start" class="lbl-sm" style="fill:#c0392b;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">25</text>
+<path d="M199.9,363.6 L199.9,363.1 L199.9,362.6 L199.9,362.1 L199.8,361.5 L199.8,361.0 L199.8,360.5 L199.7,360.0 L199.7,359.5 L199.6,358.9 L199.5,358.4 L199.4,357.9 L199.3,357.4 L199.2,356.9 L199.1,356.3 L199.0,355.8 L198.9,355.3 L198.7,354.8 L198.6,354.3 L198.5,353.8 L198.3,353.3 L198.1,352.8 L198.0,352.3 L197.8,351.8 L197.6,351.3 L197.4,350.8 L197.2,350.4 L197.0,349.9 L196.8,349.4 L196.6,348.9 L196.3,348.4 L196.1,348.0 L195.8,347.5 L195.6,347.1 L195.3,346.6 L195.1,346.1 L194.8,345.7 L194.5,345.3 L194.2,344.8 L193.9,344.4 L193.6,343.9 L193.3,343.5 L193.0,343.1 L192.7,342.7 L192.4,342.3 L192.0,341.9 L191.7,341.5 L191.3,341.1 L191.0,340.7 L190.6,340.3 L190.3,339.9 L189.9,339.5 L189.5,339.2 L189.1,338.8 L188.7,338.5 L188.4,338.1 L188.0,337.8 L187.6,337.4 L187.1,337.1 L186.7,336.8 L186.3,336.5 L185.9,336.1 L185.5,335.8 L185.0,335.5 L184.6,335.2 L184.2,335.0 L183.7,334.7 L183.3,334.4 L182.8,334.2 L182.4,333.9 L181.9,333.6 L181.4,333.4 L181.0,333.2 L180.5,332.9 L180.0,332.7 L179.5,332.5 L179.0,332.3 L178.6,332.1 L178.1,331.9 L177.6,331.7 L177.1,331.5 L176.6,331.4 L176.1,331.2 L175.6,331.1 L175.1,330.9 L174.6,330.8 L174.1,330.6 L173.6,330.5 L173.0,330.4 L172.5,330.3 L172.0,330.2 L171.5,330.1 L171.0,330.0 L170.5,330.0 L169.9,329.9 L169.4,329.8 L168.9,329.8 L168.4,329.7 L167.8,329.7 L167.3,329.7 L166.8,329.7 L166.3,329.7 L165.7,329.7 L165.2,329.7 L164.7,329.7 L164.2,329.7 L163.6,329.7 L163.1,329.8 L162.6,329.8 L162.1,329.9 L161.5,329.9 L161.0,330.0 L160.5,330.1 L160.0,330.2 L159.5,330.3 L159.0,330.4 L158.4,330.5 L157.9,330.6 L157.4,330.7 L156.9,330.9 L156.4,331.0" fill="none" stroke="#d35400" stroke-width="2.2" stroke-linejoin="round"/>
+<text x="168.1" y="317.3" text-anchor="end" class="lbl-sm" style="fill:#d35400;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">2θ ≈ 106.3°</text>
+<path d="M165.9,363.6 L284.6,363.6 L284.6,205.5 Z" fill="none" stroke="#8e44ad" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="4 3"/>
+<line x1="165.9" y1="363.6" x2="284.6" y2="205.5" stroke="#8e44ad" stroke-width="2.8" stroke-linecap="round"/>
+<path d="M221.5,363.6 L221.5,363.2 L221.5,362.8 L221.5,362.4 L221.5,361.9 L221.5,361.5 L221.5,361.1 L221.5,360.6 L221.4,360.2 L221.4,359.8 L221.4,359.4 L221.3,358.9 L221.3,358.5 L221.3,358.1 L221.2,357.6 L221.2,357.2 L221.1,356.8 L221.1,356.4 L221.0,355.9 L220.9,355.5 L220.9,355.1 L220.8,354.7 L220.7,354.2 L220.7,353.8 L220.6,353.4 L220.5,353.0 L220.4,352.5 L220.3,352.1 L220.2,351.7 L220.1,351.3 L220.0,350.9 L219.9,350.4 L219.8,350.0 L219.7,349.6 L219.6,349.2 L219.5,348.8 L219.4,348.4 L219.3,348.0 L219.2,347.5 L219.0,347.1 L218.9,346.7 L218.8,346.3 L218.6,345.9 L218.5,345.5 L218.4,345.1 L218.2,344.7 L218.1,344.3 L217.9,343.9 L217.8,343.5 L217.6,343.1 L217.4,342.7 L217.3,342.3 L217.1,341.9 L216.9,341.5 L216.8,341.1 L216.6,340.7 L216.4,340.3 L216.2,339.9 L216.0,339.5 L215.9,339.2 L215.7,338.8 L215.5,338.4 L215.3,338.0 L215.1,337.6 L214.9,337.2 L214.7,336.9 L214.5,336.5 L214.2,336.1 L214.0,335.7 L213.8,335.4 L213.6,335.0 L213.4,334.6 L213.1,334.3 L212.9,333.9 L212.7,333.5 L212.5,333.2 L212.2,332.8 L212.0,332.5 L211.7,332.1 L211.5,331.8 L211.2,331.4 L211.0,331.1 L210.7,330.7 L210.5,330.4 L210.2,330.0 L210.0,329.7 L209.7,329.3 L209.4,329.0 L209.2,328.7 L208.9,328.3 L208.6,328.0 L208.3,327.7 L208.1,327.4 L207.8,327.0 L207.5,326.7 L207.2,326.4 L206.9,326.1 L206.6,325.8 L206.3,325.4 L206.0,325.1 L205.7,324.8 L205.4,324.5 L205.1,324.2 L204.8,323.9 L204.5,323.6 L204.2,323.3 L203.9,323.0 L203.6,322.7 L203.3,322.4 L202.9,322.2 L202.6,321.9 L202.3,321.6 L202.0,321.3 L201.6,321.0 L201.3,320.8 L201.0,320.5 L200.7,320.2 L200.3,319.9 L200.0,319.7 L199.6,319.4 L199.3,319.2" fill="none" stroke="#8e44ad" stroke-width="2" stroke-linejoin="round"/>
+<text x="231.7" y="342.0" text-anchor="start" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">θ ≈ 53.13°</text>
+<text x="225.2" y="379.6" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">3</text>
+<text x="290.6" y="284.6" text-anchor="start" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">4</text>
+<text x="219.2" y="278.6" text-anchor="end" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">5</text>
+</svg>
+      <figcaption>Blue: the angle \(2\theta\). The adjacent side is \(-7\), so it points <em>left</em> — \(2\theta\) is bigger than \(90^\circ\). Purple: half of it, \(\theta \approx 53.13^\circ\), turns out to be a 3-4-5 triangle.</figcaption>
+    </figure>
+    <div class="math-block">$$ \cos 2\theta = \frac{\text{adjacent}}{\text{hypotenuse}} = -\frac{7}{25} $$</div>
+    <div class="key">Negative \(\cos 2\theta\) just means \(2\theta\) is between \(90^\circ\) and \(180^\circ\). That's fine — \(\theta\) itself is then between \(45^\circ\) and \(90^\circ\).</div>
+  </div>
+
+  <div class="note-card">
+    <h3>Move 2 — the half-angle formulas</h3>
+    <p>These turn \(\cos 2\theta\) into \(\cos\theta\) and \(\sin\theta\):</p>
+    <div class="math-block">$$ \cos\theta = \sqrt{\frac{1 + \cos 2\theta}{2}} = \sqrt{\frac{1 - \frac{7}{25}}{2}} $$</div>
+    <div class="math-block">$$ = \sqrt{\frac{18/25}{2}} = \sqrt{\frac{9}{25}} = \frac35 $$</div>
+    <div class="math-block">$$ \sin\theta = \sqrt{\frac{1 - \cos 2\theta}{2}} = \sqrt{\frac{1 + \frac{7}{25}}{2}} $$</div>
+    <div class="math-block">$$ = \sqrt{\frac{32/25}{2}} = \sqrt{\frac{16}{25}} = \frac45 $$</div>
+    <div class="warn">⚠ Watch the signs inside: \(1 + \cos 2\theta = 1 + (-\tfrac{7}{25}) = 1 - \tfrac{7}{25}\). Both square roots are taken <strong>positive</strong>, because \(\theta\) is between \(0^\circ\) and \(90^\circ\).</div>
+    <div class="answer">(a) \(\cos\theta = \tfrac35\), \(\sin\theta = \tfrac45\), so \(\tan\theta = \tfrac43\) and \(\theta = \tan^{-1}\tfrac43 \approx 53.13^\circ\)</div>
+    <p class="why">Quick check: \(\tan 2\theta = \dfrac{2\tan\theta}{1 - \tan^2\theta} = \dfrac{8/3}{1 - 16/9} = \dfrac{8/3}{-7/9} = -\dfrac{24}{7}\), which is \(1 \div \left(-\tfrac{7}{24}\right)\). ✓</p>
+  </div>
+
+  <!-- ============================================================ simulation -->
+  <section class="sim" id="sim">
+    <h2>Try it: turn the axes yourself</h2>
+    <p class="lead">Drag the slider to turn the purple \(X\)–\(Y\) axes. The blue curve stays put. The table re-writes the equation in the new axes — watch the <span class="cb"><strong>\(XY\)-coefficient</strong></span> hit 0 at \(53.13^\circ\).</p>
+    <div class="sim-grid">
+      <div class="stage">
+        <canvas id="csim"></canvas>
+        <p class="hint">Blue: the conic (it never moves). Purple: the axes you're turning.</p>
+      </div>
+      <div>
+        <div class="controls">
+          <div class="ctl"><label for="th">turn \(\theta\)</label><input id="th" type="range" min="0" max="90" step="0.01" value="20"><output id="th-o"></output></div>
+          <div class="row"><button class="btn play" id="snap">Snap to 53.13° (the answer)</button><button class="btn" id="zero">Back to 0°</button></div>
+        </div>
+        <table class="read">
+          <tbody>
+            <tr><td>\(X^2\) coefficient \(A'\)</td><td id="r-a"></td></tr>
+            <tr id="row-b"><td><strong>\(XY\) coefficient \(B'\)</strong></td><td id="r-b"></td></tr>
+            <tr><td>\(Y^2\) coefficient \(C'\)</td><td id="r-c"></td></tr>
+            <tr><td>\(X\) coefficient \(D'\)</td><td id="r-d"></td></tr>
+            <tr><td>\(Y\) coefficient \(E'\)</td><td id="r-e"></td></tr>
+            <tr class="hl"><td>Equation in \(X, Y\)</td><td id="r-eq"></td></tr>
+          </tbody>
+        </table>
+        <div class="idea">
+          <span class="box-title">What to notice</span>
+          At \(0^\circ\) nothing has changed (the original equation). As you turn, the numbers shift around. At \(53.13^\circ\) the \(XY\)-coefficient is exactly 0 —
+          that's the angle \(\cot 2\theta = \tfrac{A - C}{B}\) finds. And by luck of this question the \(Y^2\) and \(Y\) coefficients are 0 there too.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ (b) -->
+  <h2 class="part" id="pb">(b) The Transformation Equations</h2>
+
+  <div class="note-card">
+    <h3>One point, two addresses</h3>
+    <p>
+      Every point now has two sets of coordinates: its old address \((x, y)\), measured along the usual axes, and its new address \((X, Y)\), measured along the turned axes.
+      The transformation equations convert one into the other.
+    </p>
+    <figure class="diagram">
+<svg viewBox="0 0 380 356" role="img" aria-label="One point P, two rulers. Measured along the rotated axes it is X = 2, Y = 1 (purple). Measured along the usual axes it is x = 0.4, y = 2.2 (green). The transformation equations convert between the two.">
+
+<line x1="24.0" y1="267.1" x2="361.8" y2="267.1" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M366.0,267.1 L359.6,269.9 L359.6,264.2 Z" fill="#b2bec3"/>
+<text x="364.0" y="282.1" text-anchor="end" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x</text>
+<line x1="118.9" y1="332.4" x2="118.9" y2="24.2" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M118.9,20.0 L121.8,26.4 L116.1,26.4 Z" fill="#b2bec3"/>
+<text x="127.9" y="28.0" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">y</text>
+<line x1="-14.5" y1="444.9" x2="249.0" y2="93.6" stroke="#8e44ad" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="7 5"/><path d="M252.3,89.3 L250.3,98.0 L244.4,93.6 Z" fill="#8e44ad"/>
+<text x="258.3" y="79.3" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X</text>
+<line x1="296.7" y1="400.5" x2="-54.6" y2="137.0" stroke="#8e44ad" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="7 5"/><path d="M-58.9,133.7 L-50.1,135.7 L-54.5,141.6 Z" fill="#8e44ad"/>
+<text x="-66.9" y="125.7" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">Y</text>
+<line x1="118.9" y1="267.1" x2="207.8" y2="148.5" stroke="#8e44ad" stroke-width="3.2" stroke-linecap="round"/>
+<line x1="207.8" y1="148.5" x2="148.5" y2="104.1" stroke="#8e44ad" stroke-width="3.2" stroke-linecap="round"/>
+<line x1="148.5" y1="104.1" x2="148.5" y2="267.1" stroke="#1e8449" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 3"/>
+<line x1="148.5" y1="104.1" x2="118.9" y2="104.1" stroke="#1e8449" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 3"/>
+<circle cx="148.5" cy="104.1" r="5" fill="#2c3e50"/>
+<text x="156.5" y="98.1" text-anchor="start" class="lbl-sm" style="fill:#2c3e50;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">P</text>
+<text x="171.4" y="211.8" text-anchor="start" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X = 2</text>
+<text x="172.2" y="122.3" text-anchor="end" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">Y = 1</text>
+<text x="148.5" y="283.1" text-anchor="middle" class="lbl-sm" style="fill:#1e8449;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x = 0.4</text>
+<text x="112.9" y="104.1" text-anchor="end" class="lbl-sm" style="fill:#1e8449;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">y = 2.2</text>
+</svg>
+      <figcaption>Walk 2 along the \(X\)-axis and 1 along the \(Y\)-direction (purple) and you reach the same point as walking 0.4 across and 2.2 up (green).</figcaption>
+    </figure>
+    <span class="label">The rule (memorise this pair)</span>
+    <div class="math-block">$$ x = X\cos\theta - Y\sin\theta $$</div>
+    <div class="math-block">$$ y = X\sin\theta + Y\cos\theta $$</div>
+    <p>Put in \(\cos\theta = \tfrac35\), \(\sin\theta = \tfrac45\):</p>
+    <div class="math-block">$$ x = \tfrac35 X - \tfrac45 Y = \frac{3X - 4Y}{5} $$</div>
+    <div class="math-block">$$ y = \tfrac45 X + \tfrac35 Y = \frac{4X + 3Y}{5} $$</div>
+    <div class="answer">(b) \(x = \dfrac{3X - 4Y}{5}\), \(\quad y = \dfrac{4X + 3Y}{5}\)</div>
+    <p class="why">Check with the picture: \(X = 2\), \(Y = 1\) gives \(x = \tfrac{6 - 4}{5} = 0.4\) and \(y = \tfrac{8 + 3}{5} = 2.2\). ✓ Writing everything over 5 keeps the fractions tidy for the next step.</p>
+  </div>
+
+  <!-- ============================================================ (c) -->
+  <h2 class="part" id="pc">(c) Substitute — Rewrite the Equation in \(X\) and \(Y\)</h2>
+
+  <div class="note-card">
+    <h3>The shortcut (spot it and save 10 minutes)</h3>
+    <p>Look at the three squared terms. They form a perfect square:</p>
+    <div class="math-block">$$ 9x^2 + 24xy + 16y^2 = (3x + 4y)^2 $$</div>
+    <p class="why">Check: \((3x + 4y)^2 = 9x^2 + 2\cdot 3x\cdot 4y + 16y^2 = 9x^2 + 24xy + 16y^2\). ✓</p>
+    <p>And the other two terms share a factor:</p>
+    <div class="math-block">$$ -30x - 40y = -10(3x + 4y) $$</div>
+    <p>So the whole equation only depends on the single combination \(3x + 4y\):</p>
+    <div class="math-block">$$ (3x + 4y)^2 - 10(3x + 4y) = 0 $$</div>
+    <p>Now convert just that combination using part (b):</p>
+    <div class="math-block">$$ 3x + 4y = 3\cdot\frac{3X - 4Y}{5} + 4\cdot\frac{4X + 3Y}{5} $$</div>
+    <div class="math-block">$$ = \frac{9X - 12Y + 16X + 12Y}{5} = \frac{25X}{5} = 5X $$</div>
+    <p>The \(Y\)'s cancel! Put \(5X\) back in:</p>
+    <div class="math-block">$$ (5X)^2 - 10(5X) = 0 $$</div>
+    <div class="answer">(c) \(25X^2 - 50X = 0\)</div>
+  </div>
+
+  <div class="note-card">
+    <h3>The long way (works for every question)</h3>
+    <p>If you don't spot a shortcut, substitute each piece separately and add them up. Start with the three squared pieces:</p>
+    <div class="math-block">$$ x^2 = \frac{(3X - 4Y)^2}{25} $$</div>
+    <div class="math-block">$$ = \frac{9X^2 - 24XY + 16Y^2}{25} $$</div>
+    <div class="math-block">$$ xy = \frac{(3X - 4Y)(4X + 3Y)}{25} $$</div>
+    <div class="math-block">$$ = \frac{12X^2 - 7XY - 12Y^2}{25} $$</div>
+    <div class="math-block">$$ y^2 = \frac{(4X + 3Y)^2}{25} $$</div>
+    <div class="math-block">$$ = \frac{16X^2 + 24XY + 9Y^2}{25} $$</div>
+    <p>Multiply by 9, 24 and 16, and collect the coefficients in a table (everything is over 25):</p>
+    <div class="table-wrap">
+      <table class="grind">
+        <thead><tr><th>term</th><th>\(X^2\)</th><th>\(XY\)</th><th>\(Y^2\)</th></tr></thead>
+        <tbody>
+          <tr><td>\(9x^2\)</td><td>81</td><td>−216</td><td>144</td></tr>
+          <tr><td>\(24xy\)</td><td>288</td><td>−168</td><td>−288</td></tr>
+          <tr><td>\(16y^2\)</td><td>256</td><td>384</td><td>144</td></tr>
+          <tr class="sum"><td>total ÷ 25</td><td>625 ÷ 25 = <strong>25</strong></td><td class="zero">0</td><td class="zero">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Then the two plain terms:</p>
+    <div class="math-block">$$ -30x = -30\cdot\frac{3X - 4Y}{5} = -18X + 24Y $$</div>
+    <div class="math-block">$$ -40y = -40\cdot\frac{4X + 3Y}{5} = -32X - 24Y $$</div>
+    <div class="math-block">$$ \text{together: } -50X + 0Y $$</div>
+    <p>Same answer: \(25X^2 + 0XY + 0Y^2 - 50X + 0Y = 0\), i.e. \(25X^2 - 50X = 0\). ✓</p>
+    <div class="key">The \(XY\) column adding to 0 is the whole point of choosing \(\theta\) — it always happens. The \(Y^2\) column being 0 too is special to <em>this</em> question, and it's a clue: only one squared term left means "parabola family".</div>
+  </div>
+
+  <!-- ============================================================ (d) -->
+  <h2 class="part" id="pd">(d) Tidy Up — Complete the Square</h2>
+
+  <div class="note-card">
+    <h3>From \(25X^2 - 50X = 0\) to a standard form</h3>
+    <span class="step">Divide everything by 25</span>
+    <div class="math-block">$$ X^2 - 2X = 0 $$</div>
+    <span class="step">Complete the square: half of −2 is −1, and \((-1)^2 = 1\) — add 1 to both sides</span>
+    <div class="math-block">$$ X^2 - 2X + 1 = 1 \quad\Longrightarrow\quad (X - 1)^2 = 1 $$</div>
+    <span class="step">Shift the origin to \(X = 1\)</span>
+    <p>Let \(X' = X - 1\) and \(Y' = Y\) (slide the origin 1 unit along the \(X\)-axis):</p>
+    <div class="answer">(d) \(X'^2 = 1\)</div>
+  </div>
+
+  <!-- ============================================================ (e) -->
+  <h2 class="part" id="pe">(e) Identify It — the Twist</h2>
+
+  <div class="note-card">
+    <h3>The discriminant says "parabola"…</h3>
+    <div class="math-block">$$ B^2 - 4AC = 24^2 - 4(9)(16) = 576 - 576 = 0 $$</div>
+    <p>Zero means the <strong>parabola family</strong>. But compare with what a real parabola looks like in rotated axes:</p>
+    <div class="math-block">$$ \text{real parabola: } X'^2 = 4a\,Y' \qquad \text{ours: } X'^2 = 1 $$</div>
+    <p>Ours has <strong>no \(Y'\) at all</strong>. So what is it? Solve it like a normal equation:</p>
+    <div class="math-block">$$ X'^2 = 1 \;\Longrightarrow\; X' = 1 \;\text{ or }\; X' = -1 $$</div>
+    <div class="math-block">$$ \Longrightarrow\; X = 2 \;\text{ or }\; X = 0 $$</div>
+    <p>"\(X = 2\)" means every point that is 2 along the \(X\)-axis, whatever its \(Y\) — that's a <strong>straight line</strong>. Same for \(X = 0\). So the "conic" is two parallel straight lines.</p>
+  </div>
+
+  <div class="note-card">
+    <h3>The picture</h3>
+    <figure class="diagram">
+<svg viewBox="0 0 400 378" role="img" aria-label="The answer: two parallel lines. In the rotated frame they are X = 0 (through the origin) and X = 2; in x and y they are 3x + 4y = 0 and 3x + 4y = 10. They are 2 units apart, measured along the X-axis, with the midline X = 1 halfway between.">
+
+<line x1="24.0" y1="251.4" x2="381.8" y2="251.4" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M386.0,251.4 L379.6,254.3 L379.6,248.6 Z" fill="#b2bec3"/>
+<text x="384.0" y="266.4" text-anchor="end" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x</text>
+<line x1="140.7" y1="354.3" x2="140.7" y2="24.2" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M140.7,20.0 L143.6,26.4 L137.9,26.4 Z" fill="#b2bec3"/>
+<text x="149.7" y="28.0" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">y</text>
+<line x1="7.9" y1="428.6" x2="270.3" y2="78.6" stroke="#8e44ad" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="7 5"/><path d="M273.6,74.3 L271.6,83.1 L265.7,78.7 Z" fill="#8e44ad"/>
+<text x="279.6" y="64.3" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X</text>
+<line x1="317.9" y1="384.3" x2="-32.1" y2="121.8" stroke="#8e44ad" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="7 5"/><path d="M-36.4,118.6 L-27.7,120.6 L-32.1,126.4 Z" fill="#8e44ad"/>
+<text x="-44.4" y="110.6" text-anchor="middle" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">Y</text>
+<line x1="30.0" y1="168.4" x2="376.0" y2="427.9" stroke="#2471a3" stroke-width="2.8" stroke-linecap="round"/>
+<line x1="30.0" y1="-4.6" x2="376.0" y2="254.9" stroke="#2471a3" stroke-width="2.8" stroke-linecap="round"/>
+<line x1="30.0" y1="81.9" x2="376.0" y2="341.4" stroke="#95a5a6" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="6 5"/>
+<text x="47.8" y="170.8" text-anchor="start" class="lbl-sm" style="fill:#2471a3;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X = 0  (3x + 4y = 0)</text>
+<text x="202.1" y="110.0" text-anchor="start" class="lbl-sm" style="fill:#2471a3;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X = 2  (3x + 4y = 10)</text>
+<text x="324.6" y="313.9" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X = 1 (midline)</text>
+<circle cx="223.8" cy="140.7" r="5" fill="#c0392b"/>
+<text x="215.8" y="144.7" text-anchor="end" class="lbl-sm" style="fill:#c0392b;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">(1.2, 1.6)</text>
+<line x1="140.7" y1="251.4" x2="218.4" y2="147.9" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/><path d="M221.3,144.0 L219.5,151.8 L214.3,147.9 Z" fill="#c0392b"/>
+<text x="172.8" y="192.6" text-anchor="end" class="lbl-sm" style="fill:#c0392b;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">2 apart</text>
+</svg>
+      <figcaption>The two lines run along the \(Y\)-direction: one through the origin (\(X = 0\)) and one 2 units further along the \(X\)-axis (\(X = 2\)).</figcaption>
+    </figure>
+    <p>To write them in \(x\) and \(y\), go back the other way. Earlier we found \(3x + 4y = 5X\), so \(X = \dfrac{3x + 4y}{5}\):</p>
+    <div class="math-block">$$ X = 0 \;\Longleftrightarrow\; 3x + 4y = 0 $$</div>
+    <div class="math-block">$$ X = 2 \;\Longleftrightarrow\; 3x + 4y = 10 $$</div>
+    <div class="answer">(e) A <strong>degenerate parabola</strong>: the pair of parallel lines \(3x + 4y = 0\) and \(3x + 4y = 10\)</div>
+    <p class="why">Double-check by factoring the original equation: \((3x + 4y)(3x + 4y - 10) = (3x+4y)^2 - 10(3x + 4y) = 9x^2 + 24xy + 16y^2 - 30x - 40y\). ✓ A product equals 0 when either factor is 0 — two lines.</p>
+    <div class="key">"Degenerate" just means the conic has collapsed into something simpler (here two lines instead of a curve). A cone sliced exactly parallel to its side can do this.</div>
+  </div>
+
+  <!-- ============================================================ (f) -->
+  <h2 class="part" id="pf">(f) Its Properties</h2>
+
+  <div class="note-card">
+    <h3>What we can (and can't) say</h3>
+    <ul>
+      <li><strong>No vertex, focus or directrix.</strong> Those only exist for a genuine parabola. Two straight lines don't have them — this is why (f) feels impossible.</li>
+      <li><strong>Direction:</strong> both lines have slope \(-\tfrac34\) (rearrange \(3x + 4y = c\) to \(y = -\tfrac34 x + \tfrac{c}{4}\)), so they're parallel.</li>
+      <li><strong>Distance apart:</strong> 2 units — from \(X = 0\) to \(X = 2\). Check with the point-to-line formula: \(\dfrac{|10 - 0|}{\sqrt{3^2 + 4^2}} = \dfrac{10}{5} = 2\).</li>
+      <li><strong>Line of symmetry:</strong> the midline \(X = 1\), i.e. \(3x + 4y = 5\), exactly halfway between them.</li>
+    </ul>
+    <div class="note">
+      Part (f) asks for a vertex, so the question was very likely meant to give a real parabola — probably a sign typo in the \(x\) and \(y\) terms.
+      Your working for (a)–(d) is exactly the same either way; only the last step changes.
+    </div>
+  </div>
+
+  <div class="note-card">
+    <h3>What it would look like with a real parabola</h3>
+    <p>Change just the linear terms to \(9x^2 + 24xy + 16y^2 - 80x + 60y = 0\). Steps (a) and (b) are identical. In (c) the squared part still gives \(25X^2\), and</p>
+    <div class="math-block">$$ -80x + 60y = \frac{-80(3X - 4Y) + 60(4X + 3Y)}{5} $$</div>
+    <div class="math-block">$$ = \frac{500Y}{5} = 100Y $$</div>
+    <div class="math-block">$$ 25X^2 + 100Y = 0 \;\Longrightarrow\; X^2 = -4Y $$</div>
+    <p>Now there <em>is</em> a \(Y\)-term, so it's a genuine parabola: \(4a = 4\), \(a = 1\), opening in the \(-Y\) direction.</p>
+    <figure class="diagram">
+<svg viewBox="0 0 380 351" role="img" aria-label="What a genuine parabola from this kind of question looks like: X² = −4Y, vertex at the origin, focus one unit down at (0, −1), directrix one unit up at Y = 1.">
+<text x="190.0" y="18.0" text-anchor="middle" class="lbl-sm" style="fill:#2c3e50;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X² = −4Y in the rotated frame</text>
+<line x1="24.0" y1="178.4" x2="361.8" y2="178.4" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M366.0,178.4 L359.6,181.3 L359.6,175.6 Z" fill="#b2bec3"/>
+<text x="364.0" y="193.4" text-anchor="end" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">X</text>
+<line x1="193.0" y1="327.1" x2="193.0" y2="40.2" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M193.0,36.0 L195.9,42.4 L190.1,42.4 Z" fill="#b2bec3"/>
+<text x="202.0" y="44.0" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">Y</text>
+<path d="M40.2,293.0 L42.7,289.3 L45.3,285.5 L47.8,281.9 L50.4,278.3 L52.9,274.7 L55.5,271.3 L58.0,267.9 L60.6,264.5 L63.1,261.2 L65.7,258.0 L68.2,254.9 L70.8,251.8 L73.3,248.8 L75.8,245.8 L78.4,242.9 L80.9,240.1 L83.5,237.3 L86.0,234.6 L88.6,232.0 L91.1,229.4 L93.7,226.9 L96.2,224.4 L98.8,222.0 L101.3,219.7 L103.9,217.4 L106.4,215.2 L109.0,213.1 L111.5,211.0 L114.0,209.0 L116.6,207.1 L119.1,205.2 L121.7,203.4 L124.2,201.6 L126.8,200.0 L129.3,198.3 L131.9,196.8 L134.4,195.3 L137.0,193.8 L139.5,192.5 L142.1,191.2 L144.6,189.9 L147.2,188.8 L149.7,187.6 L152.2,186.6 L154.8,185.6 L157.3,184.7 L159.9,183.8 L162.4,183.0 L165.0,182.3 L167.5,181.6 L170.1,181.0 L172.6,180.5 L175.2,180.0 L177.7,179.6 L180.3,179.2 L182.8,178.9 L185.4,178.7 L187.9,178.6 L190.5,178.5 L193.0,178.4 L195.5,178.5 L198.1,178.6 L200.6,178.7 L203.2,178.9 L205.7,179.2 L208.3,179.6 L210.8,180.0 L213.4,180.5 L215.9,181.0 L218.5,181.6 L221.0,182.3 L223.6,183.0 L226.1,183.8 L228.7,184.7 L231.2,185.6 L233.8,186.6 L236.3,187.6 L238.8,188.8 L241.4,189.9 L243.9,191.2 L246.5,192.5 L249.0,193.8 L251.6,195.3 L254.1,196.8 L256.7,198.3 L259.2,200.0 L261.8,201.6 L264.3,203.4 L266.9,205.2 L269.4,207.1 L272.0,209.0 L274.5,211.0 L277.0,213.1 L279.6,215.2 L282.1,217.4 L284.7,219.7 L287.2,222.0 L289.8,224.4 L292.3,226.9 L294.9,229.4 L297.4,232.0 L300.0,234.6 L302.5,237.3 L305.1,240.1 L307.6,242.9 L310.2,245.8 L312.7,248.8 L315.2,251.8 L317.8,254.9 L320.3,258.0 L322.9,261.2 L325.4,264.5 L328.0,267.9 L330.5,271.3 L333.1,274.7 L335.6,278.3 L338.2,281.9 L340.7,285.5 L343.3,289.3 L345.8,293.0" fill="none" stroke="#2471a3" stroke-width="2.6" stroke-linejoin="round"/>
+<circle cx="193.0" cy="178.4" r="5" fill="#c0392b"/>
+<text x="201.0" y="170.4" text-anchor="start" class="lbl-sm" style="fill:#c0392b;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">vertex</text>
+<circle cx="193.0" cy="229.4" r="5" fill="#d35400"/>
+<text x="201.0" y="233.4" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">focus (0, −1)</text>
+<line x1="40.2" y1="127.5" x2="345.8" y2="127.5" stroke="#8e44ad" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="6 4"/>
+<text x="340.7" y="119.5" text-anchor="end" class="lbl-sm" style="fill:#8e44ad;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">directrix Y = 1</text>
+</svg>
+      <figcaption>Vertex at the origin, focus 1 unit "down" the \(Y\)-axis, directrix 1 unit "up".</figcaption>
+    </figure>
+    <p class="why">In \(xy\)-coordinates: vertex \((0, 0)\); focus \((X, Y) = (0, -1)\) → \(x = \tfrac{0 + 4}{5} = 0.8\), \(y = \tfrac{0 - 3}{5} = -0.6\); directrix \(Y = 1\) → \(-4x + 3y = 5\).</p>
+  </div>
+
+  <!-- ============================================================ recipe -->
+  <h2 class="part" id="pr">The Exam Recipe</h2>
+
+  <div class="note-card">
+    <h3>Any "rotate the conic" question, in order</h3>
+    <ol class="steps">
+      <li>Read off \(A, B, C, D, E, F\) (\(B\) = the whole \(xy\) number).</li>
+      <li>\(\cot 2\theta = \frac{A - C}{B}\). If \(A = C\), \(\theta = 45^\circ\) — skip to step 4.</li>
+      <li>Triangle → \(\cos 2\theta\) → half-angle formulas → \(\cos\theta\), \(\sin\theta\) (both positive).</li>
+      <li>\(x = X\cos\theta - Y\sin\theta\), \(y = X\sin\theta + Y\cos\theta\).</li>
+      <li>Substitute (look for a perfect-square shortcut first). The \(XY\)-term must vanish — if it doesn't, recheck.</li>
+      <li>Complete the square, shift the origin, get a standard form.</li>
+      <li>Identify (discriminant \(B^2 - 4AC\): \(&lt;0\) ellipse, \(=0\) parabola, \(&gt;0\) hyperbola), then read off the features.</li>
+    </ol>
+  </div>
+
+  <div class="note-card">
+    <h3>Common confusions</h3>
+    <dl class="faq">
+      <dt>Why is \(\cos 2\theta\) negative — did I mess up?</dt>
+      <dd>No. \(\cot 2\theta\) is negative whenever \(A &lt; C\), which puts \(2\theta\) between \(90^\circ\) and \(180^\circ\). The half-angle formulas handle it.</dd>
+      <dt>Why do I take the positive square roots?</dt>
+      <dd>The rotation angle is always chosen between \(0^\circ\) and \(90^\circ\), where both \(\sin\theta\) and \(\cos\theta\) are positive.</dd>
+      <dt>Which way round are the transformation equations?</dt>
+      <dd>Old in terms of new: \(x = X\cos\theta - Y\sin\theta\). Picture it: going \(X\) units along the turned \(X\)-axis moves you \(X\cos\theta\) across and \(X\sin\theta\) up — that's the purple path in the "two addresses" picture.</dd>
+      <dt>How do I go back from \(X, Y\) to \(x, y\) at the end?</dt>
+      <dd>Use the reverse pair: \(X = x\cos\theta + y\sin\theta\), \(Y = -x\sin\theta + y\cos\theta\). Here \(X = \tfrac{3x + 4y}{5}\).</dd>
+      <dt>The discriminant is 0 but the answer isn't a parabola?</dt>
+      <dd>A discriminant of 0 means "parabola <em>or a degenerate version of one</em>" (two parallel lines, one line, or nothing). You only find out which after rotating and tidying.</dd>
+    </dl>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+  var L = window.Lab, C = L.C, $ = L.$, D2R = L.D2R;
+  var A = 9, B = 24, Cc = 16, D = -30, E = -40;
+  var cv = $('csim'), P = L.Plane(cv, 0.9, [-1.8, 3.6, -1.4, 3.4]);
+  var th = L.range('th', function (v) { return v.toFixed(2) + '°'; }, draw);
+  $('snap').addEventListener('click', function () { L.setRange(th, Math.atan2(4, 3) / D2R, function (v) { return v.toFixed(2) + '°'; }); draw(); });
+  $('zero').addEventListener('click', function () { L.setRange(th, 0, function (v) { return v.toFixed(2) + '°'; }); draw(); });
+  function n2(v) { var r = Math.abs(v) < 0.005 ? 0 : v; return r.toFixed(2).replace('-', '−'); }
+  function term(c, s, first) {
+    if (Math.abs(c) < 0.005) return '';
+    var sign = c < 0 ? (first ? '−' : ' − ') : (first ? '' : ' + ');
+    return sign + Math.abs(c).toFixed(2) + s;
+  }
+  function draw() {
+    var ctx = P.begin(), t = +th.value * D2R, c = Math.cos(t), s = Math.sin(t);
+    P.grid(1);
+    // the conic: 3x + 4y = 0 and 3x + 4y = 10
+    [0, 10].forEach(function (k) { P.line([-1.8, (k + 5.4) / 4], [3.6, (k - 10.8) / 4], C.blue, 3); });
+    // turned axes
+    [[c, s, 'X'], [-s, c, 'Y']].forEach(function (u) {
+      P.line([-4 * u[0], -4 * u[1]], [4 * u[0], 4 * u[1]], C.purple, 2, [8, 5]);
+      P.arrow([0, 0], [2.9 * u[0], 2.9 * u[1]], C.purple, 2.4, 10);
+      P.text(u[2], 3.1 * u[0], 3.1 * u[1], C.purple, 'center');
+    });
+    ctx.strokeStyle = C.orange; ctx.lineWidth = 2; ctx.beginPath();
+    var o = P.P(0, 0); ctx.arc(o[0], o[1], 34, 0, -t, true); ctx.stroke();
+    P.text('θ', 0.75 * Math.cos(t / 2), 0.75 * Math.sin(t / 2), C.orange, 'center');
+    var Ap = A * c * c + B * s * c + Cc * s * s, Bp = B * (c * c - s * s) + 2 * (Cc - A) * s * c, Cp = A * s * s - B * s * c + Cc * c * c;
+    var Dp = D * c + E * s, Ep = -D * s + E * c;
+    $('r-a').textContent = n2(Ap); $('r-b').textContent = n2(Bp); $('r-c').textContent = n2(Cp); $('r-d').textContent = n2(Dp); $('r-e').textContent = n2(Ep);
+    var eq = '', first = true;
+    [[Ap, 'X²'], [Bp, 'XY'], [Cp, 'Y²'], [Dp, 'X'], [Ep, 'Y']].forEach(function (q) { var x = term(q[0], q[1], first); if (x) { eq += x; first = false; } });
+    $('r-eq').textContent = (eq || '0') + ' = 0';
+    $('row-b').classList.toggle('bzero', Math.abs(Bp) < 0.05);
+  }
+  L.register(draw);
+})();
+</script>
+
+</body>
+</html>

@@ -40,6 +40,7 @@
     { f: 'final-integral-theorems.html', u: 'u7', label: 'Notes' },
     { f: 'final-theorems-lab.html', u: 'u7', label: 'Interactive Lab' },
     { f: 'final-exam-review.html', u: 'fprep', label: 'Final Exam Review' },
+    { f: 'final-q1-explained.html', u: 'fprep', label: 'Q1 Explained' },
     { f: 'final-formula-sheet.html', u: 'fprep', label: 'Cheat Sheet' }
   ];
 

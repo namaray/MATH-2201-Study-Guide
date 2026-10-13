@@ -157,7 +157,7 @@ body.page figure.diagram.wide .conv3 svg.solid { grid-column: 1 / -1; justify-se
 /* ---------- diagram rail: pictures on the left, maths on the right ---------- */
 @media (min-width: 1100px) {
   body.page.rail { max-width: var(--wide); }
-  body.page.rail > *:not(.fig-card):not(.topbar):not(.pager) { max-width: var(--read); margin-left: auto; margin-right: 0; }
+  body.page.rail > *:not(.fig-card):not(.topbar):not(.pager):not(.sim) { max-width: var(--read); margin-left: auto; margin-right: 0; }
   body.rail > .fig-card { max-width: none; }
   body.rail .fig-card > *:not(.fig-row) { max-width: var(--col); margin-left: auto; }
 
