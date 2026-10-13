@@ -288,3 +288,12 @@ body.sheet .f { overflow-x: auto; }
 /* worked-example diagrams sit inside the example box */
 body.page .example figure.diagram.ex { margin: 0.9rem auto 0.5rem; }
 body.page .example figure.diagram.ex:not(.wide) svg { max-width: 440px; }
+
+/* question screenshots on the exam-review page */
+body.page .prompt.qshot { background: #fff; border-left-color: #3498db; padding: 0.4rem; overflow: hidden; }
+body.page .prompt.qshot img { display: block; width: 100%; max-width: 640px; height: auto; margin: 0 auto; }
+body.page .prompt.qshot a.qzoom { display: block; text-decoration: none; }
+body.page .prompt.qshot a.qzoom span { display: none; }
+@media (max-width: 640px) {
+  body.page .prompt.qshot a.qzoom span { display: block; text-align: right; font-size: 0.75rem; color: var(--muted); padding: 0.2rem 0.3rem 0; }
+}
