@@ -606,16 +606,55 @@
 </svg>
       <figcaption>The cap meets the \(xy\)-plane where \(4 - x^2 - y^2 = 0\), so its shadow is the disc \(x^2 + y^2 \le 4\) (radius 2).</figcaption>
     </figure>
-    <span class="step">Step 1 — Pieces of the formula</span>
-    <div class="math-block">$$ g = 4 - x^2 - y^2, \quad g_x = -2x, \quad g_y = -2y $$</div>
-    <div class="math-block">$$ P = x, \quad Q = -y, \quad R = z = 4 - x^2 - y^2 $$</div>
-    <span class="step">Step 2 — The integrand</span>
-    <div class="math-block">$$ -x(-2x) - (-y)(-2y) + (4 - x^2 - y^2) $$</div>
-    <div class="math-block">$$ = 2x^2 - 2y^2 + 4 - x^2 - y^2 = x^2 - 3y^2 + 4 $$</div>
-    <span class="step">Step 3 — Polar over the disc \(r \le 2\)</span>
+    <span class="step">Step 1 — The surface: find \(g\), \(g_x\), \(g_y\)</span>
+    <p class="why">The surface is written as \(z = g(x, y)\), so \(g\) is everything on the right:</p>
+    <div class="math-block">$$ g = 4 - x^2 - y^2 $$</div>
+    <p class="why">\(g_x\): differentiate with respect to \(x\), treating \(y\) as a constant (so \(4\) and \(y^2\) disappear). \(g_y\): the same with \(x\) as the constant.</p>
+    <div class="math-block">$$ g_x = -2x, \qquad g_y = -2y $$</div>
+    <span class="step">Step 2 — The field: find \(P\), \(Q\), \(R\)</span>
+    <p class="why">\(P\), \(Q\), \(R\) are the numbers in front of \(\mathbf{i}\), \(\mathbf{j}\), \(\mathbf{k}\) in \(\mathbf{F} = x\,\mathbf{i} - y\,\mathbf{j} + z\,\mathbf{k}\) — keep the minus sign on \(Q\):</p>
+    <div class="math-block">$$ P = x, \qquad Q = -y, \qquad R = z $$</div>
+    <p class="why">We're on the surface, so \(z\) is not free — it equals \(g\). Replace it:</p>
+    <div class="math-block">$$ R = z = 4 - x^2 - y^2 $$</div>
+    <span class="step">Step 3 — Build the integrand \(-P g_x - Q g_y + R\), one piece at a time</span>
+    <div class="math-block">$$ -P\,g_x = -(x)(-2x) = 2x^2 $$</div>
+    <p class="why">Minus × minus = plus.</p>
+    <div class="math-block">$$ -Q\,g_y = -(-y)(-2y) = -2y^2 $$</div>
+    <p class="why">Careful here: \((-y)(-2y) = +2y^2\), and the minus in front makes it \(-2y^2\).</p>
+    <div class="math-block">$$ R = 4 - x^2 - y^2 $$</div>
+    <p class="why">Add the three pieces and collect like terms (\(x^2\) with \(x^2\), \(y^2\) with \(y^2\)):</p>
+    <div class="math-block">$$ 2x^2 - 2y^2 + 4 - x^2 - y^2 $$</div>
+    <div class="math-block">$$ = (2 - 1)x^2 + (-2 - 1)y^2 + 4 = x^2 - 3y^2 + 4 $$</div>
+    <div class="key">So the flux is \(\iint_R (x^2 - 3y^2 + 4)\,dA\) over the shadow disc \(x^2 + y^2 \le 4\). Everything from here is just doing that double integral.</div>
+    <span class="step">Step 4 — Switch to polar (the shadow is a disc)</span>
+    <p class="why">The shadow is the disc \(x^2 + y^2 \le 4\), so use polar coordinates. Three things change:</p>
+    <ul>
+      <li>\(x = r\cos\theta\), \(y = r\sin\theta\)</li>
+      <li>\(dA = r\,dr\,d\theta\) — don't forget this extra \(r\)</li>
+      <li>limits: \(r\) from 0 to 2 (the radius), \(\theta\) from 0 to \(2\pi\) (all the way round)</li>
+    </ul>
+    <div class="math-block">$$ x^2 - 3y^2 + 4 = r^2\cos^2\theta - 3r^2\sin^2\theta + 4 $$</div>
+    <span class="step">Step 5 — Set up the integral (and multiply in the extra \(r\))</span>
     <div class="math-block">$$ \int_0^{2\pi}\!\!\int_0^2 \left(r^2\cos^2\theta - 3r^2\sin^2\theta + 4\right) r\,dr\,d\theta $$</div>
-    <p class="why">Split it up, using \(\int_0^{2\pi}\cos^2\theta\,d\theta = \int_0^{2\pi}\sin^2\theta\,d\theta = \pi\) and \(\int_0^2 r^3\,dr = 4\):</p>
-    <div class="math-block">$$ 4\pi - 3(4\pi) + 4\cdot\left(\pi\cdot 2^2\right) = 4\pi - 12\pi + 16\pi $$</div>
+    <div class="math-block">$$ = \int_0^{2\pi}\!\!\int_0^2 \left(r^3\cos^2\theta - 3r^3\sin^2\theta + 4r\right) dr\,d\theta $$</div>
+    <span class="step">Step 6 — Inner integral first: \(dr\) (treat \(\theta\) as a constant)</span>
+    <p class="why">The \(\cos^2\theta\) and \(\sin^2\theta\) are just numbers while we integrate in \(r\), so they come along for the ride. We need two basic integrals:</p>
+    <div class="math-block">$$ \int_0^2 r^3\,dr = \left[\frac{r^4}{4}\right]_0^2 = \frac{16}{4} - 0 = 4 $$</div>
+    <div class="math-block">$$ \int_0^2 4r\,dr = \Big[2r^2\Big]_0^2 = 8 - 0 = 8 $$</div>
+    <p class="why">Put them in, term by term:</p>
+    <div class="math-block">$$ \int_0^2 \left(r^3\cos^2\theta - 3r^3\sin^2\theta + 4r\right) dr $$</div>
+    <div class="math-block">$$ = 4\cos^2\theta - 3(4)\sin^2\theta + 8 $$</div>
+    <div class="math-block">$$ = 4\cos^2\theta - 12\sin^2\theta + 8 $$</div>
+    <span class="step">Step 7 — Outer integral: \(d\theta\) from 0 to \(2\pi\)</span>
+    <div class="math-block">$$ \int_0^{2\pi} \left(4\cos^2\theta - 12\sin^2\theta + 8\right) d\theta $$</div>
+    <p class="why">Again term by term. The \(\cos^2\theta\) and \(\sin^2\theta\) integrals use the half-angle identities:</p>
+    <div class="math-block">$$ \int_0^{2\pi}\cos^2\theta\,d\theta = \int_0^{2\pi}\frac{1 + \cos 2\theta}{2}\,d\theta $$</div>
+    <div class="math-block">$$ = \left[\frac{\theta}{2} + \frac{\sin 2\theta}{4}\right]_0^{2\pi} = \pi + 0 - 0 = \pi $$</div>
+    <div class="math-block">$$ \int_0^{2\pi}\sin^2\theta\,d\theta = \left[\frac{\theta}{2} - \frac{\sin 2\theta}{4}\right]_0^{2\pi} = \pi $$</div>
+    <div class="math-block">$$ \int_0^{2\pi} 8\,d\theta = 8 \cdot 2\pi = 16\pi $$</div>
+    <div class="key">Shortcut worth remembering: over a full turn, \(\cos^2\theta\) and \(\sin^2\theta\) each average \(\tfrac12\), so each integrates to \(\tfrac12 \times 2\pi = \pi\).</div>
+    <span class="step">Step 8 — Add the three pieces</span>
+    <div class="math-block">$$ 4(\pi) - 12(\pi) + 16\pi = 4\pi - 12\pi + 16\pi = 8\pi $$</div>
     <div class="answer">Flux \(= 8\pi \approx 25.13\)</div>
     <div class="meaning">
       <span class="box-title">What it means</span>
@@ -659,10 +698,22 @@
     <div class="math-block">$$ \nabla\cdot\mathbf{F} = 24x^2 + 24y^2 + 24z^2 = 24\rho^2 $$</div>
     <span class="step">Step 2 — Spherical limits for the upper half-ball</span>
     <div class="math-block">$$ 0 \le \rho \le 5, \qquad 0 \le \phi \le \tfrac{\pi}{2}, \qquad 0 \le \theta \le 2\pi $$</div>
-    <span class="step">Step 3 — Integrate (constant limits, so it splits into three pieces)</span>
-    <div class="math-block">$$ \iiint 24\rho^2\cdot\rho^2\sin\phi\;d\rho\,d\phi\,d\theta $$</div>
-    <div class="math-block">$$ = 24\left[\frac{\rho^5}{5}\right]_0^5 \cdot \Big[-\cos\phi\Big]_0^{\pi/2} \cdot 2\pi $$</div>
-    <div class="math-block">$$ = 24 \cdot 625 \cdot 1 \cdot 2\pi = 30000\pi $$</div>
+    <span class="step">Step 3 — Put in the Jacobian</span>
+    <p class="why">In spherical coordinates \(dV = \rho^2\sin\phi\,d\rho\,d\phi\,d\theta\). Multiply the divergence by it:</p>
+    <div class="math-block">$$ \iiint_G 24\rho^2\,dV $$</div>
+    <div class="math-block">$$ = \int_0^{2\pi}\!\!\int_0^{\pi/2}\!\!\int_0^5 24\rho^2\cdot\rho^2\sin\phi\;d\rho\,d\phi\,d\theta $$</div>
+    <div class="math-block">$$ = \int_0^{2\pi}\!\!\int_0^{\pi/2}\!\!\int_0^5 24\rho^4\sin\phi\;d\rho\,d\phi\,d\theta $$</div>
+    <span class="step">Step 4 — Split it into three separate integrals</span>
+    <p class="why">All the limits are plain numbers, and \(24\rho^4\sin\phi\) is (a \(\rho\)-part) × (a \(\phi\)-part) with no \(\theta\) at all. When that happens the triple integral is just three single integrals multiplied together:</p>
+    <div class="math-block">$$ = 24 \cdot \left(\int_0^5 \rho^4\,d\rho\right) $$</div>
+    <div class="math-block">$$ \times\left(\int_0^{\pi/2}\sin\phi\,d\phi\right)\cdot\left(\int_0^{2\pi} d\theta\right) $$</div>
+    <span class="step">Step 5 — Do each one</span>
+    <div class="math-block">$$ \int_0^5 \rho^4\,d\rho = \left[\frac{\rho^5}{5}\right]_0^5 = \frac{3125}{5} = 625 $$</div>
+    <div class="math-block">$$ \int_0^{\pi/2}\sin\phi\,d\phi = \Big[-\cos\phi\Big]_0^{\pi/2} $$</div>
+    <div class="math-block">$$ = \left(-\cos\tfrac{\pi}{2}\right) - \left(-\cos 0\right) = 0 + 1 = 1 $$</div>
+    <div class="math-block">$$ \int_0^{2\pi} d\theta = 2\pi $$</div>
+    <span class="step">Step 6 — Multiply</span>
+    <div class="math-block">$$ 24 \cdot 625 \cdot 1 \cdot 2\pi = 15000 \cdot 2\pi = 30000\pi $$</div>
     <div class="answer">Outward flux \(= 30000\pi \approx 94{,}248\)</div>
     <div class="note">Don't forget the Jacobian \(\rho^2\sin\phi\): the integrand becomes \(24\rho^4\sin\phi\), not \(24\rho^2\).</div>
   </div>
