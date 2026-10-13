@@ -1084,10 +1084,15 @@
     </div>
 
     <h3>(a) Constant divergence → flux = 7 × volume</h3>
+    <div class="formula">
+      <span class="box-title">Formula you need</span>
+      <div class="math-block">$$ \oiint_S \mathbf{F}\cdot\mathbf{n}\,dS = \iiint_G \nabla\cdot\mathbf{F}\;dV $$</div>
+      <div class="math-block">$$ \text{cylindrical: } dV = r\,dz\,dr\,d\theta $$</div>
+    </div>
     <div class="idea">
       <span class="box-title">The idea</span>
       The divergence works out to a constant, 7. That means "7 units produced per unit volume", so the outward
-      flux is just 7 times the volume of the solid.
+      flux is just 7 times the volume of the solid — and the volume is an easy cylindrical integral.
     </div>
     <figure class="diagram">
       <svg viewBox="0 0 420 295" role="img" aria-label="Side view of the paraboloid z equals 4 minus x squared minus y squared above the xy-plane, with its circular shadow on the base.">
@@ -1111,11 +1116,35 @@
 </svg>
       <figcaption>The closed surface is the paraboloid cap <em>plus</em> the flat base disc \(r \le 2\).</figcaption>
     </figure>
+    <span class="step">Step 1 — Why the divergence theorem?</span>
+    <p class="why">The region is closed in: the bowl \(z = 4 - x^2 - y^2\) on top and the floor \(z = 0\) underneath. For a closed surface, the flux out through the whole skin equals the total divergence inside, so one triple integral replaces two surface integrals (bowl and floor).</p>
+    <span class="step">Step 2 — The divergence, term by term</span>
+    <p class="why">\(P = 2x\), \(Q = 2y\), \(R = 3z\). Differentiate each by its own letter and add:</p>
+    <div class="math-block">$$ \frac{\partial}{\partial x}(2x) = 2, \qquad \frac{\partial}{\partial y}(2y) = 2 $$</div>
+    <div class="math-block">$$ \frac{\partial}{\partial z}(3z) = 3 $$</div>
     <div class="math-block">$$ \nabla\cdot\mathbf{F} = 2 + 2 + 3 = 7 $$</div>
-    <span class="step">Volume of the solid (cylindrical: \(0 \le z \le 4 - r^2\), \(r \le 2\))</span>
-    <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^2 (4 - r^2)\,r\,dr\,d\theta $$</div>
-    <div class="math-block">$$ = 2\pi\left[2r^2 - \frac{r^4}{4}\right]_0^2 = 2\pi(8 - 4) = 8\pi $$</div>
-    <div class="answer">Outward flux \(= 7 \times 8\pi = 56\pi \approx 175.9\)</div>
+    <span class="step">Step 3 — A constant comes straight out</span>
+    <div class="math-block">$$ \iiint_G 7\;dV = 7\iiint_G dV = 7 \times (\text{volume of } G) $$</div>
+    <p class="why">So all we need is the volume of the solid under the bowl.</p>
+    <span class="step">Step 4 — The limits (floor, roof, shadow)</span>
+    <ul>
+      <li><strong>Floor and roof (\(z\)):</strong> from the floor \(z = 0\) up to the bowl. In cylindrical coordinates \(x^2 + y^2 = r^2\), so the roof is \(z = 4 - r^2\). → \(0 \le z \le 4 - r^2\)</li>
+      <li><strong>Shadow (\(r\)):</strong> the bowl touches the floor where \(4 - r^2 = 0\), i.e. \(r = 2\). So the shadow is the disc of radius 2. → \(0 \le r \le 2\)</li>
+      <li><strong>Around (\(\theta\)):</strong> the disc goes all the way round. → \(0 \le \theta \le 2\pi\)</li>
+    </ul>
+    <span class="step">Step 5 — Set up the volume integral</span>
+    <div class="math-block">$$ V = \int_0^{2\pi}\!\!\int_0^2\!\!\int_0^{4 - r^2} r\;dz\,dr\,d\theta $$</div>
+    <span class="step">Step 6 — Inside first: \(dz\)</span>
+    <p class="why">\(r\) is a constant while integrating in \(z\), so it's \(r\) × (top − bottom):</p>
+    <div class="math-block">$$ \int_0^{4 - r^2} r\;dz = r\big(4 - r^2\big) = 4r - r^3 $$</div>
+    <span class="step">Step 7 — Next: \(dr\)</span>
+    <div class="math-block">$$ \int_0^2 \big(4r - r^3\big)\,dr = \left[2r^2 - \frac{r^4}{4}\right]_0^2 $$</div>
+    <div class="math-block">$$ = \left(8 - \frac{16}{4}\right) - 0 = 8 - 4 = 4 $$</div>
+    <span class="step">Step 8 — Last: \(d\theta\)</span>
+    <div class="math-block">$$ V = \int_0^{2\pi} 4\;d\theta = 4 \cdot 2\pi = 8\pi $$</div>
+    <span class="step">Step 9 — Multiply by the divergence</span>
+    <div class="math-block">$$ \text{flux} = 7 \times 8\pi = 56\pi $$</div>
+    <div class="answer">Outward flux \(= 56\pi \approx 175.9\)</div>
 
     <h3>(b) \(\iint (x + y)\,dS\) on a plane</h3>
     <div class="formula">
@@ -1127,11 +1156,20 @@
       A tilted plane is bigger than its shadow by a constant factor. Find that factor, then integrate \(x + y\) over the
       shadow triangle. (\(x + y\) contains no \(z\), so nothing needs substituting.)
     </div>
-    <span class="step">Step 1 — Stretch factor</span>
-    <div class="math-block">$$ z = 6 - 2x - 3y, \quad g_x = -2, \quad g_y = -3 $$</div>
-    <div class="math-block">$$ \Rightarrow\; \sqrt{g_x^2 + g_y^2 + 1} = \sqrt{4 + 9 + 1} = \sqrt{14} $$</div>
-    <span class="step">Step 2 — The shadow (set \(z = 0\))</span>
-    <p class="why">\(2x + 3y = 6\) meets the axes at \((3, 0)\) and \((0, 2)\). With \(x, y \ge 0\), the shadow is the triangle below:</p>
+    <span class="step">Step 1 — Write the plane as \(z = g(x, y)\)</span>
+    <p class="why">The formula needs the surface solved for \(z\). Move the \(x\) and \(y\) terms across:</p>
+    <div class="math-block">$$ 2x + 3y + z = 6 \;\Longrightarrow\; z = 6 - 2x - 3y $$</div>
+    <span class="step">Step 2 — The stretch factor \(\sqrt{g_x^2 + g_y^2 + 1}\)</span>
+    <div class="math-block">$$ g_x = -2, \qquad g_y = -3 $$</div>
+    <div class="math-block">$$ \sqrt{g_x^2 + g_y^2 + 1} = \sqrt{(-2)^2 + (-3)^2 + 1} $$</div>
+    <div class="math-block">$$ = \sqrt{4 + 9 + 1} = \sqrt{14} $$</div>
+    <p class="why">For a plane this is a constant: every bit of the tilted plane is \(\sqrt{14} \approx 3.74\) times bigger than its shadow. Constants come outside the integral.</p>
+    <span class="step">Step 3 — The integrand \(f = x + y\)</span>
+    <p class="why">\(f\) has no \(z\) in it, so nothing to substitute. (If it did — like \(yz\) in Q12 — you'd replace \(z\) with \(6 - 2x - 3y\) here.)</p>
+    <span class="step">Step 4 — The shadow and its limits</span>
+    <p class="why">"First octant" means \(x \ge 0\), \(y \ge 0\), \(z \ge 0\). The condition \(z \ge 0\) is</p>
+    <div class="math-block">$$ 6 - 2x - 3y \ge 0 \;\Longleftrightarrow\; 2x + 3y \le 6 $$</div>
+    <p class="why">The edge \(2x + 3y = 6\) hits the \(x\)-axis at \(y = 0 \Rightarrow x = 3\), and the \(y\)-axis at \(x = 0 \Rightarrow y = 2\). Together with \(x, y \ge 0\), the shadow is the triangle with corners \((0, 0)\), \((3, 0)\), \((0, 2)\):</p>
     <figure class="diagram">
       <svg viewBox="0 0 375 215" role="img" aria-label="Triangular region R: 2x + 3y ≤ 6">
 <line x1="30.0" y1="190.0" x2="335.0" y2="190.0" stroke="#b2bec3" stroke-width="1.2" marker-end="url(#ar-gray)"/>
@@ -1149,10 +1187,27 @@
 </svg>
       <figcaption>For each \(x\) from 0 to 3, \(y\) runs from 0 up to the slanted edge \(y = \tfrac{6 - 2x}{3}\).</figcaption>
     </figure>
-    <span class="step">Step 3 — Integrate</span>
-    <div class="math-block">$$ \int_0^3\!\!\int_0^{(6-2x)/3} (x + y)\,dy\,dx $$</div>
-    <div class="math-block">$$ = \int_0^3 \left(2 + \tfrac23 x - \tfrac49 x^2\right) dx $$</div>
-    <div class="math-block">$$ = \left[2x + \frac{x^2}{3} - \frac{4x^3}{27}\right]_0^3 = 6 + 3 - 4 = 5 $$</div>
+    <ul>
+      <li><strong>Outer (\(x\)):</strong> the triangle spans \(x = 0\) to \(x = 3\). → \(0 \le x \le 3\)</li>
+      <li><strong>Inner (\(y\)):</strong> for each \(x\), \(y\) goes from the bottom edge \(y = 0\) up to the slanted edge. Solve \(2x + 3y = 6\) for \(y\): \(y = \tfrac{6 - 2x}{3}\). → \(0 \le y \le \tfrac{6 - 2x}{3}\)</li>
+    </ul>
+    <span class="step">Step 5 — Set up</span>
+    <div class="math-block">$$ \iint_\sigma (x + y)\,dS $$</div>
+    <div class="math-block">$$ = \sqrt{14}\int_0^3\!\!\int_0^{(6-2x)/3} (x + y)\,dy\,dx $$</div>
+    <span class="step">Step 6 — Inside first: \(dy\) (treat \(x\) as a constant)</span>
+    <div class="math-block">$$ \int_0^{(6-2x)/3} (x + y)\,dy = \left[xy + \frac{y^2}{2}\right]_0^{(6-2x)/3} $$</div>
+    <p class="why">Put in \(y = \tfrac{6 - 2x}{3}\) (the bottom limit 0 gives 0):</p>
+    <div class="math-block">$$ x\cdot\frac{6 - 2x}{3} = 2x - \frac{2}{3}x^2 $$</div>
+    <div class="math-block">$$ \frac12\left(\frac{6 - 2x}{3}\right)^2 = \frac{36 - 24x + 4x^2}{18} $$</div>
+    <div class="math-block">$$ = 2 - \frac43 x + \frac29 x^2 $$</div>
+    <p class="why">Add them, collecting the plain numbers, the \(x\)'s and the \(x^2\)'s:</p>
+    <div class="math-block">$$ 2 + \left(2 - \tfrac43\right)x + \left(-\tfrac23 + \tfrac29\right)x^2 $$</div>
+    <div class="math-block">$$ = 2 + \tfrac23 x - \tfrac49 x^2 $$</div>
+    <span class="step">Step 7 — Then: \(dx\) from 0 to 3</span>
+    <div class="math-block">$$ \int_0^3 \left(2 + \tfrac23 x - \tfrac49 x^2\right) dx = \left[2x + \frac{x^2}{3} - \frac{4x^3}{27}\right]_0^3 $$</div>
+    <div class="math-block">$$ = 2(3) + \frac{9}{3} - \frac{4(27)}{27} = 6 + 3 - 4 = 5 $$</div>
+    <span class="step">Step 8 — Multiply by the stretch factor</span>
+    <div class="math-block">$$ \sqrt{14} \times 5 = 5\sqrt{14} $$</div>
     <div class="answer">\(\iint_\sigma (x + y)\,dS = 5\sqrt{14} \approx 18.71\)</div>
     <div class="meaning">
       <span class="box-title">Check</span>
