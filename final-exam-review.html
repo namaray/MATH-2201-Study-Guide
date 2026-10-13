@@ -1417,9 +1417,36 @@
 </svg>
       <figcaption>The boundary, counterclockwise: along the \(x\)-axis, round the arc, back down the \(y\)-axis.</figcaption>
     </figure>
-    <div class="math-block">$$ P = 2, \quad Q = -x $$</div>
-    <div class="math-block">$$ \Rightarrow \; \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = -1 - 0 = -1 $$</div>
-    <div class="math-block">$$ \oint_C \mathbf{F}\cdot d\mathbf{r} = \iint_R (-1)\,dA = -\text{area} = -\frac{\pi}{4} $$</div>
+<span class="step">Step 1 — Why Green's theorem?</span>
+    <p class="why">\(C\) is a <strong>closed</strong> loop in the \(xy\)-plane, made of three pieces: along the \(x\)-axis, round the quarter-circle arc, and back down the \(y\)-axis. Doing the line integral directly means three separate integrals. Green's theorem swaps them for <em>one</em> double integral over the region inside.</p>
+    <span class="step">Step 2 — Read off \(P\) and \(Q\)</span>
+    <p class="why">\(P\) is the number in front of \(\mathbf{i}\), \(Q\) the number in front of \(\mathbf{j}\). Keep the minus sign:</p>
+    <div class="math-block">$$ \mathbf{F} = 2\,\mathbf{i} - x\,\mathbf{j} \quad\Longrightarrow\quad P = 2, \quad Q = -x $$</div>
+    <span class="step">Step 3 — The two partial derivatives</span>
+    <div class="math-block">$$ \frac{\partial Q}{\partial x} = \frac{\partial}{\partial x}(-x) = -1 $$</div>
+    <div class="math-block">$$ \frac{\partial P}{\partial y} = \frac{\partial}{\partial y}(2) = 0 \quad(\text{2 is a constant}) $$</div>
+    <span class="step">Step 4 — The integrand \(Q_x - P_y\)</span>
+    <div class="math-block">$$ \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = -1 - 0 = -1 $$</div>
+    <div class="warn">⚠ It's \(Q_x - P_y\) — the \(\mathbf{j}\)-part differentiated by \(x\), minus the \(\mathbf{i}\)-part differentiated by \(y\). Swapping the order flips the sign.</div>
+    <span class="step">Step 5 — The region and its limits</span>
+    <p class="why">"First quadrant, enclosed by the axes and the circle \(x^2 + y^2 = 1\)": \(x \ge 0\), \(y \ge 0\), and inside the circle of radius 1. That's a <strong>quarter disc</strong> (the picture above). In polar coordinates:</p>
+    <ul>
+      <li><strong>\(r\):</strong> from the origin out to the circle. → \(0 \le r \le 1\)</li>
+      <li><strong>\(\theta\):</strong> from the positive \(x\)-axis (\(\theta = 0\)) round to the positive \(y\)-axis (\(\theta = \tfrac{\pi}{2}\)) — just the first quadrant. → \(0 \le \theta \le \tfrac{\pi}{2}\)</li>
+    </ul>
+    <span class="step">Step 6 — Do the double integral</span>
+    <div class="math-block">$$ \iint_R (-1)\,dA = \int_0^{\pi/2}\!\!\int_0^1 (-1)\,r\,dr\,d\theta $$</div>
+    <div class="math-block">$$ = -\left[\frac{r^2}{2}\right]_0^1 \cdot \Big[\theta\Big]_0^{\pi/2} = -\frac12 \cdot \frac{\pi}{2} = -\frac{\pi}{4} $$</div>
+    <div class="key">Shortcut: when \(Q_x - P_y\) is a constant \(k\), the answer is just \(k \times \text{area}\). The quarter disc has area \(\tfrac14\pi(1)^2 = \tfrac{\pi}{4}\), so the answer is \(-1 \times \tfrac{\pi}{4}\).</div>
+    <span class="step">Check — doing the line integral the long way</span>
+    <p class="why">To see that Green's theorem really saves work, here are the three pieces of \(\oint P\,dx + Q\,dy = \oint 2\,dx - x\,dy\), counterclockwise:</p>
+    <ul>
+      <li><strong>Along the \(x\)-axis</strong>, \((0,0) \to (1,0)\): \(y = 0\), so \(dy = 0\). \(\displaystyle\int_0^1 2\,dx = 2\).</li>
+      <li><strong>Round the arc</strong>, \((1,0) \to (0,1)\): \(x = \cos t\), \(y = \sin t\), \(0 \le t \le \tfrac{\pi}{2}\), so \(dx = -\sin t\,dt\), \(dy = \cos t\,dt\):
+        $$ \int_0^{\pi/2}\big(-2\sin t - \cos^2 t\big)\,dt $$ $$ = -2 - \frac{\pi}{4} $$</li>
+      <li><strong>Down the \(y\)-axis</strong>, \((0,1) \to (0,0)\): \(x = 0\), so \(dx = 0\) and \(-x\,dy = 0\). This piece gives \(0\).</li>
+    </ul>
+    <div class="math-block">$$ 2 + \left(-2 - \frac{\pi}{4}\right) + 0 = -\frac{\pi}{4} \;\checkmark $$</div>
     <div class="answer">\(-\dfrac{\pi}{4} \approx -0.785\) (counterclockwise orientation)</div>
     <div class="meaning"><span class="box-title">What it means</span>The field \(-x\mathbf{j}\) spins clockwise, so its circulation counterclockwise is negative.</div>
   </div>
