@@ -812,14 +812,123 @@
 </svg>
       <figcaption>Left panel: this question (\(2x\)). Right panel: Q10(a) (\(8y\)). Mirror-image halves cancel.</figcaption>
     </figure>
-    <span class="step">Step 1 — Translate the limits</span>
-    <p class="why">\(x\) runs from \(-\sqrt{16 - y^2}\) to \(\sqrt{16 - y^2}\) and \(y\) from \(-4\) to \(4\): that's the disc \(x^2 + y^2 \le 16\), so \(0 \le r \le 4\), \(0 \le \theta \le 2\pi\). The top limit becomes \(z = 16 - 4r^2\).</p>
-    <span class="step">Step 2 — Set up in cylindrical</span>
+    <span class="step">Step 1 — How to read the limits of a triple integral</span>
+    <p class="why">Read the limits from the <strong>inside out</strong>. Each pair of limits belongs to the \(d\) that sits in the same position:</p>
+    <div class="math-block">$$ \int_{\color{#1e8449}{-4}}^{\color{#1e8449}{4}}\int_{\color{#c0392b}{-\sqrt{16-y^2}}}^{\color{#c0392b}{\sqrt{16-y^2}}}\int_{\color{#2471a3}{0}}^{\color{#2471a3}{16-4x^2-4y^2}} 2x\;{\color{#2471a3}{dz}}\,{\color{#c0392b}{dx}}\,{\color{#1e8449}{dy}} $$</div>
+    <ul>
+      <li><span style="color:#2471a3"><strong>Inside (\(dz\))</strong></span>: for each point \((x, y)\), how low and how high \(z\) goes.</li>
+      <li><span style="color:#c0392b"><strong>Middle (\(dx\))</strong></span>: for each \(y\), how far left and right \(x\) goes.</li>
+      <li><span style="color:#1e8449"><strong>Outside (\(dy\))</strong></span>: the overall range of \(y\).</li>
+    </ul>
+    <p class="why">The outer two (\(x\) and \(y\)) describe the solid's <strong>shadow</strong> on the \(xy\)-plane. The inner one (\(z\)) describes its <strong>floor and roof</strong>. Let's decode each.</p>
+    <span class="step">Step 2 — The \(x\) and \(y\) limits: what shape is the shadow?</span>
+    <p class="why">The \(x\)-limits are \(\pm\sqrt{16 - y^2}\). Square \(x = \sqrt{16 - y^2}\):</p>
+    <div class="math-block">$$ x^2 = 16 - y^2 \;\Longrightarrow\; x^2 + y^2 = 16 $$</div>
+    <p class="why">That's a circle of radius 4. So for each \(y\), \(x\) goes from the circle's left edge (\(-\sqrt{16 - y^2}\)) to its right edge (\(+\sqrt{16 - y^2}\)) — a horizontal strip across the circle. Then \(y\) runs from \(-4\) (the bottom of the circle) to \(4\) (the top), stacking strips until the whole disc is covered.</p>
+    <figure class="diagram">
+<svg viewBox="0 0 360 346" role="img" aria-label="Looking down on the xy-plane. For one value of y (the red strip), x runs from the left edge of the circle x² + y² = 16, at −√(16 − y²), to the right edge, at +√(16 − y²). Then y runs from −4 to 4 (green). Together they sweep out the whole disc of radius 4.">
+<text x="180.0" y="18.0" text-anchor="middle" class="lbl-sm" style="fill:#2c3e50;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">from above: the x and y limits</text>
+<line x1="24.0" y1="186.5" x2="341.8" y2="186.5" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M346.0,186.5 L339.6,189.3 L339.6,183.6 Z" fill="#b2bec3"/>
+<text x="344.0" y="201.5" text-anchor="end" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x</text>
+<line x1="170.5" y1="322.9" x2="170.5" y2="40.2" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/><path d="M170.5,36.0 L173.3,42.4 L167.6,42.4 Z" fill="#b2bec3"/>
+<text x="179.5" y="44.0" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">y</text>
+<line x1="70.1" y1="183.5" x2="70.1" y2="189.5" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="70.1" y="200.5" text-anchor="middle" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">-4</text>
+<line x1="120.3" y1="183.5" x2="120.3" y2="189.5" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="120.3" y="200.5" text-anchor="middle" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">-2</text>
+<line x1="220.6" y1="183.5" x2="220.6" y2="189.5" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="220.6" y="200.5" text-anchor="middle" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">2</text>
+<line x1="270.8" y1="183.5" x2="270.8" y2="189.5" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="270.8" y="200.5" text-anchor="middle" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">4</text>
+<line x1="321.0" y1="183.5" x2="321.0" y2="189.5" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="321.0" y="200.5" text-anchor="middle" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">6</text>
+<line x1="167.5" y1="286.8" x2="173.5" y2="286.8" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="164.5" y="289.8" text-anchor="end" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">-4</text>
+<line x1="167.5" y1="236.6" x2="173.5" y2="236.6" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="164.5" y="239.6" text-anchor="end" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">-2</text>
+<line x1="167.5" y1="136.3" x2="173.5" y2="136.3" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="164.5" y="139.3" text-anchor="end" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">2</text>
+<line x1="167.5" y1="86.1" x2="173.5" y2="86.1" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="164.5" y="89.1" text-anchor="end" class="lbl-sm" style="fill:#95a5a6;font-size:10px;">4</text>
+<path d="M270.8,186.5 L270.6,181.2 L270.2,176.0 L269.6,170.8 L268.6,165.6 L267.4,160.5 L265.9,155.5 L264.1,150.5 L262.1,145.7 L259.9,140.9 L257.3,136.3 L254.6,131.8 L251.6,127.5 L248.4,123.3 L245.0,119.3 L241.4,115.5 L237.6,111.9 L233.6,108.5 L229.4,105.3 L225.1,102.3 L220.6,99.6 L216.0,97.1 L211.3,94.8 L206.4,92.8 L201.5,91.0 L196.4,89.5 L191.3,88.3 L186.2,87.4 L180.9,86.7 L175.7,86.3 L170.5,86.1 L165.2,86.3 L160.0,86.7 L154.8,87.4 L149.6,88.3 L144.5,89.5 L139.5,91.0 L134.5,92.8 L129.7,94.8 L124.9,97.1 L120.3,99.6 L115.8,102.3 L111.5,105.3 L107.3,108.5 L103.3,111.9 L99.5,115.5 L95.9,119.3 L92.5,123.3 L89.3,127.5 L86.3,131.8 L83.6,136.3 L81.1,140.9 L78.8,145.7 L76.8,150.5 L75.0,155.5 L73.5,160.5 L72.3,165.6 L71.4,170.8 L70.7,176.0 L70.3,181.2 L70.1,186.5 L70.3,191.7 L70.7,196.9 L71.4,202.2 L72.3,207.3 L73.5,212.4 L75.0,217.5 L76.8,222.4 L78.8,227.3 L81.1,232.0 L83.6,236.6 L86.3,241.1 L89.3,245.4 L92.5,249.6 L95.9,253.6 L99.5,257.4 L103.3,261.0 L107.3,264.4 L111.5,267.6 L115.8,270.6 L120.3,273.3 L124.9,275.9 L129.7,278.1 L134.5,280.1 L139.5,281.9 L144.5,283.4 L149.6,284.6 L154.8,285.6 L160.0,286.2 L165.2,286.6 L170.5,286.8 L175.7,286.6 L180.9,286.2 L186.2,285.6 L191.3,284.6 L196.4,283.4 L201.5,281.9 L206.4,280.1 L211.3,278.1 L216.0,275.9 L220.6,273.3 L225.1,270.6 L229.4,267.6 L233.6,264.4 L237.6,261.0 L241.4,257.4 L245.0,253.6 L248.4,249.6 L251.6,245.4 L254.6,241.1 L257.3,236.6 L259.9,232.0 L262.1,227.3 L264.1,222.4 L265.9,217.5 L267.4,212.4 L268.6,207.3 L269.6,202.2 L270.2,196.9 L270.6,191.7 L270.8,186.5" fill="#eaf2f8" stroke="#2471a3" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M80.9,145.8 L260.1,145.8 L260.1,136.8 L80.9,136.8 Z" fill="#f5b7b1" fill-opacity="0.7" stroke="#c0392b" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="85.9" y1="141.3" x2="249.6" y2="141.3" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round"/><path d="M255.0,141.3 L246.8,145.0 L246.8,137.6 Z" fill="#c0392b"/>
+<circle cx="80.9" cy="141.3" r="4.5" fill="#c0392b"/>
+<circle cx="260.1" cy="141.3" r="4.5" fill="#c0392b"/>
+<text x="74.9" y="129.3" text-anchor="start" class="lbl-sm" style="fill:#c0392b;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x = −√(16 − y²)</text>
+<text x="266.1" y="163.3" text-anchor="end" class="lbl-sm" style="fill:#c0392b;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x = +√(16 − y²)</text>
+<line x1="293.4" y1="286.8" x2="293.4" y2="86.1" stroke="#1e8449" stroke-width="2.2" stroke-linecap="round"/>
+<text x="297.4" y="84.1" text-anchor="start" class="lbl-sm" style="fill:#1e8449;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">y = 4</text>
+<text x="297.4" y="296.8" text-anchor="start" class="lbl-sm" style="fill:#1e8449;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">y = −4</text>
+<text x="170.5" y="306.8" text-anchor="middle" class="lbl-sm" style="fill:#2471a3;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">x² + y² = 16  (r = 4)</text>
+</svg>
+      <figcaption>The red strip is one value of \(y\): it runs from the circle's left edge to its right edge. Sliding \(y\) from −4 to 4 (green) fills the whole disc of radius 4.</figcaption>
+    </figure>
+    <p class="why">A full disc of radius 4 centred at the origin is easy in polar/cylindrical coordinates:</p>
+    <div class="math-block">$$ 0 \le r \le 4 \;\;(\text{centre out to the circle}) $$</div>
+    <div class="math-block">$$ 0 \le \theta \le 2\pi \;\;(\text{all the way round}) $$</div>
+    <span class="step">Step 3 — The \(z\) limits: floor and roof</span>
+    <p class="why">The bottom limit \(z = 0\) is the floor (the \(xy\)-plane). The top limit is the roof. Notice it only depends on \(x^2 + y^2\), which is \(r^2\):</p>
+    <div class="math-block">$$ z = 16 - 4x^2 - 4y^2 $$</div>
+    <div class="math-block">$$ = 16 - 4(x^2 + y^2) = 16 - 4r^2 $$</div>
+    <p class="why">That's an upside-down bowl with its top at \(z = 16\) (when \(r = 0\)). So for every point of the shadow, \(z\) goes from the floor up to the bowl:</p>
+    <div class="math-block">$$ 0 \le z \le 16 - 4r^2 $$</div>
+    <figure class="diagram">
+<svg viewBox="0 0 360 382" role="img" aria-label="Side view (z squashed to one twelfth scale). The floor is z = 0 and the roof is the downward bowl z = 16 − 4r². A red stick at r = 1 runs from the floor up to the roof. The roof meets the floor at r = 2; beyond that it dips below the floor (orange), down to −48 at r = 4.">
+<text x="180.0" y="18.0" text-anchor="middle" class="lbl-sm" style="fill:#2c3e50;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">side view: the z limits</text>
+<line x1="49.4" y1="138.3" x2="326.3" y2="138.3" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="73.7" y1="347.1" x2="73.7" y2="50.9" stroke="#b2bec3" stroke-width="1.2" stroke-linecap="round"/>
+<text x="326.3" y="153.3" text-anchor="end" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">r</text>
+<text x="79.7" y="54.9" text-anchor="start" class="lbl-sm" style="fill:#7f8c8d;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">z</text>
+<line x1="70.3" y1="73.5" x2="77.1" y2="73.5" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="67.7" y="77.5" text-anchor="end" class="lbl-sm" style="fill:#95a5a6;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;font-size:10px;">16</text>
+<line x1="70.3" y1="235.4" x2="77.1" y2="235.4" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="67.7" y="239.4" text-anchor="end" class="lbl-sm" style="fill:#95a5a6;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;font-size:10px;">−24</text>
+<line x1="70.3" y1="332.6" x2="77.1" y2="332.6" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="67.7" y="336.6" text-anchor="end" class="lbl-sm" style="fill:#95a5a6;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;font-size:10px;">−48</text>
+<line x1="170.9" y1="141.7" x2="170.9" y2="134.9" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="170.9" y="152.3" text-anchor="middle" class="lbl-sm" style="fill:#95a5a6;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;font-size:10px;">2</text>
+<line x1="268.0" y1="141.7" x2="268.0" y2="134.9" stroke="#b2bec3" stroke-width="1" stroke-linecap="round"/>
+<text x="268.0" y="152.3" text-anchor="middle" class="lbl-sm" style="fill:#95a5a6;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;font-size:10px;">4</text>
+<path d="M73.7,138.3 L73.7,73.5 L76.1,73.6 L78.6,73.7 L81.0,73.9 L83.4,74.2 L85.9,74.5 L88.3,75.0 L90.7,75.5 L93.1,76.1 L95.6,76.8 L98.0,77.6 L100.4,78.4 L102.9,79.4 L105.3,80.4 L107.7,81.5 L110.1,82.6 L112.6,83.9 L115.0,85.2 L117.4,86.6 L119.9,88.1 L122.3,89.7 L124.7,91.4 L127.1,93.1 L129.6,94.9 L132.0,96.8 L134.4,98.8 L136.9,100.9 L139.3,103.0 L141.7,105.3 L144.1,107.6 L146.6,110.0 L149.0,112.4 L151.4,115.0 L153.9,117.6 L156.3,120.3 L158.7,123.1 L161.1,126.0 L163.6,128.9 L166.0,132.0 L168.4,135.1 L170.9,138.3 Z" fill="#eaf2f8" fill-opacity="0.9" stroke="#2471a3" stroke-width="0" stroke-linejoin="round"/>
+<path d="M170.9,138.3 L170.9,138.3 L173.3,141.6 L175.7,144.9 L178.1,148.4 L180.6,151.9 L183.0,155.5 L185.4,159.2 L187.9,162.9 L190.3,166.8 L192.7,170.7 L195.1,174.7 L197.6,178.8 L200.0,183.0 L202.4,187.2 L204.9,191.6 L207.3,196.0 L209.7,200.5 L212.1,205.0 L214.6,209.7 L217.0,214.4 L219.4,219.2 L221.9,224.1 L224.3,229.1 L226.7,234.2 L229.1,239.3 L231.6,244.5 L234.0,249.8 L236.4,255.2 L238.9,260.7 L241.3,266.2 L243.7,271.9 L246.1,277.6 L248.6,283.4 L251.0,289.2 L253.4,295.2 L255.9,301.2 L258.3,307.3 L260.7,313.5 L263.1,319.8 L265.6,326.1 L268.0,332.6 L268.0,138.3 Z" fill="#fdebd0" fill-opacity="0.9" stroke="#d35400" stroke-width="0" stroke-linejoin="round"/>
+<path d="M73.7,73.5 L75.3,73.5 L77.0,73.6 L78.6,73.7 L80.2,73.8 L81.8,74.0 L83.4,74.2 L85.0,74.4 L86.7,74.7 L88.3,75.0 L89.9,75.3 L91.5,75.7 L93.1,76.1 L94.8,76.6 L96.4,77.0 L98.0,77.6 L99.6,78.1 L101.2,78.7 L102.9,79.4 L104.5,80.0 L106.1,80.7 L107.7,81.5 L109.3,82.2 L111.0,83.0 L112.6,83.9 L114.2,84.8 L115.8,85.7 L117.4,86.6 L119.0,87.6 L120.7,88.7 L122.3,89.7 L123.9,90.8 L125.5,91.9 L127.1,93.1 L128.8,94.3 L130.4,95.6 L132.0,96.8 L133.6,98.2 L135.2,99.5 L136.9,100.9 L138.5,102.3 L140.1,103.8 L141.7,105.3 L143.3,106.8 L145.0,108.4 L146.6,110.0 L148.2,111.6 L149.8,113.3 L151.4,115.0 L153.0,116.7 L154.7,118.5 L156.3,120.3 L157.9,122.2 L159.5,124.1 L161.1,126.0 L162.8,127.9 L164.4,129.9 L166.0,132.0 L167.6,134.0 L169.2,136.1 L170.9,138.3 L172.5,140.5 L174.1,142.7 L175.7,144.9 L177.3,147.2 L179.0,149.5 L180.6,151.9 L182.2,154.3 L183.8,156.7 L185.4,159.2 L187.0,161.7 L188.7,164.2 L190.3,166.8 L191.9,169.4 L193.5,172.0 L195.1,174.7 L196.8,177.4 L198.4,180.2 L200.0,183.0 L201.6,185.8 L203.2,188.7 L204.9,191.6 L206.5,194.5 L208.1,197.5 L209.7,200.5 L211.3,203.5 L213.0,206.6 L214.6,209.7 L216.2,212.8 L217.8,216.0 L219.4,219.2 L221.0,222.5 L222.7,225.8 L224.3,229.1 L225.9,232.5 L227.5,235.9 L229.1,239.3 L230.8,242.8 L232.4,246.3 L234.0,249.8 L235.6,253.4 L237.2,257.0 L238.9,260.7 L240.5,264.4 L242.1,268.1 L243.7,271.9 L245.3,275.7 L247.0,279.5 L248.6,283.4 L250.2,287.3 L251.8,291.2 L253.4,295.2 L255.0,299.2 L256.7,303.2 L258.3,307.3 L259.9,311.4 L261.5,315.6 L263.1,319.8 L264.8,324.0 L266.4,328.3 L268.0,332.6" fill="none" stroke="#2471a3" stroke-width="2.6" stroke-linejoin="round"/>
+<line x1="122.3" y1="138.3" x2="122.3" y2="89.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/>
+<text x="130.3" y="114.0" text-anchor="start" class="lbl-sm" style="fill:#c0392b;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">z: 0 → 16 − 4r²</text>
+<text x="127.1" y="73.6" text-anchor="start" class="lbl-sm" style="fill:#2471a3;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">roof z = 16 − 4r²</text>
+<text x="98.0" y="259.7" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">r > 2: roof is</text>
+<text x="98.0" y="274.7" text-anchor="start" class="lbl-sm" style="fill:#d35400;font-weight:bold;paint-order:stroke;stroke:#fbfcfd;stroke-width:4px;stroke-linejoin:round;">below the floor</text>
+</svg>
+      <figcaption>A red "stick" at one point: \(z\) runs from the floor (0) up to the roof (\(16 - 4r^2\)). The roof only stays above the floor out to \(r = 2\) — see the note at the end.</figcaption>
+    </figure>
+    <span class="step">Step 4 — Convert the integrand and \(dV\)</span>
+    <div class="table-wrap">
+      <table class="check">
+        <thead><tr><th>Cartesian</th><th>Cylindrical</th><th>why</th></tr></thead>
+        <tbody>
+          <tr><td>\(2x\)</td><td>\(2r\cos\theta\)</td><td>\(x = r\cos\theta\)</td></tr>
+          <tr><td>\(dz\,dx\,dy\)</td><td>\(r\,dz\,dr\,d\theta\)</td><td>the Jacobian \(r\)</td></tr>
+          <tr><td>\(z\): \(0 \to 16 - 4x^2 - 4y^2\)</td><td>\(0 \to 16 - 4r^2\)</td><td>\(x^2 + y^2 = r^2\)</td></tr>
+          <tr><td>\(x, y\): the disc</td><td>\(r: 0 \to 4\), \(\theta: 0 \to 2\pi\)</td><td>Step 2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="step">Step 5 — The integral in cylindrical coordinates</span>
     <div class="math-block">$$ \int_0^{2\pi}\!\!\int_0^4\!\!\int_0^{16 - 4r^2} 2r\cos\theta \cdot r\;dz\,dr\,d\theta $$</div>
-    <span class="step">Step 3 — The θ-integral kills it</span>
-    <div class="math-block">$$ = \left(\int_0^{2\pi}\cos\theta\,d\theta\right)\cdot\left(\int_0^4 2r^2(16 - 4r^2)\,dr\right) $$</div>
-    <div class="math-block">$$ = 0 \cdot (\ldots) $$</div>
-    <div class="answer">\(0\)</div>
+    <div class="math-block">$$ = \int_0^{2\pi}\!\!\int_0^4\!\!\int_0^{16 - 4r^2} 2r^2\cos\theta\;dz\,dr\,d\theta $$</div>
+    <span class="step">Step 6 — Inside first: the \(z\)-integral</span>
+    <p class="why">Nothing in \(2r^2\cos\theta\) contains \(z\), so it's a constant here. Integrating a constant gives constant × (top − bottom):</p>
+    <div class="math-block">$$ \int_0^{16 - 4r^2} 2r^2\cos\theta\;dz = 2r^2\cos\theta\,\big(16 - 4r^2 - 0\big) $$</div>
+    <span class="step">Step 7 — Separate the \(\theta\) part from the \(r\) part</span>
+    <p class="why">What's left is (something with only \(\theta\)) × (something with only \(r\)), and the limits are plain numbers, so it splits:</p>
+    <div class="math-block">$$ \left(\int_0^{2\pi}\cos\theta\,d\theta\right) $$</div>
+    <div class="math-block">$$ \times \left(\int_0^4 2r^2\big(16 - 4r^2\big)\,dr\right) $$</div>
+    <span class="step">Step 8 — The \(\theta\)-integral is 0, so everything is 0</span>
+    <div class="math-block">$$ \int_0^{2\pi}\cos\theta\,d\theta = \Big[\sin\theta\Big]_0^{2\pi} $$</div>
+    <div class="math-block">$$ = \sin 2\pi - \sin 0 = 0 - 0 = 0 $$</div>
+    <p class="why">Zero times anything is zero, so you don't even need the \(r\)-integral. (For the record it's \(\int_0^4 (32r^2 - 8r^4)\,dr = \tfrac{2048}{3} - \tfrac{8192}{5} = -\tfrac{14336}{15}\), but it's multiplied by 0.)</p>
+    <div class="key">Why it had to be 0: the region is a perfect circle around the \(z\)-axis, and \(2x\) is positive on the right half (\(x &gt; 0\)) and exactly as negative on the left half — that's the picture at the top. The halves cancel.</div>
+        <div class="answer">\(0\)</div>
     <div class="note">The upper limit \(16 - 4r^2\) is negative when \(r &gt; 2\), so as written the integral partly runs "downwards". That doesn't change the answer — the \(\theta\)-integral is zero whatever the radial part is — but if the intended disc was \(r \le 2\) (where \(z = 16 - 4r^2\) meets \(z = 0\)), the answer is still 0.</div>
   </div>
 
